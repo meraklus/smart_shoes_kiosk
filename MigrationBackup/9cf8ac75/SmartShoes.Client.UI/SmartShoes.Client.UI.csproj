@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C68EC0B3-AFF7-456E-982F-8AEF7F50C65C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SmartShoes.Client.UI</RootNamespace>
+    <AssemblyName>SmartShoes.Client.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.2739.15, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2739.15\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.2739.15, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2739.15\lib\net462\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.2739.15, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2739.15\lib\net462\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2024.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2024.1.0\lib\net462\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.118.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.118.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.16.9.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.9\lib\net48\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.9.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.9\lib\net48\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfirmPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmPopup.Designer.cs">
+      <DependentUpon>ConfirmPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureNomalFirst.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureNomalFirst.Designer.cs">
+      <DependentUpon>MeasureNomalFirst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureNomalSecond.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureNomalSecond.Designer.cs">
+      <DependentUpon>MeasureNomalSecond.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureResultForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureResultForm.Designer.cs">
+      <DependentUpon>MeasureResultForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginQRScan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LoginQRScan.Designer.cs">
+      <DependentUpon>LoginQRScan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginQRScanPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginQRScanPopup.Designer.cs">
+      <DependentUpon>LoginQRScanPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureFormPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MeasureFormPopup.Designer.cs">
+      <DependentUpon>MeasureFormPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureTiny.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureTiny.Designer.cs">
+      <DependentUpon>MeasureTiny.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureReadyForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureReadyForm.Designer.cs">
+      <DependentUpon>MeasureReadyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureForm.Designer.cs">
+      <DependentUpon>MeasureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WebSocketListener.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MeasureNomalFirst.resx">
+      <DependentUpon>MeasureNomalFirst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureNomalSecond.resx">
+      <DependentUpon>MeasureNomalSecond.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureResultForm.resx">
+      <DependentUpon>MeasureResultForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginQRScan.resx">
+      <DependentUpon>LoginQRScan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginQRScanPopup.resx">
+      <DependentUpon>LoginQRScanPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureFormPopup.resx">
+      <DependentUpon>MeasureFormPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureTiny.resx">
+      <DependentUpon>MeasureTiny.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureReadyForm.resx">
+      <DependentUpon>MeasureReadyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureForm.resx">
+      <DependentUpon>MeasureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmartShoes.Common.Forms\SmartShoes.Common.Forms.csproj">
+      <Project>{0bead0ab-cde6-4639-965d-f3e85c735b12}</Project>
+      <Name>SmartShoes.Common.Forms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_complete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_confirm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_login_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_measu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_measu_continue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_measu_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_measu_re.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_measu_tiny.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_stopmeasu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnConfirm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnMatSetting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnStreamingSetting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cameraConnect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Frame 186.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_icon_check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kio_img_people.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kio_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mattDataGrid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\popup_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\popup_bg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\popup_close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\qrcode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reportBodyFrame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reportChartFrame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reportStepFrame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reportStepFrame2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resultDataTable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resultFootData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resultGraph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resultText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shutDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walkData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walkPatternTitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\welcome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reportChartFrame2.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.2739.15\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.2739.15\build\Microsoft.Web.WebView2.targets'))" />
+  </Target>
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.2739.15\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.2739.15\build\Microsoft.Web.WebView2.targets')" />
+</Project>

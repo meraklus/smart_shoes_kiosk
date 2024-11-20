@@ -1,0 +1,48 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SmartShoes.Client.UI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CONTAINER_ID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="SHOES_JSON" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="QR_CALL_URL_DEBUG" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://221.161.177.193:8080/api/qrcode/check?qrCode=</Value>
+    </Setting>
+    <Setting Name="WEBVIEW_URL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://192.168.0.103:8554</Value>
+    </Setting>
+    <Setting Name="MAT_DATA_INSERT_URL" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="QR_CALL_URL_RELEASE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://smartshoes.kr/api/qrcode/check?qrCode=</Value>
+    </Setting>
+    <Setting Name="SERVICE_UUID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">6e400001-b5a3-f393-e0a9-e50e24dcca9e</Value>
+    </Setting>
+    <Setting Name="NOTIFY_UUID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">6e400003-b5a3-f393-e0a9-e50e24dcca9e</Value>
+    </Setting>
+    <Setting Name="WRITE_UUID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">6e400002-b5a3-f393-e0a9-e50e24dcca9e</Value>
+    </Setting>
+    <Setting Name="SENSOR_SET_TIME" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SHOES_CALL_URL_DEBUG" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://221.161.177.194:8081/api/shoes/list?containerSid=</Value>
+    </Setting>
+    <Setting Name="SHOES_CALL_URL_RELEASE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://221.161.177.194/api/shoes/list?containerSid=</Value>
+    </Setting>
+    <Setting Name="SELECT_LEFT_SHOE" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SELECT_RIGHT_SHOE" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

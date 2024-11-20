@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C68EC0B3-AFF7-456E-982F-8AEF7F50C65C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SmartShoes.Client.UI</RootNamespace>
+    <AssemblyName>SmartShoes.Client.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MeasureResultForm2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureResultForm2.Designer.cs">
+      <DependentUpon>MeasureResultForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SettingsForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShoesChoicePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShoesChoicePopup.Designer.cs">
+      <DependentUpon>ShoesChoicePopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShoesConnectPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShoesConnectPopup.Designer.cs">
+      <DependentUpon>ShoesConnectPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingPopup.Designer.cs">
+      <DependentUpon>LoadingPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmPopup.Designer.cs">
+      <DependentUpon>ConfirmPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureNomalFirst.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureNomalFirst.Designer.cs">
+      <DependentUpon>MeasureNomalFirst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureNomalSecond.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureNomalSecond.Designer.cs">
+      <DependentUpon>MeasureNomalSecond.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureResultForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureResultForm.Designer.cs">
+      <DependentUpon>MeasureResultForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginQRScan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LoginQRScan.Designer.cs">
+      <DependentUpon>LoginQRScan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginQRScanPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginQRScanPopup.Designer.cs">
+      <DependentUpon>LoginQRScanPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureFormPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MeasureFormPopup.Designer.cs">
+      <DependentUpon>MeasureFormPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureTiny.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureTiny.Designer.cs">
+      <DependentUpon>MeasureTiny.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureReadyForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureReadyForm.Designer.cs">
+      <DependentUpon>MeasureReadyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasureForm.Designer.cs">
+      <DependentUpon>MeasureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WebSocketListener.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConfirmPopup.resx">
+      <DependentUpon>ConfirmPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureResultForm2.resx">
+      <DependentUpon>MeasureResultForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShoesChoicePopup.resx">
+      <DependentUpon>ShoesChoicePopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShoesConnectPopup.resx">
+      <DependentUpon>ShoesConnectPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingPopup.resx">
+      <DependentUpon>LoadingPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureNomalFirst.resx">
+      <DependentUpon>MeasureNomalFirst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureNomalSecond.resx">
+      <DependentUpon>MeasureNomalSecond.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureResultForm.resx">
+      <DependentUpon>MeasureResultForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginQRScan.resx">
+      <DependentUpon>LoginQRScan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginQRScanPopup.resx">
+      <DependentUpon>LoginQRScanPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureFormPopup.resx">
+      <DependentUpon>MeasureFormPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureTiny.resx">
+      <DependentUpon>MeasureTiny.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureReadyForm.resx">
+      <DependentUpon>MeasureReadyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureForm.resx">
+      <DependentUpon>MeasureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmartShoes.Common.Forms\SmartShoes.Common.Forms.csproj">
+      <Project>{0bead0ab-cde6-4639-965d-f3e85c735b12}</Project>
+      <Name>SmartShoes.Common.Forms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\btn_complete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_confirm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_login_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_measu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_measu_continue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_measu_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_measu_re.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_measu_tiny.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_stopmeasu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnConfirm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnMatSetting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnStreamingSetting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cameraConnect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Frame 186.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_icon_check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kio_img_people.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kio_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mattDataGrid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\popup_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\popup_bg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\popup_close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\qrcode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reportBodyFrame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reportChartFrame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reportStepFrame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reportStepFrame2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resultDataTable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resultFootData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resultGraph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resultText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shutDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walkData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walkPatternTitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\welcome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reportChartFrame2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AForge.Video.DirectShow">
+      <Version>2.2.5</Version>
+    </PackageReference>
+    <PackageReference Include="EntityFramework">
+      <Version>6.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
+      <Version>8.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Web.WebView2">
+      <Version>1.0.2849.39</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="SSH.NET">
+      <Version>2024.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite">
+      <Version>1.0.119</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net">
+      <Version>0.16.9</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\다운로드.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main_loading 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_man 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level bar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ellipse 91.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rectangle 151.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_measu_continue_off 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_connect 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_walk 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shoeschoice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Frame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Frame2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_call_shoes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_cont_id_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_conn_shoes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_conn_shoes_disabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_reconnect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Frame 209.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Frame 209-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rectangle 203.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\등급침.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\보행균형.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\유각기 입각기.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\foundation_foot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\result.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Subtract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\등급.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1등급.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2등급.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3등급.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4등급.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5등급.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

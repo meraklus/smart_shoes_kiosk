@@ -1,0 +1,31 @@
+classification,vleft,vright,diff,all
+Step Length(cm),,,,
+Stride Length(cm),,,,
+Single Step Time,,,,
+Step Angle,,,,
+Step Count,,,,
+Base of gait,,,,
+Step Force,,,,
+Stance phase(%),,,,
+Swing phase(%),,,,
+Single support,,,,
+Total double support(%),,,,
+Load responce(%),,,,
+Pre-Swing(%),,,,
+Step position,,,,
+Stride Time,,,,
+Stance Time,,,,
+COP Length,,,,
+
+Foot gait time
+Step,Start,End,Count
+,,,
+,,,
+,,,
+,,,
+,,,
+
+Foot Step Data
+
+Foot Step Data
+

@@ -1,0 +1,47 @@
+classification,vleft,vright,diff,all
+Step Length(cm),0.0,0.0,0.0,
+Stride Length(cm),,,,
+Single Step Time,0.0,0.0,0.0,
+Step Angle,0.0,0.0,0.0,
+Step Count,,,,
+Base of gait,,,,0.0
+Step Force,,,,
+Stance phase(%),,,,
+Swing phase(%),,,,
+Single support,,,,
+Total double support(%),,,,
+Load responce(%),,,,
+Pre-Swing(%),,,,
+Step position,0,0,0,
+Stride Time,0.0,0.0,0.0,
+Stance Time,0.0,0.0,0.0,
+COP Length,0,0,,
+
+Foot gait time
+Step,Start,End,Count
+,,,
+,,,
+,,,
+,,,
+,,,
+
+Foot Step Data
+Foot1 Foot_Size_Time,1.48064516129032,0,0
+Foot2 Foot_Size_Time,0,1.48064516129032,0
+Foot3 Foot_Size_Time,1.48064516129032,0,0
+Foot4 Foot_Size_Time,0,1.48064516129032,0
+Foot5 Foot_Size_Time,1.48064516129032,0,0
+Foot6 Foot_Size_Time,0,1.48064516129032,0
+Foot7 Foot_Size_Time,1.48064516129032,0,0
+Foot8 Foot_Size_Time,0,1.48064516129032,0
+
+Foot Step Data
+Foot1 Foot_Size_Time,1.48064516129032,0,0
+Foot2 Foot_Size_Time,0,1.48064516129032,0
+Foot3 Foot_Size_Time,1.48064516129032,0,0
+Foot4 Foot_Size_Time,0,1.48064516129032,0
+Foot5 Foot_Size_Time,1.48064516129032,0,0
+Foot6 Foot_Size_Time,0,1.48064516129032,0
+Foot7 Foot_Size_Time,1.48064516129032,0,0
+Foot8 Foot_Size_Time,0,1.48064516129032,0
+

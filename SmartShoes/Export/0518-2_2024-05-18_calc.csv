@@ -1,0 +1,51 @@
+classification,vleft,vright,diff,all
+Step Length(cm),59.7,55.8,3.9,
+Stride Length(cm),,,,113.7
+Single Step Time,0.3,0.4,0.1,
+Step Angle,4.0,4.0,0.0,
+Step Count,10,11,1,
+Base of gait,,,,7.7
+Step Force,49,51,2,
+Stance phase(%),59,65,6,
+Swing phase(%),41,35,6,
+Single support,35,41,6,
+Total double support(%),12,12,,20
+Load responce(%),12,12,0,
+Pre-Swing(%),12,12,0,
+Step position,48,52,4,
+Stride Time,1.0,1.0,0.0,
+Stance Time,0.6,0.6,0.1,
+COP Length,19,20,,
+
+Foot gait time
+Step,Start,End,Count
+59.7,55.8,3.9,
+,,,113.7
+0.3,0.4,0.1,
+4.0,4.0,0.0,
+10,11,1,
+
+Foot Step Data
+Foot1 Foot_Size_Time,19.4129032258065,0,0.5
+Foot2 Foot_Size_Time,0,25.1709677419355,0.333333333333333
+Foot3 Foot_Size_Time,24.3483870967742,0,0.388888888888889
+Foot4 Foot_Size_Time,0,26.3225806451613,0.333333333333333
+Foot5 Foot_Size_Time,21.2225806451613,0,0.5
+Foot6 Foot_Size_Time,0,21.2225806451613,0
+Foot7 Foot_Size_Time,21.2225806451613,0,0
+Foot8 Foot_Size_Time,0,21.2225806451613,0
+
+Foot Step Data
+Foot1 Foot_Size_Time,19.4129032258065,0,0.5
+Foot2 Foot_Size_Time,0,25.1709677419355,0.333333333333333
+Foot3 Foot_Size_Time,24.3483870967742,0,0.388888888888889
+Foot4 Foot_Size_Time,0,26.3225806451613,0.333333333333333
+Foot5 Foot_Size_Time,21.2225806451613,0,0.5
+Foot6 Foot_Size_Time,0,21.2225806451613,0
+Foot7 Foot_Size_Time,21.2225806451613,0,0
+Foot8 Foot_Size_Time,0,21.2225806451613,0
+
+Foot1 Foot_Step_Time,53.9612903225807,0,0.611111111111111
+Foot2 Foot_Step_Time,0,59.7193548387097,0.5
+Foot3 Foot_Step_Time,55.7709677419355,0,0.5
+Foot4 Foot_Step_Time,0,57.7451612903226,0.444444444444444
