@@ -54,3 +54,5 @@ dkms.conf
 /.vs/SmartShoes
 /SmartShoes/EmpDB
 /SmartShoes/GHWLH23.db3
+
+**/obj/
