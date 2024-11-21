@@ -56,3 +56,4 @@ dkms.conf
 /SmartShoes/GHWLH23.db3
 
 **/obj/
+*.cache
