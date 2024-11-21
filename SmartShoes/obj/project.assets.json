@@ -5930,17 +5930,17 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\GCONSPACE\\.nuget\\packages\\": {},
+    "C:\\Users\\sadb0\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\project\\SmartShoes\\SmartShoes\\SmartShoes.csproj",
+      "projectUniqueName": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes\\SmartShoes.csproj",
       "projectName": "SmartShoes",
-      "projectPath": "D:\\project\\SmartShoes\\SmartShoes\\SmartShoes.csproj",
-      "packagesPath": "C:\\Users\\GCONSPACE\\.nuget\\packages\\",
-      "outputPath": "D:\\project\\SmartShoes\\SmartShoes\\obj\\",
+      "projectPath": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes\\SmartShoes.csproj",
+      "packagesPath": "C:\\Users\\sadb0\\.nuget\\packages\\",
+      "outputPath": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "UsingMicrosoftNETSdk": false,
@@ -5948,7 +5948,7 @@
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\GCONSPACE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sadb0\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5962,11 +5962,11 @@
       "frameworks": {
         "net48": {
           "projectReferences": {
-            "D:\\project\\SmartShoes\\SmartShoes.Client.UI\\SmartShoes.Client.UI.csproj": {
-              "projectPath": "D:\\project\\SmartShoes\\SmartShoes.Client.UI\\SmartShoes.Client.UI.csproj"
+            "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Client.UI\\SmartShoes.Client.UI.csproj": {
+              "projectPath": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Client.UI\\SmartShoes.Client.UI.csproj"
             },
-            "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj": {
-              "projectPath": "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj"
+            "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj": {
+              "projectPath": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj"
             }
           }
         }
