@@ -361,3 +361,4 @@ C:\projects\smart_shose\SmartShoes\SmartShoes.Client.UI\obj\Debug\SmartShoes.Cli
 C:\projects\smart_shose\SmartShoes\SmartShoes.Client.UI\obj\Debug\SmartSho.33860351.Up2Date
 C:\projects\smart_shose\SmartShoes\SmartShoes.Client.UI\obj\Debug\SmartShoes.Client.UI.dll
 C:\projects\smart_shose\SmartShoes\SmartShoes.Client.UI\obj\Debug\SmartShoes.Client.UI.pdb
+C:\projects\smart_shose\SmartShoes\SmartShoes.Client.UI\obj\Debug\SmartShoes.Client.UI.KeyInputForm.resources

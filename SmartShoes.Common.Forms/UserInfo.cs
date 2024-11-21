@@ -14,7 +14,7 @@ namespace SmartShoes.Common.Forms
 		// 사용자 정보 예시
 		public string UserName { get; private set; }
 		public string UserId { get; private set; }
-		public double Height { get; private set; }
+		public int Height { get; private set; }
 
 		// 생성자를 private으로 하여 외부에서 인스턴스를 생성하지 못하게 함
 		private UserInfo() { }
@@ -33,7 +33,7 @@ namespace SmartShoes.Common.Forms
 		}
 
 		// 로그인 시 사용자 정보를 설정하는 메서드
-		public void SetUserInfo(string userName, string userId, double height)
+		public void SetUserInfo(string userName, string userId, int height)
 		{
 			this.UserName = userName;
 			this.UserId = userId;

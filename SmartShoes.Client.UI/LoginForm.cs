@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
+using Renci.SshNet.Security;
 using SmartShoes.Common.Forms;
 
 namespace SmartShoes.Client.UI
@@ -52,7 +54,23 @@ namespace SmartShoes.Client.UI
 			}
 		}
 
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            using (KeyInputForm keyInputForm = new KeyInputForm())
+            {
+                var result = keyInputForm.ShowDialog();
+                if (result == DialogResult.OK && !string.IsNullOrEmpty(keyInputForm.InputKey))
+                {
+                    if (int.TryParse(keyInputForm.InputKey, out int inputKey))
+                    {
+                        // 입력된 키 값을 SetUserInfo에 전달
+                        UserInfo.Instance.SetUserInfo("테스터", "68", inputKey);
 
-
-	}
+                        // MeasureForm으로 이동
+                        MovePage(typeof(MeasureForm));
+                    }
+                }
+            }
+        }
+    }
 }
