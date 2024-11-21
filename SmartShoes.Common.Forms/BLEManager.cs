@@ -146,7 +146,6 @@ namespace SmartShoes.Common.Forms
 					if (deviceAddress.Equals(deviceAddrR, StringComparison.OrdinalIgnoreCase) && !isDeviceRFound)
 					{
 						// 오른쪽 장치 발견
-						isDeviceRFound = true;
 						var device = await BluetoothLEDevice.FromBluetoothAddressAsync(args.BluetoothAddress);
 						device.ConnectionStatusChanged += OnConnectionStatusChanged;
                         //var device = BluetoothDevice.FromIdAsync(args.Advertisement.LocalName).GetAwaiter().GetResult();
@@ -154,13 +153,15 @@ namespace SmartShoes.Common.Forms
 						{
 							_deviceR = device;
 							Console.WriteLine($"오른쪽 장치 발견: {_deviceR.Name}, 주소: {_deviceR.Id}");
-						}
-					}
+                            isDeviceRFound = true;
+
+                        }
+                    }
 
 					if (deviceAddress.Equals(deviceAddrL, StringComparison.OrdinalIgnoreCase) && !isDeviceLFound)
 					{
 						// 왼쪽 장치 발견
-						isDeviceLFound = true;
+						
 						var device = await BluetoothLEDevice.FromBluetoothAddressAsync(args.BluetoothAddress);
                         device.ConnectionStatusChanged += OnConnectionStatusChanged;
 
@@ -169,7 +170,8 @@ namespace SmartShoes.Common.Forms
 						{
 							_deviceL = device;
 							Console.WriteLine($"왼쪽 장치 발견: {_deviceL.Name}, 주소: {_deviceL.Id}");
-						}
+                            isDeviceLFound = true;
+                        }
 					}
 				};
 
@@ -243,52 +245,38 @@ namespace SmartShoes.Common.Forms
 					// Enable notifications
 					await characteristic.StartNotificationsAsync();
 					Console.WriteLine($"Started notifications for {device.Name}");
-					characteristic.CharacteristicValueChanged += (s, e) =>
-					{
-						var data = e.Value;
-						
-						if (data.Length > 0)
-						{
-							string decodedString = Encoding.ASCII.GetString(data).Trim();
+                    characteristic.CharacteristicValueChanged += (s, e) => OnCharacteristicValueChanged(device, e);
 
-							// 문자열을 정수 배열로 변환
-							string[] strValues = decodedString.Split(',');
-							int[] intValues = Array.ConvertAll(strValues, int.Parse);
-
-							// 데이터 리스트에 추가
-							if (device.Id.Equals(_deviceR.Id)) 
-							{
-								_parsedDataR.Add(intValues);
-        //                        Console.WriteLine("right data : @@@@@@" + data);
-        //                        Console.WriteLine("right int data : @@@@@@" + intValues);
-								//riint++;
-        //                        Console.WriteLine("right int : @@@@@@" + riint);
-                                if (_parsedDataR.Count == datalen)
-								{
-									OnThresholdReachedR(EventArgs.Empty); // 이벤트 발생
-								}
-							}
-							if (device.Id.Equals(_deviceL.Id)) 
-							{
-								_parsedDataL.Add(intValues);
-                                //Console.WriteLine("left data : @@@@@@" + data);
-                                //Console.WriteLine("left int data : @@@@@@" + intValues);
-                                //leint++;
-                                //Console.WriteLine("left int : @@@@@@" + leint);
-                                if (_parsedDataL.Count == datalen)
-								{
-									OnThresholdReachedL(EventArgs.Empty); // 이벤트 발생
-								}
-							}	
-						}
-					};
-				}
-			}
+                }
+            }
 		}
+        private void OnCharacteristicValueChanged(BluetoothDevice device, GattCharacteristicValueChangedEventArgs e)
+        {
+            var data = e.Value;
+            if (data.Length > 0)
+            {
+                string decodedString = Encoding.ASCII.GetString(data).Trim();
+
+                // 문자열을 정수 배열로 변환
+                string[] strValues = decodedString.Split(',');
+                int[] intValues = Array.ConvertAll(strValues, int.Parse);
+				if (_deviceR == null || _deviceL == null)
+					return;
+                    // 데이터 리스트에 추가
+                if (device.Id.Equals(_deviceR.Id))
+                {
+                    _parsedDataR.Add(intValues);
+                }
+                if (device.Id.Equals(_deviceL.Id))
+                {
+                    _parsedDataL.Add(intValues);
+                }
+            }
+        }
 
 
-		// Get Connected right device
-		public BluetoothDevice GetRightDevice()
+        // Get Connected right device
+        public BluetoothDevice GetRightDevice()
 		{
 			return _deviceR;
 		}
@@ -308,8 +296,9 @@ namespace SmartShoes.Common.Forms
 			// Right device disconnection
 			if (_deviceR != null)
 			{
-				// Stop notifications
-				await StopNotificationsAsync(_deviceR, serviceUUID);
+
+                // Stop notifications
+                await StopNotificationsAsync(_deviceR, serviceUUID);
                 // Disconnect
                 _deviceR.Gatt.Disconnect();
 				_deviceR = null;
@@ -371,7 +360,8 @@ namespace SmartShoes.Common.Forms
 							// 특정 Characteristic UUID와 일치하는지 확인 후 알림 해제 시도
 							if (characteristic.Uuid.Equals(new Guid("6e400003-b5a3-f393-e0a9-e50e24dcca9e")))
 							{
-								await characteristic.StopNotificationsAsync();
+                                characteristic.CharacteristicValueChanged -= (s, e) => OnCharacteristicValueChanged(device, e);
+                                await characteristic.StopNotificationsAsync();
 								Console.WriteLine($"Stopped notifications for {device.Name}");
 							}
 						}

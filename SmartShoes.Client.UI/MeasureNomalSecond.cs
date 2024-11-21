@@ -36,8 +36,8 @@ namespace SmartShoes.Client.UI
 
 		private async void MeasureFunction()
 		{
-			BLEManager.Instance.ThresholdReachedR -= HandleThresholdReachedR;
-			BLEManager.Instance.ThresholdReachedL -= HandleThresholdReachedL;
+			//BLEManager.Instance.ThresholdReachedR -= HandleThresholdReachedR;
+			//BLEManager.Instance.ThresholdReachedL -= HandleThresholdReachedL;
 
 			// Mat Measure
 			if (dph != null)
@@ -52,8 +52,8 @@ namespace SmartShoes.Client.UI
 				StartCloseTimer();
 			}
 
-			BLEManager.Instance.ThresholdReachedR += HandleThresholdReachedR;
-			BLEManager.Instance.ThresholdReachedL += HandleThresholdReachedL;
+			//BLEManager.Instance.ThresholdReachedR += HandleThresholdReachedR;
+			//BLEManager.Instance.ThresholdReachedL += HandleThresholdReachedL;
 
 
 			// Sensor Device Measure
@@ -173,7 +173,7 @@ namespace SmartShoes.Client.UI
 
 				this.endMeasureBool = true;
 
-				if (!(_leftFlag && _rightFlag)) { return; }
+				//if (!(_leftFlag && _rightFlag)) { return; }
 				
 				this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
 				loadpop.Close();
@@ -410,10 +410,10 @@ namespace SmartShoes.Client.UI
 
 			this.endMeasureBool = true;
 
-			if (!(_leftFlag && _rightFlag)) {
-                Console.WriteLine("신발 플래그가 딸려서 리턴남");
-                return; 
-			}
+			//if (!(_leftFlag && _rightFlag)) {
+   //             Console.WriteLine("신발 플래그가 딸려서 리턴남");
+   //             return; 
+			//}
 			this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
 
 			loadpop.Close();

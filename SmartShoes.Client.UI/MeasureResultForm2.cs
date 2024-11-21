@@ -277,9 +277,9 @@ namespace SmartShoes.Client.UI
 
         public static List<double[]> ConvertData(List<int[]> leftData, List<int[]> rightData)
         {
-            
-
-			int dataLength = Math.Min(leftData.Count, rightData.Count);
+			
+			Console.WriteLine("컨버팅 시작", leftData.Count,"@@" ,rightData.Count);
+            int dataLength = Math.Min(leftData.Count, rightData.Count);
             var combinedData = new List<double[]>(dataLength);
 
             for (int i = 0; i < dataLength; i++)
@@ -444,8 +444,6 @@ namespace SmartShoes.Client.UI
 							measureResult.matGaitSpacingStable = value;
 							break;
 					}
-
-					Console.WriteLine($"Key: {key}, Value: {value}");
 				}
 			}
 			catch (Exception ex)
@@ -643,8 +641,11 @@ namespace SmartShoes.Client.UI
 					};
 					await CallApiResultMatt();
 
-					
 
+
+                    Guid serviceUUID = new Guid(Properties.Settings.Default.SERVICE_UUID);
+
+                    await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
 
                     var shoesL = BLEManager.Instance._parsedDataL;
                     var shoesR = BLEManager.Instance._parsedDataR;
@@ -738,9 +739,9 @@ namespace SmartShoes.Client.UI
             this.txtShoesTR04.Text = shoesResult.shoesRightSwingPhaseScore;
 
             this.txtShoesTL01.Text = shoesResult.shoesStancePhase1;
-            this.txtShoesTL02.Text = shoesResult.shoesLeftStancePhaseScore;
+            this.txtShoesTL02.Text = shoesResult.shoesStancePhase2;
             this.txtShoesTL03.Text = shoesResult.shoesSwingPhase1;
-            this.txtShoesTL04.Text = shoesResult.shoesLeftSwingPhaseScore;
+            this.txtShoesTL04.Text = shoesResult.shoesSwingPhase2;
 
 
 
