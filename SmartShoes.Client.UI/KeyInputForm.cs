@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Renci.SshNet.Security;
 
 namespace SmartShoes.Client.UI
 {
@@ -13,30 +14,25 @@ namespace SmartShoes.Client.UI
             InitializeComponent();
 
             // 폼 크기 고정
-            this.ClientSize = new Size(400, 400);
+            this.ClientSize = new Size(400, 600);
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
-            // txtInput 크기 및 위치 조정
-            txtInput.Width = 360;
-            txtInput.Height = 40;
-            txtInput.Location = new Point(20, 20);
-            txtInput.Font = new Font(txtInput.Font.FontFamily, 14, FontStyle.Bold);
-
+            
             // flowLayoutPanel 위치 및 크기 조정
             flowLayoutPanel.Location = new Point(20, 80);
-            flowLayoutPanel.Size = new Size(360, 300);
+            flowLayoutPanel.Size = new Size(400, 500);
             flowLayoutPanel.WrapContents = true;
-            flowLayoutPanel.AutoScroll = true;
+            flowLayoutPanel.AutoScroll = true; 
             flowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
-            flowLayoutPanel.Padding = new Padding(10);
+            //flowLayoutPanel.Padding = new Padding(10);
 
             // txtInput 크기 및 위치 조정
             txtInput.Width = 360; // 너비 확대
-            txtInput.Height = 60; // 높이 확대
+            txtInput.Height = 100; // 높이 확대
             txtInput.Location = new Point(20, 20);
-            txtInput.Font = new Font(txtInput.Font.FontFamily, 18, FontStyle.Bold); // 폰트 크기 증가
+            txtInput.Font = new Font(txtInput.Font.FontFamily, 30, FontStyle.Bold); // 폰트 크기 증가
             txtInput.TextAlign = HorizontalAlignment.Center; // 텍스트 가운데 정렬
             txtInput.BorderStyle = BorderStyle.None; // 테두리 제거
 
@@ -47,14 +43,14 @@ namespace SmartShoes.Client.UI
         private void KeyInputForm_Load(object sender, EventArgs e)
         {
             // 가상 키패드 버튼 생성 (0-9, Backspace, Enter)
-            string keys = "0123456789";
+            string keys = "123456789";
             foreach (char key in keys)
             {
                 Button btn = new Button
                 {
                     Text = key.ToString(),
-                    Width = 60, // 버튼 너비
-                    Height = 60, // 버튼 높이
+                    Width = 100, // 버튼 너비
+                    Height = 100, // 버튼 높이
                     Margin = new Padding(10),
                     Font = new Font("맑은 고딕", 12, FontStyle.Bold)
                 };
@@ -62,24 +58,37 @@ namespace SmartShoes.Client.UI
                 flowLayoutPanel.Controls.Add(btn);
             }
 
+
             // Backspace 버튼
             Button btnBackspace = new Button
             {
                 Text = "←",
-                Width = 60,
-                Height = 60,
+                Width = 100,
+                Height = 100,
                 Margin = new Padding(10),
                 Font = new Font("맑은 고딕", 12, FontStyle.Bold)
             };
             btnBackspace.Click += BtnBackspace_Click;
             flowLayoutPanel.Controls.Add(btnBackspace);
 
+            Button btn0 = new Button
+            {
+                Text = "0",
+                Width = 100, // 버튼 너비
+                Height = 100, // 버튼 높이
+                Margin = new Padding(10),
+                Font = new Font("맑은 고딕", 12, FontStyle.Bold)
+            };
+            btn0.Click += VirtualKey_Click;
+            flowLayoutPanel.Controls.Add(btn0);
+          
+
             // Enter 버튼
             Button btnEnter = new Button
             {
                 Text = "Enter",
-                Width = 60,
-                Height = 60,
+                Width = 100,
+                Height = 100,
                 Margin = new Padding(10),
                 Font = new Font("맑은 고딕", 12, FontStyle.Bold)
             };

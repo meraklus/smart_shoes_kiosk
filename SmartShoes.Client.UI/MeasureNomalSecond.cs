@@ -57,28 +57,28 @@ namespace SmartShoes.Client.UI
 
 
 			// Sensor Device Measure
-			var rightDevice = BLEManager.Instance.GetRightDevice();
-			if (rightDevice != null)
-			{
-				Console.WriteLine($"Right device: {rightDevice.Name}");
-			}
-			else
-			{
-				Console.WriteLine("Right device is not connected.");
-			}
+			//var rightDevice = BLEManager.Instance.GetRightDevice();
+			//if (rightDevice != null)
+			//{
+			//	Console.WriteLine($"Right device: {rightDevice.Name}");
+			//}
+			//else
+			//{
+			//	Console.WriteLine("Right device is not connected.");
+			//}
 
-			var leftDevice = BLEManager.Instance.GetLeftDevice();
-			if (leftDevice != null)
-			{
-				Console.WriteLine($"Left device: {leftDevice.Name}");
-			}
-			else
-			{
-				Console.WriteLine("Left device is not connected.");
-			}
+			//var leftDevice = BLEManager.Instance.GetLeftDevice();
+			//if (leftDevice != null)
+			//{
+			//	Console.WriteLine($"Left device: {leftDevice.Name}");
+			//}
+			//else
+			//{
+			//	Console.WriteLine("Left device is not connected.");
+			//}
 
-			await functiontest(rightDevice);
-			await functiontest(leftDevice);
+			//await functiontest(rightDevice);
+			//await functiontest(leftDevice);
 		}
 
 

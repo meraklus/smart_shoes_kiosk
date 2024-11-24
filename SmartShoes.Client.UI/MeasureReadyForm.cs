@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using SmartShoes.Common.Forms;
 
@@ -77,9 +78,13 @@ namespace SmartShoes.Client.UI
 			scp.Location = new System.Drawing.Point(screenCenterX2, customY2);
 			scp.Show();
 
-			bool isConnected = await BLEManager.Instance.ConnectAndReceiveAsync2(deviceAddressR, deviceAddressL, datalen, serviceUUID, notifyUUID);
+            //bool isConnected = await BLEManager.Instance.ConnectAndReceiveAsync3(deviceAddressR, deviceAddressL, datalen, serviceUUID, notifyUUID);
 
-			btnNomal.Enabled = isConnected;
+            await Task.Delay(5000); 
+
+            bool isConnected = true;
+
+            btnNomal.Enabled = isConnected;
 			if( isConnected ) 
 			{
 				
@@ -93,5 +98,13 @@ namespace SmartShoes.Client.UI
 			Console.WriteLine(isConnected);
 		}
 
-	}
+        private async void pictureBox4_Click(object sender, EventArgs e)
+        {
+            //Guid serviceUUID = new Guid(Properties.Settings.Default.SERVICE_UUID);
+            //await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
+
+            MovePage(typeof(LoginForm));
+
+        }
+    }
 }
