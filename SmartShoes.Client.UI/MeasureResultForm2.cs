@@ -532,6 +532,12 @@ namespace SmartShoes.Client.UI
 			cfp.ShowDialog();
 
 
+            measurementData = null;
+			measureResult = null;
+			shoesData = null;
+			shoesResult = null;
+
+
 			if (cfp.Confirmed)
 			{
 				this.Invoke(new Action(() => MovePage(typeof(LoginForm))));

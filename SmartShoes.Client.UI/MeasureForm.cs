@@ -58,17 +58,11 @@ namespace SmartShoes.Client.UI
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             // 얼럿 메시지 박스 표시
-            var result = MessageBox.Show("홈으로 돌아가시겠습니까?", "확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            // 사용자가 '예'를 클릭한 경우
-            if (result == DialogResult.Yes)
-            {
-                // 사용자 정보 초기화
+        
                 UserInfo.Instance.ClearUserInfo();
 
-                // 홈 페이지로 이동 (예: LoginForm)
                 MovePage(typeof(LoginForm));
-            }
+            
         }
 	}
 }

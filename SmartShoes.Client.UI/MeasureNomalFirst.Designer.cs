@@ -28,114 +28,114 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.btnComplete = new System.Windows.Forms.PictureBox();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.btnReStart = new System.Windows.Forms.PictureBox();
-			((System.ComponentModel.ISupportInitialize)(this.btnComplete)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.btnReStart)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// label1
-			// 
-			this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("굴림", 34.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.label1.Location = new System.Drawing.Point(263, 831);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(531, 47);
-			this.label1.TabIndex = 6;
-			this.label1.Text = "1차 측정 진행중입니다.";
-			// 
-			// label2
-			// 
-			this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("굴림", 80F);
-			this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.label2.Location = new System.Drawing.Point(462, 659);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(153, 107);
-			this.label2.TabIndex = 7;
-			this.label2.Text = "...";
-			// 
-			// panel1
-			// 
-			this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-			this.panel1.Location = new System.Drawing.Point(161, 71);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(750, 757);
-			this.panel1.TabIndex = 8;
-			this.panel1.Visible = false;
-			// 
-			// panel2
-			// 
-			this.panel2.Location = new System.Drawing.Point(161, 71);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(750, 826);
-			this.panel2.TabIndex = 10;
-			// 
-			// btnComplete
-			// 
-			this.btnComplete.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.btnComplete.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_complete;
-			this.btnComplete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.btnComplete.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.btnComplete.Location = new System.Drawing.Point(268, 903);
-			this.btnComplete.Name = "btnComplete";
-			this.btnComplete.Size = new System.Drawing.Size(526, 225);
-			this.btnComplete.TabIndex = 9;
-			this.btnComplete.TabStop = false;
-			this.btnComplete.Click += new System.EventHandler(this.btnComplete_Click);
-			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.pictureBox2.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.kio_logo;
-			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureBox2.Location = new System.Drawing.Point(161, 431);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(750, 209);
-			this.pictureBox2.TabIndex = 5;
-			this.pictureBox2.TabStop = false;
-			// 
-			// btnReStart
-			// 
-			this.btnReStart.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.btnReStart.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_measu_re;
-			this.btnReStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.btnReStart.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.btnReStart.Location = new System.Drawing.Point(268, 1176);
-			this.btnReStart.Name = "btnReStart";
-			this.btnReStart.Size = new System.Drawing.Size(526, 156);
-			this.btnReStart.TabIndex = 0;
-			this.btnReStart.TabStop = false;
-			this.btnReStart.Click += new System.EventHandler(this.btnReStart_Click);
-			// 
-			// MeasureNomalFirst
-			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.panel2);
-			this.Controls.Add(this.btnComplete);
-			this.Controls.Add(this.panel1);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.pictureBox2);
-			this.Controls.Add(this.btnReStart);
-			this.Name = "MeasureNomalFirst";
-			this.Size = new System.Drawing.Size(1080, 1420);
-			((System.ComponentModel.ISupportInitialize)(this.btnComplete)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.btnReStart)).EndInit();
-			this.ResumeLayout(false);
-			this.PerformLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnComplete = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnReStart = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.btnComplete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnReStart)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("굴림", 34.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(263, 831);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(531, 47);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "1차 측정 진행중입니다.";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("굴림", 80F);
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label2.Location = new System.Drawing.Point(462, 659);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(153, 107);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "...";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Location = new System.Drawing.Point(161, 71);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(750, 757);
+            this.panel1.TabIndex = 8;
+            this.panel1.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(161, 71);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(750, 923);
+            this.panel2.TabIndex = 10;
+            // 
+            // btnComplete
+            // 
+            this.btnComplete.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnComplete.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_complete;
+            this.btnComplete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnComplete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnComplete.Location = new System.Drawing.Point(268, 1000);
+            this.btnComplete.Name = "btnComplete";
+            this.btnComplete.Size = new System.Drawing.Size(526, 225);
+            this.btnComplete.TabIndex = 9;
+            this.btnComplete.TabStop = false;
+            this.btnComplete.Click += new System.EventHandler(this.btnComplete_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox2.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.kio_logo;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox2.Location = new System.Drawing.Point(161, 431);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(750, 209);
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
+            // 
+            // btnReStart
+            // 
+            this.btnReStart.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnReStart.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_measu_re;
+            this.btnReStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnReStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReStart.Location = new System.Drawing.Point(268, 1250);
+            this.btnReStart.Name = "btnReStart";
+            this.btnReStart.Size = new System.Drawing.Size(526, 156);
+            this.btnReStart.TabIndex = 0;
+            this.btnReStart.TabStop = false;
+            this.btnReStart.Click += new System.EventHandler(this.btnReStart_Click);
+            // 
+            // MeasureNomalFirst
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.btnComplete);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.btnReStart);
+            this.Name = "MeasureNomalFirst";
+            this.Size = new System.Drawing.Size(1080, 1420);
+            ((System.ComponentModel.ISupportInitialize)(this.btnComplete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnReStart)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 

@@ -28,69 +28,85 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.roundedPictureBox1 = new SmartShoes.Common.Forms.RoundedPictureBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.roundedPictureBox1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.pictureBox2.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.kio_logo;
-			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureBox2.Location = new System.Drawing.Point(161, 415);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(750, 209);
-			this.pictureBox2.TabIndex = 3;
-			this.pictureBox2.TabStop = false;
-			// 
-			// roundedPictureBox1
-			// 
-			this.roundedPictureBox1.BackColor = System.Drawing.Color.Gray;
-			this.roundedPictureBox1.CornerRadius = 20;
-			this.roundedPictureBox1.Location = new System.Drawing.Point(243, 662);
-			this.roundedPictureBox1.Name = "roundedPictureBox1";
-			this.roundedPictureBox1.Size = new System.Drawing.Size(583, 508);
-			this.roundedPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.roundedPictureBox1.TabIndex = 5;
-			this.roundedPictureBox1.TabStop = false;
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-			this.pictureBox1.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.qrcode;
-			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pictureBox1.Location = new System.Drawing.Point(161, 652);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(750, 645);
-			this.pictureBox1.TabIndex = 6;
-			this.pictureBox1.TabStop = false;
-			// 
-			// LoginQRScan
-			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.pictureBox2);
-			this.Controls.Add(this.roundedPictureBox1);
-			this.Controls.Add(this.pictureBox1);
-			this.Name = "LoginQRScan";
-			this.Size = new System.Drawing.Size(1080, 1420);
-			this.Load += new System.EventHandler(this.LoginQRScan_Load);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.roundedPictureBox1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			this.ResumeLayout(false);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginQRScan));
+            this.roundedPictureBox1 = new SmartShoes.Common.Forms.RoundedPictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.roundedPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // roundedPictureBox1
+            // 
+            this.roundedPictureBox1.BackColor = System.Drawing.Color.Gray;
+            this.roundedPictureBox1.CornerRadius = 20;
+            this.roundedPictureBox1.Location = new System.Drawing.Point(243, 662);
+            this.roundedPictureBox1.Name = "roundedPictureBox1";
+            this.roundedPictureBox1.Size = new System.Drawing.Size(583, 508);
+            this.roundedPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.roundedPictureBox1.TabIndex = 5;
+            this.roundedPictureBox1.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.qrcode;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(161, 652);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(750, 645);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(50, 50);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(70, 70);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 9;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox2.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.kio_logo;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox2.Location = new System.Drawing.Point(346, 50);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(388, 100);
+            this.pictureBox2.TabIndex = 10;
+            this.pictureBox2.TabStop = false;
+            // 
+            // LoginQRScan
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.roundedPictureBox1);
+            this.Controls.Add(this.pictureBox1);
+            this.Name = "LoginQRScan";
+            this.Size = new System.Drawing.Size(1080, 1420);
+            this.Load += new System.EventHandler(this.LoginQRScan_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.roundedPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.ResumeLayout(false);
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.PictureBox pictureBox2;
 		private Common.Forms.RoundedPictureBox roundedPictureBox1;
 		private System.Windows.Forms.PictureBox pictureBox1;
-	}
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox2;
+    }
 }

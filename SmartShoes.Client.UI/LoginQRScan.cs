@@ -29,10 +29,9 @@ namespace SmartShoes.Client.UI
 
 		private void LoginQRScan_Load(object sender, EventArgs e)
 		{
-			//OnLoginSuccessful("20241119095540최은우2c860");
 
             StartCamera();
-			roundedPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+			roundedPictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 		}
 
 		private void StartCamera()
@@ -261,6 +260,12 @@ namespace SmartShoes.Client.UI
 			}
 		}
 
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            qrReadBool = false;
+			StopCamera();
 
-	}
+            MovePage(typeof(LoginForm));
+        }
+    }
 }
