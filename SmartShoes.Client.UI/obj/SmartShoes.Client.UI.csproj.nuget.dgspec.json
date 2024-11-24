@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Client.UI\\SmartShoes.Client.UI.csproj": {}
+    "D:\\project\\SmartShoes\\SmartShoes.Client.UI\\SmartShoes.Client.UI.csproj": {}
   },
   "projects": {
-    "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Client.UI\\SmartShoes.Client.UI.csproj": {
+    "D:\\project\\SmartShoes\\SmartShoes.Client.UI\\SmartShoes.Client.UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Client.UI\\SmartShoes.Client.UI.csproj",
+        "projectUniqueName": "D:\\project\\SmartShoes\\SmartShoes.Client.UI\\SmartShoes.Client.UI.csproj",
         "projectName": "SmartShoes.Client.UI",
-        "projectPath": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Client.UI\\SmartShoes.Client.UI.csproj",
-        "packagesPath": "C:\\Users\\sadb0\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Client.UI\\obj\\",
+        "projectPath": "D:\\project\\SmartShoes\\SmartShoes.Client.UI\\SmartShoes.Client.UI.csproj",
+        "packagesPath": "C:\\Users\\GCONSPACE\\.nuget\\packages\\",
+        "outputPath": "D:\\project\\SmartShoes\\SmartShoes.Client.UI\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "UsingMicrosoftNETSdk": false,
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sadb0\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\GCONSPACE\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -33,8 +33,8 @@
         "frameworks": {
           "net48": {
             "projectReferences": {
-              "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj": {
-                "projectPath": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj"
+              "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj": {
+                "projectPath": "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj"
               }
             }
           }
@@ -102,14 +102,14 @@
         }
       }
     },
-    "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj": {
+    "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj",
+        "projectUniqueName": "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj",
         "projectName": "SmartShoes.Common.Forms",
-        "projectPath": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj",
-        "packagesPath": "C:\\Users\\sadb0\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\obj\\",
+        "projectPath": "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj",
+        "packagesPath": "C:\\Users\\GCONSPACE\\.nuget\\packages\\",
+        "outputPath": "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "UsingMicrosoftNETSdk": false,
@@ -117,7 +117,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sadb0\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\GCONSPACE\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

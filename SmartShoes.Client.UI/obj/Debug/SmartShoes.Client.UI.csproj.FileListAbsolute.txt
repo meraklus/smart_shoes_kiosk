@@ -362,3 +362,4 @@ C:\projects\smart_shose\SmartShoes\SmartShoes.Client.UI\obj\Debug\SmartSho.33860
 C:\projects\smart_shose\SmartShoes\SmartShoes.Client.UI\obj\Debug\SmartShoes.Client.UI.dll
 C:\projects\smart_shose\SmartShoes\SmartShoes.Client.UI\obj\Debug\SmartShoes.Client.UI.pdb
 C:\projects\smart_shose\SmartShoes\SmartShoes.Client.UI\obj\Debug\SmartShoes.Client.UI.KeyInputForm.resources
+D:\project\SmartShoes\SmartShoes.Client.UI\obj\Debug\SmartShoes.Client.UI.KeyInputForm.resources
