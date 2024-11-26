@@ -21,12 +21,20 @@ namespace SmartShoes.Client.UI
 
 		private void btnNomal_Click(object sender, EventArgs e)
 		{
-			LoadingPopup loadpop = new LoadingPopup();
-			loadpop.Show();
-			Application.DoEvents();
-			this.Invoke(new Action(() => MovePage(typeof(MeasureNomalSecond))));
-			//MovePage(new MeasureNomalSecond());
-			loadpop.Close();
+			try
+			{
+                LoadingPopup loadpop = new LoadingPopup();
+                loadpop.Show();
+                Application.DoEvents();
+                this.Invoke(new Action(() => MovePage(typeof(MeasureNomalSecond))));
+                //MovePage(new MeasureNomalSecond());
+                loadpop.Close();
+            }
+			catch (Exception ex){
+                Console.WriteLine("ex에러");
+                Console.WriteLine(ex);
+            }
+			
 		}
 
 		protected void MovePage(Type pageType)

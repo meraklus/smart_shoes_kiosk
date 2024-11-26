@@ -24,21 +24,25 @@ namespace SmartShoes.Client.UI
 
 		public LoginQRScan()
 		{
-			InitializeComponent();
+			Console.WriteLine("1111");
+            InitializeComponent();
 		}
 
 		private void LoginQRScan_Load(object sender, EventArgs e)
 		{
-
+            Console.WriteLine("3333");
             StartCamera();
 			roundedPictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-		}
+            Console.WriteLine("4444");
+        }
 
 		private void StartCamera()
 		{
-			if (videoSource != null && videoSource.IsRunning)
+            Console.WriteLine("5555");
+            if (videoSource != null && videoSource.IsRunning)
 			{
-				StopCamera();
+                Console.WriteLine("5-1-5-1-5-1-5-1");
+                StopCamera();
 			}
 
 
@@ -50,8 +54,9 @@ namespace SmartShoes.Client.UI
 			}
 			else
 			{
-				//OnLoginSuccessful();
-				videoSource = new VideoCaptureDevice(videoDevices[0].MonikerString);
+                Console.WriteLine("6666");
+                //OnLoginSuccessful();
+                videoSource = new VideoCaptureDevice(videoDevices[0].MonikerString);
 				videoSource.NewFrame += video_NewFrame;
 				videoSource.Start();
 
@@ -62,16 +67,18 @@ namespace SmartShoes.Client.UI
 		{
 			try
 			{
-				Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
+                //Console.WriteLine("7777");
+                Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
 				bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone); // 이미지 90도 회전
 
 				lock (lockObject)
 				{
-					roundedPictureBox1.Image?.Dispose();
-					roundedPictureBox1.Image = (Bitmap)bitmap.Clone();
-				}
+                    //Console.WriteLine("8888");
+                    roundedPictureBox1.Image?.Dispose();
+                    roundedPictureBox1.Image = new Bitmap(bitmap, roundedPictureBox1.Size); // 프레임을 PictureBox 크기에 맞게 조정
+                }
 
-				Task.Run(() => DecodeQRCodeAsync(bitmap));
+                Task.Run(() => DecodeQRCodeAsync(bitmap));
 			}
 			catch (Exception ex)
 			{
@@ -85,15 +92,17 @@ namespace SmartShoes.Client.UI
 		{
 			try
 			{
-				string decodedText = await Task.Run(() => ReadQRCode(bitmap));
+                string decodedText = await Task.Run(() => ReadQRCode(bitmap));
 				if (!string.IsNullOrEmpty(decodedText))
 				{
-					Invoke(new Action(() =>
+                    Console.WriteLine("9999");
+
+                    Invoke(new Action(() =>
 					{
 						if (qrReadBool) { return; }
 						qrReadBool = true;
-
-						StopCamera(); // QR 코드 디코딩 후 카메라 멈추기
+                        Console.WriteLine("101010");
+                        StopCamera(); // QR 코드 디코딩 후 카메라 멈추기
 						OnLoginSuccessful(decodedText);
 					}));
 				}
@@ -110,7 +119,8 @@ namespace SmartShoes.Client.UI
 		{
             try
 			{
-				string response = await CallApiText(qrString);
+                Console.WriteLine("11@11@11@11");
+                string response = await CallApiText(qrString);
 
 				//this.Invoke(new Action(() => MovePage(typeof(MeasureForm))));
 				//return;
@@ -154,7 +164,8 @@ namespace SmartShoes.Client.UI
 		}
 		protected void MovePage(Type pageType)
 		{
-			if (this.InvokeRequired)
+            Console.WriteLine("12@12@12@12@");
+            if (this.InvokeRequired)
 			{
 				this.Invoke(new Action(() => PageChangeRequested?.Invoke(this, new PageChangeEventArgs(pageType))));
 			}
@@ -251,9 +262,11 @@ namespace SmartShoes.Client.UI
 
 		private void StopCamera()
 		{
-			if (videoSource != null && videoSource.IsRunning)
+            Console.WriteLine("!!!!!@@@@@");
+            if (videoSource != null && videoSource.IsRunning)
 			{
-				videoSource.SignalToStop();
+                Console.WriteLine("!!!!!@@@@@22222");
+                videoSource.SignalToStop();
 				videoSource.WaitForStop();
 				videoSource.NewFrame -= video_NewFrame;
 				videoSource = null;

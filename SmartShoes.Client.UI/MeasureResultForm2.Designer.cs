@@ -216,9 +216,9 @@
             this.txtShoesTL04.Location = new System.Drawing.Point(277, 501);
             this.txtShoesTL04.Margin = new System.Windows.Forms.Padding(0);
             this.txtShoesTL04.Name = "txtShoesTL04";
-            this.txtShoesTL04.Size = new System.Drawing.Size(25, 14);
+            this.txtShoesTL04.Size = new System.Drawing.Size(28, 14);
             this.txtShoesTL04.TabIndex = 113;
-            this.txtShoesTL04.Text = "000";
+            this.txtShoesTL04.Text = "0.00";
             this.txtShoesTL04.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // txtShoesTL03
@@ -229,7 +229,7 @@
             this.txtShoesTL03.Location = new System.Drawing.Point(201, 501);
             this.txtShoesTL03.Margin = new System.Windows.Forms.Padding(0);
             this.txtShoesTL03.Name = "txtShoesTL03";
-            this.txtShoesTL03.Size = new System.Drawing.Size(25, 14);
+            this.txtShoesTL03.Size = new System.Drawing.Size(28, 14);
             this.txtShoesTL03.TabIndex = 115;
             this.txtShoesTL03.Text = "000";
             this.txtShoesTL03.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -242,9 +242,9 @@
             this.txtShoesTL02.Location = new System.Drawing.Point(277, 475);
             this.txtShoesTL02.Margin = new System.Windows.Forms.Padding(0);
             this.txtShoesTL02.Name = "txtShoesTL02";
-            this.txtShoesTL02.Size = new System.Drawing.Size(25, 14);
+            this.txtShoesTL02.Size = new System.Drawing.Size(28, 14);
             this.txtShoesTL02.TabIndex = 112;
-            this.txtShoesTL02.Text = "000";
+            this.txtShoesTL02.Text = "0.00";
             this.txtShoesTL02.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // txtShoesTL01
@@ -255,9 +255,9 @@
             this.txtShoesTL01.Location = new System.Drawing.Point(201, 475);
             this.txtShoesTL01.Margin = new System.Windows.Forms.Padding(0);
             this.txtShoesTL01.Name = "txtShoesTL01";
-            this.txtShoesTL01.Size = new System.Drawing.Size(25, 14);
+            this.txtShoesTL01.Size = new System.Drawing.Size(28, 14);
             this.txtShoesTL01.TabIndex = 114;
-            this.txtShoesTL01.Text = "000";
+            this.txtShoesTL01.Text = "0.00";
             this.txtShoesTL01.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // txtMatTL04

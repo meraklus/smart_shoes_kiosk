@@ -443,8 +443,35 @@ namespace SmartShoes.Client.UI
 						case "matGaitSpacingStable":
 							measureResult.matGaitSpacingStable = value;
 							break;
-					}
-				}
+                        case "shoesLeftStancePhaseValue":
+                            measureResult.shoesStancePhase1 = value;
+                            break;
+                        case "shoesLeftSwingPhaseValue":
+                            measureResult.shoesSwingPhase1 = value;
+                            break;
+                        case "shoesRightSwingPhaseValue":
+                            measureResult.shoesSwingPhase2 = value;
+                            break;
+                        case "shoesRightStancePhaseValue":
+                            measureResult.shoesStancePhase2 = value;
+                            break;
+                        case "shoesLeftStancePhaseVariableScore":
+                            measureResult.shoesLeftStancePhaseScore = value;
+                            break;
+                        case "shoesLeftSwingPhaseVariableScore":
+                            measureResult.shoesLeftSwingPhaseScore = value;
+                            break;
+                        case "shoesRightStancePhaseVariableScore":
+                            measureResult.shoesRightStancePhaseScore = value;
+                            break;
+                        case "shoesRightSwingPhaseVariableScore":
+                            measureResult.shoesRightSwingPhaseScore = value;
+                            break;
+
+
+
+                    }
+                }
 			}
 			catch (Exception ex)
 			{
@@ -557,7 +584,7 @@ namespace SmartShoes.Client.UI
 			{
 				string reportId = await CallApiReportCreate();
                 int userid = UserInfo.Instance.UserId == null ? 0 : Convert.ToInt32(UserInfo.Instance.UserId);
-
+				int height = UserInfo.Instance.Height;
                 if (!reportId.Equals(""))
 				{
 					long reportSid = Convert.ToInt64(reportId);
@@ -574,7 +601,8 @@ namespace SmartShoes.Client.UI
 						{
 							userSid = userid,
 							reportSid = reportSid,
-							wdate = DateTime.Now.ToString("yyyy-MM-dd"),
+							height = height,
+                            wdate = DateTime.Now.ToString("yyyy-MM-dd"),
                             stepLength1 = lstmd[matCount - 1].StepLength1,
                             stepLength2 = lstmd[matCount - 1].StepLength2,
                             stepLength3 = lstmd[matCount - 1].StepLength3,
@@ -649,42 +677,42 @@ namespace SmartShoes.Client.UI
 
 
 
-                    Guid serviceUUID = new Guid(Properties.Settings.Default.SERVICE_UUID);
+                    //Guid serviceUUID = new Guid(Properties.Settings.Default.SERVICE_UUID);
 
-                    await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
+                    //await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
 
-                    var shoesL = BLEManager.Instance._parsedDataL;
-                    var shoesR = BLEManager.Instance._parsedDataR;
-                    Console.WriteLine("신발 데이터 컨버팅 직전");
-                    var combinedData = ConvertData(shoesL, shoesR);
+                    //var shoesL = BLEManager.Instance._parsedDataL;
+                    //var shoesR = BLEManager.Instance._parsedDataR;
+                    //Console.WriteLine("신발 데이터 컨버팅 직전");
+                    //var combinedData = ConvertData(shoesL, shoesR);
 
-					shoesData = new ShoesData
-					{
+					//shoesData = new ShoesData
+					//{
 
-						userSid = userid,
-						reportSid = reportSid,
-						data = combinedData,
-						columns = new List<string>
-						{
-                            "LAccelX",
-                            "LAccelY",
-                            "LAccelZ",
-                            "RAccelX",
-                            "RAccelY",
-                            "RAccelZ"
-                        }
-					};
+					//	userSid = userid,
+					//	reportSid = reportSid,
+					//	data = combinedData,
+					//	columns = new List<string>
+					//	{
+     //                       "LAccelX",
+     //                       "LAccelY",
+     //                       "LAccelZ",
+     //                       "RAccelX",
+     //                       "RAccelY",
+     //                       "RAccelZ"
+     //                   }
+					//};
 
-					await CallApiResultShoes();
-                    Console.WriteLine("결과 직전");
+					//await CallApiResultShoes();
+                    //Console.WriteLine("결과 직전");
                     if (measureResult != null )
 					{
                         InsertResultData();
 					}
-					if (shoesResult != null)
-					{
-                        InsertShoesData();
-                    }
+					//if (shoesResult != null)
+					//{
+     //                   InsertShoesData();
+     //               }
                     
                 }
 
@@ -702,7 +730,20 @@ namespace SmartShoes.Client.UI
 			this.txtMatTM04.Text = measureResult.matLeftSwingPhaseScore;
 			this.txtMatTR02.Text = measureResult.matRightStancePhaseScore;
 			this.txtMatTR04.Text = measureResult.matRightSwingPhaseScore;
-			switch(measureResult.matBalanceLevel) 
+
+            this.txtShoesTM01.Text = measureResult.shoesStancePhase1;
+            this.txtShoesTM02.Text = measureResult.shoesLeftStancePhaseScore;
+            this.txtShoesTM03.Text = measureResult.shoesSwingPhase1;
+            this.txtShoesTM04.Text = measureResult.shoesLeftSwingPhaseScore;
+            this.txtShoesTR01.Text = measureResult.shoesStancePhase2;
+            this.txtShoesTR02.Text = measureResult.shoesRightStancePhaseScore;
+            this.txtShoesTR03.Text =  measureResult.shoesSwingPhase2;
+            this.txtShoesTR04.Text =  measureResult.shoesRightSwingPhaseScore;
+            this.txtShoesTL01.Text =  measureResult.shoesStancePhase1;
+            this.txtShoesTL02.Text =  measureResult.shoesStancePhase2;
+            this.txtShoesTL03.Text =  measureResult.shoesSwingPhase1;
+            this.txtShoesTL04.Text = measureResult.shoesSwingPhase2;
+            switch (measureResult.matBalanceLevel) 
 			{
 				case "1":
 					this.GradePic.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources._1등급;
@@ -760,6 +801,7 @@ namespace SmartShoes.Client.UI
         {
             public long userSid { get; set; }
             public long reportSid { get; set; }
+            public long height{ get; set; }
             public string wdate { get; set; }
             public double stepLength1 { get; set; }
             public double stepLength2 { get; set; }
@@ -851,7 +893,16 @@ namespace SmartShoes.Client.UI
 			public string matRightStepStable { get; set; }
 			public string matGaitSpacingStable { get; set; }
 
-		}
+            public string shoesStancePhase1 { get; set; }
+            public string shoesSwingPhase1 { get; set; }
+            public string shoesSwingPhase2 { get; set; }
+            public string shoesStancePhase2 { get; set; }
+            public string shoesLeftStancePhaseScore { get; set; }
+            public string shoesLeftSwingPhaseScore { get; set; }
+            public string shoesRightStancePhaseScore { get; set; }
+            public string shoesRightSwingPhaseScore { get; set; }
+
+        }
 
         private class ShoesData
         {
