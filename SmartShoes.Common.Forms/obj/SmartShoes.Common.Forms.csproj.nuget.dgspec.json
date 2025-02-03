@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj": {}
+    "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj": {}
   },
   "projects": {
-    "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj": {
+    "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj",
+        "projectUniqueName": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj",
         "projectName": "SmartShoes.Common.Forms",
-        "projectPath": "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj",
-        "packagesPath": "C:\\Users\\GCONSPACE\\.nuget\\packages\\",
-        "outputPath": "D:\\project\\SmartShoes\\SmartShoes.Common.Forms\\obj\\",
+        "projectPath": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\SmartShoes.Common.Forms.csproj",
+        "packagesPath": "C:\\Users\\sadb0\\.nuget\\packages\\",
+        "outputPath": "C:\\projects\\smart_shose\\SmartShoes\\SmartShoes.Common.Forms\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "UsingMicrosoftNETSdk": false,
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\GCONSPACE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sadb0\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

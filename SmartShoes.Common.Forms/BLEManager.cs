@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using InTheHand.Bluetooth;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.Advertisement;
+using Windows.Devices.Enumeration;
 using BluetoothDevice = InTheHand.Bluetooth.BluetoothDevice;
 
 
@@ -337,6 +338,32 @@ namespace SmartShoes.Common.Forms
         public BluetoothDevice GetLeftDevice()
         {
             return _deviceL;
+        }
+        public async Task DisconnectDevicesAsync2()
+        {
+            try
+            {
+                // 연결된 장치 목록을 가져옵니다.
+                //var devices = await Bluetooth.ScanForDevicesAsync();
+
+                var devices = await Bluetooth.GetPairedDevicesAsync();
+
+                // 디버깅 메시지 출력
+                Console.WriteLine($"Found {devices.Count} devices.");
+
+                foreach (var device in devices)
+                {
+                    Console.WriteLine($"Found");
+                    //if (await device.GetConnectionStatusAsync() == BluetoothConnectionStatus.Connected)
+                    //{
+                    //    Console.WriteLine($"Found");
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
         }
 
         // Disconnect devices

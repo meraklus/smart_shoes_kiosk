@@ -677,44 +677,44 @@ namespace SmartShoes.Client.UI
 
 
 
-                    //Guid serviceUUID = new Guid(Properties.Settings.Default.SERVICE_UUID);
+                    Guid serviceUUID = new Guid(Properties.Settings.Default.SERVICE_UUID);
 
-                    //await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
+					await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
 
-                    //var shoesL = BLEManager.Instance._parsedDataL;
-                    //var shoesR = BLEManager.Instance._parsedDataR;
-                    //Console.WriteLine("신발 데이터 컨버팅 직전");
-                    //var combinedData = ConvertData(shoesL, shoesR);
+					var shoesL = BLEManager.Instance._parsedDataL;
+					var shoesR = BLEManager.Instance._parsedDataR;
+					Console.WriteLine("신발 데이터 컨버팅 직전");
+					var combinedData = ConvertData(shoesL, shoesR);
 
-					//shoesData = new ShoesData
-					//{
+					shoesData = new ShoesData
+					{
 
-					//	userSid = userid,
-					//	reportSid = reportSid,
-					//	data = combinedData,
-					//	columns = new List<string>
-					//	{
-     //                       "LAccelX",
-     //                       "LAccelY",
-     //                       "LAccelZ",
-     //                       "RAccelX",
-     //                       "RAccelY",
-     //                       "RAccelZ"
-     //                   }
-					//};
+						userSid = userid,
+						reportSid = reportSid,
+						data = combinedData,
+						columns = new List<string>
+						{
+							"LAccelX",
+							"LAccelY",
+							"LAccelZ",
+							"RAccelX",
+							"RAccelY",
+							"RAccelZ"
+						}
+					};
 
-					//await CallApiResultShoes();
-                    //Console.WriteLine("결과 직전");
-                    if (measureResult != null )
+					await CallApiResultShoes();
+					//Console.WriteLine("결과 직전");
+					if (measureResult != null )
 					{
                         InsertResultData();
 					}
-					//if (shoesResult != null)
-					//{
-     //                   InsertShoesData();
-     //               }
-                    
-                }
+					if (shoesResult != null)
+					{
+						InsertShoesData();
+					}
+
+				}
 
 			}
 			catch (Exception ex)

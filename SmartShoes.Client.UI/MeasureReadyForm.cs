@@ -16,10 +16,24 @@ namespace SmartShoes.Client.UI
 		{
 			InitializeComponent();
 			btnNomal.Enabled = false;
-			
-		}
+			DisconnectAllBluetoothDevices();
 
-		private void btnNomal_Click(object sender, EventArgs e)
+        }
+        private async void DisconnectAllBluetoothDevices()
+        {
+            try
+            {
+                await BLEManager.Instance.DisconnectDevicesAsync2();
+                Console.WriteLine("모든 블루투스 기기 연결 해제 완료");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("블루투스 기기 연결 해제 중 오류 발생: " + ex.Message);
+            }
+        }
+
+
+        private void btnNomal_Click(object sender, EventArgs e)
 		{
 			try
 			{
@@ -63,18 +77,18 @@ namespace SmartShoes.Client.UI
 			string deviceAddressL = "";
 			string deviceAddressR = "";
 			ShoesChoicePopup shoesChoicePopup = new ShoesChoicePopup();
-			shoesChoicePopup.deviceAddressL = deviceAddressL;
+            shoesChoicePopup.deviceAddressL = deviceAddressL;
 			shoesChoicePopup.deviceAddressR = deviceAddressR;
-			shoesChoicePopup.StartPosition = FormStartPosition.Manual; // 위치를 수동으로 설정
+            shoesChoicePopup.StartPosition = FormStartPosition.Manual; // 위치를 수동으로 설정
 			int screenCenterX = (Screen.PrimaryScreen.WorkingArea.Width - shoesChoicePopup.Width) / 2;
 			int customY = 100;
 			shoesChoicePopup.Location = new System.Drawing.Point(screenCenterX, customY);
 			shoesChoicePopup.ShowDialog();
 
-			deviceAddressL = shoesChoicePopup.deviceAddressL;
-			deviceAddressR = shoesChoicePopup.deviceAddressR;
+			deviceAddressL = "DB:1F:10:20:63:AD";
+            deviceAddressR = "D9:B9:85:8D:05:27";
 
-			if (deviceAddressL.Equals("") || deviceAddressR.Equals(""))
+            if (deviceAddressL.Equals("") || deviceAddressR.Equals(""))
 			{
 				return;
 			}
@@ -86,11 +100,11 @@ namespace SmartShoes.Client.UI
 			scp.Location = new System.Drawing.Point(screenCenterX2, customY2);
 			scp.Show();
 
-            //bool isConnected = await BLEManager.Instance.ConnectAndReceiveAsync3(deviceAddressR, deviceAddressL, datalen, serviceUUID, notifyUUID);
+            bool isConnected = await BLEManager.Instance.ConnectAndReceiveAsync2(deviceAddressR, deviceAddressL, datalen, serviceUUID, notifyUUID);
 
-            await Task.Delay(5000); 
+            //await Task.Delay(5000); 
 
-            bool isConnected = true;
+            //bool isConnected = true;
 
             btnNomal.Enabled = isConnected;
 			if( isConnected ) 
