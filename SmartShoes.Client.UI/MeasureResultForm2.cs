@@ -175,8 +175,8 @@ namespace SmartShoes.Client.UI
 		{
 			this.txtMatTL01.Text = MatData.StancePhase1.ToString("F0");
 			this.txtMatTL02.Text = MatData.SwingPhase1.ToString("F0");
-			this.txtMatTL03.Text = MatData.StancePhase2.ToString("F0");
-			this.txtMatTL04.Text = MatData.SwingPhase2.ToString("F0");
+			this.txtMatTL03.Text = MatData.SwingPhase2.ToString("F0"); 
+			this.txtMatTL04.Text = MatData.StancePhase2.ToString("F0");
 
 			this.txtMatTM01.Text = MatData.StancePhase1.ToString("F0"); 
 			this.txtMatTM02.Text = "0"; 
@@ -740,9 +740,9 @@ namespace SmartShoes.Client.UI
             this.txtShoesTR03.Text =  measureResult.shoesSwingPhase2;
             this.txtShoesTR04.Text =  measureResult.shoesRightSwingPhaseScore;
             this.txtShoesTL01.Text =  measureResult.shoesStancePhase1;
-            this.txtShoesTL02.Text =  measureResult.shoesStancePhase2;
-            this.txtShoesTL03.Text =  measureResult.shoesSwingPhase1;
-            this.txtShoesTL04.Text = measureResult.shoesSwingPhase2;
+            this.txtShoesTL02.Text = measureResult.shoesSwingPhase1;
+            this.txtShoesTL03.Text =  measureResult.shoesSwingPhase2;
+            this.txtShoesTL04.Text = measureResult.shoesStancePhase2; 
             switch (measureResult.matBalanceLevel) 
 			{
 				case "1":
