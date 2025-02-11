@@ -57,3 +57,70 @@ dkms.conf
 
 **/obj/
 *.cache
+
+# Visual Studio 관련 파일
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# 빌드 결과물
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio 코드
+.vscode/
+*.code-workspace
+
+# NuGet 패키지
+*.nupkg
+# NuGet Symbol 패키지
+*.snupkg
+# 패키지 폴더
+**/[Pp]ackages/*
+# NuGet v3의 project.json 파일
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Visual Studio 프로파일링 결과
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# 테스트 결과
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# IDE 설정 파일
+*.idea/
+*.vs/
+*.vscode/
+
+# 운영체제 파일
+.DS_Store
+Thumbs.db
