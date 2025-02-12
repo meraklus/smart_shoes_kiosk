@@ -244,5 +244,26 @@ namespace SmartShoes.Client.UI
 			CallShoesMacAddr();
 		}
 
+		private void SaveBluetoothSettings(string leftMac, string rightMac)
+		{
+			Properties.Settings.Default.BLE_LEFT_MAC_ADDRESS = leftMac;
+			Properties.Settings.Default.BLE_RIGHT_MAC_ADDRESS = rightMac;
+			Properties.Settings.Default.Save();
+		}
+
+		// listView1에서 선택된 신발의 MAC 주소를 저장
+		private void btnSaveSelectedShoes_Click(object sender, EventArgs e)
+		{
+			if (listView1.SelectedItems.Count > 0)
+			{
+				var selectedItem = listView1.SelectedItems[0];
+				string leftMac = selectedItem.SubItems[0].Text;  // 첫 번째 컬럼 (왼쪽 MAC)
+				string rightMac = selectedItem.SubItems[1].Text; // 두 번째 컬럼 (오른쪽 MAC)
+				
+				SaveBluetoothSettings(leftMac, rightMac);
+				MessageBox.Show("블루투스 설정이 저장되었습니다.");
+			}
+		}
+
 	}
 }

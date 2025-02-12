@@ -44,5 +44,11 @@
     <Setting Name="SELECT_RIGHT_SHOE" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="BLE_LEFT_MAC_ADDRESS" Type="System.String" Scope="User">
+      <Value Profile="(Default)"></Value>
+    </Setting>
+    <Setting Name="BLE_RIGHT_MAC_ADDRESS" Type="System.String" Scope="User">
+      <Value Profile="(Default)"></Value>
+    </Setting>
   </Settings>
 </SettingsFile>

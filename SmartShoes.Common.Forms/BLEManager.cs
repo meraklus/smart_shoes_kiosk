@@ -95,6 +95,17 @@ namespace SmartShoes.Common.Forms
 
         public List<int[]> GetLeftData() => new List<int[]>(_leftData);
         public List<int[]> GetRightData() => new List<int[]>(_rightData);
+
+        public async Task InitializeFromSavedSettings()
+        {
+            string leftMac = Properties.Settings.Default.BLE_LEFT_MAC_ADDRESS;
+            string rightMac = Properties.Settings.Default.BLE_RIGHT_MAC_ADDRESS;
+            
+            if (string.IsNullOrEmpty(leftMac) || string.IsNullOrEmpty(rightMac))
+                throw new InvalidOperationException("블루투스 설정이 필요합니다. 설정 화면에서 신발을 선택해주세요.");
+        
+            await InitializeConnection(leftMac, rightMac);
+        }
         #endregion
 
         #region Private Methods
