@@ -238,7 +238,12 @@ namespace SmartShoes.Client.UI
 
 		private void closefunc()
 		{
-			System.Diagnostics.Process.GetCurrentProcess().Kill();
+			if (dph != null)
+			{
+				dph.Dispose();
+				dph = null;
+			}
+			Application.Exit();
 		}
 
 		private void btnCallShoes_Click(object sender, EventArgs e)
