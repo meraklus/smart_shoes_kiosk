@@ -23,16 +23,16 @@ namespace SmartShoes.Client.UI
 			InitializeComponent();
 			this.panel1.Visible = true;
 			this.txtContainerId.Text = Properties.Settings.Default.CONTAINER_ID;
-			this.numSensorTime.Value = Properties.Settings.Default.SENSOR_SET_TIME;
+			// this.numSensorTime.Value = Properties.Settings.Default.SENSOR_SET_TIME;
 
-			this.listView1.View = View.Details;
-			this.listView1.FullRowSelect = true;
+			// this.listView1.View = View.Details;
+			// this.listView1.FullRowSelect = true;
 
-			// 컬럼 설정
-			this.listView1.Columns.Add("leftDevice", 0, HorizontalAlignment.Center);
-			this.listView1.Columns.Add("rightDevice", 0, HorizontalAlignment.Center);
-			this.listView1.Columns.Add("신발명", 220, HorizontalAlignment.Center);
-			this.listView1.Columns.Add("신발SIZE", 150, HorizontalAlignment.Center);
+			// // 컬럼 설정
+			// this.listView1.Columns.Add("leftDevice", 0, HorizontalAlignment.Center);
+			// this.listView1.Columns.Add("rightDevice", 0, HorizontalAlignment.Center);
+			// this.listView1.Columns.Add("신발명", 220, HorizontalAlignment.Center);
+			// this.listView1.Columns.Add("신발SIZE", 150, HorizontalAlignment.Center);
 
 			if (!Properties.Settings.Default.SHOES_JSON.Equals(""))
 			{
@@ -56,33 +56,35 @@ namespace SmartShoes.Client.UI
 				string getResponse = await apiCallHelper.GetAsync(shoesUrl);
 
 				Properties.Settings.Default.CONTAINER_ID = this.txtContainerId.Text;
-				Properties.Settings.Default.SHOES_JSON = getResponse;
-				Properties.Settings.Default.SENSOR_SET_TIME = Convert.ToInt16(this.numSensorTime.Value);
-				Properties.Settings.Default.Save();
-				Console.WriteLine(Properties.Settings.Default.SHOES_JSON);
+				// Properties.Settings.Default.SHOES_JSON = getResponse;
+				// Properties.Settings.Default.SENSOR_SET_TIME = Convert.ToInt16(this.numSensorTime.Value);
+				// Properties.Settings.Default.Save();
+				// Console.WriteLine(Properties.Settings.Default.SHOES_JSON);
 
-				JArray shoesArray = JArray.Parse(Properties.Settings.Default.SHOES_JSON);
+
+				BLEManager.Instance.InitializeConnection(Properties.Settings.Default.BLE_LEFT_MAC_ADDRESS, Properties.Settings.Default.BLE_RIGHT_MAC_ADDRESS);
+				// JArray shoesArray = JArray.Parse(Properties.Settings.Default.SHOES_JSON);
 				// 각 요소를 JObject로 접근
 
-				listView1.Items.Clear();
-				listShoes.Clear();
-				foreach (JObject shoe in shoesArray)
-				{
-					ShoesInform shoeInform = new ShoesInform();
-					shoeInform.ID = shoe.GetValue("shoesSid").ToString();
-					shoeInform.Name = shoe.GetValue("shoesName").ToString();
-					shoeInform.LeftDeviceAddr = shoe.GetValue("leftMacAddress").ToString();
-					shoeInform.RightDeviceAddr = shoe.GetValue("rightMacAddress").ToString();
-					shoeInform.Size = shoe.GetValue("shoesSize").ToString();
-					listShoes.Add(shoeInform);
+				// listView1.Items.Clear();
+				// listShoes.Clear();
+				// foreach (JObject shoe in shoesArray)
+				// {
+				// 	ShoesInform shoeInform = new ShoesInform();
+				// 	shoeInform.ID = shoe.GetValue("shoesSid").ToString();
+				// 	shoeInform.Name = shoe.GetValue("shoesName").ToString();
+				// 	shoeInform.LeftDeviceAddr = shoe.GetValue("leftMacAddress").ToString();
+				// 	shoeInform.RightDeviceAddr = shoe.GetValue("rightMacAddress").ToString();
+				// 	shoeInform.Size = shoe.GetValue("shoesSize").ToString();
+				// 	listShoes.Add(shoeInform);
 
 
-					ListViewItem item = new ListViewItem(shoe.GetValue("leftMacAddress").ToString());
-					item.SubItems.Add(shoe.GetValue("rightMacAddress").ToString());
-					item.SubItems.Add(shoe.GetValue("shoesName").ToString());
-					item.SubItems.Add(shoe.GetValue("shoesSize").ToString());
-					listView1.Items.Add(item);
-				}
+				// 	ListViewItem item = new ListViewItem(shoe.GetValue("leftMacAddress").ToString());
+				// 	item.SubItems.Add(shoe.GetValue("rightMacAddress").ToString());
+				// 	item.SubItems.Add(shoe.GetValue("shoesName").ToString());
+				// 	item.SubItems.Add(shoe.GetValue("shoesSize").ToString());
+				// 	// listView1.Items.Add(item);
+				// }
 
 
 			}
@@ -252,18 +254,18 @@ namespace SmartShoes.Client.UI
 		}
 
 		// listView1에서 선택된 신발의 MAC 주소를 저장
-		private void btnSaveSelectedShoes_Click(object sender, EventArgs e)
-		{
-			if (listView1.SelectedItems.Count > 0)
-			{
-				var selectedItem = listView1.SelectedItems[0];
-				string leftMac = selectedItem.SubItems[0].Text;  // 첫 번째 컬럼 (왼쪽 MAC)
-				string rightMac = selectedItem.SubItems[1].Text; // 두 번째 컬럼 (오른쪽 MAC)
+		// private void btnSaveSelectedShoes_Click(object sender, EventArgs e)
+		// {
+		// 	if (listView1.SelectedItems.Count > 0)
+		// 	{
+		// 		var selectedItem = listView1.SelectedItems[0];
+		// 		string leftMac = selectedItem.SubItems[0].Text;  // 첫 번째 컬럼 (왼쪽 MAC)
+		// 		string rightMac = selectedItem.SubItems[1].Text; // 두 번째 컬럼 (오른쪽 MAC)
 				
-				SaveBluetoothSettings(leftMac, rightMac);
-				MessageBox.Show("블루투스 설정이 저장되었습니다.");
-			}
-		}
+		// 		SaveBluetoothSettings(leftMac, rightMac);
+		// 		MessageBox.Show("블루투스 설정이 저장되었습니다.");
+		// 	}
+		// }
 
 	}
 }

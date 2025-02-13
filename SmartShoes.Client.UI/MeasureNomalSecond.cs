@@ -82,47 +82,47 @@ namespace SmartShoes.Client.UI
 		}
 
 
-		private void HandleThresholdReachedL(object sender, EventArgs args)
-		{
-			this._leftFlag = true;
+		// private void HandleThresholdReachedL(object sender, EventArgs args)
+		// {
+		// 	this._leftFlag = true;
 			
-			var df = BLEManager.Instance._parsedDataL;
-			var dfe = BLEManager.Instance._parsedDataR;
+		// 	var df = BLEManager.Instance._parsedDataL;
+		// 	var dfe = BLEManager.Instance._parsedDataR;
 
-			if (!endMeasureBool) { return; }
-			if (!(_leftFlag && _rightFlag)) { return; }
-			// loadpop.Close()를 UI 스레드에서 실행
-			if (loadpop.InvokeRequired)
-			{
-				loadpop.Invoke(new Action(() => loadpop.Close()));
-			}
-			else
-			{
-				loadpop.Close();
-			}
-			this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
-		}
+		// 	if (!endMeasureBool) { return; }
+		// 	if (!(_leftFlag && _rightFlag)) { return; }
+		// 	// loadpop.Close()를 UI 스레드에서 실행
+		// 	if (loadpop.InvokeRequired)
+		// 	{
+		// 		loadpop.Invoke(new Action(() => loadpop.Close()));
+		// 	}
+		// 	else
+		// 	{
+		// 		loadpop.Close();
+		// 	}
+		// 	this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
+		// }
 
-		private void HandleThresholdReachedR(object sender, EventArgs args)
-		{
-			this._rightFlag = true;
+		// private void HandleThresholdReachedR(object sender, EventArgs args)
+		// {
+		// 	this._rightFlag = true;
 			
-			var df = BLEManager.Instance._parsedDataL;
-			var dfe = BLEManager.Instance._parsedDataR;
+		// 	var df = BLEManager.Instance._parsedDataL;
+		// 	var dfe = BLEManager.Instance._parsedDataR;
 			
-			if (!endMeasureBool) { return; }
-			if (!(_leftFlag && _rightFlag)) { return; }
-			// loadpop.Close()를 UI 스레드에서 실행
-			if (loadpop.InvokeRequired)
-			{
-				loadpop.Invoke(new Action(() => loadpop.Close()));
-			}
-			else
-			{
-				loadpop.Close();
-			}
-			this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
-		}
+		// 	if (!endMeasureBool) { return; }
+		// 	if (!(_leftFlag && _rightFlag)) { return; }
+		// 	// loadpop.Close()를 UI 스레드에서 실행
+		// 	if (loadpop.InvokeRequired)
+		// 	{
+		// 		loadpop.Invoke(new Action(() => loadpop.Close()));
+		// 	}
+		// 	else
+		// 	{
+		// 		loadpop.Close();
+		// 	}
+		// 	this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
+		// }
 
 		static async Task functiontest(InTheHand.Bluetooth.BluetoothDevice device)
 		{

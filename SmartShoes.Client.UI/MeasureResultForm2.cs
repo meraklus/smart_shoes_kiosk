@@ -533,42 +533,42 @@ namespace SmartShoes.Client.UI
 		private void btnTiny_Click(object sender, EventArgs e)
 		{
 			
-			var ls = BLEManager.Instance._parsedDataL;
-			var rs = BLEManager.Instance._parsedDataR;
+			// var ls = BLEManager.Instance._parsedDataL;
+			// var rs = BLEManager.Instance._parsedDataR;
 
 
-			//return;
-			PrintDocument printDocument = new PrintDocument();
-			printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
+			// //return;
+			// PrintDocument printDocument = new PrintDocument();
+			// printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
 
-			// PrintDialog 생성 및 설정
-			PrintDialog printDialog = new PrintDialog
-			{
-				Document = printDocument,
-				AllowSomePages = true,
-				ShowHelp = true
-			};
+			// // PrintDialog 생성 및 설정
+			// PrintDialog printDialog = new PrintDialog
+			// {
+			// 	Document = printDocument,
+			// 	AllowSomePages = true,
+			// 	ShowHelp = true
+			// };
 
-			// 프린트 다이얼로그 표시
-			if (printDialog.ShowDialog() == DialogResult.OK)
-			{
-				printDocument.Print();
-			}
+			// // 프린트 다이얼로그 표시
+			// if (printDialog.ShowDialog() == DialogResult.OK)
+			// {
+			// 	printDocument.Print();
+			// }
 
-			ConfirmPopup cfp = new ConfirmPopup("측정을 종료하시겠습니까?");
-			cfp.ShowDialog();
-
-
-            measurementData = null;
-			measureResult = null;
-			shoesData = null;
-			shoesResult = null;
+			// ConfirmPopup cfp = new ConfirmPopup("측정을 종료하시겠습니까?");
+			// cfp.ShowDialog();
 
 
-			if (cfp.Confirmed)
-			{
-				this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
-			}
+      //       measurementData = null;
+			// measureResult = null;
+			// shoesData = null;
+			// shoesResult = null;
+
+
+			// if (cfp.Confirmed)
+			// {
+			// 	this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
+			// }
 			
 
 		}
@@ -679,19 +679,19 @@ namespace SmartShoes.Client.UI
 
                     Guid serviceUUID = new Guid(Properties.Settings.Default.SERVICE_UUID);
 
-					await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
+					// await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
 
-					var shoesL = BLEManager.Instance._parsedDataL;
-					var shoesR = BLEManager.Instance._parsedDataR;
+					// var shoesL = BLEManager.Instance._parsedDataL;
+					// var shoesR = BLEManager.Instance._parsedDataR;
 					Console.WriteLine("신발 데이터 컨버팅 직전");
-					var combinedData = ConvertData(shoesL, shoesR);
+					// var combinedData = ConvertData(shoesL, shoesR);
 
 					shoesData = new ShoesData
 					{
 
 						userSid = userid,
 						reportSid = reportSid,
-						data = combinedData,
+						// data = combinedData,
 						columns = new List<string>
 						{
 							"LAccelX",

@@ -49,7 +49,7 @@
 			this.label10 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.txtContainerId = new System.Windows.Forms.TextBox();
-			this.listView1 = new System.Windows.Forms.ListView();
+			// this.listView1 = new System.Windows.Forms.ListView();
 			this.btnCallShoes = new System.Windows.Forms.PictureBox();
 			this.btnShutDown = new System.Windows.Forms.PictureBox();
 			this.btnSkeleton = new System.Windows.Forms.PictureBox();
@@ -57,14 +57,14 @@
 			this.btnCameraConnect = new System.Windows.Forms.PictureBox();
 			this.btnComplete = new System.Windows.Forms.PictureBox();
 			this.label11 = new System.Windows.Forms.Label();
-			this.numSensorTime = new System.Windows.Forms.NumericUpDown();
+			// this.numSensorTime = new System.Windows.Forms.NumericUpDown();
 			((System.ComponentModel.ISupportInitialize)(this.btnCallShoes)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnShutDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnSkeleton)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnMatSetting)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnCameraConnect)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnComplete)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numSensorTime)).BeginInit();
+			// ((System.ComponentModel.ISupportInitialize)(this.numSensorTime)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -277,13 +277,13 @@
 			// 
 			// listView1
 			// 
-			this.listView1.Font = new System.Drawing.Font("맑은 고딕", 13F);
-			this.listView1.HideSelection = false;
-			this.listView1.Location = new System.Drawing.Point(27, 71);
-			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(683, 187);
-			this.listView1.TabIndex = 66;
-			this.listView1.UseCompatibleStateImageBehavior = false;
+			// this.listView1.Font = new System.Drawing.Font("맑은 고딕", 13F);
+			// this.listView1.HideSelection = false;
+			// this.listView1.Location = new System.Drawing.Point(27, 71);
+			// this.listView1.Name = "listView1";
+			// this.listView1.Size = new System.Drawing.Size(683, 187);
+			// this.listView1.TabIndex = 66;
+			// this.listView1.UseCompatibleStateImageBehavior = false;
 			// 
 			// btnCallShoes
 			// 
@@ -375,25 +375,25 @@
 			// 
 			// numSensorTime
 			// 
-			this.numSensorTime.Font = new System.Drawing.Font("맑은 고딕", 13F);
-			this.numSensorTime.Location = new System.Drawing.Point(436, 23);
-			this.numSensorTime.Maximum = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-			this.numSensorTime.Name = "numSensorTime";
-			this.numSensorTime.Size = new System.Drawing.Size(120, 31);
-			this.numSensorTime.TabIndex = 69;
-			this.numSensorTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// this.numSensorTime.Font = new System.Drawing.Font("맑은 고딕", 13F);
+			// this.numSensorTime.Location = new System.Drawing.Point(436, 23);
+			// this.numSensorTime.Maximum = new decimal(new int[] {
+      //       15,
+      //       0,
+      //       0,
+      //       0});
+			// this.numSensorTime.Name = "numSensorTime";
+			// this.numSensorTime.Size = new System.Drawing.Size(120, 31);
+			// this.numSensorTime.TabIndex = 69;
+			// this.numSensorTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// SettingsForm
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.SystemColors.Control;
-			this.Controls.Add(this.numSensorTime);
+			// this.Controls.Add(this.numSensorTime);
 			this.Controls.Add(this.label11);
-			this.Controls.Add(this.listView1);
+			// this.Controls.Add(this.listView1);
 			this.Controls.Add(this.btnCallShoes);
 			this.Controls.Add(this.txtContainerId);
 			this.Controls.Add(this.label1);
@@ -429,7 +429,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.btnMatSetting)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnCameraConnect)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnComplete)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numSensorTime)).EndInit();
+			// ((System.ComponentModel.ISupportInitialize)(this.numSensorTime)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -463,8 +463,8 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox txtContainerId;
 		private System.Windows.Forms.PictureBox btnCallShoes;
-		private System.Windows.Forms.ListView listView1;
+		// private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.Label label11;
-		private System.Windows.Forms.NumericUpDown numSensorTime;
+		// private System.Windows.Forms.NumericUpDown numSensorTime;
 	}
 }

@@ -21,15 +21,15 @@ namespace SmartShoes.Client.UI
         }
         private async void DisconnectAllBluetoothDevices()
         {
-            try
-            {
-                await BLEManager.Instance.DisconnectDevicesAsync2();
-                Console.WriteLine("모든 블루투스 기기 연결 해제 완료");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("블루투스 기기 연결 해제 중 오류 발생: " + ex.Message);
-            }
+            // try
+            // {
+            //     await BLEManager.Instance.DisconnectDevicesAsync2();
+            //     Console.WriteLine("모든 블루투스 기기 연결 해제 완료");
+            // }
+            // catch (Exception ex)
+            // {
+            //     Console.WriteLine("블루투스 기기 연결 해제 중 오류 발생: " + ex.Message);
+            // }
         }
 
 
@@ -69,7 +69,7 @@ namespace SmartShoes.Client.UI
 			Guid notifyUUID = new Guid(Properties.Settings.Default.NOTIFY_UUID);
 			int datalen = Properties.Settings.Default.SENSOR_SET_TIME * 100;
 
-			await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
+			// await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
 
 			btnNomal.Enabled = false;
 			this.btnNomal.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_measu_continue_off_1;
@@ -100,24 +100,24 @@ namespace SmartShoes.Client.UI
 			scp.Location = new System.Drawing.Point(screenCenterX2, customY2);
 			scp.Show();
 
-            bool isConnected = await BLEManager.Instance.ConnectAndReceiveAsync2(deviceAddressR, deviceAddressL, datalen, serviceUUID, notifyUUID);
+            // bool isConnected = await BLEManager.Instance.ConnectAndReceiveAsync2(deviceAddressR, deviceAddressL, datalen, serviceUUID, notifyUUID);
 
             //await Task.Delay(5000); 
 
             //bool isConnected = true;
 
-            btnNomal.Enabled = isConnected;
-			if( isConnected ) 
-			{
+            // btnNomal.Enabled = isConnected;
+			// if( isConnected ) 
+			//{
 				
-				scp.Close();
-				this.btnNomal.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_measu_continue;
-			}
-			else
-			{
-				scp.Close();
-			}
-			Console.WriteLine(isConnected);
+			//	scp.Close();
+			//	this.btnNomal.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_measu_continue;
+			//}
+			//else
+			//{
+			//	scp.Close();
+			//}
+			// Console.WriteLine(isConnected);
 		}
 
         private async void pictureBox4_Click(object sender, EventArgs e)

@@ -350,36 +350,36 @@ namespace SmartShoes.Client.UI
 		private void btnTiny_Click(object sender, EventArgs e)
 		{
 
-			var ls = BLEManager.Instance._parsedDataL;
-			var rs = BLEManager.Instance._parsedDataR;
+			// var ls = BLEManager.Instance._parsedDataL;
+			// var rs = BLEManager.Instance._parsedDataR;
 
 
-			//return;
-			PrintDocument printDocument = new PrintDocument();
-			printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
+			// //return;
+			// PrintDocument printDocument = new PrintDocument();
+			// printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
 
-			// PrintDialog 생성 및 설정
-			PrintDialog printDialog = new PrintDialog
-			{
-				Document = printDocument,
-				AllowSomePages = true,
-				ShowHelp = true
-			};
+			// // PrintDialog 생성 및 설정
+			// PrintDialog printDialog = new PrintDialog
+			// {
+			// 	Document = printDocument,
+			// 	AllowSomePages = true,
+			// 	ShowHelp = true
+			// };
 
-			// 프린트 다이얼로그 표시
-			if (printDialog.ShowDialog() == DialogResult.OK)
-			{
-				printDocument.Print();
-			}
+			// // 프린트 다이얼로그 표시
+			// if (printDialog.ShowDialog() == DialogResult.OK)
+			// {
+			// 	printDocument.Print();
+			// }
 
-			ConfirmPopup cfp = new ConfirmPopup("측정을 종료하시겠습니까?");
-			cfp.ShowDialog();
+			// ConfirmPopup cfp = new ConfirmPopup("측정을 종료하시겠습니까?");
+			// cfp.ShowDialog();
 
 
-			if (cfp.Confirmed)
-			{
-				this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
-			}
+			// if (cfp.Confirmed)
+			// {
+			// 	this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
+			// }
 			
 
 		}

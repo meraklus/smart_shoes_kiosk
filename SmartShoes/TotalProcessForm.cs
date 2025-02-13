@@ -757,24 +757,24 @@ namespace SmartShoes
 			// string deviceAddress = "D41DD0B5C556"; // BLE 장치의 MAC 주소 "FD:E7:33:88:CE:AE"
 			// await ConnectAndReceive(deviceAddressR, deviceAddressL);
 
-			string deviceAddressR = this.txtShoesSensorR.Text;
-			string deviceAddressL = this.txtShoesSensorL.Text;
+			// string deviceAddressR = this.txtShoesSensorR.Text;
+			// string deviceAddressL = this.txtShoesSensorL.Text;
 
 			
 			// 이벤트 핸들러 등록 (먼저 등록)
 			// 기존 이벤트 핸들러 제거
-			BLEManager.Instance.ThresholdReachedL -= HandleThresholdReachedL;
-			BLEManager.Instance.ThresholdReachedR -= HandleThresholdReachedR;
+			// BLEManager.Instance.ThresholdReachedL -= HandleThresholdReachedL;
+			// BLEManager.Instance.ThresholdReachedR -= HandleThresholdReachedR;
 
-			_flagL = false;
-			_flagR = false;
+			// _flagL = false;
+			// _flagR = false;
 			
-			transformedAccelL.Clear();
-			transformedAccelR.Clear();
+			// transformedAccelL.Clear();
+			// transformedAccelR.Clear();
 			
-			// 새 이벤트 핸들러 등록
-			BLEManager.Instance.ThresholdReachedL += HandleThresholdReachedL;
-			BLEManager.Instance.ThresholdReachedR += HandleThresholdReachedR;
+			// // 새 이벤트 핸들러 등록
+			// BLEManager.Instance.ThresholdReachedL += HandleThresholdReachedL;
+			// BLEManager.Instance.ThresholdReachedR += HandleThresholdReachedR;
 
 
 			//watcher.Start();
@@ -782,69 +782,69 @@ namespace SmartShoes
 			//await Console.Out.WriteLineAsync("result = " + result.Status);
 			//return;
 
-			int datalen = Convert.ToInt32(this.txtShoesMT.Text) * 100;
-			bool isConnected = await BLEManager.Instance.ConnectAndReceiveAsync(deviceAddressR, deviceAddressL, datalen, serviceUUID, _notifyUuid);
+			// int datalen = Convert.ToInt32(this.txtShoesMT.Text) * 100;
+			// bool isConnected = await BLEManager.Instance.ConnectAndReceiveAsync(deviceAddressR, deviceAddressL, datalen, serviceUUID, _notifyUuid);
 
-			btnSensorDataRead.Enabled = isConnected;
+			// btnSensorDataRead.Enabled = isConnected;
 		}
 
 		// 왼쪽 장치의 이벤트 핸들러
 		private void HandleThresholdReachedL(object sender, EventArgs args)
 		{
-			List<int[]> lstr = BLEManager.Instance._parsedDataL;
-			transformedAccelL.Clear();
-			foreach (int[] numbers in lstr)
-			{
-				if (numbers.Length == 6)
-				{
-					// 원시 가속도 데이터를 추출 (여기서는 마지막 3개의 값이 가속도 데이터라고 가정)
-					int[] rawAccel = new int[] { numbers[3], numbers[4], numbers[5] };
+			// List<int[]> lstr = BLEManager.Instance._parsedDataL;
+			// transformedAccelL.Clear();
+			// foreach (int[] numbers in lstr)
+			// {
+			// 	if (numbers.Length == 6)
+			// 	{
+			// 		// 원시 가속도 데이터를 추출 (여기서는 마지막 3개의 값이 가속도 데이터라고 가정)
+			// 		int[] rawAccel = new int[] { numbers[3], numbers[4], numbers[5] };
 
-					// 가속도 데이터를 실제 값으로 변환하고, 필요한 축 반전을 수행
-					double[] accelInG = Array.ConvertAll(rawAccel, val => ConvertToG(val));
+			// 		// 가속도 데이터를 실제 값으로 변환하고, 필요한 축 반전을 수행
+			// 		double[] accelInG = Array.ConvertAll(rawAccel, val => ConvertToG(val));
 
-					// X, -Y, Z 로 축 반전 수행
-					double[] dbl = new double[] { -accelInG[0], -accelInG[1], accelInG[2] };
-					transformedAccelL.Add(dbl);
-				}
-			}
+			// 		// X, -Y, Z 로 축 반전 수행
+			// 		double[] dbl = new double[] { -accelInG[0], -accelInG[1], accelInG[2] };
+			// 		transformedAccelL.Add(dbl);
+			// 	}
+			// }
 
-			int datalen = Convert.ToInt32(this.txtShoesMT.Text) * 100;
-			Console.WriteLine("데이터가 " + datalen + "개에 도달했습니다. 이벤트 발생! ===================== Left");
-			_flagL = true;
-			if (_flagL && _flagR)
-			{
-				WriteCsvData();
-			}
+			// int datalen = Convert.ToInt32(this.txtShoesMT.Text) * 100;
+			// Console.WriteLine("데이터가 " + datalen + "개에 도달했습니다. 이벤트 발생! ===================== Left");
+			// _flagL = true;
+			// if (_flagL && _flagR)
+			// {
+			// 	WriteCsvData();
+			// }
 			// 추가 작업 수행
 		}
 
 		// 오른쪽 장치의 이벤트 핸들러
 		private void HandleThresholdReachedR(object sender, EventArgs args)
 		{
-			List<int[]> lstr = BLEManager.Instance._parsedDataR;
-			transformedAccelR.Clear();
-			foreach (int[] numbers in lstr)
-			{
-				if (numbers.Length == 6)
-				{
-					// 원시 가속도 데이터를 추출 (여기서는 마지막 3개의 값이 가속도 데이터라고 가정)
-					int[] rawAccel = new int[] { numbers[3], numbers[4], numbers[5] };
+			// List<int[]> lstr = BLEManager.Instance._parsedDataR;
+			// transformedAccelR.Clear();
+			// foreach (int[] numbers in lstr)
+			// {
+			// 	if (numbers.Length == 6)
+			// 	{
+			// 		// 원시 가속도 데이터를 추출 (여기서는 마지막 3개의 값이 가속도 데이터라고 가정)
+			// 		int[] rawAccel = new int[] { numbers[3], numbers[4], numbers[5] };
 
-					// 가속도 데이터를 실제 값으로 변환하고, 필요한 축 반전을 수행
-					double[] accelInG = Array.ConvertAll(rawAccel, val => ConvertToG(val));
+			// 		// 가속도 데이터를 실제 값으로 변환하고, 필요한 축 반전을 수행
+			// 		double[] accelInG = Array.ConvertAll(rawAccel, val => ConvertToG(val));
 
-					double[] dbl = new double[] { -accelInG[0], -accelInG[1], accelInG[2] };
-					transformedAccelR.Add(dbl);
-				}
-			}
-			int datalen = Convert.ToInt32(this.txtShoesMT.Text) * 100;
-			Console.WriteLine("데이터가 " + datalen + "개에 도달했습니다. 이벤트 발생! ===================== Right");
-			_flagR = true;
-			if (_flagL && _flagR)
-			{
-				WriteCsvData();
-			}
+			// 		double[] dbl = new double[] { -accelInG[0], -accelInG[1], accelInG[2] };
+			// 		transformedAccelR.Add(dbl);
+			// 	}
+			// }
+			// int datalen = Convert.ToInt32(this.txtShoesMT.Text) * 100;
+			// Console.WriteLine("데이터가 " + datalen + "개에 도달했습니다. 이벤트 발생! ===================== Right");
+			// _flagR = true;
+			// if (_flagL && _flagR)
+			// {
+			// 	WriteCsvData();
+			// }
 			// 추가 작업 수행
 		}
 
@@ -866,50 +866,50 @@ namespace SmartShoes
 
 		private async void MeasureFunction()
 		{
-			var rightDevice = BLEManager.Instance.GetRightDevice();
-			if (rightDevice != null)
-			{
-				Console.WriteLine($"Right device: {rightDevice.Name}");
-			}
-			else
-			{
-				Console.WriteLine("Right device is not connected.");
-			}
+			// var rightDevice = BLEManager.Instance.GetRightDevice();
+			// if (rightDevice != null)
+			// {
+			// 	Console.WriteLine($"Right device: {rightDevice.Name}");
+			// }
+			// else
+			// {
+			// 	Console.WriteLine("Right device is not connected.");
+			// }
 
-			var leftDevice = BLEManager.Instance.GetLeftDevice();
-			if (leftDevice != null)
-			{
-				Console.WriteLine($"Left device: {leftDevice.Name}");
-			}
-			else
-			{
-				Console.WriteLine("Left device is not connected.");
-			}
+			// var leftDevice = BLEManager.Instance.GetLeftDevice();
+			// if (leftDevice != null)
+			// {
+			// 	Console.WriteLine($"Left device: {leftDevice.Name}");
+			// }
+			// else
+			// {
+			// 	Console.WriteLine("Left device is not connected.");
+			// }
 
-			int datalen = Convert.ToInt32(this.txtShoesMT.Text) * 100;
+			// int datalen = Convert.ToInt32(this.txtShoesMT.Text) * 100;
 			
-			await functiontest(rightDevice, datalen);
-			await functiontest(leftDevice, datalen);
+			// await functiontest(rightDevice, datalen);
+			// await functiontest(leftDevice, datalen);
 		}
 
 		private async Task functiontest(InTheHand.Bluetooth.BluetoothDevice device, int datalen)
 		{
-			var services = await device.Gatt.GetPrimaryServicesAsync(serviceUUID);
-			foreach (var service in services)
-			{
-				var characteristics = await service.GetCharacteristicsAsync();
-				Console.WriteLine(characteristics);
-				foreach (var characteristic in characteristics)
-				{
-					if (characteristic.Uuid == _writeUuid)
-					{
-						Console.WriteLine("received.");
-						string dataToSend = $"@DATA,{datalen}#\r\n";
-						byte[] dataBytes = Encoding.UTF8.GetBytes(dataToSend);
-						await characteristic.WriteValueWithResponseAsync(dataBytes);
-					}
-				}
-			}
+			// var services = await device.Gatt.GetPrimaryServicesAsync(serviceUUID);
+			// foreach (var service in services)
+			// {
+			// 	var characteristics = await service.GetCharacteristicsAsync();
+			// 	Console.WriteLine(characteristics);
+			// 	foreach (var characteristic in characteristics)
+			// 	{
+			// 		if (characteristic.Uuid == _writeUuid)
+			// 		{
+			// 			Console.WriteLine("received.");
+			// 			string dataToSend = $"@DATA,{datalen}#\r\n";
+			// 			byte[] dataBytes = Encoding.UTF8.GetBytes(dataToSend);
+			// 			await characteristic.WriteValueWithResponseAsync(dataBytes);
+			// 		}
+			// 	}
+			// }
 
 		}
 
@@ -967,8 +967,8 @@ namespace SmartShoes
 			// CSV 파일 저장
 			File.WriteAllText(filePath, csv.ToString(), Encoding.UTF8);
 
-			BLEManager.Instance._parsedDataL.Clear();
-			BLEManager.Instance._parsedDataR.Clear();
+			// BLEManager.Instance._parsedDataL.Clear();
+			// BLEManager.Instance._parsedDataR.Clear();
 		}
 
 		private void btnSensorDataRead_Click(object sender, EventArgs e)

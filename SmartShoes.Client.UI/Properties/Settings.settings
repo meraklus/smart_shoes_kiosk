@@ -36,7 +36,7 @@
       <Value Profile="(Default)">http://221.161.177.194:8081/api/shoes/list?containerSid=</Value>
     </Setting>
     <Setting Name="SHOES_CALL_URL_RELEASE" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://221.161.177.194/api/shoes/list?containerSid=</Value>
+      <Value Profile="(Default)">http://221.161.177.191/api/container/</Value>
     </Setting>
     <Setting Name="SELECT_LEFT_SHOE" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
