@@ -66,15 +66,26 @@ namespace SmartShoes.Common.Forms
             }
         }
 
-        public async Task SendData(byte[] data)
+        public async Task SendData(string message)
         {
-            if (!IsConnected) 
-                throw new InvalidOperationException("블루투스 장치가 연결되어 있지 않습니다.");
+            try
+            {
+                if (!IsConnected)
+                {
+                    Console.WriteLine("블루투스 장치가 연결되어 있지 않습니다.");
+                    return;
+                }
+
+                byte[] data = Encoding.UTF8.GetBytes(message);
+                
+                await SendToDevice(_leftDevice, data);
+                await SendToDevice(_rightDevice, data);
             
-            await Task.WhenAll(
-                SendToDevice(_leftDevice, data),
-                SendToDevice(_rightDevice, data)
-            );
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"데이터 전송 중 오류 발생: {ex.Message}");
+            }
         }
 
         public async Task DisconnectDevicesAsync()
@@ -178,7 +189,7 @@ namespace SmartShoes.Common.Forms
         {
             var service = await device.Gatt.GetPrimaryServiceAsync(_serviceUuid);
             var characteristic = await service.GetCharacteristicAsync(_writeUuid);
-            await characteristic.WriteValueWithResponseAsync(data);
+            await characteristic.WriteValueWithoutResponseAsync(data);
         }
 
         private async Task DisconnectDevice(BluetoothDevice device, bool isLeft)

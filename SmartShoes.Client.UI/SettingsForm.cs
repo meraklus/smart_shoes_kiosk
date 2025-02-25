@@ -165,7 +165,16 @@ namespace SmartShoes.Client.UI
 			}
 
 			closefunc();
+
+	
+
+			// 테스트 명령어 전송
+			// BLEManager.Instance.SendData("@DATA,10#\r\n");
+
+
 		}
+
+		
 
 		private void closefunc()
 		{
