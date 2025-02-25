@@ -23,6 +23,9 @@ namespace SmartShoes.Client.UI
 			InitializeComponent();
 			this.panel1.Visible = true;
 			this.txtContainerId.Text = Properties.Settings.Default.CONTAINER_ID;
+			
+			// 블루투스 연결 상태 변경 이벤트 구독
+			BLEManager.Instance.ConnectionStatusChanged += OnBluetoothConnectionChanged;
 		}
 
 		private void btnComplete_Click(object sender, EventArgs e)
@@ -228,5 +231,49 @@ namespace SmartShoes.Client.UI
 		// 	}
 		// }
 
+		private void UpdateBluetoothStatus(bool isLeft, bool isConnected, string errorMessage = null)
+		{
+			var label = isLeft ? label11 : label12;
+			var side = isLeft ? "왼쪽" : "오른쪽";
+			
+			label.Text = $"{side} 센서 연결 상태: {(isConnected ? "연결됨" : "미연결")}";
+			
+			if (!string.IsNullOrEmpty(errorMessage))
+			{
+				Console.WriteLine($"블루투스 연결 오류: {errorMessage}");
+			}
+		}
+
+		private void OnBluetoothConnectionChanged(object sender, BluetoothConnectionEventArgs e)
+		{
+			if (this.InvokeRequired)
+			{
+				this.Invoke(new Action(() => UpdateBluetoothStatus(e.IsLeft, e.IsConnected, e.ErrorMessage)));
+				return;
+			}
+			UpdateBluetoothStatus(e.IsLeft, e.IsConnected, e.ErrorMessage);
+		}
+
+		// Form이 닫힐 때 이벤트 구독 해제
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				// Designer.cs의 리소스 정리
+				if (dph != null)
+				{
+					dph.Dispose();
+					dph = null;
+				}
+				if (components != null)
+				{
+					components.Dispose();
+				}
+
+				// 블루투스 이벤트 구독 해제
+				BLEManager.Instance.ConnectionStatusChanged -= OnBluetoothConnectionChanged;
+			}
+			base.Dispose(disposing);
+		}
 	}
 }

@@ -11,22 +11,6 @@
 		/// 사용 중인 모든 리소스를 정리합니다.
 		/// </summary>
 		/// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				if (dph != null)
-				{
-					dph.Dispose();
-					dph = null;
-				}
-				if (components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
 
 		#region 구성 요소 디자이너에서 생성한 코드
 
@@ -63,6 +47,8 @@
             this.btnMatSetting = new System.Windows.Forms.PictureBox();
             this.btnCameraConnect = new System.Windows.Forms.PictureBox();
             this.btnComplete = new System.Windows.Forms.PictureBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.btnCallShoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShutDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSkeleton)).BeginInit();
@@ -357,10 +343,32 @@
             this.btnComplete.TabStop = false;
             this.btnComplete.Click += new System.EventHandler(this.btnComplete_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("맑은 고딕", 13F);
+            this.label11.Location = new System.Drawing.Point(34, 94);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(244, 25);
+            this.label11.TabIndex = 66;
+            this.label11.Text = "왼쪽 센서 연결 상태 : 미연결";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("맑은 고딕", 13F);
+            this.label12.Location = new System.Drawing.Point(310, 94);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(262, 25);
+            this.label12.TabIndex = 67;
+            this.label12.Text = "오른쪽 센서 연결 상태 : 미연결";
+            // 
             // SettingsForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.btnCallShoes);
             this.Controls.Add(this.txtContainerId);
             this.Controls.Add(this.label1);
@@ -429,6 +437,8 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox txtContainerId;
 		private System.Windows.Forms.PictureBox btnCallShoes;
-		// private System.Windows.Forms.NumericUpDown numSensorTime;
-	}
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        // private System.Windows.Forms.NumericUpDown numSensorTime;
+    }
 }

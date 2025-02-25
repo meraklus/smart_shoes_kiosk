@@ -51,13 +51,17 @@ namespace SmartShoes.Common.Forms
         {
             try
             {
+                // 연결 해제 시작을 알림
+                OnConnectionStatusChanged(new BluetoothConnectionEventArgs(true, false));
+                OnConnectionStatusChanged(new BluetoothConnectionEventArgs(false, false));
+                
                 await DisconnectDevicesAsync();
                 await ConnectToDevices(leftMacAddress, rightMacAddress);
-                OnConnectionStatusChanged(new BluetoothConnectionEventArgs(true));
             }
             catch (Exception ex)
             {
-                OnConnectionStatusChanged(new BluetoothConnectionEventArgs(false, ex.Message));
+                OnConnectionStatusChanged(new BluetoothConnectionEventArgs(true, false, ex.Message));
+                OnConnectionStatusChanged(new BluetoothConnectionEventArgs(false, false, ex.Message));
                 throw;
             }
         }
@@ -79,13 +83,13 @@ namespace SmartShoes.Common.Forms
             
             if (_leftDevice != null)
             {
-                await DisconnectDevice(_leftDevice);
+                await DisconnectDevice(_leftDevice, true);
                 _leftDevice = null;
             }
             
             if (_rightDevice != null)
             {
-                await DisconnectDevice(_rightDevice);
+                await DisconnectDevice(_rightDevice, false);
                 _rightDevice = null;
             }
             
@@ -145,9 +149,12 @@ namespace SmartShoes.Common.Forms
                 var device = await BluetoothLEDevice.FromBluetoothAddressAsync(address);
                 if (device == null) return null;
 
-                device.ConnectionStatusChanged += OnDeviceConnectionStatusChanged;
                 await SetupDeviceNotifications(device);
-
+                
+                // 연결 성공 이벤트 발생
+                var isLeft = side == "Left";
+                OnConnectionStatusChanged(new BluetoothConnectionEventArgs(isLeft, true));
+                
                 Console.WriteLine($"{side} device connected");
                 return device;
             }
@@ -174,7 +181,7 @@ namespace SmartShoes.Common.Forms
             await characteristic.WriteValueWithResponseAsync(data);
         }
 
-        private async Task DisconnectDevice(BluetoothDevice device)
+        private async Task DisconnectDevice(BluetoothDevice device, bool isLeft)
         {
             try
             {
@@ -182,11 +189,14 @@ namespace SmartShoes.Common.Forms
                 var service = await device.Gatt.GetPrimaryServiceAsync(_serviceUuid);
                 var characteristic = await service.GetCharacteristicAsync(_notifyUuid);
                 await characteristic.StopNotificationsAsync();
-                characteristic.CharacteristicValueChanged -= OnCharacteristicValueChanged;  // 이벤트 핸들러도 제거
+                characteristic.CharacteristicValueChanged -= OnCharacteristicValueChanged;
 
                 // 연결 해제
                 device.Gatt.Disconnect();
                 await Task.Delay(500);
+
+                // 연결 해제 이벤트 발생
+                OnConnectionStatusChanged(new BluetoothConnectionEventArgs(isLeft, false));
             }
             catch (Exception ex)
             {
@@ -221,7 +231,9 @@ namespace SmartShoes.Common.Forms
         private void OnDeviceConnectionStatusChanged(BluetoothLEDevice sender, object args)
         {
             var isConnected = sender.ConnectionStatus == BluetoothConnectionStatus.Connected;
-            OnConnectionStatusChanged(new BluetoothConnectionEventArgs(isConnected));
+            Console.WriteLine($"OnDeviceConnectionStatusChanged: {sender.BluetoothAddress}, {sender.ConnectionStatus}");
+            var isLeft = true; //sender == _leftDevice;
+            OnConnectionStatusChanged(new BluetoothConnectionEventArgs(isLeft, isConnected));
         }
 
         private void OnConnectionStatusChanged(BluetoothConnectionEventArgs e)
@@ -252,11 +264,13 @@ namespace SmartShoes.Common.Forms
 
     public class BluetoothConnectionEventArgs : EventArgs
     {
+        public bool IsLeft { get; }  // 왼쪽/오른쪽 구분
         public bool IsConnected { get; }
         public string ErrorMessage { get; }
         
-        public BluetoothConnectionEventArgs(bool isConnected, string errorMessage = null)
+        public BluetoothConnectionEventArgs(bool isLeft, bool isConnected, string errorMessage = null)
         {
+            IsLeft = isLeft;
             IsConnected = isConnected;
             ErrorMessage = errorMessage;
         }
