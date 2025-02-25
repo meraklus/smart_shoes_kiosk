@@ -34,6 +34,7 @@ namespace SmartShoes.Common.Forms
         private readonly List<int[]> _leftData = new List<int[]>();
         private readonly List<int[]> _rightData = new List<int[]>();
         private bool _isScanning;
+        private BluetoothLEAdvertisementWatcher _watcher;
         #endregion
 
         #region Events
@@ -56,7 +57,13 @@ namespace SmartShoes.Common.Forms
                 OnConnectionStatusChanged(new BluetoothConnectionEventArgs(false, false));
                 
                 await DisconnectDevicesAsync();
-                await ConnectToDevices(leftMacAddress, rightMacAddress);
+                
+                // MAC 주소 변환
+                ulong leftAddress = Convert.ToUInt64(leftMacAddress.Replace(":", ""), 16);
+                ulong rightAddress = Convert.ToUInt64(rightMacAddress.Replace(":", ""), 16);
+                
+                // 스캔 시작
+                await ScanAndConnectDevices(leftAddress, rightAddress);
             }
             catch (Exception ex)
             {
@@ -124,32 +131,77 @@ namespace SmartShoes.Common.Forms
         #endregion
 
         #region Private Methods
-        private async Task ConnectToDevices(string leftMacAddress, string rightMacAddress)
+        private async Task ScanAndConnectDevices(ulong leftAddress, ulong rightAddress)
         {
-            try 
-            {
-                // MAC 주소 문자열을 BluetoothAddress로 변환
-                ulong leftAddress = Convert.ToUInt64(leftMacAddress.Replace(":", ""), 16);
-                ulong rightAddress = Convert.ToUInt64(rightMacAddress.Replace(":", ""), 16);
-
-                // 양쪽 신발에 직접 연결 시도
-                var connectLeftTask = ConnectToDevice(leftAddress, "Left");
-                var connectRightTask = ConnectToDevice(rightAddress, "Right");
-
-                // 두 연결을 동시에 시도
-                await Task.WhenAll(connectLeftTask, connectRightTask);
-
-                _leftDevice = await connectLeftTask;
-                _rightDevice = await connectRightTask;
-
-                if (_leftDevice == null || _rightDevice == null)
+            var tcs = new TaskCompletionSource<bool>();
+            
+            // 발견된 장치 주소 저장
+            var foundAddresses = new HashSet<ulong>();
+            
+            _watcher = new BluetoothLEAdvertisementWatcher();
+            _watcher.ScanningMode = BluetoothLEScanningMode.Active;
+            
+            _watcher.Received += async (sender, args) => {
+                // 이미 발견된 장치는 무시
+                if (foundAddresses.Contains(args.BluetoothAddress))
+                    return;
+                    
+                if (args.BluetoothAddress == leftAddress || args.BluetoothAddress == rightAddress)
                 {
-                    throw new Exception("블루투스 연결에 실패했습니다.");
+                    // 발견된 장치 기록
+                    foundAddresses.Add(args.BluetoothAddress);
+                    Console.WriteLine($"장치 발견: {args.BluetoothAddress:X}");
+                    
+                    // 양쪽 모두 발견되면 스캔 중지 후 연결 시도
+                    if (foundAddresses.Contains(leftAddress) && foundAddresses.Contains(rightAddress))
+                    {
+                        _watcher.Stop();
+                        Console.WriteLine("양쪽 장치 모두 발견, 연결 시도 중...");
+                        
+                        try
+                        {
+                            // 양쪽 장치 동시에 연결 시도
+                            var leftTask = ConnectToDevice(leftAddress, "Left");
+                            var rightTask = ConnectToDevice(rightAddress, "Right");
+                            
+                            await Task.WhenAll(leftTask, rightTask);
+                            
+                            _leftDevice = await leftTask;
+                            _rightDevice = await rightTask;
+                            
+                            if (_leftDevice != null && _rightDevice != null)
+                            {
+                                tcs.SetResult(true);
+                            }
+                            else
+                            {
+                                tcs.SetException(new Exception("장치 연결에 실패했습니다."));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            tcs.SetException(ex);
+                        }
+                    }
                 }
-            }
-            catch (Exception ex)
+            };
+            
+            _watcher.Start();
+            
+            // 30초 타임아웃
+            var timeoutTask = Task.Delay(60000);
+            var completedTask = await Task.WhenAny(tcs.Task, timeoutTask);
+            
+            _watcher.Stop();
+            
+            if (completedTask == timeoutTask)
             {
-                throw new Exception($"블루투스 연결 오류: {ex.Message}");
+                throw new TimeoutException("블루투스 장치 스캔 시간이 초과되었습니다.");
+            }
+            
+            if (_leftDevice == null || _rightDevice == null)
+            {
+                throw new Exception("블루투스 연결에 실패했습니다.");
             }
         }
 
