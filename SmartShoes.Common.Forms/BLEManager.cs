@@ -114,12 +114,13 @@ namespace SmartShoes.Common.Forms
             _isScanning = true;
             var watcher = new BluetoothLEAdvertisementWatcher();
             var tcs = new TaskCompletionSource<bool>();
-
+            Console.WriteLine("@@@ 1");
             watcher.Received += async (sender, args) =>
             {
                 string deviceAddress = args.BluetoothAddress.ToString("X").PadLeft(12, '0');
                 deviceAddress = string.Join(":", Enumerable.Range(0, 6)
                     .Select(i => deviceAddress.Substring(i * 2, 2)));
+                Console.WriteLine(deviceAddress);
 
                 if (deviceAddress.Equals(leftMacAddress, StringComparison.OrdinalIgnoreCase) && _leftDevice == null)
                 {
@@ -139,10 +140,12 @@ namespace SmartShoes.Common.Forms
             };
 
             watcher.Start();
-
+            Console.WriteLine("@@@ 2");
             await Task.WhenAny(tcs.Task, Task.Delay(10000));
             watcher.Stop();
             _isScanning = false;
+            Console.WriteLine("@@@ 3");
+
 
             if (_leftDevice == null || _rightDevice == null)
                 throw new TimeoutException("블루투스 장치를 찾을 수 없습니다.");

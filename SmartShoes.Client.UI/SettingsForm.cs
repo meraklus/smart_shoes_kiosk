@@ -23,77 +23,6 @@ namespace SmartShoes.Client.UI
 			InitializeComponent();
 			this.panel1.Visible = true;
 			this.txtContainerId.Text = Properties.Settings.Default.CONTAINER_ID;
-			// this.numSensorTime.Value = Properties.Settings.Default.SENSOR_SET_TIME;
-
-			// this.listView1.View = View.Details;
-			// this.listView1.FullRowSelect = true;
-
-			// // 컬럼 설정
-			// this.listView1.Columns.Add("leftDevice", 0, HorizontalAlignment.Center);
-			// this.listView1.Columns.Add("rightDevice", 0, HorizontalAlignment.Center);
-			// this.listView1.Columns.Add("신발명", 220, HorizontalAlignment.Center);
-			// this.listView1.Columns.Add("신발SIZE", 150, HorizontalAlignment.Center);
-
-			if (!Properties.Settings.Default.SHOES_JSON.Equals(""))
-			{
-				CallShoesMacAddr();
-			}
-		}
-
-		private async void CallShoesMacAddr()
-		{
-			ApiCallHelper apiCallHelper = new ApiCallHelper();
-			// GET 요청 예제 
-#if DEBUG
-			//string shoesUrl = Properties.Settings.Default.SHOES_CALL_URL_DEBUG + txtContainerId.Text;
-			string shoesUrl = Properties.Settings.Default.SHOES_CALL_URL_RELEASE + txtContainerId.Text;
-#else
-			string shoesUrl = Properties.Settings.Default.SHOES_CALL_URL_RELEASE + txtContainerId.Text;
-#endif
-			try
-			{
-
-				string getResponse = await apiCallHelper.GetAsync(shoesUrl);
-
-				Properties.Settings.Default.CONTAINER_ID = this.txtContainerId.Text;
-				// Properties.Settings.Default.SHOES_JSON = getResponse;
-				// Properties.Settings.Default.SENSOR_SET_TIME = Convert.ToInt16(this.numSensorTime.Value);
-				// Properties.Settings.Default.Save();
-				// Console.WriteLine(Properties.Settings.Default.SHOES_JSON);
-
-
-				BLEManager.Instance.InitializeConnection(Properties.Settings.Default.BLE_LEFT_MAC_ADDRESS, Properties.Settings.Default.BLE_RIGHT_MAC_ADDRESS);
-				// JArray shoesArray = JArray.Parse(Properties.Settings.Default.SHOES_JSON);
-				// 각 요소를 JObject로 접근
-
-				// listView1.Items.Clear();
-				// listShoes.Clear();
-				// foreach (JObject shoe in shoesArray)
-				// {
-				// 	ShoesInform shoeInform = new ShoesInform();
-				// 	shoeInform.ID = shoe.GetValue("shoesSid").ToString();
-				// 	shoeInform.Name = shoe.GetValue("shoesName").ToString();
-				// 	shoeInform.LeftDeviceAddr = shoe.GetValue("leftMacAddress").ToString();
-				// 	shoeInform.RightDeviceAddr = shoe.GetValue("rightMacAddress").ToString();
-				// 	shoeInform.Size = shoe.GetValue("shoesSize").ToString();
-				// 	listShoes.Add(shoeInform);
-
-
-				// 	ListViewItem item = new ListViewItem(shoe.GetValue("leftMacAddress").ToString());
-				// 	item.SubItems.Add(shoe.GetValue("rightMacAddress").ToString());
-				// 	item.SubItems.Add(shoe.GetValue("shoesName").ToString());
-				// 	item.SubItems.Add(shoe.GetValue("shoesSize").ToString());
-				// 	// listView1.Items.Add(item);
-				// }
-
-
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-			}
-
-
 		}
 
 		private void btnComplete_Click(object sender, EventArgs e)
@@ -111,7 +40,6 @@ namespace SmartShoes.Client.UI
 			this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
 			//this.Invoke(new Action(() => MovePage(new LoginForm())));
 			//MovePage(new LoginForm());
-
 
 		}
 
@@ -246,9 +174,37 @@ namespace SmartShoes.Client.UI
 			Application.Exit();
 		}
 
-		private void btnCallShoes_Click(object sender, EventArgs e)
+		private async void btnCallShoes_Click(object sender, EventArgs e)
 		{
-			CallShoesMacAddr();
+			ApiCallHelper apiCallHelper = new ApiCallHelper();
+			string shoesUrl = Properties.Settings.Default.SHOES_CALL_URL_RELEASE + txtContainerId.Text;
+
+			try
+			{
+				string getResponse = await apiCallHelper.GetAsync(shoesUrl);
+				
+				// JSON 파싱
+				JObject containerInfo = JObject.Parse(getResponse);
+				string leftMac = containerInfo["leftSensorMac"].ToString();
+				string rightMac = containerInfo["rightSensorMac"].ToString();
+
+				// MAC 주소 저장
+				SaveBluetoothSettings(leftMac, rightMac);
+
+				// BLE 연결 시도
+				await BLEManager.Instance.InitializeConnection(leftMac, rightMac);
+
+				Properties.Settings.Default.CONTAINER_ID = this.txtContainerId.Text;
+				Properties.Settings.Default.Save();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"신발 연결 실패: {ex.Message}");
+				string leftMac = "F8:88:4D:EA:08:E1";
+				string rightMac = "C8:E0:C2:58:CD:8C";
+				await BLEManager.Instance.InitializeConnection(leftMac, rightMac);
+				Console.WriteLine(ex.Message);
+			}
 		}
 
 		private void SaveBluetoothSettings(string leftMac, string rightMac)

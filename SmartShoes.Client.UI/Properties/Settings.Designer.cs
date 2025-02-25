@@ -157,7 +157,7 @@ namespace SmartShoes.Client.UI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://221.161.177.194/api/shoes/list?containerSid=")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://221.161.177.191/api/container/")]
         public string SHOES_CALL_URL_RELEASE {
             get {
                 return ((string)(this["SHOES_CALL_URL_RELEASE"]));
