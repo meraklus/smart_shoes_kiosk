@@ -111,44 +111,31 @@ namespace SmartShoes.Common.Forms
         #region Private Methods
         private async Task ConnectToDevices(string leftMacAddress, string rightMacAddress)
         {
-            _isScanning = true;
-            var watcher = new BluetoothLEAdvertisementWatcher();
-            var tcs = new TaskCompletionSource<bool>();
-            Console.WriteLine("@@@ 1");
-            watcher.Received += async (sender, args) =>
+            try 
             {
-                string deviceAddress = args.BluetoothAddress.ToString("X").PadLeft(12, '0');
-                deviceAddress = string.Join(":", Enumerable.Range(0, 6)
-                    .Select(i => deviceAddress.Substring(i * 2, 2)));
-                Console.WriteLine(deviceAddress);
+                // MAC 주소 문자열을 BluetoothAddress로 변환
+                ulong leftAddress = Convert.ToUInt64(leftMacAddress.Replace(":", ""), 16);
+                ulong rightAddress = Convert.ToUInt64(rightMacAddress.Replace(":", ""), 16);
 
-                if (deviceAddress.Equals(leftMacAddress, StringComparison.OrdinalIgnoreCase) && _leftDevice == null)
+                // 양쪽 신발에 직접 연결 시도
+                var connectLeftTask = ConnectToDevice(leftAddress, "Left");
+                var connectRightTask = ConnectToDevice(rightAddress, "Right");
+
+                // 두 연결을 동시에 시도
+                await Task.WhenAll(connectLeftTask, connectRightTask);
+
+                _leftDevice = await connectLeftTask;
+                _rightDevice = await connectRightTask;
+
+                if (_leftDevice == null || _rightDevice == null)
                 {
-                    _leftDevice = await ConnectToDevice(args.BluetoothAddress, "Left");
+                    throw new Exception("블루투스 연결에 실패했습니다.");
                 }
-                else if (deviceAddress.Equals(rightMacAddress, StringComparison.OrdinalIgnoreCase) && _rightDevice == null)
-                {
-                    _rightDevice = await ConnectToDevice(args.BluetoothAddress, "Right");
-                }
-
-                if (_leftDevice != null && _rightDevice != null)
-                {
-                    watcher.Stop();
-                    _isScanning = false;
-                    tcs.TrySetResult(true);
-                }
-            };
-
-            watcher.Start();
-            Console.WriteLine("@@@ 2");
-            await Task.WhenAny(tcs.Task, Task.Delay(10000));
-            watcher.Stop();
-            _isScanning = false;
-            Console.WriteLine("@@@ 3");
-
-
-            if (_leftDevice == null || _rightDevice == null)
-                throw new TimeoutException("블루투스 장치를 찾을 수 없습니다.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"블루투스 연결 오류: {ex.Message}");
+            }
         }
 
         private async Task<BluetoothDevice> ConnectToDevice(ulong address, string side)
@@ -160,7 +147,8 @@ namespace SmartShoes.Common.Forms
 
                 device.ConnectionStatusChanged += OnDeviceConnectionStatusChanged;
                 await SetupDeviceNotifications(device);
-                
+
+                Console.WriteLine($"{side} device connected");
                 return device;
             }
             catch (Exception ex)
@@ -190,6 +178,13 @@ namespace SmartShoes.Common.Forms
         {
             try
             {
+                // 알림 구독 해제
+                var service = await device.Gatt.GetPrimaryServiceAsync(_serviceUuid);
+                var characteristic = await service.GetCharacteristicAsync(_notifyUuid);
+                await characteristic.StopNotificationsAsync();
+                characteristic.CharacteristicValueChanged -= OnCharacteristicValueChanged;  // 이벤트 핸들러도 제거
+
+                // 연결 해제
                 device.Gatt.Disconnect();
                 await Task.Delay(500);
             }
