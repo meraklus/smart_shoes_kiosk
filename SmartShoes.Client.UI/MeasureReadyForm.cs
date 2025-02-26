@@ -15,7 +15,6 @@ namespace SmartShoes.Client.UI
 		public MeasureReadyForm()
 		{
 			InitializeComponent();
-			btnNomal.Enabled = false;
 			DisconnectAllBluetoothDevices();
 
         }
@@ -65,40 +64,40 @@ namespace SmartShoes.Client.UI
 
 		private async void pictureBox1_Click(object sender, EventArgs e)
 		{
-			Guid serviceUUID = new Guid(Properties.Settings.Default.SERVICE_UUID);
-			Guid notifyUUID = new Guid(Properties.Settings.Default.NOTIFY_UUID);
-			int datalen = Properties.Settings.Default.SENSOR_SET_TIME * 100;
+			// Guid serviceUUID = new Guid(Properties.Settings.Default.SERVICE_UUID);
+			// Guid notifyUUID = new Guid(Properties.Settings.Default.NOTIFY_UUID);
+			// int datalen = Properties.Settings.Default.SENSOR_SET_TIME * 100;
 
-			// await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
+			// // await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
 
-			btnNomal.Enabled = false;
-			this.btnNomal.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_measu_continue_off_1;
+			// btnNomal.Enabled = false;
+			// this.btnNomal.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_measu_continue_off_1;
 
-			string deviceAddressL = "";
-			string deviceAddressR = "";
-			ShoesChoicePopup shoesChoicePopup = new ShoesChoicePopup();
-            shoesChoicePopup.deviceAddressL = deviceAddressL;
-			shoesChoicePopup.deviceAddressR = deviceAddressR;
-            shoesChoicePopup.StartPosition = FormStartPosition.Manual; // 위치를 수동으로 설정
-			int screenCenterX = (Screen.PrimaryScreen.WorkingArea.Width - shoesChoicePopup.Width) / 2;
-			int customY = 100;
-			shoesChoicePopup.Location = new System.Drawing.Point(screenCenterX, customY);
-			shoesChoicePopup.ShowDialog();
+			// string deviceAddressL = "";
+			// string deviceAddressR = "";
+			// ShoesChoicePopup shoesChoicePopup = new ShoesChoicePopup();
+      //       shoesChoicePopup.deviceAddressL = deviceAddressL;
+			// shoesChoicePopup.deviceAddressR = deviceAddressR;
+      //       shoesChoicePopup.StartPosition = FormStartPosition.Manual; // 위치를 수동으로 설정
+			// int screenCenterX = (Screen.PrimaryScreen.WorkingArea.Width - shoesChoicePopup.Width) / 2;
+			// int customY = 100;
+			// shoesChoicePopup.Location = new System.Drawing.Point(screenCenterX, customY);
+			// shoesChoicePopup.ShowDialog();
 
-			deviceAddressL = "DB:1F:10:20:63:AD";
-            deviceAddressR = "D9:B9:85:8D:05:27";
+			// deviceAddressL = "DB:1F:10:20:63:AD";
+      //       deviceAddressR = "D9:B9:85:8D:05:27";
 
-            if (deviceAddressL.Equals("") || deviceAddressR.Equals(""))
-			{
-				return;
-			}
+      //       if (deviceAddressL.Equals("") || deviceAddressR.Equals(""))
+			// {
+			// 	return;
+			// }
 
-			scp = new ShoesConnectPopup();
-			scp.StartPosition = FormStartPosition.Manual; // 위치를 수동으로 설정
-			int screenCenterX2 = (Screen.PrimaryScreen.WorkingArea.Width - scp.Width) / 2;
-			int customY2 = 300;
-			scp.Location = new System.Drawing.Point(screenCenterX2, customY2);
-			scp.Show();
+			// scp = new ShoesConnectPopup();
+			// scp.StartPosition = FormStartPosition.Manual; // 위치를 수동으로 설정
+			// int screenCenterX2 = (Screen.PrimaryScreen.WorkingArea.Width - scp.Width) / 2;
+			// int customY2 = 300;
+			// scp.Location = new System.Drawing.Point(screenCenterX2, customY2);
+			// scp.Show();
 
             // bool isConnected = await BLEManager.Instance.ConnectAndReceiveAsync2(deviceAddressR, deviceAddressL, datalen, serviceUUID, notifyUUID);
 
