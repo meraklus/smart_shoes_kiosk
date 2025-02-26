@@ -49,6 +49,9 @@
             this.btnComplete = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.btnCallShoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShutDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSkeleton)).BeginInit();
@@ -60,9 +63,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Location = new System.Drawing.Point(34, 136);
+            this.panel1.Location = new System.Drawing.Point(34, 155);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(989, 681);
+            this.panel1.Size = new System.Drawing.Size(989, 662);
             this.panel1.TabIndex = 8;
             this.panel1.Visible = false;
             // 
@@ -250,7 +253,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 13F);
-            this.label1.Location = new System.Drawing.Point(34, 43);
+            this.label1.Location = new System.Drawing.Point(34, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 25);
             this.label1.TabIndex = 63;
@@ -259,7 +262,7 @@
             // txtContainerId
             // 
             this.txtContainerId.Font = new System.Drawing.Font("맑은 고딕", 13F);
-            this.txtContainerId.Location = new System.Drawing.Point(164, 40);
+            this.txtContainerId.Location = new System.Drawing.Point(164, 39);
             this.txtContainerId.Name = "txtContainerId";
             this.txtContainerId.Size = new System.Drawing.Size(423, 31);
             this.txtContainerId.TabIndex = 64;
@@ -271,9 +274,9 @@
             this.btnCallShoes.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_call_shoes;
             this.btnCallShoes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCallShoes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCallShoes.Location = new System.Drawing.Point(715, 16);
+            this.btnCallShoes.Location = new System.Drawing.Point(716, 19);
             this.btnCallShoes.Name = "btnCallShoes";
-            this.btnCallShoes.Size = new System.Drawing.Size(301, 78);
+            this.btnCallShoes.Size = new System.Drawing.Size(301, 70);
             this.btnCallShoes.TabIndex = 65;
             this.btnCallShoes.TabStop = false;
             this.btnCallShoes.Click += new System.EventHandler(this.btnCallShoes_Click);
@@ -347,7 +350,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("맑은 고딕", 13F);
-            this.label11.Location = new System.Drawing.Point(34, 94);
+            this.label11.Location = new System.Drawing.Point(34, 108);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(244, 25);
             this.label11.TabIndex = 66;
@@ -357,17 +360,50 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("맑은 고딕", 13F);
-            this.label12.Location = new System.Drawing.Point(310, 94);
+            this.label12.Location = new System.Drawing.Point(310, 108);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(262, 25);
             this.label12.TabIndex = 67;
             this.label12.Text = "오른쪽 센서 연결 상태 : 미연결";
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("맑은 고딕", 13F);
+            this.textBox1.Location = new System.Drawing.Point(725, 105);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(112, 31);
+            this.textBox1.TabIndex = 69;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("맑은 고딕", 13F);
+            this.label13.Location = new System.Drawing.Point(619, 108);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(100, 25);
+            this.label13.TabIndex = 68;
+            this.label13.Text = "측정 시간 :";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("맑은 고딕", 13F);
+            this.button1.Location = new System.Drawing.Point(866, 104);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(79, 33);
+            this.button1.TabIndex = 70;
+            this.button1.Text = "설정";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnCallShoes);
             this.Controls.Add(this.txtContainerId);
@@ -439,6 +475,9 @@
 		private System.Windows.Forms.PictureBox btnCallShoes;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button1;
         // private System.Windows.Forms.NumericUpDown numSensorTime;
     }
 }

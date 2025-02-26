@@ -35,7 +35,8 @@ namespace SmartShoes.Common.Forms
         private readonly List<string> _rightData = new List<string>();
         private bool _isScanning;
         private BluetoothLEAdvertisementWatcher _watcher;
-        
+        private int _time;
+
         // 데이터 수집 상태 관리
         private bool _isLeftShoeCollecting = false;
         private bool _isRightShoeCollecting = false;
@@ -98,6 +99,18 @@ namespace SmartShoes.Common.Forms
             {
                 Console.WriteLine($"데이터 전송 중 오류 발생: {ex.Message}");
             }
+        }
+
+        public void SetTimer(int time)
+        {
+            _time = time;
+        }
+
+        public async Task Start()
+        {
+            byte[] data = Encoding.UTF8.GetBytes($"@START#{_time}#");
+            await SendToDevice(_leftDevice, data);
+            await SendToDevice(_rightDevice, data);
         }
 
         public async Task DisconnectDevicesAsync()

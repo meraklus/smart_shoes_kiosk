@@ -280,5 +280,18 @@ namespace SmartShoes.Client.UI
 			}
 			base.Dispose(disposing);
 		}
-	}
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+					if(!int.TryParse(this.textBox1.Text, out int time))
+					{
+						MessageBox.Show("숫자로 입력하세요.");
+						this.textBox1.Text = "";
+					}
+					else
+					{
+						BLEManager.Instance.SetTimer(time);
+					}
+        }
+    }
 }
