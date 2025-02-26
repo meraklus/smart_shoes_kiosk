@@ -31,15 +31,20 @@ namespace SmartShoes.Common.Forms
         #region Fields
         private BluetoothDevice _leftDevice;
         private BluetoothDevice _rightDevice;
-        private readonly List<int[]> _leftData = new List<int[]>();
-        private readonly List<int[]> _rightData = new List<int[]>();
+        private readonly List<string> _leftData = new List<string>();
+        private readonly List<string> _rightData = new List<string>();
         private bool _isScanning;
         private BluetoothLEAdvertisementWatcher _watcher;
+        
+        // 데이터 수집 상태 관리
+        private bool _isLeftShoeCollecting = false;
+        private bool _isRightShoeCollecting = false;
         #endregion
 
         #region Events
         public event EventHandler<BluetoothDataEventArgs> DataReceived;
         public event EventHandler<BluetoothConnectionEventArgs> ConnectionStatusChanged;
+        public event EventHandler<BluetoothDataCollectionEventArgs> DataCollectionCompleted;
         #endregion
 
         #region Properties
@@ -87,7 +92,7 @@ namespace SmartShoes.Common.Forms
                 
                 await SendToDevice(_leftDevice, data);
                 await SendToDevice(_rightDevice, data);
-            
+                Console.WriteLine($"데이터 전송: {message}");
             }
             catch (Exception ex)
             {
@@ -115,8 +120,8 @@ namespace SmartShoes.Common.Forms
             _rightData.Clear();
         }
 
-        public List<int[]> GetLeftData() => new List<int[]>(_leftData);
-        public List<int[]> GetRightData() => new List<int[]>(_rightData);
+        public List<string> GetLeftData() => new List<string>(_leftData);   
+        public List<string> GetRightData() => new List<string>(_rightData);
 
         // public async Task InitializeFromSavedSettings()
         // {
@@ -142,6 +147,10 @@ namespace SmartShoes.Common.Forms
             _watcher.ScanningMode = BluetoothLEScanningMode.Active;
             
             _watcher.Received += async (sender, args) => {
+                // 주소를 16진수 형태로 변환하여 로그 출력
+                string hexAddress = args.BluetoothAddress.ToString("X").PadLeft(12, '0');
+                string formattedAddress = string.Join(":", Enumerable.Range(0, 6)
+                    .Select(i => hexAddress.Substring(i * 2, 2)));                
                 // 이미 발견된 장치는 무시
                 if (foundAddresses.Contains(args.BluetoothAddress))
                     return;
@@ -150,7 +159,7 @@ namespace SmartShoes.Common.Forms
                 {
                     // 발견된 장치 기록
                     foundAddresses.Add(args.BluetoothAddress);
-                    Console.WriteLine($"장치 발견: {args.BluetoothAddress:X}");
+                    Console.WriteLine($"장치 발견: {(args.BluetoothAddress == leftAddress ? "왼쪽" : "오른쪽")} 신발");
                     
                     // 양쪽 모두 발견되면 스캔 중지 후 연결 시도
                     if (foundAddresses.Contains(leftAddress) && foundAddresses.Contains(rightAddress))
@@ -199,9 +208,9 @@ namespace SmartShoes.Common.Forms
                 throw new TimeoutException("블루투스 장치 스캔 시간이 초과되었습니다.");
             }
             
-            if (_leftDevice == null || _rightDevice == null)
+            if (!foundAddresses.Contains(leftAddress) || !foundAddresses.Contains(rightAddress))
             {
-                throw new Exception("블루투스 연결에 실패했습니다.");
+                throw new Exception("블루투스 탐색에 실패했습니다.");
             }
         }
 
@@ -241,7 +250,7 @@ namespace SmartShoes.Common.Forms
         {
             var service = await device.Gatt.GetPrimaryServiceAsync(_serviceUuid);
             var characteristic = await service.GetCharacteristicAsync(_writeUuid);
-            await characteristic.WriteValueWithoutResponseAsync(data);
+            characteristic.WriteValueWithoutResponseAsync(data);
         }
 
         private async Task DisconnectDevice(BluetoothDevice device, bool isLeft)
@@ -271,18 +280,77 @@ namespace SmartShoes.Common.Forms
         {
             try
             {
-                var data = ParseData(e.Value);
+                var rawData = e.Value;
                 var device = ((GattCharacteristic)sender).Service.Device;
+                bool isLeft = device.Id== _leftDevice.Id;
+
+                // 데이터를 문자열로 변환
+                string dataString = Encoding.ASCII.GetString(rawData).Trim();
+                string hexData = BitConverter.ToString(rawData).Replace("-", "");
                 
-                if (device == _leftDevice)
+                if(dataString == "DATAEND")
                 {
-                    _leftData.Add(data);
-                    DataReceived?.Invoke(this, new BluetoothDataEventArgs(true, data));
+                    if (isLeft)
+                    {                        
+                        byte[] data = Encoding.UTF8.GetBytes("@SDATA#");        
+                        SendToDevice(_leftDevice, data);
+                    }
+                    else
+                    {
+                        byte[] data = Encoding.UTF8.GetBytes("@SDATA#");        
+                        SendToDevice(_rightDevice, data);
+                    }
+                    return;
                 }
-                else if (device == _rightDevice)
+                // 시작 신호 확인
+                if (hexData == "AAAAAAAAAAAA")
                 {
-                    _rightData.Add(data);
-                    DataReceived?.Invoke(this, new BluetoothDataEventArgs(false, data));
+                    if (isLeft)
+                    {
+                        _isLeftShoeCollecting = true;
+                        _leftData.Clear();
+                    }
+                    else
+                    {
+                        _isRightShoeCollecting = true;
+                        _rightData.Clear();
+                    }
+                    
+                    Console.WriteLine($"{(isLeft ? "왼쪽" : "오른쪽")} 신발 데이터 수집 시작");
+                    return;
+                }
+                
+                // 종료 신호 확인
+                if (hexData == "555555555555")
+                {
+                    if (isLeft)
+                        _isLeftShoeCollecting = false;
+                    else
+                        _isRightShoeCollecting = false;
+                    
+                    Console.WriteLine($"{(isLeft ? "왼쪽" : "오른쪽")} 신발 데이터 수집 완료");
+                    
+                    // 양쪽 모두 수집 완료 확인
+                    if (!_isLeftShoeCollecting && !_isRightShoeCollecting)
+                    {
+                        OnDataCollectionCompleted();
+                    }
+                    
+                    return;
+                }
+                
+                // 데이터 수집 중인 경우에만 처리
+                if ((isLeft && _isLeftShoeCollecting) || (!isLeft && _isRightShoeCollecting))
+                {
+                    // 데이터 파싱 및 저장
+                    Console.WriteLine($"hexData: {hexData}");
+                    if (isLeft)
+                        _leftData.Add(hexData);
+                    else
+                        _rightData.Add(hexData);
+                    
+                    // 데이터 수신 이벤트 발생
+                    // DataReceived?.Invoke(this, new BluetoothDataEventArgs(isLeft, data));
                 }
             }
             catch (Exception ex)
@@ -304,11 +372,23 @@ namespace SmartShoes.Common.Forms
             ConnectionStatusChanged?.Invoke(this, e);
         }
 
-        private int[] ParseData(byte[] rawData)
+        // private string ParseData(byte[] rawData)
+        // {
+        //     var decodedString = Encoding.ASCII.GetString(rawData).Trim();
+        //     var strValues = decodedString.Split(',');
+        //     return Array.ConvertAll(strValues, s => s.Trim());
+        // }
+
+        // 데이터 수집 완료 이벤트 발생
+        private void OnDataCollectionCompleted()
         {
-            var decodedString = Encoding.ASCII.GetString(rawData).Trim();
-            var strValues = decodedString.Split(',');
-            return Array.ConvertAll(strValues, int.Parse);
+            Console.WriteLine("양쪽 신발 데이터 수집 완료");
+            
+            var leftDataCopy = new List<string>(_leftData);
+            var rightDataCopy = new List<string>(_rightData);
+            
+            DataCollectionCompleted?.Invoke(this, 
+                new BluetoothDataCollectionEventArgs(leftDataCopy, rightDataCopy));
         }
         #endregion
     }
@@ -336,6 +416,19 @@ namespace SmartShoes.Common.Forms
             IsLeft = isLeft;
             IsConnected = isConnected;
             ErrorMessage = errorMessage;
+        }
+    }
+
+    // 데이터 수집 완료 이벤트 인자
+    public class BluetoothDataCollectionEventArgs : EventArgs
+    {
+        public List<string> LeftData { get; }
+        public List<string> RightData { get; }
+        
+        public BluetoothDataCollectionEventArgs(List<string> leftData, List<string> rightData)
+        {
+            LeftData = leftData;
+            RightData = rightData;
         }
     }
 }

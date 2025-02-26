@@ -157,19 +157,19 @@ namespace SmartShoes.Client.UI
 
 		private void pictureBox1_Click(object sender, EventArgs e)
 		{
-			if (showMatSet)
-			{
-				showMatSet = false;
-				var closeForm = dph.GetFunction<DelphiHelper.TCloseForm>("CloseForm");
-				closeForm();
-			}
+			// if (showMatSet)
+			// {
+			// 	showMatSet = false;
+			// 	var closeForm = dph.GetFunction<DelphiHelper.TCloseForm>("CloseForm");
+			// 	closeForm();
+			// }
 
-			closefunc();
+			// closefunc();
 
 	
 
 			// 테스트 명령어 전송
-			// BLEManager.Instance.SendData("@DATA,10#\r\n");
+			BLEManager.Instance.SendData("@START#1$\r\n");
 
 
 		}
@@ -199,7 +199,7 @@ namespace SmartShoes.Client.UI
 				JObject containerInfo = JObject.Parse(getResponse);
 				string leftMac = containerInfo["leftSensorMac"].ToString();
 				string rightMac = containerInfo["rightSensorMac"].ToString();
-
+				Console.WriteLine($"leftMac: {leftMac}, rightMac: {rightMac}");
 				// MAC 주소 저장
 				SaveBluetoothSettings(leftMac, rightMac);
 
@@ -212,10 +212,6 @@ namespace SmartShoes.Client.UI
 			catch (Exception ex)
 			{
 				MessageBox.Show($"신발 연결 실패: {ex.Message}");
-				string leftMac = "F8:88:4D:EA:08:E1";
-				string rightMac = "C8:E0:C2:58:CD:8C";
-				await BLEManager.Instance.InitializeConnection(leftMac, rightMac);
-				Console.WriteLine(ex.Message);
 			}
 		}
 
