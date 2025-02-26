@@ -203,8 +203,9 @@ namespace SmartShoes.Client.UI
 				// MAC 주소 저장
 				SaveBluetoothSettings(leftMac, rightMac);
 
+				int time = Properties.Settings.Default.SENSOR_SET_TIME;
 				// BLE 연결 시도
-				await BLEManager.Instance.InitializeConnection(leftMac, rightMac);
+				await BLEManager.Instance.InitializeConnection(leftMac, rightMac, time);
 
 				Properties.Settings.Default.CONTAINER_ID = this.txtContainerId.Text;
 				Properties.Settings.Default.Save();

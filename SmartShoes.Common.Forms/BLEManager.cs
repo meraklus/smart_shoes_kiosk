@@ -22,10 +22,30 @@ namespace SmartShoes.Common.Forms
         #endregion
 
         #region Singleton
-        private static readonly Lazy<BLEManager> _instance = 
-            new Lazy<BLEManager>(() => new BLEManager());
-        public static BLEManager Instance => _instance.Value;
-        private BLEManager() { }
+        private static BLEManager _instance;
+        
+        // 인스턴스 존재 여부 확인 메서드 추가
+        public static bool HasInstance()
+        {
+            return _instance != null;
+        }
+        
+        public static BLEManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new BLEManager();
+                }
+                return _instance;
+            }
+        }
+        
+        private BLEManager() 
+        {
+            _time = 30; // 기본값 설정
+        }
         #endregion
 
         #region Fields
@@ -54,14 +74,14 @@ namespace SmartShoes.Common.Forms
         #endregion
 
         #region Public Methods
-        public async Task InitializeConnection(string leftMacAddress, string rightMacAddress)
+        public async Task InitializeConnection(string leftMacAddress, string rightMacAddress, int time)
         {
             try
             {
+                _time = time;
                 // 연결 해제 시작을 알림
                 OnConnectionStatusChanged(new BluetoothConnectionEventArgs(true, false));
                 OnConnectionStatusChanged(new BluetoothConnectionEventArgs(false, false));
-                
                 await DisconnectDevicesAsync();
                 
                 // MAC 주소 변환

@@ -17,6 +17,39 @@ namespace SmartShoes.Client.UI
 			UserInfo.Instance.ClearUserInfo();
 			MatDataManager.Instance.ResetMatData();
 
+			Console.WriteLine("LoginForm 생성");
+			
+			// BLEManager 초기화
+			try
+			{
+				// 인스턴스가 없을 때만 초기화
+				if (!BLEManager.HasInstance())
+				{
+					string leftMac = Properties.Settings.Default.BLE_LEFT_MAC_ADDRESS;
+					string rightMac = Properties.Settings.Default.BLE_RIGHT_MAC_ADDRESS;
+					int time = Properties.Settings.Default.SENSOR_SET_TIME;
+					
+					// 설정 값이 있을 때만 초기화
+					if (!string.IsNullOrEmpty(leftMac) && !string.IsNullOrEmpty(rightMac) && time > 0)
+					{
+						Console.WriteLine($"BLEManager 초기화: 왼쪽={leftMac}, 오른쪽={rightMac}, 시간={time}초");
+						BLEManager.Instance.InitializeConnection(leftMac, rightMac, time);
+					}
+					else
+					{
+						Console.WriteLine("BLEManager 초기화: 설정 값이 없어 초기화를 건너뜁니다.");
+					}
+				}
+				else
+				{
+					Console.WriteLine("BLEManager 이미 초기화되어 있습니다.");
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"BLEManager 초기화 오류: {ex.Message}");
+			}
+
 			List<MatData> lstmd = MatDataManager.Instance.GetAllMatData();
 			UserInfo uif = UserInfo.Instance;
 		}
