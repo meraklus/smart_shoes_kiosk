@@ -6,16 +6,16 @@ using SmartShoes.Common.Forms;
 
 namespace SmartShoes.Client.UI
 {
-	public partial class MeasureReadyForm : UserControl, IPageChangeNotifier
-	{
+    public partial class MeasureReadyForm : UserControl, IPageChangeNotifier
+    {
 
-		public event EventHandler<PageChangeEventArgs> PageChangeRequested;
-		private ShoesConnectPopup scp;
+        public event EventHandler<PageChangeEventArgs> PageChangeRequested;
+        private ShoesConnectPopup scp;
 
-		public MeasureReadyForm()
-		{
-			InitializeComponent();
-			DisconnectAllBluetoothDevices();
+        public MeasureReadyForm()
+        {
+            InitializeComponent();
+            DisconnectAllBluetoothDevices();
 
         }
         private async void DisconnectAllBluetoothDevices()
@@ -33,9 +33,9 @@ namespace SmartShoes.Client.UI
 
 
         private void btnNomal_Click(object sender, EventArgs e)
-		{
-			try
-			{
+        {
+            try
+            {
                 LoadingPopup loadpop = new LoadingPopup();
                 loadpop.Show();
                 Application.DoEvents();
@@ -43,61 +43,62 @@ namespace SmartShoes.Client.UI
                 //MovePage(new MeasureNomalSecond());
                 loadpop.Close();
             }
-			catch (Exception ex){
+            catch (Exception ex)
+            {
                 Console.WriteLine("ex에러");
                 Console.WriteLine(ex);
             }
-			
-		}
 
-		protected void MovePage(Type pageType)
-		{
-			if (this.InvokeRequired)
-			{
-				this.Invoke(new Action(() => PageChangeRequested?.Invoke(this, new PageChangeEventArgs(pageType))));
-			}
-			else
-			{
-				PageChangeRequested?.Invoke(this, new PageChangeEventArgs(pageType));
-			}
-		}
+        }
 
-		private async void pictureBox1_Click(object sender, EventArgs e)
-		{
-			// Guid serviceUUID = new Guid(Properties.Settings.Default.SERVICE_UUID);
-			// Guid notifyUUID = new Guid(Properties.Settings.Default.NOTIFY_UUID);
-			// int datalen = Properties.Settings.Default.SENSOR_SET_TIME * 100;
+        protected void MovePage(Type pageType)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => PageChangeRequested?.Invoke(this, new PageChangeEventArgs(pageType))));
+            }
+            else
+            {
+                PageChangeRequested?.Invoke(this, new PageChangeEventArgs(pageType));
+            }
+        }
 
-			// // await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
+        private async void pictureBox1_Click(object sender, EventArgs e)
+        {
+            // Guid serviceUUID = new Guid(Properties.Settings.Default.SERVICE_UUID);
+            // Guid notifyUUID = new Guid(Properties.Settings.Default.NOTIFY_UUID);
+            // int datalen = Properties.Settings.Default.SENSOR_SET_TIME * 100;
 
-			// btnNomal.Enabled = false;
-			// this.btnNomal.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_measu_continue_off_1;
+            // // await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
 
-			// string deviceAddressL = "";
-			// string deviceAddressR = "";
-			// ShoesChoicePopup shoesChoicePopup = new ShoesChoicePopup();
-      //       shoesChoicePopup.deviceAddressL = deviceAddressL;
-			// shoesChoicePopup.deviceAddressR = deviceAddressR;
-      //       shoesChoicePopup.StartPosition = FormStartPosition.Manual; // 위치를 수동으로 설정
-			// int screenCenterX = (Screen.PrimaryScreen.WorkingArea.Width - shoesChoicePopup.Width) / 2;
-			// int customY = 100;
-			// shoesChoicePopup.Location = new System.Drawing.Point(screenCenterX, customY);
-			// shoesChoicePopup.ShowDialog();
+            // btnNomal.Enabled = false;
+            // this.btnNomal.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_measu_continue_off_1;
 
-			// deviceAddressL = "DB:1F:10:20:63:AD";
-      //       deviceAddressR = "D9:B9:85:8D:05:27";
+            // string deviceAddressL = "";
+            // string deviceAddressR = "";
+            // ShoesChoicePopup shoesChoicePopup = new ShoesChoicePopup();
+            //       shoesChoicePopup.deviceAddressL = deviceAddressL;
+            // shoesChoicePopup.deviceAddressR = deviceAddressR;
+            //       shoesChoicePopup.StartPosition = FormStartPosition.Manual; // 위치를 수동으로 설정
+            // int screenCenterX = (Screen.PrimaryScreen.WorkingArea.Width - shoesChoicePopup.Width) / 2;
+            // int customY = 100;
+            // shoesChoicePopup.Location = new System.Drawing.Point(screenCenterX, customY);
+            // shoesChoicePopup.ShowDialog();
 
-      //       if (deviceAddressL.Equals("") || deviceAddressR.Equals(""))
-			// {
-			// 	return;
-			// }
+            // deviceAddressL = "DB:1F:10:20:63:AD";
+            //       deviceAddressR = "D9:B9:85:8D:05:27";
 
-			// scp = new ShoesConnectPopup();
-			// scp.StartPosition = FormStartPosition.Manual; // 위치를 수동으로 설정
-			// int screenCenterX2 = (Screen.PrimaryScreen.WorkingArea.Width - scp.Width) / 2;
-			// int customY2 = 300;
-			// scp.Location = new System.Drawing.Point(screenCenterX2, customY2);
-			// scp.Show();
+            //       if (deviceAddressL.Equals("") || deviceAddressR.Equals(""))
+            // {
+            // 	return;
+            // }
+
+            // scp = new ShoesConnectPopup();
+            // scp.StartPosition = FormStartPosition.Manual; // 위치를 수동으로 설정
+            // int screenCenterX2 = (Screen.PrimaryScreen.WorkingArea.Width - scp.Width) / 2;
+            // int customY2 = 300;
+            // scp.Location = new System.Drawing.Point(screenCenterX2, customY2);
+            // scp.Show();
 
             // bool isConnected = await BLEManager.Instance.ConnectAndReceiveAsync2(deviceAddressR, deviceAddressL, datalen, serviceUUID, notifyUUID);
 
@@ -106,18 +107,18 @@ namespace SmartShoes.Client.UI
             //bool isConnected = true;
 
             // btnNomal.Enabled = isConnected;
-			// if( isConnected ) 
-			//{
-				
-			//	scp.Close();
-			//	this.btnNomal.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_measu_continue;
-			//}
-			//else
-			//{
-			//	scp.Close();
-			//}
-			// Console.WriteLine(isConnected);
-		}
+            // if( isConnected ) 
+            //{
+
+            //	scp.Close();
+            //	this.btnNomal.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.btn_measu_continue;
+            //}
+            //else
+            //{
+            //	scp.Close();
+            //}
+            // Console.WriteLine(isConnected);
+        }
 
         private async void pictureBox4_Click(object sender, EventArgs e)
         {
