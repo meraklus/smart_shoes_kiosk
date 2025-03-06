@@ -20,6 +20,7 @@ namespace SmartShoes.Client.UI
         private bool endMeasureBool = false;
         private bool _leftFlag = false;
         private bool _rightFlag = false;
+        private bool _isDataCollectionComplete = false;
 
 
         public MeasureNomalSecond()
@@ -29,10 +30,6 @@ namespace SmartShoes.Client.UI
 #if DEBUG
             this.panel1.Visible = true;
 #endif
-
-            // 초기에 완료 버튼 비활성화
-            btnComplete.Enabled = false;
-
             // BLE 데이터 수집 완료 이벤트 구독
             BLEManager.Instance.DataCollectionCompleted += BLEManager_DataCollectionCompleted;
 
@@ -42,17 +39,8 @@ namespace SmartShoes.Client.UI
         // BLE 데이터 수집 완료 이벤트 핸들러
         private void BLEManager_DataCollectionCompleted(object sender, BluetoothDataCollectionEventArgs e)
         {
-            // UI 스레드에서 버튼 활성화
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new Action(() => {
-                    btnComplete.Enabled = true;
-                }));
-            }
-            else
-            {
-                btnComplete.Enabled = true;
-            }
+            // 데이터 수집 완료 상태 설정
+            _isDataCollectionComplete = true;
         }
 
         private async void MeasureFunction()
@@ -78,6 +66,38 @@ namespace SmartShoes.Client.UI
             if (!loadpop.Visible) { loadpop.Show(); }
             Application.DoEvents();
 
+            // 데이터 수집이 완료되지 않았다면 비동기적으로 기다림
+            if (!_isDataCollectionComplete)
+            {
+                // 비동기적으로 데이터 수집 완료를 기다림
+                Task.Run(async () => 
+                {
+                    // 데이터 수집이 완료될 때까지 대기
+                    while (!_isDataCollectionComplete && !endMeasureBool)
+                    {
+                        await Task.Delay(500); // 0.5초마다 확인
+                    }
+                    
+                    // UI 스레드에서 완료 처리 실행
+                    this.Invoke(new Action(() => 
+                    {
+                        if (!endMeasureBool) // 아직 종료되지 않았다면
+                        {
+                            RestartMeasurement();
+                        }
+                    }));
+                });
+                
+                return;
+            }
+            
+            // 이미 데이터 수집이 완료된 경우 바로 재시작 처리
+            RestartMeasurement();
+        }
+
+        // 측정 재시작 메서드
+        private void RestartMeasurement()
+        {
             var measurestop = dph.GetFunction<DelphiHelper.TMeasurestop>("Measurestop");
             measurestop(false);
 
@@ -94,10 +114,45 @@ namespace SmartShoes.Client.UI
         private void btnComplete_Click(object sender, EventArgs e)
         {
             if (endMeasureBool) { return; }
+            
+            // 로딩 팝업 표시
             if (!loadpop.Visible) { loadpop.Show(); }
-
+            
             Application.DoEvents();
 
+            // 데이터 수집이 완료되지 않았다면 비동기적으로 기다림
+            if (!_isDataCollectionComplete)
+            {
+                // 비동기적으로 데이터 수집 완료를 기다림
+                Task.Run(async () => 
+                {
+                    // 데이터 수집이 완료될 때까지 대기
+                    while (!_isDataCollectionComplete && !endMeasureBool)
+                    {
+                        await Task.Delay(500); // 0.5초마다 확인
+                    }
+                    
+                    // UI 스레드에서 완료 처리 실행
+                    this.Invoke(new Action(() => 
+                    {
+                        if (!endMeasureBool) // 아직 종료되지 않았다면
+                        {
+                            CompleteAndMoveToResult();
+                        }
+                    }));
+                });
+                
+                return;
+            }
+            
+            // 이미 데이터 수집이 완료된 경우 바로 완료 처리
+            CompleteAndMoveToResult();
+        }
+
+        // 측정 완료 및 결과 화면으로 이동하는 메서드
+        private void CompleteAndMoveToResult()
+        {
+            // 측정 중지
             var measurestop = dph.GetFunction<DelphiHelper.TMeasurestop>("Measurestop");
             measurestop(true);
 
