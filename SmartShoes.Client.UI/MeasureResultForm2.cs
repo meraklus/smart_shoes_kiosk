@@ -370,113 +370,58 @@ namespace SmartShoes.Client.UI
 
         private async Task CallApiResultMatt()
         {
-            ApiCallHelper apiCallHelper = new ApiCallHelper();
-
-            // API URL
-            string getUrl = "http://smartshoes.kr/api/report/mat-result";
-
             try
             {
-                // API 호출 (POST)
-                string getResponse = await apiCallHelper.PostAsync(getUrl, this.measurementData);
-
-                // JSON 응답 파싱
-                JObject json = JObject.Parse(getResponse);
-                measureResult = new MeasureResult();
-                // JSON 데이터를 MeasureResult 객체에 매핑
-                foreach (var pair in json)
+                // 새로운 API 엔드포인트 URL
+                string getUrl = "http://221.161.177.193:8000/container/mat_result";
+                
+                // API 호출 헬퍼 생성
+                ApiCallHelper apiCallHelper = new ApiCallHelper();
+                
+                // 요청 데이터 구조 변경 (data 객체로 감싸기)
+                var requestData = new
                 {
-                    string key = pair.Key;
-                    string value = pair.Value.ToString();
-
-                    switch (key)
+                    data = measurementData
+                };
+                
+                // JSON 직렬화
+                string jsonData = JsonConvert.SerializeObject(requestData);
+                Console.WriteLine("API 요청 데이터: " + jsonData);
+                
+                // POST 요청 보내기
+                string getResponse = await apiCallHelper.PostAsync(getUrl, jsonData);
+                Console.WriteLine("API 응답: " + getResponse);
+                
+                if (!string.IsNullOrEmpty(getResponse))
+                {
+                    // 응답 파싱
+                    JObject jObject = JObject.Parse(getResponse);
+                    
+                    // 응답 구조에 맞게 파싱 로직 수정
+                    if (jObject["result"] != null && jObject["result"].ToString() == "success")
                     {
-                        case "matStepLengthScore":
-                            measureResult.matStepLengthScore = value;
-                            break;
-                        case "matStepTimeScore":
-                            measureResult.matStepTimeScore = value;
-                            break;
-                        case "matStrideTimeScore":
-                            measureResult.matStrideTimeScore = value;
-                            break;
-                        case "matStepAngleScore":
-                            measureResult.matStepAngleScore = value;
-                            break;
-                        case "matStepForceScore":
-                            measureResult.matStepForceScore = value;
-                            break;
-                        case "matBaseOfGaitScore":
-                            measureResult.matBaseOfGaitScore = value;
-                            break;
-                        case "matTotalScore":
-                            measureResult.matTotalScore = value;
-                            break;
-                        case "matLeftStancePhaseScore":
-                            measureResult.matLeftStancePhaseScore = value;
-                            break;
-                        case "matRightStancePhaseScore":
-                            measureResult.matRightStancePhaseScore = value;
-                            break;
-                        case "matLeftSwingPhaseScore":
-                            measureResult.matLeftSwingPhaseScore = value;
-                            break;
-                        case "matRightSwingPhaseScore":
-                            measureResult.matRightSwingPhaseScore = value;
-                            break;
-                        case "matStepMinValue":
-                            measureResult.matStepMinValue = value;
-                            break;
-                        case "matStepMaxValue":
-                            measureResult.matStepMaxValue = value;
-                            break;
-                        case "matBalanceLevel":
-                            measureResult.matBalanceLevel = value;
-                            break;
-                        case "matLeftStepStable":
-                            measureResult.matLeftStepStable = value;
-                            break;
-                        case "matRightStepStable":
-                            measureResult.matRightStepStable = value;
-                            break;
-                        case "matGaitSpacingStable":
-                            measureResult.matGaitSpacingStable = value;
-                            break;
-                        case "shoesLeftStancePhaseValue":
-                            measureResult.shoesStancePhase1 = value;
-                            break;
-                        case "shoesLeftSwingPhaseValue":
-                            measureResult.shoesSwingPhase1 = value;
-                            break;
-                        case "shoesRightSwingPhaseValue":
-                            measureResult.shoesSwingPhase2 = value;
-                            break;
-                        case "shoesRightStancePhaseValue":
-                            measureResult.shoesStancePhase2 = value;
-                            break;
-                        case "shoesLeftStancePhaseVariableScore":
-                            measureResult.shoesLeftStancePhaseScore = value;
-                            break;
-                        case "shoesLeftSwingPhaseVariableScore":
-                            measureResult.shoesLeftSwingPhaseScore = value;
-                            break;
-                        case "shoesRightStancePhaseVariableScore":
-                            measureResult.shoesRightStancePhaseScore = value;
-                            break;
-                        case "shoesRightSwingPhaseVariableScore":
-                            measureResult.shoesRightSwingPhaseScore = value;
-                            break;
-
-
-
+                        // 성공적인 응답 처리
+                        if (jObject["data"] != null)
+                        {
+                            measureResult = JsonConvert.DeserializeObject<MeasureResult>(jObject["data"].ToString());
+                            
+                            // 결과 데이터 화면에 표시
+                            InsertResultData();
+                        }
+                    }
+                    else
+                    {
+                        // 오류 응답 처리
+                        string errorMessage = jObject["message"]?.ToString() ?? "알 수 없는 오류가 발생했습니다.";
+                        MessageBox.Show(errorMessage, "API 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("API 호출 중 오류 발생: " + ex.Message);
+                MessageBox.Show("API 호출 중 오류가 발생했습니다: " + ex.Message, "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
 
@@ -603,8 +548,7 @@ namespace SmartShoes.Client.UI
                         {
                             userSid = userid,
                             reportSid = reportSid,
-                            height = height,
-                            wdate = DateTime.Now.ToString("yyyy-MM-dd"),
+                            containerId = Properties.Settings.Default.CONTAINER_ID,
                             stepLength1 = lstmd.StepLength1,
                             stepLength2 = lstmd.StepLength2,
                             stepLength3 = lstmd.StepLength3,
@@ -678,13 +622,8 @@ namespace SmartShoes.Client.UI
                     await CallApiResultMatt();
 
 
-
-                    Guid serviceUUID = new Guid(Properties.Settings.Default.SERVICE_UUID);
-
-                    // await BLEManager.Instance.DisconnectDevicesAsync(serviceUUID);
-
-                    // var shoesL = BLEManager.Instance._parsedDataL;
-                    // var shoesR = BLEManager.Instance._parsedDataR;
+                    // var shoesL = BLEManager.Instance.GetLeftData();
+                    // var shoesR = BLEManager.Instance.GetRightData();
                     Console.WriteLine("신발 데이터 컨버팅 직전");
                     // var combinedData = ConvertData(shoesL, shoesR);
 
@@ -803,8 +742,7 @@ namespace SmartShoes.Client.UI
         {
             public long userSid { get; set; }
             public long reportSid { get; set; }
-            public long height { get; set; }
-            public string wdate { get; set; }
+            public string containerId { get; set; }
             public double stepLength1 { get; set; }
             public double stepLength2 { get; set; }
             public double stepLength3 { get; set; }
