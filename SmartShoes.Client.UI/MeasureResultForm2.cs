@@ -385,11 +385,11 @@ namespace SmartShoes.Client.UI
                 };
                 
                 // JSON 직렬화
-                string jsonData = JsonConvert.SerializeObject(requestData);
-                Console.WriteLine("API 요청 데이터: " + jsonData);
+                // string jsonData = JsonConvert.SerializeObject(requestData);
+                // Console.WriteLine("API 요청 데이터: " + jsonData);
                 
                 // POST 요청 보내기
-                string getResponse = await apiCallHelper.PostAsync(getUrl, jsonData);
+                string getResponse = await apiCallHelper.PostAsync(getUrl, requestData);
                 Console.WriteLine("API 응답: " + getResponse);
                 
                 if (!string.IsNullOrEmpty(getResponse))
