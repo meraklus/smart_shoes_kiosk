@@ -30,16 +30,33 @@ namespace SmartShoes.Client.UI
             this.panel1.Visible = true;
 #endif
 
+            // 초기에 완료 버튼 비활성화
+            btnComplete.Enabled = false;
+
+            // BLE 데이터 수집 완료 이벤트 구독
+            BLEManager.Instance.DataCollectionCompleted += BLEManager_DataCollectionCompleted;
+
             MeasureFunction();
         }
 
+        // BLE 데이터 수집 완료 이벤트 핸들러
+        private void BLEManager_DataCollectionCompleted(object sender, BluetoothDataCollectionEventArgs e)
+        {
+            // UI 스레드에서 버튼 활성화
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => {
+                    btnComplete.Enabled = true;
+                }));
+            }
+            else
+            {
+                btnComplete.Enabled = true;
+            }
+        }
 
         private async void MeasureFunction()
         {
-            //BLEManager.Instance.ThresholdReachedR -= HandleThresholdReachedR;
-            //BLEManager.Instance.ThresholdReachedL -= HandleThresholdReachedL;
-
-            // Mat Measure
             if (dph != null)
             {
                 var showForm = dph.GetFunction<DelphiHelper.TShowForm>("ShowForm");
@@ -49,137 +66,10 @@ namespace SmartShoes.Client.UI
                 var measurestart = dph.GetFunction<DelphiHelper.TMeasurestart>("Measurestart");
                 measurestart(20);
 
-                StartCloseTimer();
                 BLEManager.Instance.Start();
             }
-
-            //BLEManager.Instance.ThresholdReachedR += HandleThresholdReachedR;
-            //BLEManager.Instance.ThresholdReachedL += HandleThresholdReachedL;
-
-
-            // Sensor Device Measure
-            //var rightDevice = BLEManager.Instance.GetRightDevice();
-            //if (rightDevice != null)
-            //{
-            //	Console.WriteLine($"Right device: {rightDevice.Name}");
-            //}
-            //else
-            //{
-            //	Console.WriteLine("Right device is not connected.");
-            //}
-
-            //var leftDevice = BLEManager.Instance.GetLeftDevice();
-            //if (leftDevice != null)
-            //{
-            //	Console.WriteLine($"Left device: {leftDevice.Name}");
-            //}
-            //else
-            //{
-            //	Console.WriteLine("Left device is not connected.");
-            //}
-
-            //await functiontest(rightDevice);
-            //await functiontest(leftDevice);
         }
 
-
-        // private void HandleThresholdReachedL(object sender, EventArgs args)
-        // {
-        // 	this._leftFlag = true;
-
-        // 	var df = BLEManager.Instance._parsedDataL;
-        // 	var dfe = BLEManager.Instance._parsedDataR;
-
-        // 	if (!endMeasureBool) { return; }
-        // 	if (!(_leftFlag && _rightFlag)) { return; }
-        // 	// loadpop.Close()를 UI 스레드에서 실행
-        // 	if (loadpop.InvokeRequired)
-        // 	{
-        // 		loadpop.Invoke(new Action(() => loadpop.Close()));
-        // 	}
-        // 	else
-        // 	{
-        // 		loadpop.Close();
-        // 	}
-        // 	this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
-        // }
-
-        // private void HandleThresholdReachedR(object sender, EventArgs args)
-        // {
-        // 	this._rightFlag = true;
-
-        // 	var df = BLEManager.Instance._parsedDataL;
-        // 	var dfe = BLEManager.Instance._parsedDataR;
-
-        // 	if (!endMeasureBool) { return; }
-        // 	if (!(_leftFlag && _rightFlag)) { return; }
-        // 	// loadpop.Close()를 UI 스레드에서 실행
-        // 	if (loadpop.InvokeRequired)
-        // 	{
-        // 		loadpop.Invoke(new Action(() => loadpop.Close()));
-        // 	}
-        // 	else
-        // 	{
-        // 		loadpop.Close();
-        // 	}
-        // 	this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
-        // }
-
-        static async Task functiontest(InTheHand.Bluetooth.BluetoothDevice device)
-        {
-            Guid writeUuid = Guid.Parse(Properties.Settings.Default.WRITE_UUID); // 데이터 송신 Characteristic UUID
-
-            var services = await device.Gatt.GetPrimaryServicesAsync();
-            foreach (var service in services)
-            {
-                var characteristics = await service.GetCharacteristicsAsync();
-                Console.WriteLine(characteristics);
-                foreach (var characteristic in characteristics)
-                {
-                    if (characteristic.Uuid == writeUuid)
-                    {
-                        string dataToSend = $"@DATA,{Properties.Settings.Default.SENSOR_SET_TIME * 100}#\r\n";
-                        byte[] dataBytes = Encoding.UTF8.GetBytes(dataToSend);
-                        await characteristic.WriteValueWithResponseAsync(dataBytes);
-                    }
-                }
-            }
-        }
-
-        private void StartCloseTimer()
-        {
-            // 10초 (10000 밀리초) 타이머 설정
-            closeTimer = new System.Timers.Timer(20000);
-            closeTimer.Elapsed += OnTimedEvent;
-            closeTimer.AutoReset = false; // 한 번만 실행하도록 설정
-            closeTimer.Start();
-        }
-
-        private void OnTimedEvent(object sender, ElapsedEventArgs e)
-        {
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new Action(() => OnTimedEvent(sender, e)));
-            }
-            else
-            {
-                if (endMeasureBool) { return; }
-                if (!loadpop.Visible) { loadpop.Show(); }
-
-                var measurestop = dph.GetFunction<DelphiHelper.TMeasurestop>("Measurestop");
-                measurestop(true);
-
-                var closeForm = dph.GetFunction<DelphiHelper.TCloseForm>("CloseForm");
-                closeForm();
-
-                this.endMeasureBool = true;
-
-                //if (!(_leftFlag && _rightFlag)) { return; }
-
-                this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
-                loadpop.Close();
-            }
-        }
 
         private void btnReStart_Click(object sender, EventArgs e)
         {
@@ -214,6 +104,18 @@ namespace SmartShoes.Client.UI
             var closeForm = dph.GetFunction<DelphiHelper.TCloseForm>("CloseForm");
             closeForm();
 
+            // 데이터베이스에서 데이터를 가져와 MatDataManager에 설정
+            SaveMatDataFromDatabase();
+
+            this.endMeasureBool = true;
+
+            this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
+
+            loadpop.Close();
+        }
+
+        private void SaveMatDataFromDatabase()
+        {
             Sqlite3Helper dbHelper = new Sqlite3Helper();
             var records = dbHelper.GetQueryRecords("SELECT * FROM ghwgaitchk1 ORDER BY ID DESC LIMIT 1;");
 
@@ -221,7 +123,6 @@ namespace SmartShoes.Client.UI
             Dictionary<string, string> recordDict = new Dictionary<string, string>();
             foreach (var record in records)
             {
-
                 foreach (var kvp in record)
                 {
                     if (kvp.Key.Length > 3)
@@ -408,16 +309,6 @@ namespace SmartShoes.Client.UI
                     , StanceTime1, StanceTime2, StanceTime3, StanceTime4
                     , CopLength1, CopLength2, CopLength3, CopLength4);
             #endregion
-
-            this.endMeasureBool = true;
-
-            //if (!(_leftFlag && _rightFlag)) {
-            //             Console.WriteLine("신발 플래그가 딸려서 리턴남");
-            //             return; 
-            //}
-            this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
-
-            loadpop.Close();
         }
 
         public double ParseDoubleOrDefault(string input)
@@ -446,6 +337,14 @@ namespace SmartShoes.Client.UI
             }
         }
 
+        // 폼 종료 시 이벤트 구독 해제
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            base.OnHandleDestroyed(e);
+            
+            // 이벤트 구독 해제
+            BLEManager.Instance.DataCollectionCompleted -= BLEManager_DataCollectionCompleted;
+        }
 
     }
 }

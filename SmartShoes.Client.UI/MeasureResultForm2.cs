@@ -569,6 +569,10 @@ namespace SmartShoes.Client.UI
             // {
             // 	this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
             // }
+            var leftData = BLEManager.Instance.GetLeftData();
+            var rightData = BLEManager.Instance.GetRightData();
+
+            this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
 
 
         }
