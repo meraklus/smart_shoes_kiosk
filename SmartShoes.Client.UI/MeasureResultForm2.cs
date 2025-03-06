@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Windows.System;
+using System.Linq;
 
 namespace SmartShoes.Client.UI
 {
@@ -281,28 +282,6 @@ namespace SmartShoes.Client.UI
             int dataLength = Math.Min(leftData.Count, rightData.Count);
             var combinedData = new List<double[]>(dataLength);
 
-            for (int i = 0; i < dataLength; i++)
-            {
-                double[] left = new double[3];
-                double[] right = new double[3];
-
-                // 가속도 변환
-                left[0] = (leftData[i][0] * 2 * 9.8 / 32768);
-                left[1] = (leftData[i][1] * 2 * 9.8 / 32768);
-                left[2] = (leftData[i][2] * 2 * 9.8 / 32768);
-                right[0] = (rightData[i][0] * 2 * 9.8 / 32768);
-                right[1] = (rightData[i][1] * 2 * 9.8 / 32768);
-                right[2] = (rightData[i][2] * 2 * 9.8 / 32768);
-
-                // 결합된 row 생성: 왼발(x, y, z 가속도), 오른발(x, y, z 가속도)
-                double[] combinedRow = new double[]
-                {
-                left[0], left[1], left[2], // 왼발 가속도
-                right[0], right[1], right[2] // 오른발 가속도
-                };
-
-                combinedData.Add(combinedRow);
-            }
             Console.WriteLine("컨버팅 끝");
             return combinedData;
         }
@@ -313,7 +292,7 @@ namespace SmartShoes.Client.UI
 
 
             // API URL
-            string getUrl = "http://smartshoes.kr/api/report/shoes-result";
+            string getUrl = "http://221.161.177.193:8010/container/shoes_result";
 
             try
             {
@@ -624,26 +603,22 @@ namespace SmartShoes.Client.UI
                     await CallApiResultMatt();
 
 
-                    // var shoesL = BLEManager.Instance.GetLeftData();
-                    // var shoesR = BLEManager.Instance.GetRightData();
+                    var shoesL = BLEManager.Instance.GetLeftData();
+                    var shoesR = BLEManager.Instance.GetRightData();
                     Console.WriteLine("신발 데이터 컨버팅 직전");
-                    // var combinedData = ConvertData(shoesL, shoesR);
+
+                    // 왼쪽 신발 데이터를 문자열로 변환 (공백 없이 조인)
+                    string lDataStr = string.Join("", shoesL.SelectMany(arr => arr.Select(val => val.ToString())));
+                    // 오른쪽 신발 데이터를 문자열로 변환 (공백 없이 조인)
+                    string rDataStr = string.Join("", shoesR.SelectMany(arr => arr.Select(val => val.ToString())));
 
                     shoesData = new ShoesData
                     {
-
                         userSid = userid,
                         reportSid = reportSid,
-                        // data = combinedData,
-                        columns = new List<string>
-                        {
-                            "LAccelX",
-                            "LAccelY",
-                            "LAccelZ",
-                            "RAccelX",
-                            "RAccelY",
-                            "RAccelZ"
-                        }
+                        containerId = Properties.Settings.Default.CONTAINER_ID,
+                        LData = lDataStr,
+                        RData = rDataStr
                     };
 
                     await CallApiResultShoes();
@@ -850,9 +825,11 @@ namespace SmartShoes.Client.UI
         {
             public long userSid { get; set; }
             public long reportSid { get; set; }
-            public List<string> columns { get; set; }
+            public string containerId { get; set; }
+            public string LData { get; set; }
+            public string RData { get; set; }
 
-            public List<double[]> data { get; set; }
+            // public List<double[]> data { get; set; }
         }
 
 
