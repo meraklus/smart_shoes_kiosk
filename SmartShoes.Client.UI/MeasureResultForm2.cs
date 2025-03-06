@@ -384,10 +384,6 @@ namespace SmartShoes.Client.UI
                     data = measurementData
                 };
                 
-                // JSON 직렬화
-                // string jsonData = JsonConvert.SerializeObject(requestData);
-                // Console.WriteLine("API 요청 데이터: " + jsonData);
-                
                 // POST 요청 보내기
                 string getResponse = await apiCallHelper.PostAsync(getUrl, requestData);
                 Console.WriteLine("API 응답: " + getResponse);
@@ -397,17 +393,23 @@ namespace SmartShoes.Client.UI
                     // 응답 파싱
                     JObject jObject = JObject.Parse(getResponse);
                     
-                    // 응답 구조에 맞게 파싱 로직 수정
-                    if (jObject["result"] != null && jObject["result"].ToString() == "success")
+                    // 새로운 API 응답 형식에 맞게 파싱
+                    if (jObject != null)
                     {
-                        // 성공적인 응답 처리
-                        if (jObject["data"] != null)
-                        {
-                            measureResult = JsonConvert.DeserializeObject<MeasureResult>(jObject["data"].ToString());
-                            
+                        // MeasureResult 객체가 없으면 생성
+                        if (measureResult == null)
+                        {                            
                             // 결과 데이터 화면에 표시
-                            InsertResultData();
+                            measureResult = new MeasureResult();
                         }
+                        
+                        // API 응답에서 값 추출
+                        // measureResult.matScoreLength = jObject["score_lenght"]?.ToString() ?? "0";
+                        // measureResult.matScoreSingleTime = jObject["score_singletime"]?.ToString() ?? "0";
+                        // measureResult.matScoreStrideTime = jObject["score_stridetime"]?.ToString() ?? "0";
+                        // measureResult.matScoreAngle = jObject["score_angle"]?.ToString() ?? "0";
+                        // measureResult.matScoreForce = jObject["score_force"]?.ToString() ?? "0";
+                        // measureResult.matScoreBaseOfGait = jObject["score_baseofgait"]?.ToString() ?? "0";
                     }
                     else
                     {
