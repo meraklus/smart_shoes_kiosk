@@ -13,7 +13,6 @@ namespace SmartShoes.Client.UI
     {
 
         public event EventHandler<PageChangeEventArgs> PageChangeRequested;
-        private WebSocketServerThread wsst;
         private DelphiHelper dph = new DelphiHelper(@"ghwlongdllS_64.dll");
         private System.Timers.Timer closeTimer;
         private bool endMeasureBool = false;

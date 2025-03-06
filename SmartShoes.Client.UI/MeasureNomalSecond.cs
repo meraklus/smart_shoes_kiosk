@@ -21,6 +21,7 @@ namespace SmartShoes.Client.UI
         private bool _leftFlag = false;
         private bool _rightFlag = false;
         private bool _isDataCollectionComplete = false;
+				private WebSocketServerThread wsst;
 
 
         public MeasureNomalSecond()
@@ -45,16 +46,44 @@ namespace SmartShoes.Client.UI
 
         private async void MeasureFunction()
         {
-            if (dph != null)
+            try
             {
-                var showForm = dph.GetFunction<DelphiHelper.TShowForm>("ShowForm");
-                showForm(panel1.Handle, 0, 0, 0, 0, true);
-
-
-                var measurestart = dph.GetFunction<DelphiHelper.TMeasurestart>("Measurestart");
-                measurestart(20);
-
-                BLEManager.Instance.Start();
+                // 웹소켓 서버 초기화 (아직 초기화되지 않은 경우)
+                if (wsst == null)
+                {
+                    wsst = new WebSocketServerThread("0.0.0.0", 8080);
+                    wsst.SetLogCallback((message) => Console.WriteLine(message));
+                    wsst.Start();
+                    
+                    // 클라이언트 연결 이벤트 핸들러 설정
+                    wsst.OnClientConnected = (message) => {
+                        Console.WriteLine($"카메라 클라이언트 연결됨: {message}");
+                    };
+                }
+                
+                // 델파이 폼 표시
+                if (dph != null)
+                {
+                    var showForm = dph.GetFunction<DelphiHelper.TShowForm>("ShowForm");
+                    showForm(panel1.Handle, 0, 0, 0, 0, true);
+                    
+                    // 측정 시작
+                    var measurestart = dph.GetFunction<DelphiHelper.TMeasurestart>("Measurestart");
+                    measurestart(20);
+                    
+                    // 웹소켓을 통해 카메라 측정 시작 신호 전송
+                    // 현재 시간을 폴더명으로 사용 (TotalProcessForm.cs 참고)
+                    string folderName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + UserInfo.Instance.UserName;
+                    wsst.BroadcastMessage("start", folderName);
+                    Console.WriteLine("카메라 측정 시작 신호 전송: " + folderName);
+                    
+                    // BLE 데이터 수집 시작
+                    BLEManager.Instance.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"측정 시작 중 오류 발생: {ex.Message}");
             }
         }
 
@@ -98,17 +127,32 @@ namespace SmartShoes.Client.UI
         // 측정 재시작 메서드
         private void RestartMeasurement()
         {
-            var measurestop = dph.GetFunction<DelphiHelper.TMeasurestop>("Measurestop");
-            measurestop(false);
+            try
+            {
+                // 웹소켓을 통해 카메라 측정 중지 신호 전송
+                if (wsst != null)
+                {
+                    string folderName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + UserInfo.Instance.UserName;
+                    wsst.BroadcastMessage("stop", folderName);
+                    Console.WriteLine("카메라 측정 중지 신호 전송: " + folderName);
+                }
+                
+                var measurestop = dph.GetFunction<DelphiHelper.TMeasurestop>("Measurestop");
+                measurestop(false);
 
-            var closeForm = dph.GetFunction<DelphiHelper.TCloseForm>("CloseForm");
-            closeForm();
+                var closeForm = dph.GetFunction<DelphiHelper.TCloseForm>("CloseForm");
+                closeForm();
 
-            this.endMeasureBool = true;
+                this.endMeasureBool = true;
 
-            this.Invoke(new Action(() => MovePage(typeof(MeasureReadyForm))));
+                this.Invoke(new Action(() => MovePage(typeof(MeasureReadyForm))));
 
-            loadpop.Close();
+                loadpop.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"측정 재시작 중 오류 발생: {ex.Message}");
+            }
         }
 
         private void btnComplete_Click(object sender, EventArgs e)
@@ -152,21 +196,36 @@ namespace SmartShoes.Client.UI
         // 측정 완료 및 결과 화면으로 이동하는 메서드
         private void CompleteAndMoveToResult()
         {
-            // 측정 중지
-            var measurestop = dph.GetFunction<DelphiHelper.TMeasurestop>("Measurestop");
-            measurestop(true);
+            try
+            {
+                // 웹소켓을 통해 카메라 측정 중지 신호 전송
+                if (wsst != null)
+                {
+                    string folderName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + UserInfo.Instance.UserName;
+                    wsst.BroadcastMessage("stop", folderName);
+                    Console.WriteLine("카메라 측정 중지 신호 전송: " + folderName);
+                }
+                
+                // 측정 중지
+                var measurestop = dph.GetFunction<DelphiHelper.TMeasurestop>("Measurestop");
+                measurestop(true);
 
-            var closeForm = dph.GetFunction<DelphiHelper.TCloseForm>("CloseForm");
-            closeForm();
+                var closeForm = dph.GetFunction<DelphiHelper.TCloseForm>("CloseForm");
+                closeForm();
 
-            // 데이터베이스에서 데이터를 가져와 MatDataManager에 설정
-            SaveMatDataFromDatabase();
+                // 데이터베이스에서 데이터를 가져와 MatDataManager에 설정
+                SaveMatDataFromDatabase();
 
-            this.endMeasureBool = true;
+                this.endMeasureBool = true;
 
-            this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
+                this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
 
-            loadpop.Close();
+                loadpop.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"측정 완료 중 오류 발생: {ex.Message}");
+            }
         }
 
         private void SaveMatDataFromDatabase()
@@ -392,13 +451,20 @@ namespace SmartShoes.Client.UI
             }
         }
 
-        // 폼 종료 시 이벤트 구독 해제
+        // 폼 종료 시 이벤트 구독 해제 및 리소스 정리
         protected override void OnHandleDestroyed(EventArgs e)
         {
             base.OnHandleDestroyed(e);
             
             // 이벤트 구독 해제
             BLEManager.Instance.DataCollectionCompleted -= BLEManager_DataCollectionCompleted;
+            
+            // 웹소켓 서버 정리
+            if (wsst != null)
+            {
+                wsst.Stop();
+                wsst = null;
+            }
         }
 
     }

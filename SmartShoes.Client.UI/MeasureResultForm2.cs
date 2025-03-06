@@ -412,7 +412,7 @@ namespace SmartShoes.Client.UI
                     else
                     {
                         // 오류 응답 처리
-                        string errorMessage = jObject["message"]?.ToString() ?? "알 수 없는 오류가 발생했습니다.";
+                        string errorMessage = jObject["message"]?.ToString() ?? "알 수 없는 오류가 발생했습니다.!!!!";
                         MessageBox.Show(errorMessage, "API 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
