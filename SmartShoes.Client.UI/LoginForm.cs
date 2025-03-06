@@ -50,7 +50,6 @@ namespace SmartShoes.Client.UI
 				Console.WriteLine($"BLEManager 초기화 오류: {ex.Message}");
 			}
 
-			List<MatData> lstmd = MatDataManager.Instance.GetAllMatData();
 			UserInfo uif = UserInfo.Instance;
 		}
 

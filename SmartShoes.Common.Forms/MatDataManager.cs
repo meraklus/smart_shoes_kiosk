@@ -9,7 +9,7 @@ namespace SmartShoes.Common.Forms
 	public class MatDataManager
 	{
 		private static MatDataManager _instance = null;
-		private List<MatData> _savedMatData;
+		private MatData _matData; // 단일 MatData 객체로 변경
 
 		// Singleton 인스턴스를 가져오는 메서드
 		public static MatDataManager Instance
@@ -27,7 +27,7 @@ namespace SmartShoes.Common.Forms
 		// 생성자를 private으로 하여 외부에서 인스턴스를 생성하지 못하게 함
 		private MatDataManager()
 		{
-			_savedMatData = new List<MatData>();
+			_matData = null; // 초기값은 null
 		}
 
 		public void SetMatData(double StepLength1, double StepLength2, double StepLength3, double StepLength4
@@ -48,7 +48,7 @@ namespace SmartShoes.Common.Forms
 					, double StanceTime1, double StanceTime2, double StanceTime3, double StanceTime4
 					, double CopLength1, double CopLength2, double CopLength3, double CopLength4)
 		{
-			var matData = new MatData(StepLength1, StepLength2, StepLength3, StepLength4
+			_matData = new MatData(StepLength1, StepLength2, StepLength3, StepLength4
 					, StrideLength1, StrideLength2, StrideLength3, StrideLength4
 					, SingleStepTime1, SingleStepTime2, SingleStepTime3, SingleStepTime4
 					, StepAngle1, StepAngle2, StepAngle3, StepAngle4
@@ -65,21 +65,28 @@ namespace SmartShoes.Common.Forms
 					, StrideTime1, StrideTime2, StrideTime3, StrideTime4
 					, StanceTime1, StanceTime2, StanceTime3, StanceTime4
 					, CopLength1, CopLength2, CopLength3, CopLength4);
-
-			_savedMatData.Add(matData);
 		}
-
 
 		public void ResetMatData()
 		{
-			_savedMatData.Clear();
+			_matData = null; // 데이터 초기화
 		}
 
+		// 단일 MatData 객체를 반환하는 메서드
+		public MatData GetMatData()
+		{
+			return _matData;
+		}
 
+		// 기존 코드와의 호환성을 위해 List<MatData>를 반환하는 메서드 유지
 		public List<MatData> GetAllMatData()
 		{
-			return _savedMatData;
+			List<MatData> result = new List<MatData>();
+			if (_matData != null)
+			{
+				result.Add(_matData);
+			}
+			return result;
 		}
-
 	}
 }
