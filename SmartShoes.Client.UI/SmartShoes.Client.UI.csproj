@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewResultForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewResultForm.Designer.cs">
+      <DependentUpon>NewResultForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="KeyInputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MeasureResultForm2.resx">
       <DependentUpon>MeasureResultForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewResultForm.resx">
+      <DependentUpon>NewResultForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>

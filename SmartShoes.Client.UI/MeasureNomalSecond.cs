@@ -219,6 +219,7 @@ namespace SmartShoes.Client.UI
                 this.endMeasureBool = true;
 
                 this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
+                // this.Invoke(new Action(() => MovePage(typeof(NewResultForm))));
 
                 loadpop.Close();
             }
