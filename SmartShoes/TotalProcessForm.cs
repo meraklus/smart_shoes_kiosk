@@ -164,39 +164,39 @@ namespace SmartShoes
 		/// <param name="e"></param>
 		private void btnCameraStart_Click(object sender, EventArgs e)
 		{
-			if (wsst == null)
-			{
-				wsst = new WebSocketServerThread("0.0.0.0", 8080);
-				wsst.SetLogCallback(LogMessage);
-				wsst.Start();
+			//if (wsst == null)
+			//{
+			//	wsst = new WebSocketServerThread("0.0.0.0", 8080);
+			//	wsst.SetLogCallback(LogMessage);
+			//	wsst.Start();
 
-				wsst.OnClientConnected = (message) => {
-					// GUI 스레드에서 txtTest를 업데이트하기 위해 Invoke 사용
-					if (txtTest.InvokeRequired)
-					{
-						txtTest.Invoke((Action)(() =>
-						{
-							txtTest.AppendText(message + Environment.NewLine);
-						}));
-					}
-					else
-					{
-						txtTest.AppendText(message + Environment.NewLine);
-					}
+			//	wsst.OnClientConnected = (message) => {
+			//		// GUI 스레드에서 txtTest를 업데이트하기 위해 Invoke 사용
+			//		if (txtTest.InvokeRequired)
+			//		{
+			//			txtTest.Invoke((Action)(() =>
+			//			{
+			//				txtTest.AppendText(message + Environment.NewLine);
+			//			}));
+			//		}
+			//		else
+			//		{
+			//			txtTest.AppendText(message + Environment.NewLine);
+			//		}
 
-					UpdateCameraStatus(message, "connect");
-				};
+			//		UpdateCameraStatus(message, "connect");
+			//	};
 
-				txtTest.AppendText("WebSocket 서버가 시작되었습니다.\n");
+			//	txtTest.AppendText("WebSocket 서버가 시작되었습니다.\n");
 
-				btnCameraStop.Enabled = true;
-				btnCameraTestStart.Enabled = true;
-				btnCameraTestStop.Enabled = true;
-			}
-			else
-			{
-				txtTest.AppendText("WebSocket 서버가 이미 실행 중입니다.\n");
-			}
+			//	btnCameraStop.Enabled = true;
+			//	btnCameraTestStart.Enabled = true;
+			//	btnCameraTestStop.Enabled = true;
+			//}
+			//else
+			//{
+			//	txtTest.AppendText("WebSocket 서버가 이미 실행 중입니다.\n");
+			//}
 		}
 
 		/// <summary>

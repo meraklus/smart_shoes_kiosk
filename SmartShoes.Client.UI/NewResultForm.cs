@@ -449,6 +449,7 @@ namespace SmartShoes.Client.UI
         {
             // 카메라 데이터 처리 로직 구현
             // 실제 구현은 Mat 데이터와 유사한 패턴으로 작성
+            WebSocketServerThread.Instance.BroadcastMessage("results", "");
             await Task.Delay(1000); // 임시 지연
             isCameraDataProcessed = true;
             Console.WriteLine("Camera 데이터 처리 완료");

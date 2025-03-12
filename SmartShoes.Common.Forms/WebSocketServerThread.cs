@@ -49,7 +49,13 @@ public class WebSocketServerThread
 	// 초기화 메서드 추가
 	public void Initialize(string host, int port)
 	{
-		_host = host;
+        // 이미 실행 중인 경우 무시
+        if (_isRunning)
+        {
+            LogMessage("WebSocket 서버가 이미 실행 중입니다.");
+            return;
+        }
+        _host = host;
 		_port = port;
 		wss = new WebSocketServer($"ws://{host}:{port}");
 		wss.AddWebSocketService<ServerBehavior>("/smartShoes/ws/chat", () =>

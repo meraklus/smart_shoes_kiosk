@@ -18,7 +18,6 @@ namespace SmartShoes.Client.UI
 
         private List<ShoesInform> listShoes = new List<ShoesInform>();
 
-        private WebSocketClient wsst = null;
 
         public SettingsForm()
         {
@@ -27,9 +26,10 @@ namespace SmartShoes.Client.UI
             this.txtContainerId.Text = Properties.Settings.Default.CONTAINER_ID;
 
             // 블루투스 연결 상태 변경 이벤트 구독
-            BLEManager.Instance.ConnectionStatusChanged += OnBluetoothConnectionChanged;     
+            BLEManager.Instance.ConnectionStatusChanged += OnBluetoothConnectionChanged;
 
-            // ws 자동연결결       
+            // ws 자동연결결
+            connectWebSocket();
         }
 
         private void btnComplete_Click(object sender, EventArgs e)
@@ -53,6 +53,7 @@ namespace SmartShoes.Client.UI
         private void connectWebSocket(){
             try
             {
+                WebSocketServerThread.Instance.Initialize("0.0.0.0", 8080);
                 WebSocketServerThread.Instance.Start();
             }
             catch (System.Exception)
