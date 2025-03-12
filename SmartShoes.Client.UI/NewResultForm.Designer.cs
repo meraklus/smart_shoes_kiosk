@@ -459,6 +459,7 @@
             this.btnNext.Size = new System.Drawing.Size(1080, 132);
             this.btnNext.TabIndex = 9;
             this.btnNext.TabStop = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // txtLeftStepAngle
             // 

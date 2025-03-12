@@ -177,7 +177,7 @@ namespace SmartShoes.Client.UI
             catch (Exception ex)
             {
                 Console.WriteLine($"Mat 데이터 처리 오류: {ex.Message}");
-                throw;
+                //throw;
             }
         }
         
@@ -187,13 +187,13 @@ namespace SmartShoes.Client.UI
         private MeasurementData CreateMeasurementData(MatData matData)
         {
             int userid = UserInfo.Instance.UserId == null ? 0 : Convert.ToInt32(UserInfo.Instance.UserId);
-            
+            int containerSid = Convert.ToInt32(Properties.Settings.Default.CONTAINER_ID);
+
             return new MeasurementData
             {
                 userSid = userid,
                 reportSid = reportSid,
-                // containerSid = Properties.Settings.Default.CONTAINER_ID,
-                containerSid = "32",
+                containerSid = containerSid,
                 stepLength1 = matData.StepLength1,
                 stepLength2 = matData.StepLength2,
                 stepLength3 = matData.StepLength3,
@@ -378,13 +378,12 @@ namespace SmartShoes.Client.UI
         private ShoesData CreateShoesData(string leftData, string rightData)
         {
             int userid = UserInfo.Instance.UserId == null ? 0 : Convert.ToInt32(UserInfo.Instance.UserId);
-
+            int containerSid = Convert.ToInt32(Properties.Settings.Default.CONTAINER_ID);
             return new ShoesData
             {
                 userSid = userid,
                 reportSid = reportSid,
-                // containerSid = Properties.Settings.Default.CONTAINER_ID,
-                containerSid = "32",
+                containerSid = containerSid,
                 LData = leftData,
                 RData = rightData   
             };
@@ -438,7 +437,7 @@ namespace SmartShoes.Client.UI
             {
                 // setBlankShoesResult();
                 Console.WriteLine("Shoes API 호출 중 오류 발생: " + ex.Message);
-                throw;
+                //throw;
             }
         }
         
@@ -479,7 +478,7 @@ namespace SmartShoes.Client.UI
         {
             public long userSid { get; set; }
             public long reportSid { get; set; }
-            public string containerSid { get; set; }
+            public double containerSid { get; set; }
             public double stepLength1 { get; set; }
             public double stepLength2 { get; set; }
             public double stepLength3 { get; set; }
@@ -576,7 +575,7 @@ namespace SmartShoes.Client.UI
         {
             public long userSid { get; set; }
             public long reportSid { get; set; }
-            public string containerSid { get; set; }
+            public long containerSid { get; set; }
             public string LData { get; set; }
             public string RData { get; set; }
         }
@@ -593,5 +592,11 @@ namespace SmartShoes.Client.UI
             public string shoesRightSwingPhaseScore { get; set; }
         }
         #endregion
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
+
+        }
     }
 }

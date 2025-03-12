@@ -20,7 +20,7 @@ namespace SmartShoes.Client.UI
         private bool endMeasureBool = false;
         private bool _leftFlag = false;
         private bool _rightFlag = false;
-        private bool _isDataCollectionComplete = false;
+        private bool _isDataCollectionComplete = true;
 				private WebSocketServerThread wsst;
 
 
@@ -54,13 +54,20 @@ namespace SmartShoes.Client.UI
                     wsst = new WebSocketServerThread("0.0.0.0", 8080);
                     wsst.SetLogCallback((message) => Console.WriteLine(message));
                     wsst.Start();
-                    
+
                     // 클라이언트 연결 이벤트 핸들러 설정
-                    wsst.OnClientConnected = (message) => {
+                    wsst.OnClientConnected = (message) =>
+                    {
                         Console.WriteLine($"카메라 클라이언트 연결됨: {message}");
                     };
+
+                    //웹소켓을 통해 카메라 측정 시작 신호 전송
+                    //현재 시간을 폴더명으로 사용(TotalProcessForm.cs 참고)
+                    string folderName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + UserInfo.Instance.UserName;
+
+                    wsst.BroadcastMessage("start", folderName);
                 }
-                
+
                 // 델파이 폼 표시
                 if (dph != null)
                 {
@@ -71,14 +78,10 @@ namespace SmartShoes.Client.UI
                     var measurestart = dph.GetFunction<DelphiHelper.TMeasurestart>("Measurestart");
                     measurestart(20);
                     
-                    // 웹소켓을 통해 카메라 측정 시작 신호 전송
-                    // 현재 시간을 폴더명으로 사용 (TotalProcessForm.cs 참고)
-                    string folderName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + UserInfo.Instance.UserName;
-                    wsst.BroadcastMessage("start", folderName);
-                    Console.WriteLine("카메라 측정 시작 신호 전송: " + folderName);
+                    //Console.WriteLine("카메라 측정 시작 신호 전송: " + folderName);
                     
                     // BLE 데이터 수집 시작
-                    BLEManager.Instance.Start();
+                    //BLEManager.Instance.Start();
                 }
             }
             catch (Exception ex)
@@ -218,8 +221,8 @@ namespace SmartShoes.Client.UI
 
                 this.endMeasureBool = true;
 
-                this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
-                // this.Invoke(new Action(() => MovePage(typeof(NewResultForm))));
+                //this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
+                 this.Invoke(new Action(() => MovePage(typeof(NewResultForm))));
 
                 loadpop.Close();
             }

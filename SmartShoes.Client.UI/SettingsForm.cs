@@ -25,7 +25,7 @@ namespace SmartShoes.Client.UI
             this.txtContainerId.Text = Properties.Settings.Default.CONTAINER_ID;
 
             // 블루투스 연결 상태 변경 이벤트 구독
-            BLEManager.Instance.ConnectionStatusChanged += OnBluetoothConnectionChanged;
+            BLEManager.Instance.ConnectionStatusChanged += OnBluetoothConnectionChanged;            
         }
 
         private void btnComplete_Click(object sender, EventArgs e)
