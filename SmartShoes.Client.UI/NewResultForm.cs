@@ -30,25 +30,6 @@ namespace SmartShoes.Client.UI
         public NewResultForm()
         {
             InitializeComponent();
-            
-            // 컨트롤 위치 설정
-            BatchText();
-        }
-
-        /// <summary>
-        /// 컨트롤 위치를 설정합니다.
-        /// </summary>
-        private void BatchText()
-        {
-            // 여기에 컨트롤 위치 설정 코드 추가
-            // 예: 라벨, 텍스트박스 등의 위치 설정
-            
-            // 사용자 이름 표시
-            string userName = UserInfo.Instance.UserName;
-            // 사용자 이름을 표시할 컨트롤이 있다면 설정
-            // this.txtUserName.Text = userName + "님의 결과";
-            
-            Console.WriteLine("BatchText 메서드 실행 완료");
         }
 
         private void NewResultForm_Load(object sender, EventArgs e)

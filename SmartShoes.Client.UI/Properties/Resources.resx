@@ -118,122 +118,68 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btn_measu_re" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_measu_re.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btn_conn_shoes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_conn_shoes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_measu_tiny" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_measu_tiny.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="report_man_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\report_man 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_measu_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_measu_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="등급" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\등급.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="img_icon_check" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_icon_check.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_measu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_measu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="popup_close" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\popup_close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="kio_img_people" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\kio_img_people.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="kio_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\kio_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_stopmeasu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_stopmeasu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_login_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_login_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_complete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_complete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="popup_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\popup_bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_measu_continue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_measu_continue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="popup_bg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\popup_bg1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_confirm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_confirm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btnCancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btnCancel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btnConfirm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btnConfirm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btnMatSetting" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btnMatSetting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btnStreamingSetting" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btnStreamingSetting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cameraConnect" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cameraConnect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Frame_186" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Frame 186.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mattDataGrid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mattDataGrid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="printer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\printer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="qrcode" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\qrcode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="reportBodyFrame" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reportBodyFrame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="reportChartFrame" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reportChartFrame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="reportStepFrame" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reportStepFrame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="reportStepFrame2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reportStepFrame2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="resultDataTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\resultDataTable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="resultFootData" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\resultFootData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="resultGraph" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\resultGraph.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="resultText" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\resultText.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="shutDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shutDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="walkData" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\walkData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btn_measu_continue_off_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_measu_continue_off 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="walkPatternTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\walkPatternTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="welcome" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\welcome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="resultDataTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resultDataTable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_complete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_complete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kio_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kio_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="reportChartFrame2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reportChartFrame2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="loading" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\다운로드.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cameraConnect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cameraConnect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="result1_2.5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\result1_2.5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rectangle_151" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rectangle 151.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_confirm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_confirm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resultFootData" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resultFootData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="level_bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\level bar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnStreamingSetting" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnStreamingSetting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_cont_id_save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_cont_id_save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnConfirm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnConfirm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_login_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_login_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_connect_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_connect 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_measu_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_measu_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="main_loading_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main_loading 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -241,91 +187,163 @@
   <data name="Ellipse_91" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ellipse 91.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="foundation_foot" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\foundation_foot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="level_bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\level bar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Rectangle_151" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Rectangle 151.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="report_man_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\report_man 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="result" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\result.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_measu_continue_off_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_measu_continue_off 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_walk_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_walk 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="img_connect_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_connect 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="shoeschoice" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shoeschoice.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Frame" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Frame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Frame2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Frame2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_call_shoes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_call_shoes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_cont_id_save" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_cont_id_save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_conn_shoes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_conn_shoes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_conn_shoes_disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_conn_shoes_disabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_reconnect" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_reconnect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Frame_209" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Frame 209.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Frame_209_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Frame 209-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Rectangle_203" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Rectangle 203.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Subtract" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Subtract.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="등급" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\등급.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="등급침" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\등급침.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="보행균형" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\보행균형.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="유각기_입각기" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\유각기 입각기.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_1등급" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1등급.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_2등급" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2등급.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_3등급" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3등급.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="loading" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\다운로드.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_4등급" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4등급.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="reportStepFrame2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reportStepFrame2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kio_img_people" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kio_img_people.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="qrcode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\qrcode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Frame 284" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Frame 284.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_icon_check" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_icon_check.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnCancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnCancel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resultGraph" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resultGraph.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_stopmeasu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_stopmeasu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resultText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resultText.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnMatSetting" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnMatSetting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3등급" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3등급.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_reconnect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_reconnect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="result" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\result.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Frame2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Frame2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Frame_209" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Frame 209.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_conn_shoes_disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_conn_shoes_disabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mattDataGrid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mattDataGrid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Frame_209_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Frame 209-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shutDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shutDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="result1_1.5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\result1_1.5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_measu_tiny" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_measu_tiny.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shoeschoice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shoeschoice.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="popup_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\popup_bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="보행균형" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\보행균형.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reportBodyFrame" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reportBodyFrame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Subtract" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Subtract.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Frame" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Frame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\welcome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="등급침" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\등급침.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reportChartFrame" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reportChartFrame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="result1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\result1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_measu_continue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_measu_continue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2등급" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2등급.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="popup_bg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\popup_bg1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="popup_close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\popup_close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="result1_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\result1_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="foundation_foot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\foundation_foot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1등급" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1등급.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="printer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\printer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_measu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_measu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_measu_re" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_measu_re.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="walkData" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\walkData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_call_shoes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_call_shoes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="유각기_입각기" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\유각기 입각기.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_walk_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_walk 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reportStepFrame" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reportStepFrame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="_5등급" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\5등급.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rectangle_203" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rectangle 203.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Frame_186" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Frame 186.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="result1_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\result1_1.51.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

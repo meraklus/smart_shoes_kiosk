@@ -373,6 +373,16 @@ namespace SmartShoes.Client.UI.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Frame_284 {
+            get {
+                object obj = ResourceManager.GetObject("Frame 284", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap Frame2 {
             get {
                 object obj = ResourceManager.GetObject("Frame2", resourceCulture);
@@ -606,6 +616,56 @@ namespace SmartShoes.Client.UI.Properties {
         internal static System.Drawing.Bitmap result {
             get {
                 object obj = ResourceManager.GetObject("result", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap result1 {
+            get {
+                object obj = ResourceManager.GetObject("result1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap result1_1_5 {
+            get {
+                object obj = ResourceManager.GetObject("result1_1.5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap result1_11 {
+            get {
+                object obj = ResourceManager.GetObject("result1_11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap result1_2 {
+            get {
+                object obj = ResourceManager.GetObject("result1_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap result1_2_5 {
+            get {
+                object obj = ResourceManager.GetObject("result1_2.5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
