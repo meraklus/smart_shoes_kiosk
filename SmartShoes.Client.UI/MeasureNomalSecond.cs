@@ -21,8 +21,6 @@ namespace SmartShoes.Client.UI
         private bool _leftFlag = false;
         private bool _rightFlag = false;
         private bool _isDataCollectionComplete = true;
-				private WebSocketServerThread wsst;
-
 
         public MeasureNomalSecond()
         {
@@ -49,24 +47,10 @@ namespace SmartShoes.Client.UI
             try
             {
                 // 웹소켓 서버 초기화 (아직 초기화되지 않은 경우)
-                if (wsst == null)
-                {
-                    wsst = new WebSocketServerThread("0.0.0.0", 8080);
-                    wsst.SetLogCallback((message) => Console.WriteLine(message));
-                    wsst.Start();
-
-                    // 클라이언트 연결 이벤트 핸들러 설정
-                    wsst.OnClientConnected = (message) =>
-                    {
-                        Console.WriteLine($"카메라 클라이언트 연결됨: {message}");
-                    };
-
-                    //웹소켓을 통해 카메라 측정 시작 신호 전송
-                    //현재 시간을 폴더명으로 사용(TotalProcessForm.cs 참고)
-                    string folderName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + UserInfo.Instance.UserName;
-
-                    wsst.BroadcastMessage("start", folderName);
-                }
+                //웹소켓을 통해 카메라 측정 시작 신호 전송
+                //현재 시간을 폴더명으로 사용(TotalProcessForm.cs 참고)
+                string folderName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + UserInfo.Instance.UserName;
+                WebSocketServerThread.Instance.BroadcastMessage("start", "");
 
                 // 델파이 폼 표시
                 if (dph != null)
@@ -133,13 +117,8 @@ namespace SmartShoes.Client.UI
             try
             {
                 // 웹소켓을 통해 카메라 측정 중지 신호 전송
-                if (wsst != null)
-                {
-                    string folderName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + UserInfo.Instance.UserName;
-                    wsst.BroadcastMessage("stop", folderName);
-                    Console.WriteLine("카메라 측정 중지 신호 전송: " + folderName);
-                }
-                
+                WebSocketServerThread.Instance.BroadcastMessage("stop", "");
+
                 var measurestop = dph.GetFunction<DelphiHelper.TMeasurestop>("Measurestop");
                 measurestop(false);
 
@@ -202,12 +181,8 @@ namespace SmartShoes.Client.UI
             try
             {
                 // 웹소켓을 통해 카메라 측정 중지 신호 전송
-                if (wsst != null)
-                {
-                    string folderName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + UserInfo.Instance.UserName;
-                    wsst.BroadcastMessage("stop", folderName);
-                    Console.WriteLine("카메라 측정 중지 신호 전송: " + folderName);
-                }
+                WebSocketServerThread.Instance.BroadcastMessage("stop", "");
+
                 
                 // 측정 중지
                 var measurestop = dph.GetFunction<DelphiHelper.TMeasurestop>("Measurestop");
@@ -464,11 +439,7 @@ namespace SmartShoes.Client.UI
             BLEManager.Instance.DataCollectionCompleted -= BLEManager_DataCollectionCompleted;
             
             // 웹소켓 서버 정리
-            if (wsst != null)
-            {
-                wsst.Stop();
-                wsst = null;
-            }
+            // WebSocketServerThread.Instance.Stop();
         }
 
     }

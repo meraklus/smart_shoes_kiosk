@@ -7,14 +7,50 @@ using System.IO;
 
 public class WebSocketServerThread
 {
+	// 싱글톤 인스턴스
+	private static WebSocketServerThread _instance;
+	private static readonly object _lock = new object();
+
+	// 싱글톤 인스턴스 접근자
+	public static WebSocketServerThread Instance
+	{
+		get
+		{
+			if (_instance == null)
+			{
+				lock (_lock)
+				{
+					if (_instance == null)
+					{
+						_instance = new WebSocketServerThread();
+					}
+				}
+			}
+			return _instance;
+		}
+	}
+
 	private WebSocketServer wss;
 	private Dictionary<string, ServerBehavior> connectedClients = new Dictionary<string, ServerBehavior>();
 	private Action<string> logCallback;
+	private string _host;
+	private int _port;
+
+	// 서버 실행 상태를 추적하는 변수 추가
+	private bool _isRunning = false;
 
 	public Action<string> OnClientConnected { get; set; }
 
-	public WebSocketServerThread(string host, int port)
+	// 기본 생성자를 private으로 변경
+	private WebSocketServerThread()
 	{
+	}
+
+	// 초기화 메서드 추가
+	public void Initialize(string host, int port)
+	{
+		_host = host;
+		_port = port;
 		wss = new WebSocketServer($"ws://{host}:{port}");
 		wss.AddWebSocketService<ServerBehavior>("/smartShoes/ws/chat", () =>
 		{
@@ -26,13 +62,34 @@ public class WebSocketServerThread
 
 	public void Start()
 	{
+		if (wss == null)
+		{
+			LogMessage("WebSocket 서버가 초기화되지 않았습니다. Initialize 메서드를 먼저 호출하세요.");
+			return;
+		}
+
+		// 이미 실행 중인 경우 무시
+		if (_isRunning)
+		{
+			LogMessage("WebSocket 서버가 이미 실행 중입니다.");
+			return;
+		}
+
 		wss.Start();
+		_isRunning = true;
 		LogMessage("WebSocket 서버가 시작되었습니다.");
 	}
 
 	public void Stop()
 	{
+		if (!_isRunning)
+		{
+			LogMessage("WebSocket 서버가 이미 중지되었습니다.");
+			return;
+		}
+
 		wss.Stop();
+		_isRunning = false;
 		LogMessage("WebSocket 서버가 중지되었습니다.");
 	}
 
@@ -109,8 +166,6 @@ public class WebSocketServerThread
 		}
 	}
 
-
-
 	private void HandleConnect(ServerBehavior behavior, Dictionary<string, string> data)
 	{
 		try
@@ -162,9 +217,6 @@ public class WebSocketServerThread
 			LogMessage($"클라이언트 연결 처리 중 오류 발생: {ex.Message}");
 		}
 	}
-
-
-
 
 	private void HandleMessage(ServerBehavior behavior, Dictionary<string, string> data)
 	{
