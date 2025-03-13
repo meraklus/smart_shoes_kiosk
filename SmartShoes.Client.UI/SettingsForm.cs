@@ -7,6 +7,8 @@ using Newtonsoft.Json.Linq;
 using ZXing.QrCode.Internal;
 using Windows.System;
 using System.Threading.Tasks;
+using System.IO;
+using System.Net.Http;
 
 namespace SmartShoes.Client.UI
 {
@@ -136,12 +138,13 @@ namespace SmartShoes.Client.UI
 
         private void btnMatSetting_Click(object sender, EventArgs e)
         {
-            if (dph != null)
-            {
-                showMatSet = true;
-                var showForm = dph.GetFunction<DelphiHelper.TShowForm>("ShowForm");
-                showForm(panel1.Handle, 0, 0, 0, 0, true);
-            }
+            test();
+            //if (dph != null)
+            //{
+            //    showMatSet = true;
+            //    var showForm = dph.GetFunction<DelphiHelper.TShowForm>("ShowForm");
+            //    showForm(panel1.Handle, 0, 0, 0, 0, true);
+            //}
         }
 
         private void btnSkeleton_Click(object sender, EventArgs e)
@@ -171,7 +174,7 @@ namespace SmartShoes.Client.UI
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private  void pictureBox1_Click(object sender, EventArgs e)
         {
             // if (showMatSet)
             // {
@@ -182,15 +185,94 @@ namespace SmartShoes.Client.UI
 
             // closefunc();
 
-
-
             // 테스트 명령어 전송
-            BLEManager.Instance.SendData("@START#1$\r\n");
+            // BLEManager.Instance.SendData("@START#1$\r\n");
 
-
+            // 파일 전송 api 테스트
+           
+            test();
         }
 
 
+        private async void test()
+        {
+            try
+            {
+                // 1. 간단한 파일 생성(json내용이 들어갈 예정)
+                string jsonContent = "{\"name\":\"test\",\"age\":10}";
+                string filePath = Path.Combine(Path.GetTempPath(), "test.json");
+                File.WriteAllText(filePath, jsonContent);
+
+                // 2. 파일 전송 api 호출
+                // http://221.161.177.191:8080/swagger-ui/index.html#/Report/createCameraResult
+                string apiUrl = "http://221.161.177.191:8080/api/report/camera-result";
+
+                using (var client = new HttpClient())
+                {
+                    client.Timeout = TimeSpan.FromSeconds(30); // 타임아웃 설정
+
+                    // MultipartFormDataContent 생성
+                    using (var multipartContent = new MultipartFormDataContent())
+                    {
+                        // 파일 추가 - Content-Type 헤더를 제거하여 서버가 자동으로 처리하도록 함
+                        var fileBytes = File.ReadAllBytes(filePath);
+                        var fileContent = new ByteArrayContent(fileBytes);
+                        // Content-Type 헤더 제거 (서버가 자동으로 처리하도록)
+                        // fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                        
+                        // 파일 이름에 확장자가 포함되어 있는지 확인
+                        string fileName = Path.GetFileName(filePath);
+                        multipartContent.Add(fileContent, "cameraFile", fileName);
+
+                        // 파라미터 추가
+                        multipartContent.Add(new StringContent("68"), "userSid");
+                        multipartContent.Add(new StringContent("33"), "containerSid");
+                        multipartContent.Add(new StringContent("419"), "reportSid");
+
+                        // 요청 전송 전 로그 출력
+                        Console.WriteLine("전송할 파라미터:");
+                        Console.WriteLine($"userSid: 68");
+                        Console.WriteLine($"containerSid: 33");
+                        Console.WriteLine($"reportSid: 419");
+                        Console.WriteLine($"cameraFile: {fileName} (크기: {fileBytes.Length} 바이트)");
+
+                        // 요청 전송
+                        var response = await client.PostAsync(apiUrl, multipartContent);
+
+                        // 응답 확인
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string responseContent = await response.Content.ReadAsStringAsync();
+                            MessageBox.Show($"파일 업로드 성공\n응답: {responseContent}", "성공", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            string errorContent = await response.Content.ReadAsStringAsync();
+                            MessageBox.Show($"파일 업로드 실패: {response.StatusCode} - {response.ReasonPhrase}\n오류 내용: {errorContent}",
+                                "실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        // 3. 파일 전송 완료 후 파일 삭제
+                        if (File.Exists(filePath))
+                        {
+                            File.Delete(filePath);
+                        }
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show($"HTTP 요청 오류: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (TaskCanceledException ex)
+            {
+                MessageBox.Show($"요청 시간 초과: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"예상치 못한 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void closefunc()
         {
