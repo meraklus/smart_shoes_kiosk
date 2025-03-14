@@ -30,8 +30,39 @@ namespace SmartShoes.Client.UI
             // 블루투스 연결 상태 변경 이벤트 구독
             BLEManager.Instance.ConnectionStatusChanged += OnBluetoothConnectionChanged;
 
+            // 카메라 상태 초기화
+            InitializeCameraStatus();
+
             // ws 자동연결결
             connectWebSocket();
+
+            // 폼 로드 이벤트 추가
+            this.Load += SettingsForm_Load;
+        }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+            // 폼 로드 시 연결된 클라이언트 상태 업데이트
+            UpdateConnectedClientsStatus();
+        }
+
+        private void UpdateConnectedClientsStatus()
+        {
+            // 서버가 실행 중인지 확인
+            if (WebSocketServerThread.Instance.IsRunning)
+            {
+                // 연결된 클라이언트 목록 가져오기
+                List<string> connectedClients = WebSocketServerThread.Instance.GetConnectedClients();
+                
+                // 모든 카메라 상태를 "Disconnect"로 초기화
+                InitializeCameraStatus();
+                
+                // 연결된 클라이언트 상태 업데이트
+                foreach (string clientId in connectedClients)
+                {
+                    UpdateCameraStatus(clientId, "Connect");
+                }
+            }
         }
 
         private void btnComplete_Click(object sender, EventArgs e)
@@ -56,11 +87,15 @@ namespace SmartShoes.Client.UI
             try
             {
                 WebSocketServerThread.Instance.Initialize("0.0.0.0", 8080);
+                // OnClientConnected 콜백 등록
+                WebSocketServerThread.Instance.OnClientConnected = OnClientConnected;
+                // OnClientDisconnected 콜백 등록
+                WebSocketServerThread.Instance.OnClientDisconnected = OnClientDisconnected;
                 WebSocketServerThread.Instance.Start();
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                Console.WriteLine("WebSocket 서버 시작 실패");
+                Console.WriteLine($"WebSocket 서버 시작 실패: {ex.Message}");
             }
         }
 
@@ -101,6 +136,22 @@ namespace SmartShoes.Client.UI
             {
                 UpdateCameraStatus(clientId, "Connect");
                 //myLabel.Text = $"클라이언트 {clientId}가 연결되었습니다.";
+            }
+        }
+
+        private void OnClientDisconnected(string clientId)
+        {
+            // 클라이언트 연결 해제 시 상태 업데이트
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() =>
+                {
+                    UpdateCameraStatus(clientId, "Disconnect");
+                }));
+            }
+            else
+            {
+                UpdateCameraStatus(clientId, "Disconnect");
             }
         }
 
@@ -390,6 +441,17 @@ namespace SmartShoes.Client.UI
             else
             {
                 BLEManager.Instance.SetTimer(time);
+            }
+        }
+
+        private void InitializeCameraStatus()
+        {
+            // 모든 카메라 상태를 "Disconnect"로 초기화
+            Label[] cameraStatusLabels = new Label[9] { cameraStatus1, cameraStatus2, cameraStatus3, cameraStatus4, cameraStatus5, cameraStatus6, cameraStatus7, cameraStatus8, cameraStatus9 };
+            
+            foreach (var label in cameraStatusLabels)
+            {
+                label.Text = "Disconnect";
             }
         }
     }

@@ -40,6 +40,8 @@ public class WebSocketServerThread
 	private bool _isRunning = false;
 
 	public Action<string> OnClientConnected { get; set; }
+	// 클라이언트 연결 해제 콜백 추가
+	public Action<string> OnClientDisconnected { get; set; }
 
 	// 기본 생성자를 private으로 변경
 	private WebSocketServerThread()
@@ -129,10 +131,19 @@ public class WebSocketServerThread
 		{
 			var session = behavior.Context;
 			string cameraId = session.Headers["camera_id"];
-			if (!string.IsNullOrEmpty(cameraId) && connectedClients.ContainsKey(cameraId))
+			if (!string.IsNullOrEmpty(cameraId))
 			{
-				connectedClients.Remove(cameraId);
-				LogMessage($"클라이언트({cameraId})가 연결을 끊었습니다.");
+				lock (_lock)
+				{
+					if (connectedClients.ContainsKey(cameraId))
+					{
+						connectedClients.Remove(cameraId);
+						LogMessage($"클라이언트({cameraId})가 연결을 끊었습니다.");
+						
+						// 클라이언트 연결 해제 콜백 호출
+						OnClientDisconnected?.Invoke(cameraId);
+					}
+				}
 			}
 		}
 		catch (Exception ex)
@@ -145,16 +156,26 @@ public class WebSocketServerThread
 	{
 		try
 		{
-			var data = JsonConvert.DeserializeObject<Dictionary<string, string>>(message);
-			if (data != null && data.TryGetValue("statusCode", out var statusCode))
+			var data = JsonConvert.DeserializeObject<dynamic>(message);
+			// data 출력해서 값좀 보자
+			Console.WriteLine("@@@@@@@@@@@@@@@@data@@@@@@@@@@@@@@@");
+			Console.WriteLine(data);
+			
+			// dynamic 타입은 TryGetValue를 사용할 수 없으므로 직접 속성에 접근
+			if (data != null && data.statusCode != null)
 			{
+				string statusCode = data.statusCode.ToString();
 				if (statusCode == "connect")
 				{
-					HandleConnect(behavior as ServerBehavior, data);
+					// Dictionary<string, string>을 기대하는 HandleConnect 메서드를 위해 변환
+					var dataDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(message);
+					HandleConnect(behavior as ServerBehavior, dataDict);
 				}
 				else
 				{
-					HandleMessage(behavior as ServerBehavior, data);
+					// Dictionary<string, string>을 기대하는 HandleMessage 메서드를 위해 변환
+					var dataDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(message);
+					HandleMessage(behavior as ServerBehavior, dataDict);
 				}
 			}
 			else
@@ -196,7 +217,13 @@ public class WebSocketServerThread
 					return;
 				}
 
-				if (connectedClients.ContainsKey(cameraId))
+				bool isAlreadyConnected = false;
+				lock (_lock)
+				{
+					isAlreadyConnected = connectedClients.ContainsKey(cameraId);
+				}
+
+				if (isAlreadyConnected)
 				{
 					var response = new { sender = "server", statusCode = "error", message = "ID가 이미 사용 중입니다." };
 					behavior.Context.WebSocket.Send(JsonConvert.SerializeObject(response));
@@ -204,7 +231,12 @@ public class WebSocketServerThread
 				else
 				{
 					behavior.Context.Headers.Add("camera_id", cameraId);
-					connectedClients[cameraId] = behavior;
+					
+					lock (_lock)
+					{
+						connectedClients[cameraId] = behavior;
+					}
+					
 					LogMessage($"ID {cameraId}로 클라이언트가 연결되었습니다.");
 					var welcomeMessage = new { sender = "server", statusCode = "connect", message = $"" };
 					behavior.Context.WebSocket.Send(JsonConvert.SerializeObject(welcomeMessage));
@@ -253,7 +285,15 @@ public class WebSocketServerThread
 		{
 			var welcomeMessage = new { sender = "server", statusCode = signal, message = string.Concat(folderName.Split(Path.GetInvalidFileNameChars())) };
 			string jsonData = JsonConvert.SerializeObject(welcomeMessage);
-			foreach (var client in connectedClients.Values)
+			
+			// 스레드 안전을 위해 연결된 클라이언트 목록의 복사본 사용
+			List<ServerBehavior> clients;
+			lock (_lock)
+			{
+				clients = new List<ServerBehavior>(connectedClients.Values);
+			}
+			
+			foreach (var client in clients)
 			{
 				client.Context.WebSocket.Send(jsonData);
 			}
@@ -262,6 +302,31 @@ public class WebSocketServerThread
 		{
 			LogMessage($"브로드캐스트 메시지 전송 중 오류 발생: {ex.Message}");
 		}
+	}
+
+	// 연결된 클라이언트 목록을 반환하는 함수 추가
+	public List<string> GetConnectedClients()
+	{
+		// 스레드 안전을 위해 복사본 반환
+		lock (_lock)
+		{
+			return new List<string>(connectedClients.Keys);
+		}
+	}
+
+	// 특정 클라이언트가 연결되어 있는지 확인하는 함수 추가
+	public bool IsClientConnected(string clientId)
+	{
+		lock (_lock)
+		{
+			return connectedClients.ContainsKey(clientId);
+		}
+	}
+
+	// 서버가 실행 중인지 확인하는 속성 추가
+	public bool IsRunning
+	{
+		get { return _isRunning; }
 	}
 }
 
