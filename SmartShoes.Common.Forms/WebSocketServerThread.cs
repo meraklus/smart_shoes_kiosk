@@ -175,7 +175,6 @@ public class WebSocketServerThread
 				{
 					// Dictionary<string, string>을 기대하는 HandleMessage 메서드를 위해 변환
 					var dataDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(message);
-					HandleMessage(behavior as ServerBehavior, dataDict);
 				}
 			}
 			else
