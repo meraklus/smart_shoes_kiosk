@@ -189,13 +189,13 @@ namespace SmartShoes.Client.UI
 
         private void btnMatSetting_Click(object sender, EventArgs e)
         {
-            test();
-            //if (dph != null)
-            //{
-            //    showMatSet = true;
-            //    var showForm = dph.GetFunction<DelphiHelper.TShowForm>("ShowForm");
-            //    showForm(panel1.Handle, 0, 0, 0, 0, true);
-            //}
+            //test();
+            if (dph != null)
+            {
+                showMatSet = true;
+                var showForm = dph.GetFunction<DelphiHelper.TShowForm>("ShowForm");
+                showForm(panel1.Handle, 0, 0, 0, 0, true);
+            }
         }
 
         private void btnSkeleton_Click(object sender, EventArgs e)
@@ -227,21 +227,21 @@ namespace SmartShoes.Client.UI
 
         private  void pictureBox1_Click(object sender, EventArgs e)
         {
-            // if (showMatSet)
-            // {
-            // 	showMatSet = false;
-            // 	var closeForm = dph.GetFunction<DelphiHelper.TCloseForm>("CloseForm");
-            // 	closeForm();
-            // }
+             if (showMatSet)
+            {
+                showMatSet = false;
+                var closeForm = dph.GetFunction<DelphiHelper.TCloseForm>("CloseForm");
+                closeForm();
+            }
 
-            // closefunc();
+            closefunc();
 
             // 테스트 명령어 전송
             // BLEManager.Instance.SendData("@START#1$\r\n");
 
             // 파일 전송 api 테스트
-           
-            test();
+
+            //test();
         }
 
 
