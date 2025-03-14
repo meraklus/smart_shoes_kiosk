@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using SmartShoes.Common.Forms;
+using System.IO;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Formatting;
 
 namespace SmartShoes.Client.UI
 {
@@ -447,12 +452,164 @@ namespace SmartShoes.Client.UI
         /// </summary>
         private async Task ProcessCameraDataAsync()
         {
-            // 카메라 데이터 처리 로직 구현
-            // 실제 구현은 Mat 데이터와 유사한 패턴으로 작성
-            WebSocketServerThread.Instance.BroadcastMessage("results", "");
-            await Task.Delay(1000); // 임시 지연
-            isCameraDataProcessed = true;
-            Console.WriteLine("Camera 데이터 처리 완료");
+            try
+            {
+                // 카메라 데이터 파일 찾기
+                string cameraDataFilePath = FindCameraDataFile();
+                
+                if (!string.IsNullOrEmpty(cameraDataFilePath))
+                {
+                    // 파일에서 카메라 데이터 불러오기
+                    string jsonData = File.ReadAllText(cameraDataFilePath);
+                    
+                    // JSON 데이터 파싱
+                    var cameraData = JsonConvert.DeserializeObject<List<object>>(jsonData);
+                    
+                    if (cameraData != null && cameraData.Count > 0)
+                    {
+                        Console.WriteLine($"카메라 데이터 불러오기 성공: {cameraData.Count}개 데이터");
+                        
+                        // 여기에 카메라 데이터 처리 로직 추가
+                        // 예: API 호출, 데이터 분석 등
+                        bool apiSuccess = await SendCameraDataToApi(cameraData);
+                        
+                        if (apiSuccess)
+                        {
+                            // API 전송 성공 시 파일 삭제
+                            try
+                            {
+                                File.Delete(cameraDataFilePath);
+                                Console.WriteLine($"카메라 데이터 파일 삭제 성공: {cameraDataFilePath}");
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"카메라 데이터 파일 삭제 중 오류 발생: {ex.Message}");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("카메라 데이터가 비어 있습니다.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("카메라 데이터 파일을 찾을 수 없습니다.");
+                }
+                
+                isCameraDataProcessed = true;
+                Console.WriteLine("Camera 데이터 처리 완료");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"카메라 데이터 처리 중 오류 발생: {ex.Message}");
+                isCameraDataProcessed = true; // 오류 발생 시 처리 완료로 간주
+            }
+        }
+        
+        /// <summary>
+        /// 카메라 데이터를 API로 전송합니다.
+        /// </summary>
+        private async Task<bool> SendCameraDataToApi(List<object> cameraData)
+        {
+            try
+            {
+                // API 엔드포인트 URL
+                string apiUrl = prefixUrl + "report/camera-result";
+
+                using (var client = new HttpClient())
+                {
+                    client.Timeout = TimeSpan.FromSeconds(30); // 타임아웃 설정
+
+                    // MultipartFormDataContent 생성
+                    using (var multipartContent = new MultipartFormDataContent())
+                    {
+                        // 카메라 데이터를 JSON 문자열로 변환
+                        string jsonData = JsonConvert.SerializeObject(cameraData);
+                        
+                        // JSON 데이터를 바이트 배열로 변환
+                        var fileBytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
+                        var fileContent = new ByteArrayContent(fileBytes);
+                        
+                        // 파일 이름 설정
+                        string fileName = "camera_data.json";
+                        multipartContent.Add(fileContent, "cameraFile", fileName);
+
+                        // 파라미터 추가
+                        multipartContent.Add(new StringContent(UserInfo.Instance.UserId.ToString()), "userSid");
+                        multipartContent.Add(new StringContent(Properties.Settings.Default.CONTAINER_ID), "containerSid");
+                        multipartContent.Add(new StringContent(reportSid.ToString()), "reportSid");
+
+                        // 요청 전송 전 로그 출력
+                        Console.WriteLine("전송할 파라미터:");
+                        Console.WriteLine($"userSid: {UserInfo.Instance.UserId}");
+                        Console.WriteLine($"containerSid: {Properties.Settings.Default.CONTAINER_ID}");
+                        Console.WriteLine($"reportSid: {reportSid}");
+                        Console.WriteLine($"cameraFile: {fileName} (크기: {fileBytes.Length} 바이트)");
+
+                        // 요청 전송
+                        var response = await client.PostAsync(apiUrl, multipartContent);
+
+                        // 응답 확인
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string responseContent = await response.Content.ReadAsStringAsync();
+                            Console.WriteLine($"카메라 데이터 API 응답: {responseContent}");
+                            return true;
+                        }
+                        else
+                        {
+                            string errorContent = await response.Content.ReadAsStringAsync();
+                            Console.WriteLine($"카메라 데이터 API 호출 실패: {response.StatusCode} - {response.ReasonPhrase}\n오류 내용: {errorContent}");
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"카메라 데이터 API 호출 중 오류 발생: {ex.Message}");
+                return false;
+            }
+        }
+        
+        /// <summary>
+        /// 카메라 데이터 파일을 찾습니다.
+        /// </summary>
+        private string FindCameraDataFile()
+        {
+            try
+            {
+                // 먼저 WebSocketServerThread에서 사용하는 경로 확인
+                string appDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CameraData", "merged_data.json");
+                if (File.Exists(appDataPath))
+                {
+                    Console.WriteLine("카메라 데이터 파일 찾음 (앱 경로): " + appDataPath);
+                    return appDataPath;
+                }
+                
+                // 문서 폴더에서도 확인
+                string documentsPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                    "SmartShoes",
+                    "CameraData",
+                    "merged_data.json"
+                );
+                
+                if (File.Exists(documentsPath))
+                {
+                    Console.WriteLine("카메라 데이터 파일 찾음 (문서 경로): " + documentsPath);
+                    return documentsPath;
+                }
+                
+                Console.WriteLine("카메라 데이터 파일을 찾을 수 없습니다.");
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"카메라 데이터 파일 검색 중 오류 발생: {ex.Message}");
+                return string.Empty;
+            }
         }
         
         /// <summary>

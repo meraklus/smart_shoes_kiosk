@@ -5,6 +5,8 @@ using System.Timers;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace SmartShoes.Client.UI
 {
@@ -21,6 +23,7 @@ namespace SmartShoes.Client.UI
         private bool _leftFlag = false;
         private bool _rightFlag = false;
         private bool _isDataCollectionComplete = true;
+        private bool _isCameraDataCollectionComplete = true; // 카메라 데이터 수집 완료 여부
 
         public MeasureNomalSecond()
         {
@@ -31,6 +34,9 @@ namespace SmartShoes.Client.UI
 #endif
             // BLE 데이터 수집 완료 이벤트 구독
             BLEManager.Instance.DataCollectionCompleted += BLEManager_DataCollectionCompleted;
+            
+            // 카메라 데이터 수집 완료 콜백 등록
+            WebSocketServerThread.Instance.OnDataCollectionCompleted = OnCameraDataCollectionCompleted;
 
             MeasureFunction();
         }
@@ -40,6 +46,43 @@ namespace SmartShoes.Client.UI
         {
             // 데이터 수집 완료 상태 설정
             _isDataCollectionComplete = true;
+        }
+        
+        // 카메라 데이터 수집 완료 콜백 메서드
+        private void OnCameraDataCollectionCompleted(List<object> collectedData, List<string> missingCameras)
+        {
+            // UI 스레드에서 실행
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => OnCameraDataCollectionCompleted(collectedData, missingCameras)));
+                return;
+            }
+            
+            try
+            {
+                // 수집된 데이터 처리
+                if (collectedData != null && collectedData.Count > 0)
+                {
+                    // WebSocketServerThread에서 이미 파일을 저장하므로 여기서는 로그만 출력
+                    Console.WriteLine($"카메라 데이터 수집 완료: {collectedData.Count}개 데이터 수집");
+                    if (missingCameras.Count > 0)
+                    {
+                        Console.WriteLine($"데이터를 제공하지 않은 카메라: {string.Join(", ", missingCameras)}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("수집된 카메라 데이터가 없습니다.");
+                }
+                
+                // 카메라 데이터 처리 완료 상태로 설정
+                _isCameraDataCollectionComplete = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"카메라 데이터 처리 중 오류 발생: {ex.Message}");
+                _isCameraDataCollectionComplete = true; // 오류가 발생해도 완료 상태로 설정
+            }
         }
 
         private async void MeasureFunction()
@@ -176,13 +219,19 @@ namespace SmartShoes.Client.UI
         }
 
         // 측정 완료 및 결과 화면으로 이동하는 메서드
-        private void CompleteAndMoveToResult()
+        private async void CompleteAndMoveToResult()
         {
             try
             {
                 // 웹소켓을 통해 카메라 측정 중지 신호 전송
                 WebSocketServerThread.Instance.BroadcastMessage("stop", "");
-
+                
+                // 클라이언트가 stop 메시지를 처리할 시간을 주기 위해 잠시 대기
+                await Task.Delay(500);
+                
+                // 카메라 데이터 수집 시작 (results 메시지 전송)
+                _isCameraDataCollectionComplete = false;
+                WebSocketServerThread.Instance.BroadcastMessage("results", "");
                 
                 // 측정 중지
                 var measurestop = dph.GetFunction<DelphiHelper.TMeasurestop>("Measurestop");
@@ -195,15 +244,55 @@ namespace SmartShoes.Client.UI
                 SaveMatDataFromDatabase();
 
                 this.endMeasureBool = true;
-
-                //this.Invoke(new Action(() => MovePage(typeof(MeasureResultForm2))));
-                 this.Invoke(new Action(() => MovePage(typeof(NewResultForm))));
-
-                loadpop.Close();
+                
+                // 카메라 데이터 수집이 완료될 때까지 대기
+                WaitForCameraDataCollection();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"측정 완료 중 오류 발생: {ex.Message}");
+                // 오류 발생 시 바로 결과 화면으로 이동
+                this.Invoke(new Action(() => MovePage(typeof(NewResultForm))));
+                loadpop.Close();
+            }
+        }
+
+        // 카메라 데이터 수집이 완료될 때까지 대기
+        private async void WaitForCameraDataCollection()
+        {
+            try
+            {
+                // 비동기적으로 카메라 데이터 수집 완료를 기다림
+                await Task.Run(async () => 
+                {
+                    // 카메라 데이터 수집이 완료될 때까지 대기 (최대 10초)
+                    int timeoutMs = 10000; // WebSocketServerThread의 DataCollectionTimeoutMs보다 충분히 길게 설정
+                    int elapsedMs = 0;
+                    int checkIntervalMs = 100;
+                    
+                    while (!_isCameraDataCollectionComplete && elapsedMs < timeoutMs)
+                    {
+                        await Task.Delay(checkIntervalMs);
+                        elapsedMs += checkIntervalMs;
+                    }
+                    
+                    if (!_isCameraDataCollectionComplete)
+                    {
+                        Console.WriteLine("카메라 데이터 수집 시간 초과");
+                        _isCameraDataCollectionComplete = true; // 타임아웃 시 처리 완료로 간주
+                    }
+                });
+                
+                // 데이터 수집 완료 후 결과 화면으로 이동
+                this.Invoke(new Action(() => MovePage(typeof(NewResultForm))));
+                loadpop.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"카메라 데이터 수집 대기 중 오류 발생: {ex.Message}");
+                // 오류 발생 시 바로 결과 화면으로 이동
+                this.Invoke(new Action(() => MovePage(typeof(NewResultForm))));
+                loadpop.Close();
             }
         }
 
@@ -437,6 +526,9 @@ namespace SmartShoes.Client.UI
             
             // 이벤트 구독 해제
             BLEManager.Instance.DataCollectionCompleted -= BLEManager_DataCollectionCompleted;
+            
+            // 카메라 데이터 수집 완료 콜백 해제
+            WebSocketServerThread.Instance.OnDataCollectionCompleted = null;
             
             // 웹소켓 서버 정리
             // WebSocketServerThread.Instance.Stop();
