@@ -183,9 +183,6 @@ public class WebSocketServerThread
 		try
 		{
 			var data = JsonConvert.DeserializeObject<dynamic>(message);
-			// data 출력해서 값좀 보자
-			Console.WriteLine("@@@@@@@@@@@@@@@@data@@@@@@@@@@@@@@@");
-			Console.WriteLine(data);
 			
 			// dynamic 타입은 TryGetValue를 사용할 수 없으므로 직접 속성에 접근
 			if (data != null && data.statusCode != null)
@@ -194,10 +191,10 @@ public class WebSocketServerThread
 				HandleConnect(behavior as ServerBehavior, dataDict);
 			}
 			// 카메라 데이터 처리 (cameraId와 data 속성이 있는 경우)
-			else if (data != null && data.cameraId != null && data.data != null)
+			else if (data != null && data.cameraID != null && data.data != null)
 			{
 				// 카메라 ID 추출
-				string cameraId = data.cameraId.ToString();
+				string cameraId = data.cameraID.ToString();
 				
 				// data 부분만 추출하여 리스트에 추가
 				lock (_lock)

@@ -13,7 +13,6 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Net.Http.Formatting;
 
 namespace SmartShoes.Client.UI
 {
