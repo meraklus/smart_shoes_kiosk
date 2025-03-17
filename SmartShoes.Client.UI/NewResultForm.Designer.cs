@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.picLeftAngle = new System.Windows.Forms.Label();
+            this.picLeftLength = new System.Windows.Forms.Label();
+            this.picRightAngle = new System.Windows.Forms.Label();
+            this.picRightLength = new System.Windows.Forms.Label();
+            this.picStandardLength = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtStandardGap = new System.Windows.Forms.Label();
             this.txtStandardForce = new System.Windows.Forms.Label();
@@ -79,11 +79,11 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.result1_11;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.picLeftAngle);
+            this.panel1.Controls.Add(this.picLeftLength);
+            this.panel1.Controls.Add(this.picRightAngle);
+            this.panel1.Controls.Add(this.picRightLength);
+            this.panel1.Controls.Add(this.picStandardLength);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.txtStandardGap);
             this.panel1.Controls.Add(this.txtStandardForce);
@@ -119,58 +119,58 @@
             this.panel1.Size = new System.Drawing.Size(1080, 1288);
             this.panel1.TabIndex = 10;
             // 
-            // label5
+            // picLeftAngle
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(813, 741);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 16);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "00";
+            this.picLeftAngle.AutoSize = true;
+            this.picLeftAngle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.picLeftAngle.Location = new System.Drawing.Point(813, 741);
+            this.picLeftAngle.Name = "picLeftAngle";
+            this.picLeftAngle.Size = new System.Drawing.Size(25, 16);
+            this.picLeftAngle.TabIndex = 13;
+            this.picLeftAngle.Text = "00";
             // 
-            // label4
+            // picLeftLength
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(118)))), ((int)(((byte)(118)))));
-            this.label4.Location = new System.Drawing.Point(761, 643);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 16);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "00";
+            this.picLeftLength.AutoSize = true;
+            this.picLeftLength.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.picLeftLength.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(118)))), ((int)(((byte)(118)))));
+            this.picLeftLength.Location = new System.Drawing.Point(761, 643);
+            this.picLeftLength.Name = "picLeftLength";
+            this.picLeftLength.Size = new System.Drawing.Size(25, 16);
+            this.picLeftLength.TabIndex = 13;
+            this.picLeftLength.Text = "00";
             // 
-            // label3
+            // picRightAngle
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(845, 610);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 16);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "00";
+            this.picRightAngle.AutoSize = true;
+            this.picRightAngle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.picRightAngle.Location = new System.Drawing.Point(845, 610);
+            this.picRightAngle.Name = "picRightAngle";
+            this.picRightAngle.Size = new System.Drawing.Size(25, 16);
+            this.picRightAngle.TabIndex = 13;
+            this.picRightAngle.Text = "00";
             // 
-            // label2
+            // picRightLength
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.label2.Location = new System.Drawing.Point(866, 512);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 16);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "00";
+            this.picRightLength.AutoSize = true;
+            this.picRightLength.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.picRightLength.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.picRightLength.Location = new System.Drawing.Point(866, 512);
+            this.picRightLength.Name = "picRightLength";
+            this.picRightLength.Size = new System.Drawing.Size(25, 16);
+            this.picRightLength.TabIndex = 13;
+            this.picRightLength.Text = "00";
             // 
-            // label1
+            // picStandardLength
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(178)))), ((int)(((byte)(168)))));
-            this.label1.Location = new System.Drawing.Point(753, 529);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 16);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "00";
+            this.picStandardLength.AutoSize = true;
+            this.picStandardLength.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.picStandardLength.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(178)))), ((int)(((byte)(168)))));
+            this.picStandardLength.Location = new System.Drawing.Point(753, 529);
+            this.picStandardLength.Name = "picStandardLength";
+            this.picStandardLength.Size = new System.Drawing.Size(25, 16);
+            this.picStandardLength.TabIndex = 13;
+            this.picStandardLength.Text = "00";
             // 
             // pictureBox1
             // 
@@ -556,11 +556,11 @@
         private System.Windows.Forms.Label txtLeftTime;
         private System.Windows.Forms.Label txtLeftLength;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label picLeftAngle;
+        private System.Windows.Forms.Label picLeftLength;
+        private System.Windows.Forms.Label picRightAngle;
+        private System.Windows.Forms.Label picRightLength;
+        private System.Windows.Forms.Label picStandardLength;
         private System.Windows.Forms.Label txtLeftStepAngle;
         private System.Windows.Forms.Label txtLeftStep;
         private System.Windows.Forms.Label txtRightStepAngle;
