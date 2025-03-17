@@ -79,6 +79,19 @@ namespace SmartShoes.Client.UI
                 // 리포트 ID 생성
                 reportSid = await CreateReportAsync();
                 
+                /*
+                    private System.Windows.Forms.Label txtFootSize;
+                    private System.Windows.Forms.Label txtHeight;
+                    private System.Windows.Forms.Label txtSex;
+                    private System.Windows.Forms.Label txtAge;
+                    private System.Windows.Forms.Label txtName;
+                */
+                this.txtFootSize.Text = UserInfo.Instance.FootSize.ToString();
+                this.txtHeight.Text = UserInfo.Instance.Height.ToString();
+                this.txtSex.Text = UserInfo.Instance.Sex.ToString();
+                this.txtAge.Text = UserInfo.Instance.Age.ToString();
+                this.txtName.Text = UserInfo.Instance.Name.ToString();
+
                 if (reportSid > 0)
                 {
                     // 각 데이터 처리를 병렬로 시작
@@ -302,39 +315,38 @@ namespace SmartShoes.Client.UI
                         {
                             measureResult = new MeasureResult();
                         }
+                        this.txtLeftStancePhase.Text = MatData.StancePhase1.ToString("F0"); // 왼발 입각 
+                        this.txtLeftSwingPhase.Text = MatData.SwingPhase1.ToString("F0"); //  왼발 유각
+                        this.txtRightStancePhase.Text = MatData.SwingPhase2.ToString("F0"); // 오른발 유각
+                        this.txtRightSwingPhase.Text = MatData.StancePhase2.ToString("F0"); // 오른발 입각
+
+                        this.txtLeftLength = MatData.StepLength1.ToString("F1");
+                        this.txtLeftTime = MatData.SingleStepTime1.ToString("F2");
+                        this.txtLeftSpeed = MatData.StrideTime1.ToString("F2");
+                        this.txtLeftAngle = MatData.StepAngle1.ToString("F2");
+                        this.txtLeftForce = MatData.StepForce1.ToString("F2");
+                        this.txtLeftGap = MatData.BaseOfGait1.ToString("F2");
                         
-                        // API 응답에서 값 추출
-                        measureResult.matScoreLength = jObject["score_lenght"]?.ToString() ?? "0";
-                        measureResult.matScoreSingleTime = jObject["score_singletime"]?.ToString() ?? "0";
-                        measureResult.matScoreStrideTime = jObject["score_stridetime"]?.ToString() ?? "0";
-                        measureResult.matScoreAngle = jObject["score_angle"]?.ToString() ?? "0";
-                        measureResult.matScoreForce = jObject["score_force"]?.ToString() ?? "0";
-                        measureResult.matScoreBaseOfGait = jObject["score_baseofgait"]?.ToString() ?? "0";
+                        this.txtRightLength = MatData.StepLength2.ToString("F1");
+                        this.txtRightTime = MatData.SingleStepTime2.ToString("F2");
+                        this.txtRightSpeed = MatData.StrideTime2.ToString("F2"); 
+                        this.txtRightAngle = MatData.StepAngle2.ToString("F2");
+                        this.txtRightForce = MatData.StepForce2.ToString("F2");
+                        this.txtRightGap = MatData.BaseOfGait2.ToString("F2");
                         
-                        // 등급 계산 (소수점 반올림)
-                        double gradeValue = 0;
-                        if (double.TryParse(jObject["score_grede"]?.ToString() ?? "0", out gradeValue))
-                        {
-                            int grade = (int)Math.Round(gradeValue);
-                            // 등급은 1-5 사이로 제한
-                            grade = Math.Max(1, Math.Min(5, grade));
-                            measureResult.matBalanceLevel = grade.ToString();
-                        }
-                        else
-                        {
-                            measureResult.matBalanceLevel = "3"; // 기본값
-                        }
-                        
-                        // 코멘트 설정
-                        measureResult.matComment = jObject["comment"]?.ToString() ?? "";
-                        
-                        // 보행 안정성 판단 (코멘트에서 추출)
-                        string comment = measureResult.matComment.ToLower();
-                        measureResult.matLeftStepStable = !comment.Contains("왼쪽 보행은 짧음") && !comment.Contains("왼쪽 보행은 이상") ? "True" : "False";
-                        measureResult.matRightStepStable = !comment.Contains("오른쪽 보행은 짧음") && !comment.Contains("오른쪽 보행은 이상") ? "True" : "False";
-                        measureResult.matGaitSpacingStable = !comment.Contains("보행 시 발 사이 거리좁아지는") ? "True" : "False";
-                        
-                        Console.WriteLine("Mat API 응답 파싱 완료");
+
+                        this.txtStandardGap = MatData.BaseOfGait4.ToString("F2") + "cm";
+                        this.txtStandardForce = MatData.StepForce4.ToString("F2") + "%";
+                        this.txtStandardAngle = MatData.StepAngle4.ToString("F2") + "˚";
+                        this.txtStandardSpeed = MatData.StrideTime4.ToString("F2") + "sec";
+                        this.txtStandardTime = MatData.StrideTime4.ToString("F2") + "sec";
+                        this.txtStandardLength = MatData.StrideLength4.ToString("F0") + "cm";
+
+                        this.picLeftAngle = MatData.StepAngle1.ToString("F2") + "˚";
+                        this.picLeftLength = MatData.StepLength1.ToString("F1") + "cm";
+                        this.picRightAngle = MatData.StepAngle2.ToString("F2") + "˚";
+                        this.picRightLength = MatData.StepLength2.ToString("F1") + "cm";
+                        this.picStandardLength = MatData.StrideLength4.ToString("F0") + "cm";
                     }
                     else
                     {
