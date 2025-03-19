@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
+this.txtFootSize.Text = UserInfo.Instance.FootSize.ToString();
+this.txtHeight.Text = UserInfo.Instance.Height.ToString();
+this.txtSex.Text = UserInfo.Instance.Sex.ToString();
+this.txtAge.Text = UserInfo.Instance.Age.ToString();
+this.txtName.Text = UserInfo.Instance.Name.ToString();
+*/
 namespace SmartShoes.Common.Forms
 {
 	public class UserInfo
@@ -15,6 +21,9 @@ namespace SmartShoes.Common.Forms
 		public string UserName { get; private set; }
 		public string UserId { get; private set; }
 		public int Height { get; private set; }
+		public int FootSize { get; private set; }
+		public int Sex { get; private set; }
+		public int Age { get; private set; }
 
 		// 생성자를 private으로 하여 외부에서 인스턴스를 생성하지 못하게 함
 		private UserInfo() { }

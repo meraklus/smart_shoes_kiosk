@@ -79,18 +79,11 @@ namespace SmartShoes.Client.UI
                 // 리포트 ID 생성
                 reportSid = await CreateReportAsync();
                 
-                /*
-                    private System.Windows.Forms.Label txtFootSize;
-                    private System.Windows.Forms.Label txtHeight;
-                    private System.Windows.Forms.Label txtSex;
-                    private System.Windows.Forms.Label txtAge;
-                    private System.Windows.Forms.Label txtName;
-                */
                 this.txtFootSize.Text = UserInfo.Instance.FootSize.ToString();
                 this.txtHeight.Text = UserInfo.Instance.Height.ToString();
                 this.txtSex.Text = UserInfo.Instance.Sex.ToString();
                 this.txtAge.Text = UserInfo.Instance.Age.ToString();
-                this.txtName.Text = UserInfo.Instance.Name.ToString();
+                this.txtName.Text = UserInfo.Instance.UserName.ToString();
 
                 if (reportSid > 0)
                 {
@@ -181,7 +174,7 @@ namespace SmartShoes.Client.UI
                     measurementData = CreateMeasurementData(matData);
                     
                     // API 요청 및 결과 수신
-                    await CallApiResultMatt();
+                    await CallApiResultMatt(matData);
                     
                     isMatDataProcessed = true;
                     Console.WriteLine("Mat 데이터 처리 완료");
@@ -285,7 +278,7 @@ namespace SmartShoes.Client.UI
         /// <summary>
         /// Mat 데이터 분석을 위한 API 호출
         /// </summary>
-        private async Task CallApiResultMatt()
+        private async Task CallApiResultMatt(MatData matData)
         {
             try
             {
@@ -315,38 +308,38 @@ namespace SmartShoes.Client.UI
                         {
                             measureResult = new MeasureResult();
                         }
-                        this.txtLeftStancePhase.Text = MatData.StancePhase1.ToString("F0"); // 왼발 입각 
-                        this.txtLeftSwingPhase.Text = MatData.SwingPhase1.ToString("F0"); //  왼발 유각
-                        this.txtRightStancePhase.Text = MatData.SwingPhase2.ToString("F0"); // 오른발 유각
-                        this.txtRightSwingPhase.Text = MatData.StancePhase2.ToString("F0"); // 오른발 입각
+                        this.txtLeftStancePhase.Text = matData.StancePhase1.ToString("F0"); // 왼발 입각 
+                        this.txtLeftSwingPhase.Text = matData.SwingPhase1.ToString("F0"); //  왼발 유각
+                        this.txtRightStancePhase.Text = matData.SwingPhase2.ToString("F0"); // 오른발 유각
+                        this.txtRightSwingPhase.Text = matData.StancePhase2.ToString("F0"); // 오른발 입각
 
-                        this.txtLeftLength = MatData.StepLength1.ToString("F1");
-                        this.txtLeftTime = MatData.SingleStepTime1.ToString("F2");
-                        this.txtLeftSpeed = MatData.StrideTime1.ToString("F2");
-                        this.txtLeftAngle = MatData.StepAngle1.ToString("F2");
-                        this.txtLeftForce = MatData.StepForce1.ToString("F2");
-                        this.txtLeftGap = MatData.BaseOfGait1.ToString("F2");
+                        this.txtLeftLength.Text = matData.StepLength1.ToString("F1");
+                        this.txtLeftTime.Text = matData.SingleStepTime1.ToString("F2");
+                        this.txtLeftSpeed.Text = matData.StrideTime1.ToString("F2");
+                        this.txtLeftAngle.Text = matData.StepAngle1.ToString("F2");
+                        this.txtLeftForce.Text = matData.StepForce1.ToString("F2");
+                        this.txtLeftGap.Text = matData.BaseOfGait1.ToString("F2");
                         
-                        this.txtRightLength = MatData.StepLength2.ToString("F1");
-                        this.txtRightTime = MatData.SingleStepTime2.ToString("F2");
-                        this.txtRightSpeed = MatData.StrideTime2.ToString("F2"); 
-                        this.txtRightAngle = MatData.StepAngle2.ToString("F2");
-                        this.txtRightForce = MatData.StepForce2.ToString("F2");
-                        this.txtRightGap = MatData.BaseOfGait2.ToString("F2");
+                        this.txtRightLength.Text = matData.StepLength2.ToString("F1");
+                        this.txtRightTime.Text = matData.SingleStepTime2.ToString("F2");
+                        this.txtRightSpeed.Text = matData.StrideTime2.ToString("F2"); 
+                        this.txtRightAngle.Text = matData.StepAngle2.ToString("F2");
+                        this.txtRightForce.Text = matData.StepForce2.ToString("F2");
+                        this.txtRightGap.Text = matData.BaseOfGait2.ToString("F2");
                         
 
-                        this.txtStandardGap = MatData.BaseOfGait4.ToString("F2") + "cm";
-                        this.txtStandardForce = MatData.StepForce4.ToString("F2") + "%";
-                        this.txtStandardAngle = MatData.StepAngle4.ToString("F2") + "˚";
-                        this.txtStandardSpeed = MatData.StrideTime4.ToString("F2") + "sec";
-                        this.txtStandardTime = MatData.StrideTime4.ToString("F2") + "sec";
-                        this.txtStandardLength = MatData.StrideLength4.ToString("F0") + "cm";
+                        this.txtStandardGap.Text = matData.BaseOfGait4.ToString("F2") + "cm";
+                        this.txtStandardForce.Text = matData.StepForce4.ToString("F2") + "%";
+                        this.txtStandardAngle.Text = matData.StepAngle4.ToString("F2") + "˚";
+                        this.txtStandardSpeed.Text = matData.StrideTime4.ToString("F2") + "sec";
+                        this.txtStandardTime.Text = matData.StrideTime4.ToString("F2") + "sec";
+                        this.txtStandardLength.Text = matData.StrideLength4.ToString("F0") + "cm";
 
-                        this.picLeftAngle = MatData.StepAngle1.ToString("F2") + "˚";
-                        this.picLeftLength = MatData.StepLength1.ToString("F1") + "cm";
-                        this.picRightAngle = MatData.StepAngle2.ToString("F2") + "˚";
-                        this.picRightLength = MatData.StepLength2.ToString("F1") + "cm";
-                        this.picStandardLength = MatData.StrideLength4.ToString("F0") + "cm";
+                        this.picLeftAngle.Text = matData.StepAngle1.ToString("F2") + "˚";
+                        this.picLeftLength.Text = matData.StepLength1.ToString("F1") + "cm";
+                        this.picRightAngle.Text = matData.StepAngle2.ToString("F2") + "˚";
+                        this.picRightLength.Text = matData.StepLength2.ToString("F1") + "cm";
+                        this.picStandardLength.Text = matData.StrideLength4.ToString("F0") + "cm";
                     }
                     else
                     {
