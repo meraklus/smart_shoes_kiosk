@@ -393,6 +393,16 @@ namespace SmartShoes.Client.UI.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap grade1 {
+            get {
+                object obj = ResourceManager.GetObject("grade1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_walk_1 {
             get {
                 object obj = ResourceManager.GetObject("icon_walk_1", resourceCulture);
@@ -636,6 +646,26 @@ namespace SmartShoes.Client.UI.Properties {
         internal static System.Drawing.Bitmap result1_1_5 {
             get {
                 object obj = ResourceManager.GetObject("result1_1.5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap result1_1_5_1 {
+            get {
+                object obj = ResourceManager.GetObject("result1_1_5_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap result1_1_5_2 {
+            get {
+                object obj = ResourceManager.GetObject("result1_1_5_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
