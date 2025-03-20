@@ -136,7 +136,6 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.result1_11;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.textBoxReport);
             this.panel1.Controls.Add(this.picRightForce);
             this.panel1.Controls.Add(this.picLeftForce);
@@ -650,6 +649,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.picPrint);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnNext);
             this.Name = "NewResultForm";
             this.Size = new System.Drawing.Size(1080, 1420);
