@@ -82,9 +82,9 @@
             this.txtAge2 = new System.Windows.Forms.Label();
             this.txtName2 = new System.Windows.Forms.Label();
             this.txtMeasureDate2 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.btnNext = new System.Windows.Forms.PictureBox();
             this.picPrint = new System.Windows.Forms.PictureBox();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGrade)).BeginInit();
             this.panel2.SuspendLayout();
@@ -183,7 +183,6 @@
             this.panel1.Controls.Add(this.txtAge);
             this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.txtMeasureDate);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1080, 1288);
@@ -598,7 +597,6 @@
             this.panel2.Controls.Add(this.txtAge2);
             this.panel2.Controls.Add(this.txtName2);
             this.panel2.Controls.Add(this.txtMeasureDate2);
-            this.panel2.Controls.Add(this.panel3);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1080, 1288);
@@ -670,6 +668,14 @@
             this.txtMeasureDate2.TabIndex = 0;
             this.txtMeasureDate2.Text = "YYYY-MM-DD";
             // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1080, 1420);
+            this.panel3.TabIndex = 6;
+            // 
             // btnNext
             // 
             this.btnNext.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.Frame_284;
@@ -694,20 +700,13 @@
             this.picPrint.TabStop = false;
             this.picPrint.Click += new System.EventHandler(this.picPrint_Click);
             // 
-            // panel3
-            // 
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1080, 1420);
-            this.panel3.TabIndex = 6;
-            // 
             // NewResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.picPrint);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Name = "NewResultForm";
