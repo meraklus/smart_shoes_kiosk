@@ -802,20 +802,16 @@ namespace SmartShoes.Client.UI
             // 인쇄할 패널 결정
             Panel panelToPrint = (currentPrintPage == 0) ? panel1 : panel2;
             
-            // 패널 크기에 맞게 비율 계산
-            float ratio = Math.Min((float)e.MarginBounds.Width / panelToPrint.Width, (float)e.MarginBounds.Height / panelToPrint.Height);
-            
             // 패널의 비트맵 생성
             Bitmap bmp = new Bitmap(panelToPrint.Width, panelToPrint.Height);
             panelToPrint.DrawToBitmap(bmp, new Rectangle(0, 0, panelToPrint.Width, panelToPrint.Height));
             
-            // 비트맵을 그래픽 객체에 그리기
-            int width = (int)(panelToPrint.Width * ratio);
-            int height = (int)(panelToPrint.Height * ratio);
-            int x = (e.MarginBounds.Width - width) / 2 + e.MarginBounds.Left;
-            int y = (e.MarginBounds.Height - height) / 2 + e.MarginBounds.Top;
+            // 프린트 페이지 크기
+            var pageWidth = e.PageBounds.Width;
+            var pageHeight = e.PageBounds.Height;
             
-            g.DrawImage(bmp, new Rectangle(x, y, width, height));
+            // 페이지에 가득 차도록 그리기
+            g.DrawImage(bmp, 0, 0, pageWidth, pageHeight);
             
             // 다음 페이지 설정
             currentPrintPage++;

@@ -174,12 +174,6 @@
             this.panel1.Controls.Add(this.txtAge);
             this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.txtMeasureDate);
-            this.panel1.Controls.Add(this.txtFootSize2);
-            this.panel1.Controls.Add(this.txtHeight2);
-            this.panel1.Controls.Add(this.txtSex2);
-            this.panel1.Controls.Add(this.txtAge2);
-            this.panel1.Controls.Add(this.txtName2);
-            this.panel1.Controls.Add(this.txtMeasureDate2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -194,6 +188,12 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1080, 1288);
             this.panel2.TabIndex = 17;
+            this.panel2.Controls.Add(this.txtFootSize2);
+            this.panel2.Controls.Add(this.txtHeight2);
+            this.panel2.Controls.Add(this.txtSex2);
+            this.panel2.Controls.Add(this.txtAge2);
+            this.panel2.Controls.Add(this.txtName2);
+            this.panel2.Controls.Add(this.txtMeasureDate2);
             // 
             // textBoxReport
             // 
