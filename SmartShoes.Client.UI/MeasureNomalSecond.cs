@@ -108,7 +108,7 @@ namespace SmartShoes.Client.UI
                     //Console.WriteLine("카메라 측정 시작 신호 전송: " + folderName);
                     
                     // BLE 데이터 수집 시작
-                    BLEManager.Instance.Start();
+                    //BLEManager.Instance.Start();
                 }
             }
             catch (Exception ex)
