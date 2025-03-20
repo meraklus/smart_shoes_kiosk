@@ -237,12 +237,15 @@
             // 
             // textBoxReport
             // 
+            this.textBoxReport.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
             this.textBoxReport.Location = new System.Drawing.Point(130, 1104);
+            this.textBoxReport.Margin = new System.Windows.Forms.Padding(10, 10, 3, 3);
             this.textBoxReport.Multiline = true;
             this.textBoxReport.Name = "textBoxReport";
             this.textBoxReport.ReadOnly = true;
             this.textBoxReport.Size = new System.Drawing.Size(817, 133);
             this.textBoxReport.TabIndex = 16;
+            this.textBoxReport.Text = "1. asdasd\r\n2. dsaf ds\r\n3. sdf sf\r\n4. t3w dfhf\r\n5. asf sd";
             // 
             // picRightForce
             // 
@@ -291,33 +294,33 @@
             // 
             this.picRightAngle.AutoSize = true;
             this.picRightAngle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.picRightAngle.Location = new System.Drawing.Point(845, 610);
+            this.picRightAngle.Location = new System.Drawing.Point(817, 610);
             this.picRightAngle.Name = "picRightAngle";
-            this.picRightAngle.Size = new System.Drawing.Size(25, 16);
+            this.picRightAngle.Size = new System.Drawing.Size(55, 16);
             this.picRightAngle.TabIndex = 13;
-            this.picRightAngle.Text = "00";
+            this.picRightAngle.Text = "10.00\'";
             // 
             // picRightLength
             // 
             this.picRightLength.AutoSize = true;
             this.picRightLength.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.picRightLength.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.picRightLength.Location = new System.Drawing.Point(866, 512);
+            this.picRightLength.Location = new System.Drawing.Point(847, 517);
             this.picRightLength.Name = "picRightLength";
-            this.picRightLength.Size = new System.Drawing.Size(25, 16);
+            this.picRightLength.Size = new System.Drawing.Size(64, 16);
             this.picRightLength.TabIndex = 13;
-            this.picRightLength.Text = "00";
+            this.picRightLength.Text = "60.0cm";
             // 
             // picStandardLength
             // 
             this.picStandardLength.AutoSize = true;
             this.picStandardLength.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.picStandardLength.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(178)))), ((int)(((byte)(168)))));
-            this.picStandardLength.Location = new System.Drawing.Point(753, 529);
+            this.picStandardLength.Location = new System.Drawing.Point(743, 517);
             this.picStandardLength.Name = "picStandardLength";
-            this.picStandardLength.Size = new System.Drawing.Size(25, 16);
+            this.picStandardLength.Size = new System.Drawing.Size(83, 16);
             this.picStandardLength.TabIndex = 13;
-            this.picStandardLength.Text = "00";
+            this.picStandardLength.Text = "114.00cm";
             // 
             // txtStandardGap
             // 
@@ -706,9 +709,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.picPrint);
             this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
             this.Name = "NewResultForm";
             this.Size = new System.Drawing.Size(1080, 1420);
             this.Load += new System.EventHandler(this.NewResultForm_Load);

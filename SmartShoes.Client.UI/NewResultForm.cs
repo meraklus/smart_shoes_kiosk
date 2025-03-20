@@ -91,6 +91,7 @@ namespace SmartShoes.Client.UI
                 this.txtSex.Text = UserInfo.Instance.Sex.ToString();
                 this.txtAge.Text = UserInfo.Instance.Age.ToString();
                 this.txtName.Text = UserInfo.Instance.UserName.ToString();
+                this.txtMeasureDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
                 if (reportSid > 0)
                 {
@@ -322,7 +323,7 @@ namespace SmartShoes.Client.UI
                         measureResult.matScoreStrideTime = jObject["scoreStridetime"]?.ToString() ?? "0";
                         measureResult.matScoreAngle = jObject["scoreAngle"]?.ToString() ?? "0";
                         measureResult.matScoreForce = jObject["scoreForce"]?.ToString() ?? "0";
-                        measureResult.matScoreBaseOfGait = jObject["scoreBaseofgait"]?.ToString() ?? "0";
+                        measureResult.matScoreBaseOfGait = jObject["scoreBaseofgait"]?.ToString("F2") ?? "0";
                         measureResult.matTotalScore = jObject["scoreGrede"]?.ToString() ?? "0";
                         measureResult.matComment = jObject["comment"]?.ToString() ?? "";
 
@@ -341,30 +342,35 @@ namespace SmartShoes.Client.UI
                             {
                                 case 1:
                                     this.pictureBoxGrade.Image = global::SmartShoes.Client.UI.Properties.Resources.grade1;
+                                    this.picTxtGrade.Text = "1등급";
                                     this.labelGrade.Text = "1등급";
                                     this.labelGradeTitle.Text = "[바른 보행]";
                                     this.labelGradeTxt.Text = "일반적인 보행 상태이며, 일상적인 활동에 어려움이 없습니다.";
                                     break;
                                 case 2:
                                     this.pictureBoxGrade.Image = global::SmartShoes.Client.UI.Properties.Resources.grade2;
+                                    this.picTxtGrade.Text = "2등급";
                                     this.labelGrade.Text = "2등급";
                                     this.labelGradeTitle.Text = "[경미한 불안정 보행]";
                                     this.labelGradeTxt.Text = "일반적인 보행 상태이며, 일상적인 활동에 어려움이 없습니다.";
                                     break;
                                 case 3:
                                     this.pictureBoxGrade.Image = global::SmartShoes.Client.UI.Properties.Resources.grade3;
+                                    this.picTxtGrade.Text = "3등급";
                                     this.labelGrade.Text = "3등급";
                                     this.labelGradeTitle.Text = "[불안정 보행]";
                                     this.labelGradeTxt.Text = "보행 중 균형 유지가 필요할 수 있으며, 일정한 환경에서 변화가 나타날 수 있습니다.";
                                     break;
                                 case 4:
                                     this.pictureBoxGrade.Image = global::SmartShoes.Client.UI.Properties.Resources.grade4;
+                                    this.picTxtGrade.Text = "4등급";
                                     this.labelGrade.Text = "4등급";
                                     this.labelGradeTitle.Text = "[균형 저하 보행]";
                                     this.labelGradeTxt.Text = "보행 시 균형 유지가 어려운 경우가 있으며, 보행 보조기구 사용이 고려될 수 있습니다.";
                                     break;
                                 case 5:
                                     this.pictureBoxGrade.Image = global::SmartShoes.Client.UI.Properties.Resources.grade5;
+                                    this.picTxtGrade.Text = "5등급";
                                     this.labelGrade.Text = "5등급";
                                     this.labelGradeTitle.Text = "[심각한 불균형 보행]";
                                     this.labelGradeTxt.Text = "보행 중 균형 유지가 어려울 가능성이 있으며, 보조기구 사용이 필요할 수 있습니다.";
@@ -405,8 +411,8 @@ namespace SmartShoes.Client.UI
                         this.picRightLength.Text = matData.StepLength2.ToString("F1") + "cm";
                         this.picStandardLength.Text = matData.StrideLength4.ToString("F0") + "cm";
 
-                        this.picLeftForce.Text = matData.StepForce1.ToString("F2") + "N";
-                        this.picRightForce.Text = matData.StepForce2.ToString("F2") + "N";
+                        this.picLeftForce.Text = matData.StepForce1.ToString("F0") + "%";
+                        this.picRightForce.Text = matData.StepForce2.ToString("F0") + "%";
 
                         this.textBoxReport.Text = measureResult.matComment;
                     }
