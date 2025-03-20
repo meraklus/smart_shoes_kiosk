@@ -21,7 +21,7 @@ namespace SmartShoes.Client.UI
     {
         public event EventHandler<PageChangeEventArgs> PageChangeRequested;
 
-        private string prefixUrl = "https://smartshoes.kr/api/";
+        private string prefixUrl = "https://www.smartshoes.kr/api/";
         private MeasurementData measurementData = null;
         private MeasureResult measureResult = null;
         private ShoesData shoesData = null;
