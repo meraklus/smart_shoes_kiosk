@@ -34,6 +34,7 @@
             this.txtRightStep = new System.Windows.Forms.Label();
             this.txtTotalStride = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelGradeTxt = new System.Windows.Forms.Label();
             this.labelGradeTitle = new System.Windows.Forms.Label();
             this.labelGrade = new System.Windows.Forms.Label();
             this.picTxtGrade = new System.Windows.Forms.Label();
@@ -83,7 +84,6 @@
             this.txtMeasureDate2 = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.PictureBox();
             this.picPrint = new System.Windows.Forms.PictureBox();
-            this.labelGradeTxt = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGrade)).BeginInit();
             this.panel2.SuspendLayout();
@@ -187,6 +187,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1080, 1288);
             this.panel1.TabIndex = 10;
+            // 
+            // labelGradeTxt
+            // 
+            this.labelGradeTxt.Location = new System.Drawing.Point(744, 928);
+            this.labelGradeTxt.Name = "labelGradeTxt";
+            this.labelGradeTxt.Size = new System.Drawing.Size(185, 61);
+            this.labelGradeTxt.TabIndex = 21;
+            this.labelGradeTxt.Text = "보행 중 균형 유지가 필요할 수 있으며, 일정한 환경에서 변화가 나타날 수 있습니다.";
             // 
             // labelGradeTitle
             // 
@@ -684,22 +692,14 @@
             this.picPrint.TabStop = false;
             this.picPrint.Click += new System.EventHandler(this.picPrint_Click);
             // 
-            // labelGradeTxt
-            // 
-            this.labelGradeTxt.Location = new System.Drawing.Point(744, 928);
-            this.labelGradeTxt.Name = "labelGradeTxt";
-            this.labelGradeTxt.Size = new System.Drawing.Size(185, 61);
-            this.labelGradeTxt.TabIndex = 21;
-            this.labelGradeTxt.Text = "보행 중 균형 유지가 필요할 수 있으며, 일정한 환경에서 변화가 나타날 수 있습니다.";
-            // 
             // NewResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.picPrint);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.panel1);
             this.Name = "NewResultForm";
             this.Size = new System.Drawing.Size(1080, 1420);
             this.Load += new System.EventHandler(this.NewResultForm_Load);
