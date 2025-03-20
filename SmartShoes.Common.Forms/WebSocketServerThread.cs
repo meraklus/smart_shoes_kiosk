@@ -424,6 +424,7 @@ public class WebSocketServerThread
 	}
 
 	// 카메라 데이터를 파일로 저장하는 메서드
+	private static readonly object _fileLock = new object(); // 파일 쓰기 작업을 위한 정적 락 객체
 	private void SaveCameraDataToFile()
 	{
 		try
@@ -445,11 +446,44 @@ public class WebSocketServerThread
 			string fileName = "merged_data.json";
 			string filePath = Path.Combine(cameraDataDirectory, fileName);
 			
-			// JSON으로 변환하여 파일 저장 (배열 형태로)
+			// JSON으로 변환
 			string jsonData = JsonConvert.SerializeObject(dataCopy, Formatting.Indented);
-			File.WriteAllText(filePath, jsonData);
 			
-			LogMessage($"카메라 데이터를 파일로 저장했습니다: {filePath}");
+			// 파일 쓰기 작업에 락을 걸어 한 번에 하나의 스레드만 접근하도록 함
+			int retryCount = 0;
+			const int maxRetries = 5; // 최대 재시도 횟수 증가
+			bool success = false;
+			
+			while (!success && retryCount < maxRetries)
+			{
+				try
+				{
+					lock (_fileLock) // 모든 스레드 간 공유되는 락
+					{
+						// FileStream을 사용하여 더 세밀한 파일 제어
+						using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+						using (StreamWriter writer = new StreamWriter(fs))
+						{
+							writer.Write(jsonData);
+							writer.Flush();
+						}
+					}
+					success = true;
+					LogMessage($"카메라 데이터를 파일로 저장했습니다: {filePath}");
+				}
+				catch (IOException ex)
+				{
+					retryCount++;
+					int waitTime = 200 * retryCount; // 점점 더 오래 대기
+					LogMessage($"카메라 데이터 파일 저장 중 충돌 발생, 재시도 {retryCount}/{maxRetries}: {ex.Message}. {waitTime}ms 후 재시도합니다.");
+					System.Threading.Thread.Sleep(waitTime);
+				}
+			}
+			
+			if (!success)
+			{
+				LogMessage($"카메라 데이터 파일 저장에 모든 재시도가 실패했습니다: {filePath}");
+			}
 		}
 		catch (Exception ex)
 		{
@@ -484,11 +518,44 @@ public class WebSocketServerThread
 				filePath = Path.Combine(cameraDataDirectory, fileName);
 			}
 			
-			// JSON으로 변환하여 파일 저장 (배열 형태로)
+			// JSON으로 변환
 			string jsonData = JsonConvert.SerializeObject(dataCopy, Formatting.Indented);
-			File.WriteAllText(filePath, jsonData);
 			
-			LogMessage($"모든 카메라 데이터를 파일로 저장했습니다: {filePath}");
+			// 파일 쓰기 작업에 락을 걸어 한 번에 하나의 스레드만 접근하도록 함
+			int retryCount = 0;
+			const int maxRetries = 5; // 최대 재시도 횟수 증가
+			bool success = false;
+			
+			while (!success && retryCount < maxRetries)
+			{
+				try
+				{
+					lock (_fileLock) // 모든 스레드 간 공유되는 락
+					{
+						// FileStream을 사용하여 더 세밀한 파일 제어
+						using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+						using (StreamWriter writer = new StreamWriter(fs))
+						{
+							writer.Write(jsonData);
+							writer.Flush();
+						}
+					}
+					success = true;
+					LogMessage($"모든 카메라 데이터를 파일로 저장했습니다: {filePath}");
+				}
+				catch (IOException ex)
+				{
+					retryCount++;
+					int waitTime = 200 * retryCount; // 점점 더 오래 대기
+					LogMessage($"모든 카메라 데이터 파일 저장 중 충돌 발생, 재시도 {retryCount}/{maxRetries}: {ex.Message}. {waitTime}ms 후 재시도합니다.");
+					System.Threading.Thread.Sleep(waitTime);
+				}
+			}
+			
+			if (!success)
+			{
+				LogMessage($"모든 카메라 데이터 파일 저장에 모든 재시도가 실패했습니다: {filePath}");
+			}
 		}
 		catch (Exception ex)
 		{
