@@ -69,6 +69,9 @@
             this.txtRightStepAngle = new System.Windows.Forms.Label();
             this.txtRightStep = new System.Windows.Forms.Label();
             this.txtTotalStride = new System.Windows.Forms.Label();
+            this.picLeftForce = new System.Windows.Forms.Label();
+            this.picRightForce = new System.Windows.Forms.Label();
+            this.textBoxReport = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
@@ -79,6 +82,9 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.result1_11;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Controls.Add(this.textBoxReport);
+            this.panel1.Controls.Add(this.picRightForce);
+            this.panel1.Controls.Add(this.picLeftForce);
             this.panel1.Controls.Add(this.picLeftAngle);
             this.panel1.Controls.Add(this.picLeftLength);
             this.panel1.Controls.Add(this.picRightAngle);
@@ -506,6 +512,36 @@
             this.txtTotalStride.TabIndex = 13;
             this.txtTotalStride.Text = "00";
             // 
+            // picLeftForce
+            // 
+            this.picLeftForce.AutoSize = true;
+            this.picLeftForce.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
+            this.picLeftForce.ForeColor = System.Drawing.Color.Red;
+            this.picLeftForce.Location = new System.Drawing.Point(155, 918);
+            this.picLeftForce.Name = "picLeftForce";
+            this.picLeftForce.Size = new System.Drawing.Size(54, 22);
+            this.picLeftForce.TabIndex = 14;
+            this.picLeftForce.Text = "00%";
+            // 
+            // picRightForce
+            // 
+            this.picRightForce.AutoSize = true;
+            this.picRightForce.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
+            this.picRightForce.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.picRightForce.Location = new System.Drawing.Point(420, 918);
+            this.picRightForce.Name = "picRightForce";
+            this.picRightForce.Size = new System.Drawing.Size(54, 22);
+            this.picRightForce.TabIndex = 15;
+            this.picRightForce.Text = "00%";
+            // 
+            // textBoxReport
+            // 
+            this.textBoxReport.Location = new System.Drawing.Point(149, 1122);
+            this.textBoxReport.Multiline = true;
+            this.textBoxReport.Name = "textBoxReport";
+            this.textBoxReport.Size = new System.Drawing.Size(784, 98);
+            this.textBoxReport.TabIndex = 16;
+            // 
             // NewResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -566,5 +602,8 @@
         private System.Windows.Forms.Label txtRightStepAngle;
         private System.Windows.Forms.Label txtRightStep;
         private System.Windows.Forms.Label txtTotalStride;
+        private System.Windows.Forms.Label picRightForce;
+        private System.Windows.Forms.Label picLeftForce;
+        private System.Windows.Forms.TextBox textBoxReport;
     }
 }
