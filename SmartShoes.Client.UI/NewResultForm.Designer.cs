@@ -92,20 +92,20 @@
             this.txt2RightLength = new System.Windows.Forms.Label();
             this.txt2LeftTime = new System.Windows.Forms.Label();
             this.txt2RightTime = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.centerF1 = new System.Windows.Forms.Label();
+            this.centerF2 = new System.Windows.Forms.Label();
+            this.centerLU2 = new System.Windows.Forms.Label();
+            this.centerRU2 = new System.Windows.Forms.Label();
+            this.centerLL1 = new System.Windows.Forms.Label();
+            this.centerRL1 = new System.Windows.Forms.Label();
+            this.leftU1 = new System.Windows.Forms.Label();
+            this.leftU2 = new System.Windows.Forms.Label();
+            this.rightU1 = new System.Windows.Forms.Label();
+            this.rightU2 = new System.Windows.Forms.Label();
+            this.leftL1 = new System.Windows.Forms.Label();
+            this.leftL2 = new System.Windows.Forms.Label();
+            this.rightL1 = new System.Windows.Forms.Label();
+            this.rightL2 = new System.Windows.Forms.Label();
             this.txt2RightStancePhase = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
@@ -195,20 +195,20 @@
             // 
             this.panel2.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.result2_1_5_1;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel2.Controls.Add(this.label21);
-            this.panel2.Controls.Add(this.label20);
-            this.panel2.Controls.Add(this.label17);
-            this.panel2.Controls.Add(this.label16);
-            this.panel2.Controls.Add(this.label19);
-            this.panel2.Controls.Add(this.label13);
-            this.panel2.Controls.Add(this.label15);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.label18);
-            this.panel2.Controls.Add(this.label12);
-            this.panel2.Controls.Add(this.label14);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.rightL2);
+            this.panel2.Controls.Add(this.rightL1);
+            this.panel2.Controls.Add(this.rightU2);
+            this.panel2.Controls.Add(this.rightU1);
+            this.panel2.Controls.Add(this.leftL2);
+            this.panel2.Controls.Add(this.centerRL1);
+            this.panel2.Controls.Add(this.leftU2);
+            this.panel2.Controls.Add(this.centerRU2);
+            this.panel2.Controls.Add(this.leftL1);
+            this.panel2.Controls.Add(this.centerLL1);
+            this.panel2.Controls.Add(this.leftU1);
+            this.panel2.Controls.Add(this.centerF2);
+            this.panel2.Controls.Add(this.centerLU2);
+            this.panel2.Controls.Add(this.centerF1);
             this.panel2.Controls.Add(this.txt2RightTime);
             this.panel2.Controls.Add(this.txt2LeftTime);
             this.panel2.Controls.Add(this.txt2RightLength);
@@ -819,145 +819,145 @@
             this.txt2RightTime.TabIndex = 0;
             this.txt2RightTime.Text = "000";
             // 
-            // label8
+            // centerF1
             // 
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(403, 650);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(216, 43);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.centerF1.BackColor = System.Drawing.Color.Transparent;
+            this.centerF1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.centerF1.Location = new System.Drawing.Point(403, 650);
+            this.centerF1.Name = "centerF1";
+            this.centerF1.Size = new System.Drawing.Size(216, 43);
+            this.centerF1.TabIndex = 0;
+            this.centerF1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label9
+            // centerF2
             // 
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(713, 650);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(216, 43);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.centerF2.BackColor = System.Drawing.Color.Transparent;
+            this.centerF2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.centerF2.Location = new System.Drawing.Point(713, 650);
+            this.centerF2.Name = "centerF2";
+            this.centerF2.Size = new System.Drawing.Size(216, 43);
+            this.centerF2.TabIndex = 0;
+            this.centerF2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label10
+            // centerLU2
             // 
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(403, 766);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(216, 43);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.centerLU2.BackColor = System.Drawing.Color.Transparent;
+            this.centerLU2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.centerLU2.Location = new System.Drawing.Point(403, 766);
+            this.centerLU2.Name = "centerLU2";
+            this.centerLU2.Size = new System.Drawing.Size(216, 43);
+            this.centerLU2.TabIndex = 0;
+            this.centerLU2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label11
+            // centerRU2
             // 
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(713, 766);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(216, 43);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.centerRU2.BackColor = System.Drawing.Color.Transparent;
+            this.centerRU2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.centerRU2.Location = new System.Drawing.Point(713, 766);
+            this.centerRU2.Name = "centerRU2";
+            this.centerRU2.Size = new System.Drawing.Size(216, 43);
+            this.centerRU2.TabIndex = 0;
+            this.centerRU2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label12
+            // centerLL1
             // 
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label12.Location = new System.Drawing.Point(403, 841);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(216, 43);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.centerLL1.BackColor = System.Drawing.Color.Transparent;
+            this.centerLL1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.centerLL1.Location = new System.Drawing.Point(403, 841);
+            this.centerLL1.Name = "centerLL1";
+            this.centerLL1.Size = new System.Drawing.Size(216, 43);
+            this.centerLL1.TabIndex = 0;
+            this.centerLL1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label13
+            // centerRL1
             // 
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label13.Location = new System.Drawing.Point(713, 841);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(216, 43);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.centerRL1.BackColor = System.Drawing.Color.Transparent;
+            this.centerRL1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.centerRL1.Location = new System.Drawing.Point(713, 841);
+            this.centerRL1.Name = "centerRL1";
+            this.centerRL1.Size = new System.Drawing.Size(216, 43);
+            this.centerRL1.TabIndex = 0;
+            this.centerRL1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label14
+            // leftU1
             // 
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label14.Location = new System.Drawing.Point(403, 972);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(216, 43);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.leftU1.BackColor = System.Drawing.Color.Transparent;
+            this.leftU1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.leftU1.Location = new System.Drawing.Point(403, 972);
+            this.leftU1.Name = "leftU1";
+            this.leftU1.Size = new System.Drawing.Size(216, 43);
+            this.leftU1.TabIndex = 0;
+            this.leftU1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label15
+            // leftU2
             // 
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label15.Location = new System.Drawing.Point(403, 1047);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(216, 43);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.leftU2.BackColor = System.Drawing.Color.Transparent;
+            this.leftU2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.leftU2.Location = new System.Drawing.Point(403, 1047);
+            this.leftU2.Name = "leftU2";
+            this.leftU2.Size = new System.Drawing.Size(216, 43);
+            this.leftU2.TabIndex = 0;
+            this.leftU2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label16
+            // rightU1
             // 
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label16.Location = new System.Drawing.Point(713, 972);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(216, 43);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.rightU1.BackColor = System.Drawing.Color.Transparent;
+            this.rightU1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.rightU1.Location = new System.Drawing.Point(713, 972);
+            this.rightU1.Name = "rightU1";
+            this.rightU1.Size = new System.Drawing.Size(216, 43);
+            this.rightU1.TabIndex = 0;
+            this.rightU1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label17
+            // rightU2
             // 
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label17.Location = new System.Drawing.Point(713, 1047);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(216, 43);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.rightU2.BackColor = System.Drawing.Color.Transparent;
+            this.rightU2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.rightU2.Location = new System.Drawing.Point(713, 1047);
+            this.rightU2.Name = "rightU2";
+            this.rightU2.Size = new System.Drawing.Size(216, 43);
+            this.rightU2.TabIndex = 0;
+            this.rightU2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label18
+            // leftL1
             // 
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label18.Location = new System.Drawing.Point(403, 1122);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(216, 43);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.leftL1.BackColor = System.Drawing.Color.Transparent;
+            this.leftL1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.leftL1.Location = new System.Drawing.Point(403, 1122);
+            this.leftL1.Name = "leftL1";
+            this.leftL1.Size = new System.Drawing.Size(216, 43);
+            this.leftL1.TabIndex = 0;
+            this.leftL1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label19
+            // leftL2
             // 
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label19.Location = new System.Drawing.Point(403, 1197);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(216, 43);
-            this.label19.TabIndex = 0;
-            this.label19.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.leftL2.BackColor = System.Drawing.Color.Transparent;
+            this.leftL2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.leftL2.Location = new System.Drawing.Point(403, 1197);
+            this.leftL2.Name = "leftL2";
+            this.leftL2.Size = new System.Drawing.Size(216, 43);
+            this.leftL2.TabIndex = 0;
+            this.leftL2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label20
+            // rightL1
             // 
-            this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label20.Location = new System.Drawing.Point(713, 1122);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(216, 43);
-            this.label20.TabIndex = 0;
-            this.label20.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.rightL1.BackColor = System.Drawing.Color.Transparent;
+            this.rightL1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.rightL1.Location = new System.Drawing.Point(713, 1122);
+            this.rightL1.Name = "rightL1";
+            this.rightL1.Size = new System.Drawing.Size(216, 43);
+            this.rightL1.TabIndex = 0;
+            this.rightL1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // label21
+            // rightL2
             // 
-            this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.label21.Location = new System.Drawing.Point(713, 1197);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(216, 43);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            this.rightL2.BackColor = System.Drawing.Color.Transparent;
+            this.rightL2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.rightL2.Location = new System.Drawing.Point(713, 1197);
+            this.rightL2.Name = "rightL2";
+            this.rightL2.Size = new System.Drawing.Size(216, 43);
+            this.rightL2.TabIndex = 0;
+            this.rightL2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
             // txt2RightStancePhase
             // 
@@ -1052,20 +1052,20 @@
         private System.Windows.Forms.Label labelGradeTxt;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label txt2LeftStancePhase;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label rightL2;
+        private System.Windows.Forms.Label rightL1;
+        private System.Windows.Forms.Label rightU2;
+        private System.Windows.Forms.Label rightU1;
+        private System.Windows.Forms.Label leftL2;
+        private System.Windows.Forms.Label centerRL1;
+        private System.Windows.Forms.Label leftU2;
+        private System.Windows.Forms.Label centerRU2;
+        private System.Windows.Forms.Label leftL1;
+        private System.Windows.Forms.Label centerLL1;
+        private System.Windows.Forms.Label leftU1;
+        private System.Windows.Forms.Label centerF2;
+        private System.Windows.Forms.Label centerLU2;
+        private System.Windows.Forms.Label centerF1;
         private System.Windows.Forms.Label txt2RightTime;
         private System.Windows.Forms.Label txt2LeftTime;
         private System.Windows.Forms.Label txt2RightLength;

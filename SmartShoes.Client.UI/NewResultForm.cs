@@ -93,6 +93,13 @@ namespace SmartShoes.Client.UI
                 this.txtName.Text = UserInfo.Instance.UserName.ToString();
                 this.txtMeasureDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
+                this.txtFootSize2.Text = UserInfo.Instance.FootSize.ToString();
+                this.txtHeight2.Text = UserInfo.Instance.Height.ToString();
+                this.txtSex2.Text = UserInfo.Instance.Sex.ToString();
+                this.txtAge2.Text = UserInfo.Instance.Age.ToString();
+                this.txtName2.Text = UserInfo.Instance.UserName.ToString();
+                this.txtMeasureDate2.Text = DateTime.Now.ToString("yyyy-MM-dd");
+
                 if (reportSid > 0)
                 {
                     // 각 데이터 처리를 병렬로 시작
@@ -504,16 +511,16 @@ namespace SmartShoes.Client.UI
                     // 응답 파싱
                     JObject jObject = JObject.Parse(getResponse);
 
-                    this.txt2LeftStancePhase.Text = jObject["l_standing_time_avg"]?.ToString("F0") ?? "0"; // 왼발 입각
-                    this.txt2LeftSwingPhase.Text = jObject["l_swing_time_avg"]?.ToString("F0") ?? "0"; //  왼발 유각
-                    this.txt2RightSwingPhase.Text = jObject["r_swing_time_avg"]?.ToString("F0") ?? "0"; // 오른발 유각
-                    this.txt2RightStancePhase.Text = jObject["r_standing_time_avg"]?.ToString("F0") ?? "0"; // 오른발 입각
+                    this.txt2LeftStancePhase.Text = jObject["l_standing_time_avg"]?.ToString() ?? "0"; // 왼발 입각
+                    this.txt2LeftSwingPhase.Text = jObject["l_swing_time_avg"]?.ToString() ?? "0"; //  왼발 유각
+                    this.txt2RightSwingPhase.Text = jObject["r_swing_time_avg"]?.ToString() ?? "0"; // 오른발 유각
+                    this.txt2RightStancePhase.Text = jObject["r_standing_time_avg"]?.ToString() ?? "0"; // 오른발 입각
 
-                    this.txt2LeftLength.Text = jObject["l_step_lenght"]?.ToString("F1") ?? "0"  ;
-                    this.txt2RightLength.Text = jObject["r_step_lenght"]?.ToString("F1") ?? "0";
-                    this.txt2LeftTime.Text = jObject["l_step_time"]?.ToString("F2") ?? "0";
-                    this.txt2RightTime.Text = jObject["r_step_time"]?.ToString("F2") ?? "0";
-                    
+                    this.txt2LeftLength.Text = jObject["l_step_lenght"]?.ToString() ?? "0";
+                    this.txt2RightLength.Text = jObject["r_step_lenght"]?.ToString() ?? "0";
+                    this.txt2LeftTime.Text = jObject["l_stance_time"]?.ToString() ?? "0";
+                    this.txt2RightTime.Text = jObject["r_stance_time"]?.ToString() ?? "0";
+
                 }
                 else
                 {
@@ -640,8 +647,102 @@ namespace SmartShoes.Client.UI
                         if (response.IsSuccessStatusCode)
                         {
                             string responseContent = await response.Content.ReadAsStringAsync();
-                            Console.WriteLine($"카메라 데이터 API 응답: {responseContent}");
-                            return true;
+
+                            JObject jObject = JObject.Parse(responseContent);
+                            // 바로 필요한 값에 접근
+                            JObject result = (JObject)jObject["result"];
+                            JObject angleData = (JObject)result?["angle"];
+                            if (angleData != null)
+                            {
+                                // 각도 정보 추출 및 표시
+                                // center 데이터
+                                JObject centerData = (JObject)angleData["center"];
+                                if (centerData != null)
+                                {
+                                    // F1 - 어깨 수평각도
+                                    double f1Min = (double?)centerData["F1"]?["min"] ?? 0;
+                                    double f1Max = (double?)centerData["F1"]?["max"] ?? 0;
+                                    this.centerF1.Text = $"당신의 어깨 수평각도는 {f1Min:F1}/{f1Max:F1}도 입니다";
+
+                                    // F2 - 골반 수평각도
+                                    double f2Min = (double?)centerData["F2"]?["min"] ?? 0;
+                                    double f2Max = (double?)centerData["F2"]?["max"] ?? 0;
+                                    this.centerF2.Text = $"당신의 골반 수평각도는 {f2Min:F1}/{f2Max:F1}도 입니다";
+
+                                    // LU2 - 왼쪽 팔꿈치 각도
+                                    double lu2Min = (double?)centerData["LU2"]?["min"] ?? 0;
+                                    double lu2Max = (double?)centerData["LU2"]?["max"] ?? 0;
+                                    this.centerLU2.Text = $"당신의 팔꿈치각도는 {lu2Min:F1}/{lu2Max:F1}도 입니다";
+
+                                    // RU2 - 오른쪽 팔꿈치 각도
+                                    double ru2Min = (double?)centerData["RU2"]?["min"] ?? 0;
+                                    double ru2Max = (double?)centerData["RU2"]?["max"] ?? 0;
+                                    this.centerRU2.Text = $"당신의 팔꿈치각도는 {ru2Min:F1}/{ru2Max:F1}도 입니다";
+
+                                    // LL1 - 왼쪽 골반각도
+                                    double ll1Min = (double?)centerData["LL1"]?["min"] ?? 0;
+                                    double ll1Max = (double?)centerData["LL1"]?["max"] ?? 0;
+                                    this.centerLL1.Text = $"당신의 골반각도는 {ll1Min:F1}/{ll1Max:F1}도 입니다";
+
+                                    // RL1 - 오른쪽 골반각도 (이 속성이 존재하는지 확인 필요)
+                                    double rl1Min = (double?)centerData["RL1"]?["min"] ?? 0;
+                                    double rl1Max = (double?)centerData["RL1"]?["max"] ?? 0;
+                                    this.centerRL1.Text = $"당신의 골반각도는 {rl1Min:F1}/{rl1Max:F1}도 입니다";
+                                }
+
+                                // left 데이터
+                                JObject leftData = (JObject)angleData["left"];
+                                if (leftData != null)
+                                {
+                                    // U1 - 어깨각도
+                                    double u1Min = (double?)leftData["U1"]?["min"] ?? .0;
+                                    double u1Max = (double?)leftData["U1"]?["max"] ?? 0;
+                                    this.leftU1.Text = $"당신의 어깨각도는 {u1Min:F1}/{u1Max:F1}도 입니다";
+
+                                    // U2 - 팔꿈치각도
+                                    double u2Min = (double?)leftData["U2"]?["min"] ?? 0;
+                                    double u2Max = (double?)leftData["U2"]?["max"] ?? 0;
+                                    this.leftU2.Text = $"당신의 팔꿈치각도는 {u2Min:F1}/{u2Max:F1}도 입니다";
+
+                                    // L1 - 골반각도
+                                    double l1Min = (double?)leftData["L1"]?["min"] ?? 0;
+                                    double l1Max = (double?)leftData["L1"]?["max"] ?? 0;
+                                    this.leftL1.Text = $"당신의 골반각도는 {l1Min:F1}/{l1Max:F1}도 입니다";
+
+                                    // L2 - 무릎각도
+                                    double l2Min = (double?)leftData["L2"]?["min"] ?? 0;
+                                    double l2Max = (double?)leftData["L2"]?["max"] ?? 0;
+                                    this.leftL2.Text = $"당신의 무릎각도는 {l2Min:F1}/{l2Max:F1}도 입니다";
+                                }
+
+                                // right 데이터
+                                JObject rightData = (JObject)angleData["right"];
+                                if (rightData != null)
+                                {
+                                    // U1 - 어깨각도
+                                    double u1Min = (double?)rightData["U1"]?["min"] ?? 0;
+                                    double u1Max = (double?)rightData["U1"]?["max"] ?? 0;
+                                    this.rightU1.Text = $"당신의 어깨각도는 {u1Min:F1}/{u1Max:F1}도 입니다";
+
+                                    // U2 - 팔꿈치각도
+                                    double u2Min = (double?)rightData["U2"]?["min"] ?? 0;
+                                    double u2Max = (double?)rightData["U2"]?["max"] ?? 0;
+                                    this.rightU2.Text = $"당신의 팔꿈치각도는 {u2Min:F1}/{u2Max:F1}도 입니다";
+
+                                    // L1 - 골반각도
+                                    double l1Min = (double?)rightData["L1"]?["min"] ?? 0;
+                                    double l1Max = (double?)rightData["L1"]?["max"] ?? 0;
+                                    this.rightL1.Text = $"당신의 골반각도는 {l1Min:F1}/{l1Max:F1}도 입니다";
+
+                                    // L2 - 무릎각도
+                                    double l2Min = (double?)rightData["L2"]?["min"] ?? 0;
+                                    double l2Max = (double?)rightData["L2"]?["max"] ?? 0;
+                                    this.rightL2.Text = $"당신의 무릎각도는 {l2Min:F1}/{l2Max:F1}도 입니다";
+                                }
+
+                                Console.WriteLine($"카메라 데이터 API 응답: {responseContent}");
+                                return true;
+                            }
                         }
                         else
                         {
@@ -838,7 +939,7 @@ namespace SmartShoes.Client.UI
             public string shoesRightLength { get; set; }
             public string shoesLeftTime { get; set; }
             public string shoesRightTime { get; set; }
-            
+
         }
         #endregion
 
