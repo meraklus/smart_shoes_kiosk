@@ -315,6 +315,17 @@ namespace SmartShoes.Client.UI
                         {
                             measureResult = new MeasureResult();
                         }
+
+                        // API 응답에서 점수 값 추출
+                        measureResult.matScoreLength = jObject["scoreLenght"]?.ToString() ?? "0";
+                        measureResult.matScoreSingleTime = jObject["scoreSingletime"]?.ToString() ?? "0";
+                        measureResult.matScoreStrideTime = jObject["scoreStridetime"]?.ToString() ?? "0";
+                        measureResult.matScoreAngle = jObject["scoreAngle"]?.ToString() ?? "0";
+                        measureResult.matScoreForce = jObject["scoreForce"]?.ToString() ?? "0";
+                        measureResult.matScoreBaseOfGait = jObject["scoreBaseofgait"]?.ToString() ?? "0";
+                        measureResult.matTotalScore = jObject["scoreGrede"]?.ToString("F0") ?? "0";
+                        measureResult.matComment = jObject["comment"]?.ToString() ?? "";
+
                         this.txtLeftStancePhase.Text = matData.StancePhase1.ToString("F0"); // 왼발 입각 
                         this.txtLeftSwingPhase.Text = matData.SwingPhase1.ToString("F0"); //  왼발 유각
                         this.txtRightStancePhase.Text = matData.SwingPhase2.ToString("F0"); // 오른발 유각
@@ -334,13 +345,13 @@ namespace SmartShoes.Client.UI
                         this.txtRightForce.Text = matData.StepForce2.ToString("F2");
                         this.txtRightGap.Text = matData.BaseOfGait2.ToString("F2");
                         
-
-                        this.txtStandardGap.Text = matData.BaseOfGait4.ToString("F2") + "cm";
-                        this.txtStandardForce.Text = matData.StepForce4.ToString("F2") + "%";
-                        this.txtStandardAngle.Text = matData.StepAngle4.ToString("F2") + "˚";
-                        this.txtStandardSpeed.Text = matData.StrideTime4.ToString("F2") + "sec";
-                        this.txtStandardTime.Text = matData.StrideTime4.ToString("F2") + "sec";
-                        this.txtStandardLength.Text = matData.StrideLength4.ToString("F0") + "cm";
+                        // 점수 항목 설정 (기존 측정값 대신 점수 값으로 변경)
+                        this.txtStandardLength.Text = measureResult.matScoreLength;
+                        this.txtStandardTime.Text = measureResult.matScoreSingleTime;
+                        this.txtStandardSpeed.Text = measureResult.matScoreStrideTime;
+                        this.txtStandardAngle.Text = measureResult.matScoreAngle;
+                        this.txtStandardForce.Text = measureResult.matScoreForce;
+                        this.txtStandardGap.Text = measureResult.matScoreBaseOfGait;
 
                         this.picLeftAngle.Text = matData.StepAngle1.ToString("F2") + "˚";
                         this.picLeftLength.Text = matData.StepLength1.ToString("F1") + "cm";

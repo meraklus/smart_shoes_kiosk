@@ -34,7 +34,10 @@
             this.txtRightStep = new System.Windows.Forms.Label();
             this.txtTotalStride = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.labelGradeTitle = new System.Windows.Forms.Label();
+            this.labelGrade = new System.Windows.Forms.Label();
+            this.picTxtGrade = new System.Windows.Forms.Label();
+            this.pictureBoxGrade = new System.Windows.Forms.PictureBox();
             this.textBoxReport = new System.Windows.Forms.TextBox();
             this.picRightForce = new System.Windows.Forms.Label();
             this.picLeftForce = new System.Windows.Forms.Label();
@@ -43,7 +46,6 @@
             this.picRightAngle = new System.Windows.Forms.Label();
             this.picRightLength = new System.Windows.Forms.Label();
             this.picStandardLength = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtStandardGap = new System.Windows.Forms.Label();
             this.txtStandardForce = new System.Windows.Forms.Label();
             this.txtStandardAngle = new System.Windows.Forms.Label();
@@ -72,6 +74,7 @@
             this.txtAge = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.Label();
             this.txtMeasureDate = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.txtFootSize2 = new System.Windows.Forms.Label();
             this.txtHeight2 = new System.Windows.Forms.Label();
             this.txtSex2 = new System.Windows.Forms.Label();
@@ -80,8 +83,10 @@
             this.txtMeasureDate2 = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.PictureBox();
             this.picPrint = new System.Windows.Forms.PictureBox();
+            this.labelGradeTxt = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGrade)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPrint)).BeginInit();
             this.SuspendLayout();
@@ -134,8 +139,13 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.result1_11;
+            this.panel1.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.result1_1_5_1;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Controls.Add(this.labelGradeTxt);
+            this.panel1.Controls.Add(this.labelGradeTitle);
+            this.panel1.Controls.Add(this.labelGrade);
+            this.panel1.Controls.Add(this.picTxtGrade);
+            this.panel1.Controls.Add(this.pictureBoxGrade);
             this.panel1.Controls.Add(this.textBoxReport);
             this.panel1.Controls.Add(this.picRightForce);
             this.panel1.Controls.Add(this.picLeftForce);
@@ -144,7 +154,6 @@
             this.panel1.Controls.Add(this.picRightAngle);
             this.panel1.Controls.Add(this.picRightLength);
             this.panel1.Controls.Add(this.picStandardLength);
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.txtStandardGap);
             this.panel1.Controls.Add(this.txtStandardForce);
             this.panel1.Controls.Add(this.txtStandardAngle);
@@ -179,27 +188,52 @@
             this.panel1.Size = new System.Drawing.Size(1080, 1288);
             this.panel1.TabIndex = 10;
             // 
-            // panel2
+            // labelGradeTitle
             // 
-            this.panel2.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.result2_1_5;
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1080, 1288);
-            this.panel2.TabIndex = 17;
-            this.panel2.Controls.Add(this.txtFootSize2);
-            this.panel2.Controls.Add(this.txtHeight2);
-            this.panel2.Controls.Add(this.txtSex2);
-            this.panel2.Controls.Add(this.txtAge2);
-            this.panel2.Controls.Add(this.txtName2);
-            this.panel2.Controls.Add(this.txtMeasureDate2);
+            this.labelGradeTitle.AutoSize = true;
+            this.labelGradeTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
+            this.labelGradeTitle.Location = new System.Drawing.Point(738, 884);
+            this.labelGradeTitle.Name = "labelGradeTitle";
+            this.labelGradeTitle.Size = new System.Drawing.Size(203, 19);
+            this.labelGradeTitle.TabIndex = 20;
+            this.labelGradeTitle.Text = "[경미한 불안정 보행]";
+            // 
+            // labelGrade
+            // 
+            this.labelGrade.AutoSize = true;
+            this.labelGrade.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
+            this.labelGrade.Location = new System.Drawing.Point(738, 846);
+            this.labelGrade.Name = "labelGrade";
+            this.labelGrade.Size = new System.Drawing.Size(68, 22);
+            this.labelGrade.TabIndex = 19;
+            this.labelGrade.Text = "1등급";
+            // 
+            // picTxtGrade
+            // 
+            this.picTxtGrade.AutoSize = true;
+            this.picTxtGrade.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
+            this.picTxtGrade.Location = new System.Drawing.Point(596, 928);
+            this.picTxtGrade.Name = "picTxtGrade";
+            this.picTxtGrade.Size = new System.Drawing.Size(68, 22);
+            this.picTxtGrade.TabIndex = 18;
+            this.picTxtGrade.Text = "1등급";
+            // 
+            // pictureBoxGrade
+            // 
+            this.pictureBoxGrade.Image = global::SmartShoes.Client.UI.Properties.Resources.grade1;
+            this.pictureBoxGrade.Location = new System.Drawing.Point(519, 839);
+            this.pictureBoxGrade.Name = "pictureBoxGrade";
+            this.pictureBoxGrade.Size = new System.Drawing.Size(201, 153);
+            this.pictureBoxGrade.TabIndex = 17;
+            this.pictureBoxGrade.TabStop = false;
             // 
             // textBoxReport
             // 
-            this.textBoxReport.Location = new System.Drawing.Point(149, 1122);
+            this.textBoxReport.Location = new System.Drawing.Point(130, 1104);
             this.textBoxReport.Multiline = true;
             this.textBoxReport.Name = "textBoxReport";
-            this.textBoxReport.Size = new System.Drawing.Size(784, 98);
+            this.textBoxReport.ReadOnly = true;
+            this.textBoxReport.Size = new System.Drawing.Size(817, 133);
             this.textBoxReport.TabIndex = 16;
             // 
             // picRightForce
@@ -276,14 +310,6 @@
             this.picStandardLength.Size = new System.Drawing.Size(25, 16);
             this.picStandardLength.TabIndex = 13;
             this.picStandardLength.Text = "00";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(513, 830);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(434, 180);
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
             // 
             // txtStandardGap
             // 
@@ -553,6 +579,21 @@
             this.txtMeasureDate.TabIndex = 0;
             this.txtMeasureDate.Text = "YYYY-MM-DD";
             // 
+            // panel2
+            // 
+            this.panel2.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.result2_1_5;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel2.Controls.Add(this.txtFootSize2);
+            this.panel2.Controls.Add(this.txtHeight2);
+            this.panel2.Controls.Add(this.txtSex2);
+            this.panel2.Controls.Add(this.txtAge2);
+            this.panel2.Controls.Add(this.txtName2);
+            this.panel2.Controls.Add(this.txtMeasureDate2);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1080, 1288);
+            this.panel2.TabIndex = 17;
+            // 
             // txtFootSize2
             // 
             this.txtFootSize2.AutoSize = true;
@@ -643,6 +684,14 @@
             this.picPrint.TabStop = false;
             this.picPrint.Click += new System.EventHandler(this.picPrint_Click);
             // 
+            // labelGradeTxt
+            // 
+            this.labelGradeTxt.Location = new System.Drawing.Point(744, 928);
+            this.labelGradeTxt.Name = "labelGradeTxt";
+            this.labelGradeTxt.Size = new System.Drawing.Size(185, 61);
+            this.labelGradeTxt.TabIndex = 21;
+            this.labelGradeTxt.Text = "보행 중 균형 유지가 필요할 수 있으며, 일정한 환경에서 변화가 나타날 수 있습니다.";
+            // 
             // NewResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -656,7 +705,9 @@
             this.Load += new System.EventHandler(this.NewResultForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGrade)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPrint)).EndInit();
             this.ResumeLayout(false);
@@ -701,7 +752,6 @@
         private System.Windows.Forms.Label txtLeftSpeed;
         private System.Windows.Forms.Label txtLeftTime;
         private System.Windows.Forms.Label txtLeftLength;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label picLeftAngle;
         private System.Windows.Forms.Label picLeftLength;
         private System.Windows.Forms.Label picRightAngle;
@@ -717,5 +767,10 @@
         private System.Windows.Forms.TextBox textBoxReport;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox picPrint;
+        private System.Windows.Forms.Label labelGradeTitle;
+        private System.Windows.Forms.Label labelGrade;
+        private System.Windows.Forms.Label picTxtGrade;
+        private System.Windows.Forms.PictureBox pictureBoxGrade;
+        private System.Windows.Forms.Label labelGradeTxt;
     }
 }
