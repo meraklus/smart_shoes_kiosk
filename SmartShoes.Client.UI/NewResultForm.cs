@@ -511,11 +511,26 @@ namespace SmartShoes.Client.UI
                     }
 
                     // API 응답에서 값 추출
-                    shoesResult.shoesStancePhase1 = jObject["stance_phase_1"]?.ToString() ?? "0";
-                    shoesResult.shoesSwingPhase1 = jObject["swing_phase_1"]?.ToString() ?? "0";
-                    shoesResult.shoesSwingPhase2 = jObject["swing_phase_2"]?.ToString() ?? "0";
-                    shoesResult.shoesStancePhase2 = jObject["stance_phase_2"]?.ToString() ?? "0";
+                    shoesResult.shoesStancePhase1 = jObject["l_standing_time_avg"]?.ToString() ?? "0";
+                    shoesResult.shoesSwingPhase1 = jObject["l_swing_time_avg"]?.ToString() ?? "0";
+                    shoesResult.shoesSwingPhase2 = jObject["r_swing_time_avg"]?.ToString() ?? "0";
+                    shoesResult.shoesStancePhase2 = jObject["r_standing_time_avg"]?.ToString() ?? "0";
 
+                    this.txt2LeftStancePhase.Text = shoesResult.shoesStancePhase1.ToString("F0"); // 왼발 입각
+                    this.txt2LeftSwingPhase.Text = shoesResult.shoesSwingPhase1.ToString("F0"); //  왼발 유각
+                    this.txt2RightSwingPhase.Text = shoesResult.shoesSwingPhase2.ToString("F0"); // 오른발 유각
+                    this.txt2RightStancePhase.Text = shoesResult.shoesStancePhase2.ToString("F0"); // 오른발 입각
+
+                    shoesResult.shoesLeftLength = jObject["l_step_lenght"]?.ToString() ?? "0";
+                    shoesResult.shoesRightLength = jObject["r_step_lenght"]?.ToString() ?? "0";
+                    shoesResult.shoesLeftTime = jObject["l_step_time"]?.ToString() ?? "0";
+                    shoesResult.shoesRightTime = jObject["r_step_time"]?.ToString() ?? "0";
+
+                    this.txt2LeftLength.Text = shoesResult.shoesLeftLength.ToString("F1");
+                    this.txt2RightLength.Text = shoesResult.shoesRightLength.ToString("F1");
+                    this.txt2LeftTime.Text = shoesResult.shoesLeftTime.ToString("F2");
+                    this.txt2RightTime.Text = shoesResult.shoesRightTime.ToString("F2");
+                    
                 }
                 else
                 {
@@ -836,6 +851,11 @@ namespace SmartShoes.Client.UI
             public string shoesLeftSwingPhaseScore { get; set; }
             public string shoesRightStancePhaseScore { get; set; }
             public string shoesRightSwingPhaseScore { get; set; }
+            public string shoesLeftLength { get; set; }
+            public string shoesRightLength { get; set; }
+            public string shoesLeftTime { get; set; }
+            public string shoesRightTime { get; set; }
+            
         }
         #endregion
 

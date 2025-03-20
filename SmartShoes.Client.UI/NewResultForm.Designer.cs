@@ -33,6 +33,17 @@
             this.txtRightStepAngle = new System.Windows.Forms.Label();
             this.txtRightStep = new System.Windows.Forms.Label();
             this.txtTotalStride = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.picPrint = new System.Windows.Forms.PictureBox();
+            this.btnNext = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txt2LeftStancePhase = new System.Windows.Forms.Label();
+            this.txtFootSize2 = new System.Windows.Forms.Label();
+            this.txtHeight2 = new System.Windows.Forms.Label();
+            this.txtSex2 = new System.Windows.Forms.Label();
+            this.txtAge2 = new System.Windows.Forms.Label();
+            this.txtName2 = new System.Windows.Forms.Label();
+            this.txtMeasureDate2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelGradeTxt = new System.Windows.Forms.Label();
             this.labelGradeTitle = new System.Windows.Forms.Label();
@@ -75,21 +86,32 @@
             this.txtAge = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.Label();
             this.txtMeasureDate = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txtFootSize2 = new System.Windows.Forms.Label();
-            this.txtHeight2 = new System.Windows.Forms.Label();
-            this.txtSex2 = new System.Windows.Forms.Label();
-            this.txtAge2 = new System.Windows.Forms.Label();
-            this.txtName2 = new System.Windows.Forms.Label();
-            this.txtMeasureDate2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnNext = new System.Windows.Forms.PictureBox();
-            this.picPrint = new System.Windows.Forms.PictureBox();
+            this.txt2LeftSwingPhase = new System.Windows.Forms.Label();
+            this.txt2RightSwingPhase = new System.Windows.Forms.Label();
+            this.txt2LeftLength = new System.Windows.Forms.Label();
+            this.txt2RightLength = new System.Windows.Forms.Label();
+            this.txt2LeftTime = new System.Windows.Forms.Label();
+            this.txt2RightTime = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txt2RightStancePhase = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.picPrint)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGrade)).BeginInit();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPrint)).BeginInit();
             this.SuspendLayout();
             // 
             // txtLeftStepAngle
@@ -136,6 +158,151 @@
             this.txtTotalStride.Size = new System.Drawing.Size(38, 12);
             this.txtTotalStride.TabIndex = 13;
             this.txtTotalStride.Text = "00";
+            // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1080, 1420);
+            this.panel3.TabIndex = 6;
+            // 
+            // picPrint
+            // 
+            this.picPrint.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.printer;
+            this.picPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picPrint.Location = new System.Drawing.Point(0, 1288);
+            this.picPrint.Name = "picPrint";
+            this.picPrint.Size = new System.Drawing.Size(1080, 132);
+            this.picPrint.TabIndex = 11;
+            this.picPrint.TabStop = false;
+            this.picPrint.Click += new System.EventHandler(this.picPrint_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.Frame_284;
+            this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNext.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnNext.Location = new System.Drawing.Point(0, 1288);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(1080, 132);
+            this.btnNext.TabIndex = 9;
+            this.btnNext.TabStop = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.result2_1_5_1;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel2.Controls.Add(this.label21);
+            this.panel2.Controls.Add(this.label20);
+            this.panel2.Controls.Add(this.label17);
+            this.panel2.Controls.Add(this.label16);
+            this.panel2.Controls.Add(this.label19);
+            this.panel2.Controls.Add(this.label13);
+            this.panel2.Controls.Add(this.label15);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.label18);
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.label14);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.txt2RightTime);
+            this.panel2.Controls.Add(this.txt2LeftTime);
+            this.panel2.Controls.Add(this.txt2RightLength);
+            this.panel2.Controls.Add(this.txt2LeftLength);
+            this.panel2.Controls.Add(this.txt2RightStancePhase);
+            this.panel2.Controls.Add(this.txt2RightSwingPhase);
+            this.panel2.Controls.Add(this.txt2LeftSwingPhase);
+            this.panel2.Controls.Add(this.txt2LeftStancePhase);
+            this.panel2.Controls.Add(this.txtFootSize2);
+            this.panel2.Controls.Add(this.txtHeight2);
+            this.panel2.Controls.Add(this.txtSex2);
+            this.panel2.Controls.Add(this.txtAge2);
+            this.panel2.Controls.Add(this.txtName2);
+            this.panel2.Controls.Add(this.txtMeasureDate2);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1080, 1288);
+            this.panel2.TabIndex = 17;
+            // 
+            // txt2LeftStancePhase
+            // 
+            this.txt2LeftStancePhase.BackColor = System.Drawing.Color.Transparent;
+            this.txt2LeftStancePhase.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txt2LeftStancePhase.Location = new System.Drawing.Point(355, 385);
+            this.txt2LeftStancePhase.Name = "txt2LeftStancePhase";
+            this.txt2LeftStancePhase.Size = new System.Drawing.Size(38, 12);
+            this.txt2LeftStancePhase.TabIndex = 0;
+            this.txt2LeftStancePhase.Text = "00";
+            // 
+            // txtFootSize2
+            // 
+            this.txtFootSize2.AutoSize = true;
+            this.txtFootSize2.BackColor = System.Drawing.Color.Transparent;
+            this.txtFootSize2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtFootSize2.Location = new System.Drawing.Point(865, 144);
+            this.txtFootSize2.Name = "txtFootSize2";
+            this.txtFootSize2.Size = new System.Drawing.Size(31, 13);
+            this.txtFootSize2.TabIndex = 5;
+            this.txtFootSize2.Text = "160";
+            // 
+            // txtHeight2
+            // 
+            this.txtHeight2.AutoSize = true;
+            this.txtHeight2.BackColor = System.Drawing.Color.Transparent;
+            this.txtHeight2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtHeight2.Location = new System.Drawing.Point(739, 144);
+            this.txtHeight2.Name = "txtHeight2";
+            this.txtHeight2.Size = new System.Drawing.Size(31, 13);
+            this.txtHeight2.TabIndex = 4;
+            this.txtHeight2.Text = "170";
+            // 
+            // txtSex2
+            // 
+            this.txtSex2.AutoSize = true;
+            this.txtSex2.BackColor = System.Drawing.Color.Transparent;
+            this.txtSex2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtSex2.Location = new System.Drawing.Point(610, 144);
+            this.txtSex2.Name = "txtSex2";
+            this.txtSex2.Size = new System.Drawing.Size(35, 13);
+            this.txtSex2.TabIndex = 3;
+            this.txtSex2.Text = "남자";
+            // 
+            // txtAge2
+            // 
+            this.txtAge2.AutoSize = true;
+            this.txtAge2.BackColor = System.Drawing.Color.Transparent;
+            this.txtAge2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtAge2.Location = new System.Drawing.Point(484, 144);
+            this.txtAge2.Name = "txtAge2";
+            this.txtAge2.Size = new System.Drawing.Size(23, 13);
+            this.txtAge2.TabIndex = 2;
+            this.txtAge2.Text = "30";
+            // 
+            // txtName2
+            // 
+            this.txtName2.AutoSize = true;
+            this.txtName2.BackColor = System.Drawing.Color.Transparent;
+            this.txtName2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtName2.Location = new System.Drawing.Point(344, 144);
+            this.txtName2.Name = "txtName2";
+            this.txtName2.Size = new System.Drawing.Size(49, 13);
+            this.txtName2.TabIndex = 1;
+            this.txtName2.Text = "홍길동";
+            // 
+            // txtMeasureDate2
+            // 
+            this.txtMeasureDate2.AutoSize = true;
+            this.txtMeasureDate2.BackColor = System.Drawing.Color.Transparent;
+            this.txtMeasureDate2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtMeasureDate2.Location = new System.Drawing.Point(169, 144);
+            this.txtMeasureDate2.Name = "txtMeasureDate2";
+            this.txtMeasureDate2.Size = new System.Drawing.Size(103, 13);
+            this.txtMeasureDate2.TabIndex = 0;
+            this.txtMeasureDate2.Text = "YYYY-MM-DD";
             // 
             // panel1
             // 
@@ -590,118 +757,217 @@
             this.txtMeasureDate.TabIndex = 0;
             this.txtMeasureDate.Text = "YYYY-MM-DD";
             // 
-            // panel2
+            // txt2LeftSwingPhase
             // 
-            this.panel2.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.result2_1_5;
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel2.Controls.Add(this.txtFootSize2);
-            this.panel2.Controls.Add(this.txtHeight2);
-            this.panel2.Controls.Add(this.txtSex2);
-            this.panel2.Controls.Add(this.txtAge2);
-            this.panel2.Controls.Add(this.txtName2);
-            this.panel2.Controls.Add(this.txtMeasureDate2);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1080, 1288);
-            this.panel2.TabIndex = 17;
+            this.txt2LeftSwingPhase.BackColor = System.Drawing.Color.Transparent;
+            this.txt2LeftSwingPhase.Location = new System.Drawing.Point(469, 385);
+            this.txt2LeftSwingPhase.Name = "txt2LeftSwingPhase";
+            this.txt2LeftSwingPhase.Size = new System.Drawing.Size(38, 12);
+            this.txt2LeftSwingPhase.TabIndex = 0;
+            this.txt2LeftSwingPhase.Text = "00";
             // 
-            // txtFootSize2
+            // txt2RightSwingPhase
             // 
-            this.txtFootSize2.AutoSize = true;
-            this.txtFootSize2.BackColor = System.Drawing.Color.Transparent;
-            this.txtFootSize2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtFootSize2.Location = new System.Drawing.Point(865, 144);
-            this.txtFootSize2.Name = "txtFootSize2";
-            this.txtFootSize2.Size = new System.Drawing.Size(31, 13);
-            this.txtFootSize2.TabIndex = 5;
-            this.txtFootSize2.Text = "160";
+            this.txt2RightSwingPhase.BackColor = System.Drawing.Color.Transparent;
+            this.txt2RightSwingPhase.Location = new System.Drawing.Point(671, 384);
+            this.txt2RightSwingPhase.Name = "txt2RightSwingPhase";
+            this.txt2RightSwingPhase.Size = new System.Drawing.Size(38, 12);
+            this.txt2RightSwingPhase.TabIndex = 0;
+            this.txt2RightSwingPhase.Text = "00";
             // 
-            // txtHeight2
+            // txt2LeftLength
             // 
-            this.txtHeight2.AutoSize = true;
-            this.txtHeight2.BackColor = System.Drawing.Color.Transparent;
-            this.txtHeight2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtHeight2.Location = new System.Drawing.Point(739, 144);
-            this.txtHeight2.Name = "txtHeight2";
-            this.txtHeight2.Size = new System.Drawing.Size(31, 13);
-            this.txtHeight2.TabIndex = 4;
-            this.txtHeight2.Text = "170";
+            this.txt2LeftLength.AutoSize = true;
+            this.txt2LeftLength.BackColor = System.Drawing.Color.Transparent;
+            this.txt2LeftLength.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.txt2LeftLength.Location = new System.Drawing.Point(420, 462);
+            this.txt2LeftLength.Name = "txt2LeftLength";
+            this.txt2LeftLength.Size = new System.Drawing.Size(34, 16);
+            this.txt2LeftLength.TabIndex = 0;
+            this.txt2LeftLength.Text = "000";
             // 
-            // txtSex2
+            // txt2RightLength
             // 
-            this.txtSex2.AutoSize = true;
-            this.txtSex2.BackColor = System.Drawing.Color.Transparent;
-            this.txtSex2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtSex2.Location = new System.Drawing.Point(610, 144);
-            this.txtSex2.Name = "txtSex2";
-            this.txtSex2.Size = new System.Drawing.Size(35, 13);
-            this.txtSex2.TabIndex = 3;
-            this.txtSex2.Text = "남자";
+            this.txt2RightLength.AutoSize = true;
+            this.txt2RightLength.BackColor = System.Drawing.Color.Transparent;
+            this.txt2RightLength.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.txt2RightLength.Location = new System.Drawing.Point(547, 462);
+            this.txt2RightLength.Name = "txt2RightLength";
+            this.txt2RightLength.Size = new System.Drawing.Size(34, 16);
+            this.txt2RightLength.TabIndex = 0;
+            this.txt2RightLength.Text = "000";
             // 
-            // txtAge2
+            // txt2LeftTime
             // 
-            this.txtAge2.AutoSize = true;
-            this.txtAge2.BackColor = System.Drawing.Color.Transparent;
-            this.txtAge2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtAge2.Location = new System.Drawing.Point(484, 144);
-            this.txtAge2.Name = "txtAge2";
-            this.txtAge2.Size = new System.Drawing.Size(23, 13);
-            this.txtAge2.TabIndex = 2;
-            this.txtAge2.Text = "30";
+            this.txt2LeftTime.AutoSize = true;
+            this.txt2LeftTime.BackColor = System.Drawing.Color.Transparent;
+            this.txt2LeftTime.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.txt2LeftTime.Location = new System.Drawing.Point(420, 501);
+            this.txt2LeftTime.Name = "txt2LeftTime";
+            this.txt2LeftTime.Size = new System.Drawing.Size(34, 16);
+            this.txt2LeftTime.TabIndex = 0;
+            this.txt2LeftTime.Text = "000";
             // 
-            // txtName2
+            // txt2RightTime
             // 
-            this.txtName2.AutoSize = true;
-            this.txtName2.BackColor = System.Drawing.Color.Transparent;
-            this.txtName2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtName2.Location = new System.Drawing.Point(344, 144);
-            this.txtName2.Name = "txtName2";
-            this.txtName2.Size = new System.Drawing.Size(49, 13);
-            this.txtName2.TabIndex = 1;
-            this.txtName2.Text = "홍길동";
+            this.txt2RightTime.AutoSize = true;
+            this.txt2RightTime.BackColor = System.Drawing.Color.Transparent;
+            this.txt2RightTime.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.txt2RightTime.Location = new System.Drawing.Point(547, 501);
+            this.txt2RightTime.Name = "txt2RightTime";
+            this.txt2RightTime.Size = new System.Drawing.Size(34, 16);
+            this.txt2RightTime.TabIndex = 0;
+            this.txt2RightTime.Text = "000";
             // 
-            // txtMeasureDate2
+            // label8
             // 
-            this.txtMeasureDate2.AutoSize = true;
-            this.txtMeasureDate2.BackColor = System.Drawing.Color.Transparent;
-            this.txtMeasureDate2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtMeasureDate2.Location = new System.Drawing.Point(169, 144);
-            this.txtMeasureDate2.Name = "txtMeasureDate2";
-            this.txtMeasureDate2.Size = new System.Drawing.Size(103, 13);
-            this.txtMeasureDate2.TabIndex = 0;
-            this.txtMeasureDate2.Text = "YYYY-MM-DD";
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label8.Location = new System.Drawing.Point(403, 650);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(216, 43);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // panel3
+            // label9
             // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1080, 1420);
-            this.panel3.TabIndex = 6;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label9.Location = new System.Drawing.Point(713, 650);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(216, 43);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // btnNext
+            // label10
             // 
-            this.btnNext.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.Frame_284;
-            this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNext.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnNext.Location = new System.Drawing.Point(0, 1288);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(1080, 132);
-            this.btnNext.TabIndex = 9;
-            this.btnNext.TabStop = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label10.Location = new System.Drawing.Point(403, 766);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(216, 43);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "당신의 어깨 수평각도는 00/00도 입니다";
             // 
-            // picPrint
+            // label11
             // 
-            this.picPrint.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.printer;
-            this.picPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picPrint.Location = new System.Drawing.Point(0, 1288);
-            this.picPrint.Name = "picPrint";
-            this.picPrint.Size = new System.Drawing.Size(1080, 132);
-            this.picPrint.TabIndex = 11;
-            this.picPrint.TabStop = false;
-            this.picPrint.Click += new System.EventHandler(this.picPrint_Click);
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label11.Location = new System.Drawing.Point(713, 766);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(216, 43);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label12.Location = new System.Drawing.Point(403, 841);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(216, 43);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            // 
+            // label13
+            // 
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label13.Location = new System.Drawing.Point(713, 841);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(216, 43);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label14.Location = new System.Drawing.Point(403, 972);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(216, 43);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            // 
+            // label15
+            // 
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label15.Location = new System.Drawing.Point(403, 1047);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(216, 43);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            // 
+            // label16
+            // 
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label16.Location = new System.Drawing.Point(713, 972);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(216, 43);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            // 
+            // label17
+            // 
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label17.Location = new System.Drawing.Point(713, 1047);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(216, 43);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            // 
+            // label18
+            // 
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label18.Location = new System.Drawing.Point(403, 1122);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(216, 43);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            // 
+            // label19
+            // 
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label19.Location = new System.Drawing.Point(403, 1197);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(216, 43);
+            this.label19.TabIndex = 0;
+            this.label19.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            // 
+            // label20
+            // 
+            this.label20.BackColor = System.Drawing.Color.Transparent;
+            this.label20.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label20.Location = new System.Drawing.Point(713, 1122);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(216, 43);
+            this.label20.TabIndex = 0;
+            this.label20.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            // 
+            // label21
+            // 
+            this.label21.BackColor = System.Drawing.Color.Transparent;
+            this.label21.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label21.Location = new System.Drawing.Point(713, 1197);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(216, 43);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            // 
+            // txt2RightStancePhase
+            // 
+            this.txt2RightStancePhase.BackColor = System.Drawing.Color.Transparent;
+            this.txt2RightStancePhase.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txt2RightStancePhase.Location = new System.Drawing.Point(789, 385);
+            this.txt2RightStancePhase.Name = "txt2RightStancePhase";
+            this.txt2RightStancePhase.Size = new System.Drawing.Size(38, 12);
+            this.txt2RightStancePhase.TabIndex = 0;
+            this.txt2RightStancePhase.Text = "00";
             // 
             // NewResultForm
             // 
@@ -709,19 +975,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.picPrint);
             this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
             this.Name = "NewResultForm";
             this.Size = new System.Drawing.Size(1080, 1420);
             this.Load += new System.EventHandler(this.NewResultForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.picPrint)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGrade)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPrint)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -785,5 +1051,27 @@
         private System.Windows.Forms.PictureBox pictureBoxGrade;
         private System.Windows.Forms.Label labelGradeTxt;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label txt2LeftStancePhase;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label txt2RightTime;
+        private System.Windows.Forms.Label txt2LeftTime;
+        private System.Windows.Forms.Label txt2RightLength;
+        private System.Windows.Forms.Label txt2LeftLength;
+        private System.Windows.Forms.Label txt2RightStancePhase;
+        private System.Windows.Forms.Label txt2RightSwingPhase;
+        private System.Windows.Forms.Label txt2LeftSwingPhase;
     }
 }
