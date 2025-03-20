@@ -504,32 +504,15 @@ namespace SmartShoes.Client.UI
                     // 응답 파싱
                     JObject jObject = JObject.Parse(getResponse);
 
-                    // ShoesResult 객체가 없으면 생성
-                    if (shoesResult == null)
-                    {
-                        shoesResult = new ShoesResult();
-                    }
+                    this.txt2LeftStancePhase.Text = jObject["l_standing_time_avg"]?.ToString("F0") ?? "0"; // 왼발 입각
+                    this.txt2LeftSwingPhase.Text = jObject["l_swing_time_avg"]?.ToString("F0") ?? "0"; //  왼발 유각
+                    this.txt2RightSwingPhase.Text = jObject["r_swing_time_avg"]?.ToString("F0") ?? "0"; // 오른발 유각
+                    this.txt2RightStancePhase.Text = jObject["r_standing_time_avg"]?.ToString("F0") ?? "0"; // 오른발 입각
 
-                    // API 응답에서 값 추출
-                    shoesResult.shoesStancePhase1 = jObject["l_standing_time_avg"]?.ToString() ?? "0";
-                    shoesResult.shoesSwingPhase1 = jObject["l_swing_time_avg"]?.ToString() ?? "0";
-                    shoesResult.shoesSwingPhase2 = jObject["r_swing_time_avg"]?.ToString() ?? "0";
-                    shoesResult.shoesStancePhase2 = jObject["r_standing_time_avg"]?.ToString() ?? "0";
-
-                    this.txt2LeftStancePhase.Text = shoesResult.shoesStancePhase1.ToString("F0"); // 왼발 입각
-                    this.txt2LeftSwingPhase.Text = shoesResult.shoesSwingPhase1.ToString("F0"); //  왼발 유각
-                    this.txt2RightSwingPhase.Text = shoesResult.shoesSwingPhase2.ToString("F0"); // 오른발 유각
-                    this.txt2RightStancePhase.Text = shoesResult.shoesStancePhase2.ToString("F0"); // 오른발 입각
-
-                    shoesResult.shoesLeftLength = jObject["l_step_lenght"]?.ToString() ?? "0";
-                    shoesResult.shoesRightLength = jObject["r_step_lenght"]?.ToString() ?? "0";
-                    shoesResult.shoesLeftTime = jObject["l_step_time"]?.ToString() ?? "0";
-                    shoesResult.shoesRightTime = jObject["r_step_time"]?.ToString() ?? "0";
-
-                    this.txt2LeftLength.Text = shoesResult.shoesLeftLength.ToString("F1");
-                    this.txt2RightLength.Text = shoesResult.shoesRightLength.ToString("F1");
-                    this.txt2LeftTime.Text = shoesResult.shoesLeftTime.ToString("F2");
-                    this.txt2RightTime.Text = shoesResult.shoesRightTime.ToString("F2");
+                    this.txt2LeftLength.Text = jObject["l_step_lenght"]?.ToString("F1") ?? "0"  ;
+                    this.txt2RightLength.Text = jObject["r_step_lenght"]?.ToString("F1") ?? "0";
+                    this.txt2LeftTime.Text = jObject["l_step_time"]?.ToString("F2") ?? "0";
+                    this.txt2RightTime.Text = jObject["r_step_time"]?.ToString("F2") ?? "0";
                     
                 }
                 else
