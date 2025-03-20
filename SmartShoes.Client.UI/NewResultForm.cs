@@ -21,7 +21,7 @@ namespace SmartShoes.Client.UI
     {
         public event EventHandler<PageChangeEventArgs> PageChangeRequested;
 
-        private string prefixUrl = "http://smartshoes.kr/api/";
+        private string prefixUrl = "https://smartshoes.kr/api/";
         private MeasurementData measurementData = null;
         private MeasureResult measureResult = null;
         private ShoesData shoesData = null;
@@ -775,24 +775,24 @@ namespace SmartShoes.Client.UI
         private void picPrint_Click(object sender, EventArgs e)
         {
             // 프린트 작업 초기화
-            printDocument = new System.Drawing.Printing.PrintDocument();
-            printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(PrintPage);
+            //printDocument = new System.Drawing.Printing.PrintDocument();
+            //printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(PrintPage);
             
-            // 인쇄 시작 페이지 설정
-            currentPrintPage = 0;
+            //// 인쇄 시작 페이지 설정
+            //currentPrintPage = 0;
             
-            try
-            {
-                // 프린트 작업 시작
-                printDocument.Print();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("인쇄 중 오류가 발생했습니다: " + ex.Message, "인쇄 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //try
+            //{
+            //    // 프린트 작업 시작
+            //    printDocument.Print();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("인쇄 중 오류가 발생했습니다: " + ex.Message, "인쇄 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
             
             // 로그인 페이지로 이동
-            // this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
+             this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
         }
         
         private void PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
