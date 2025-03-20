@@ -13,6 +13,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Drawing.Printing;
 
 namespace SmartShoes.Client.UI
 {
@@ -30,10 +31,16 @@ namespace SmartShoes.Client.UI
         private bool isShoesDataProcessed = false;
         private bool isCameraDataProcessed = false;
         private long reportSid = 0;
+        private System.Drawing.Printing.PrintDocument printDocument;
+        private int currentPrintPage = 0;
 
         public NewResultForm()
         {
             InitializeComponent();
+            
+            // 초기에는 panel2와 print 버튼을 숨깁니다.
+            this.panel2.Visible = false;
+            this.picPrint.Visible = false;
         }
 
         private void NewResultForm_Load(object sender, EventArgs e)
@@ -757,8 +764,67 @@ namespace SmartShoes.Client.UI
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
+            // panel2와 print 버튼을 보이게 합니다.
+            this.panel2.Visible = true;
+            this.picPrint.Visible = true;
+            
+            // Next 버튼은 숨깁니다.
+            this.btnNext.Visible = false;
+        }
 
+        private void picPrint_Click(object sender, EventArgs e)
+        {
+            // 프린트 작업 초기화
+            printDocument = new System.Drawing.Printing.PrintDocument();
+            printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(PrintPage);
+            
+            // 인쇄 시작 페이지 설정
+            currentPrintPage = 0;
+            
+            try
+            {
+                // 프린트 작업 시작
+                printDocument.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("인쇄 중 오류가 발생했습니다: " + ex.Message, "인쇄 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+            // 로그인 페이지로 이동
+            // this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
+        }
+        
+        private void PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            
+            // 인쇄할 패널 결정
+            Panel panelToPrint = (currentPrintPage == 0) ? panel1 : panel2;
+            
+            // 패널 크기에 맞게 비율 계산
+            float ratio = Math.Min((float)e.MarginBounds.Width / panelToPrint.Width, (float)e.MarginBounds.Height / panelToPrint.Height);
+            
+            // 패널의 비트맵 생성
+            Bitmap bmp = new Bitmap(panelToPrint.Width, panelToPrint.Height);
+            panelToPrint.DrawToBitmap(bmp, new Rectangle(0, 0, panelToPrint.Width, panelToPrint.Height));
+            
+            // 비트맵을 그래픽 객체에 그리기
+            int width = (int)(panelToPrint.Width * ratio);
+            int height = (int)(panelToPrint.Height * ratio);
+            int x = (e.MarginBounds.Width - width) / 2 + e.MarginBounds.Left;
+            int y = (e.MarginBounds.Height - height) / 2 + e.MarginBounds.Top;
+            
+            g.DrawImage(bmp, new Rectangle(x, y, width, height));
+            
+            // 다음 페이지 설정
+            currentPrintPage++;
+            
+            // 아직 인쇄할 페이지가 남아있는지 확인
+            e.HasMorePages = (currentPrintPage < 2);
+            
+            // 비트맵 자원 해제
+            bmp.Dispose();
         }
     }
 }

@@ -673,6 +673,16 @@ namespace SmartShoes.Client.UI.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap result2_1_5 {
+            get {
+                object obj = ResourceManager.GetObject("result2_1_5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap resultDataTable {
             get {
                 object obj = ResourceManager.GetObject("resultDataTable", resourceCulture);

@@ -28,7 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.txtLeftStepAngle = new System.Windows.Forms.Label();
+            this.txtLeftStep = new System.Windows.Forms.Label();
+            this.txtRightStepAngle = new System.Windows.Forms.Label();
+            this.txtRightStep = new System.Windows.Forms.Label();
+            this.txtTotalStride = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.textBoxReport = new System.Windows.Forms.TextBox();
+            this.picRightForce = new System.Windows.Forms.Label();
+            this.picLeftForce = new System.Windows.Forms.Label();
             this.picLeftAngle = new System.Windows.Forms.Label();
             this.picLeftLength = new System.Windows.Forms.Label();
             this.picRightAngle = new System.Windows.Forms.Label();
@@ -63,25 +72,71 @@
             this.txtAge = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.Label();
             this.txtMeasureDate = new System.Windows.Forms.Label();
+            this.txtFootSize2 = new System.Windows.Forms.Label();
+            this.txtHeight2 = new System.Windows.Forms.Label();
+            this.txtSex2 = new System.Windows.Forms.Label();
+            this.txtAge2 = new System.Windows.Forms.Label();
+            this.txtName2 = new System.Windows.Forms.Label();
+            this.txtMeasureDate2 = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.PictureBox();
-            this.txtLeftStepAngle = new System.Windows.Forms.Label();
-            this.txtLeftStep = new System.Windows.Forms.Label();
-            this.txtRightStepAngle = new System.Windows.Forms.Label();
-            this.txtRightStep = new System.Windows.Forms.Label();
-            this.txtTotalStride = new System.Windows.Forms.Label();
-            this.picLeftForce = new System.Windows.Forms.Label();
-            this.picRightForce = new System.Windows.Forms.Label();
-            this.textBoxReport = new System.Windows.Forms.TextBox();
+            this.picPrint = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPrint)).BeginInit();
             this.SuspendLayout();
+            // 
+            // txtLeftStepAngle
+            // 
+            this.txtLeftStepAngle.AutoSize = true;
+            this.txtLeftStepAngle.Location = new System.Drawing.Point(813, 741);
+            this.txtLeftStepAngle.Name = "txtLeftStepAngle";
+            this.txtLeftStepAngle.Size = new System.Drawing.Size(38, 12);
+            this.txtLeftStepAngle.TabIndex = 13;
+            this.txtLeftStepAngle.Text = "00";
+            // 
+            // txtLeftStep
+            // 
+            this.txtLeftStep.AutoSize = true;
+            this.txtLeftStep.Location = new System.Drawing.Point(761, 643);
+            this.txtLeftStep.Name = "txtLeftStep";
+            this.txtLeftStep.Size = new System.Drawing.Size(38, 12);
+            this.txtLeftStep.TabIndex = 13;
+            this.txtLeftStep.Text = "00";
+            // 
+            // txtRightStepAngle
+            // 
+            this.txtRightStepAngle.AutoSize = true;
+            this.txtRightStepAngle.Location = new System.Drawing.Point(831, 610);
+            this.txtRightStepAngle.Name = "txtRightStepAngle";
+            this.txtRightStepAngle.Size = new System.Drawing.Size(38, 12);
+            this.txtRightStepAngle.TabIndex = 13;
+            this.txtRightStepAngle.Text = "00";
+            // 
+            // txtRightStep
+            // 
+            this.txtRightStep.AutoSize = true;
+            this.txtRightStep.Location = new System.Drawing.Point(866, 512);
+            this.txtRightStep.Name = "txtRightStep";
+            this.txtRightStep.Size = new System.Drawing.Size(38, 12);
+            this.txtRightStep.TabIndex = 13;
+            this.txtRightStep.Text = "00";
+            // 
+            // txtTotalStride
+            // 
+            this.txtTotalStride.AutoSize = true;
+            this.txtTotalStride.Location = new System.Drawing.Point(740, 512);
+            this.txtTotalStride.Name = "txtTotalStride";
+            this.txtTotalStride.Size = new System.Drawing.Size(38, 12);
+            this.txtTotalStride.TabIndex = 13;
+            this.txtTotalStride.Text = "00";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.result1_11;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.textBoxReport);
             this.panel1.Controls.Add(this.picRightForce);
             this.panel1.Controls.Add(this.picLeftForce);
@@ -119,11 +174,56 @@
             this.panel1.Controls.Add(this.txtAge);
             this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.txtMeasureDate);
+            this.panel1.Controls.Add(this.txtFootSize2);
+            this.panel1.Controls.Add(this.txtHeight2);
+            this.panel1.Controls.Add(this.txtSex2);
+            this.panel1.Controls.Add(this.txtAge2);
+            this.panel1.Controls.Add(this.txtName2);
+            this.panel1.Controls.Add(this.txtMeasureDate2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1080, 1288);
             this.panel1.TabIndex = 10;
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.result2_1_5;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1080, 1288);
+            this.panel2.TabIndex = 17;
+            // 
+            // textBoxReport
+            // 
+            this.textBoxReport.Location = new System.Drawing.Point(149, 1122);
+            this.textBoxReport.Multiline = true;
+            this.textBoxReport.Name = "textBoxReport";
+            this.textBoxReport.Size = new System.Drawing.Size(784, 98);
+            this.textBoxReport.TabIndex = 16;
+            // 
+            // picRightForce
+            // 
+            this.picRightForce.AutoSize = true;
+            this.picRightForce.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
+            this.picRightForce.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.picRightForce.Location = new System.Drawing.Point(420, 918);
+            this.picRightForce.Name = "picRightForce";
+            this.picRightForce.Size = new System.Drawing.Size(54, 22);
+            this.picRightForce.TabIndex = 15;
+            this.picRightForce.Text = "00%";
+            // 
+            // picLeftForce
+            // 
+            this.picLeftForce.AutoSize = true;
+            this.picLeftForce.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
+            this.picLeftForce.ForeColor = System.Drawing.Color.Red;
+            this.picLeftForce.Location = new System.Drawing.Point(155, 918);
+            this.picLeftForce.Name = "picLeftForce";
+            this.picLeftForce.Size = new System.Drawing.Size(54, 22);
+            this.picLeftForce.TabIndex = 14;
+            this.picLeftForce.Text = "00%";
             // 
             // picLeftAngle
             // 
@@ -454,6 +554,72 @@
             this.txtMeasureDate.TabIndex = 0;
             this.txtMeasureDate.Text = "YYYY-MM-DD";
             // 
+            // txtFootSize2
+            // 
+            this.txtFootSize2.AutoSize = true;
+            this.txtFootSize2.BackColor = System.Drawing.Color.Transparent;
+            this.txtFootSize2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtFootSize2.Location = new System.Drawing.Point(865, 144);
+            this.txtFootSize2.Name = "txtFootSize2";
+            this.txtFootSize2.Size = new System.Drawing.Size(31, 13);
+            this.txtFootSize2.TabIndex = 5;
+            this.txtFootSize2.Text = "160";
+            // 
+            // txtHeight2
+            // 
+            this.txtHeight2.AutoSize = true;
+            this.txtHeight2.BackColor = System.Drawing.Color.Transparent;
+            this.txtHeight2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtHeight2.Location = new System.Drawing.Point(739, 144);
+            this.txtHeight2.Name = "txtHeight2";
+            this.txtHeight2.Size = new System.Drawing.Size(31, 13);
+            this.txtHeight2.TabIndex = 4;
+            this.txtHeight2.Text = "170";
+            // 
+            // txtSex2
+            // 
+            this.txtSex2.AutoSize = true;
+            this.txtSex2.BackColor = System.Drawing.Color.Transparent;
+            this.txtSex2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtSex2.Location = new System.Drawing.Point(610, 144);
+            this.txtSex2.Name = "txtSex2";
+            this.txtSex2.Size = new System.Drawing.Size(35, 13);
+            this.txtSex2.TabIndex = 3;
+            this.txtSex2.Text = "남자";
+            // 
+            // txtAge2
+            // 
+            this.txtAge2.AutoSize = true;
+            this.txtAge2.BackColor = System.Drawing.Color.Transparent;
+            this.txtAge2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtAge2.Location = new System.Drawing.Point(484, 144);
+            this.txtAge2.Name = "txtAge2";
+            this.txtAge2.Size = new System.Drawing.Size(23, 13);
+            this.txtAge2.TabIndex = 2;
+            this.txtAge2.Text = "30";
+            // 
+            // txtName2
+            // 
+            this.txtName2.AutoSize = true;
+            this.txtName2.BackColor = System.Drawing.Color.Transparent;
+            this.txtName2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtName2.Location = new System.Drawing.Point(344, 144);
+            this.txtName2.Name = "txtName2";
+            this.txtName2.Size = new System.Drawing.Size(49, 13);
+            this.txtName2.TabIndex = 1;
+            this.txtName2.Text = "홍길동";
+            // 
+            // txtMeasureDate2
+            // 
+            this.txtMeasureDate2.AutoSize = true;
+            this.txtMeasureDate2.BackColor = System.Drawing.Color.Transparent;
+            this.txtMeasureDate2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtMeasureDate2.Location = new System.Drawing.Point(169, 144);
+            this.txtMeasureDate2.Name = "txtMeasureDate2";
+            this.txtMeasureDate2.Size = new System.Drawing.Size(103, 13);
+            this.txtMeasureDate2.TabIndex = 0;
+            this.txtMeasureDate2.Text = "YYYY-MM-DD";
+            // 
             // btnNext
             // 
             this.btnNext.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.Frame_284;
@@ -467,85 +633,22 @@
             this.btnNext.TabStop = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
-            // txtLeftStepAngle
+            // picPrint
             // 
-            this.txtLeftStepAngle.AutoSize = true;
-            this.txtLeftStepAngle.Location = new System.Drawing.Point(813, 741);
-            this.txtLeftStepAngle.Name = "txtLeftStepAngle";
-            this.txtLeftStepAngle.Size = new System.Drawing.Size(38, 12);
-            this.txtLeftStepAngle.TabIndex = 13;
-            this.txtLeftStepAngle.Text = "00";
-            // 
-            // txtLeftStep
-            // 
-            this.txtLeftStep.AutoSize = true;
-            this.txtLeftStep.Location = new System.Drawing.Point(761, 643);
-            this.txtLeftStep.Name = "txtLeftStep";
-            this.txtLeftStep.Size = new System.Drawing.Size(38, 12);
-            this.txtLeftStep.TabIndex = 13;
-            this.txtLeftStep.Text = "00";
-            // 
-            // txtRightStepAngle
-            // 
-            this.txtRightStepAngle.AutoSize = true;
-            this.txtRightStepAngle.Location = new System.Drawing.Point(831, 610);
-            this.txtRightStepAngle.Name = "txtRightStepAngle";
-            this.txtRightStepAngle.Size = new System.Drawing.Size(38, 12);
-            this.txtRightStepAngle.TabIndex = 13;
-            this.txtRightStepAngle.Text = "00";
-            // 
-            // txtRightStep
-            // 
-            this.txtRightStep.AutoSize = true;
-            this.txtRightStep.Location = new System.Drawing.Point(866, 512);
-            this.txtRightStep.Name = "txtRightStep";
-            this.txtRightStep.Size = new System.Drawing.Size(38, 12);
-            this.txtRightStep.TabIndex = 13;
-            this.txtRightStep.Text = "00";
-            // 
-            // txtTotalStride
-            // 
-            this.txtTotalStride.AutoSize = true;
-            this.txtTotalStride.Location = new System.Drawing.Point(740, 512);
-            this.txtTotalStride.Name = "txtTotalStride";
-            this.txtTotalStride.Size = new System.Drawing.Size(38, 12);
-            this.txtTotalStride.TabIndex = 13;
-            this.txtTotalStride.Text = "00";
-            // 
-            // picLeftForce
-            // 
-            this.picLeftForce.AutoSize = true;
-            this.picLeftForce.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
-            this.picLeftForce.ForeColor = System.Drawing.Color.Red;
-            this.picLeftForce.Location = new System.Drawing.Point(155, 918);
-            this.picLeftForce.Name = "picLeftForce";
-            this.picLeftForce.Size = new System.Drawing.Size(54, 22);
-            this.picLeftForce.TabIndex = 14;
-            this.picLeftForce.Text = "00%";
-            // 
-            // picRightForce
-            // 
-            this.picRightForce.AutoSize = true;
-            this.picRightForce.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
-            this.picRightForce.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.picRightForce.Location = new System.Drawing.Point(420, 918);
-            this.picRightForce.Name = "picRightForce";
-            this.picRightForce.Size = new System.Drawing.Size(54, 22);
-            this.picRightForce.TabIndex = 15;
-            this.picRightForce.Text = "00%";
-            // 
-            // textBoxReport
-            // 
-            this.textBoxReport.Location = new System.Drawing.Point(149, 1122);
-            this.textBoxReport.Multiline = true;
-            this.textBoxReport.Name = "textBoxReport";
-            this.textBoxReport.Size = new System.Drawing.Size(784, 98);
-            this.textBoxReport.TabIndex = 16;
+            this.picPrint.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.printer;
+            this.picPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picPrint.Location = new System.Drawing.Point(0, 1288);
+            this.picPrint.Name = "picPrint";
+            this.picPrint.Size = new System.Drawing.Size(1080, 132);
+            this.picPrint.TabIndex = 11;
+            this.picPrint.TabStop = false;
+            this.picPrint.Click += new System.EventHandler(this.picPrint_Click);
             // 
             // NewResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.picPrint);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnNext);
             this.Name = "NewResultForm";
@@ -555,6 +658,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPrint)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -569,6 +673,12 @@
         private System.Windows.Forms.Label txtAge;
         private System.Windows.Forms.Label txtName;
         private System.Windows.Forms.Label txtMeasureDate;
+        private System.Windows.Forms.Label txtFootSize2;
+        private System.Windows.Forms.Label txtHeight2;
+        private System.Windows.Forms.Label txtSex2;
+        private System.Windows.Forms.Label txtAge2;
+        private System.Windows.Forms.Label txtName2;
+        private System.Windows.Forms.Label txtMeasureDate2;
         private System.Windows.Forms.Label txtLeftStancePhase;
         private System.Windows.Forms.Label txtRightStancePhase;
         private System.Windows.Forms.Label txtRightSwingPhase;
@@ -605,5 +715,7 @@
         private System.Windows.Forms.Label picRightForce;
         private System.Windows.Forms.Label picLeftForce;
         private System.Windows.Forms.TextBox textBoxReport;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.PictureBox picPrint;
     }
 }
