@@ -37,6 +37,27 @@
             this.picPrint = new System.Windows.Forms.PictureBox();
             this.btnNext = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.rightL2 = new System.Windows.Forms.Label();
+            this.rightL1 = new System.Windows.Forms.Label();
+            this.rightU2 = new System.Windows.Forms.Label();
+            this.rightU1 = new System.Windows.Forms.Label();
+            this.leftL2 = new System.Windows.Forms.Label();
+            this.centerRL1 = new System.Windows.Forms.Label();
+            this.leftU2 = new System.Windows.Forms.Label();
+            this.centerRU2 = new System.Windows.Forms.Label();
+            this.leftL1 = new System.Windows.Forms.Label();
+            this.centerLL1 = new System.Windows.Forms.Label();
+            this.leftU1 = new System.Windows.Forms.Label();
+            this.centerF2 = new System.Windows.Forms.Label();
+            this.centerLU2 = new System.Windows.Forms.Label();
+            this.centerF1 = new System.Windows.Forms.Label();
+            this.txt2RightTime = new System.Windows.Forms.Label();
+            this.txt2LeftTime = new System.Windows.Forms.Label();
+            this.txt2RightLength = new System.Windows.Forms.Label();
+            this.txt2LeftLength = new System.Windows.Forms.Label();
+            this.txt2RightStancePhase = new System.Windows.Forms.Label();
+            this.txt2RightSwingPhase = new System.Windows.Forms.Label();
+            this.txt2LeftSwingPhase = new System.Windows.Forms.Label();
             this.txt2LeftStancePhase = new System.Windows.Forms.Label();
             this.txtFootSize2 = new System.Windows.Forms.Label();
             this.txtHeight2 = new System.Windows.Forms.Label();
@@ -86,27 +107,6 @@
             this.txtAge = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.Label();
             this.txtMeasureDate = new System.Windows.Forms.Label();
-            this.txt2LeftSwingPhase = new System.Windows.Forms.Label();
-            this.txt2RightSwingPhase = new System.Windows.Forms.Label();
-            this.txt2LeftLength = new System.Windows.Forms.Label();
-            this.txt2RightLength = new System.Windows.Forms.Label();
-            this.txt2LeftTime = new System.Windows.Forms.Label();
-            this.txt2RightTime = new System.Windows.Forms.Label();
-            this.centerF1 = new System.Windows.Forms.Label();
-            this.centerF2 = new System.Windows.Forms.Label();
-            this.centerLU2 = new System.Windows.Forms.Label();
-            this.centerRU2 = new System.Windows.Forms.Label();
-            this.centerLL1 = new System.Windows.Forms.Label();
-            this.centerRL1 = new System.Windows.Forms.Label();
-            this.leftU1 = new System.Windows.Forms.Label();
-            this.leftU2 = new System.Windows.Forms.Label();
-            this.rightU1 = new System.Windows.Forms.Label();
-            this.rightU2 = new System.Windows.Forms.Label();
-            this.leftL1 = new System.Windows.Forms.Label();
-            this.leftL2 = new System.Windows.Forms.Label();
-            this.rightL1 = new System.Windows.Forms.Label();
-            this.rightL2 = new System.Windows.Forms.Label();
-            this.txt2RightStancePhase = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
             this.panel2.SuspendLayout();
@@ -227,6 +227,218 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1080, 1288);
             this.panel2.TabIndex = 17;
+            // 
+            // rightL2
+            // 
+            this.rightL2.BackColor = System.Drawing.Color.Transparent;
+            this.rightL2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.rightL2.Location = new System.Drawing.Point(713, 1197);
+            this.rightL2.Name = "rightL2";
+            this.rightL2.Size = new System.Drawing.Size(216, 43);
+            this.rightL2.TabIndex = 0;
+            this.rightL2.Text = "당신의 무릎각도는 00/00도 입니다";
+            // 
+            // rightL1
+            // 
+            this.rightL1.BackColor = System.Drawing.Color.Transparent;
+            this.rightL1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.rightL1.Location = new System.Drawing.Point(713, 1122);
+            this.rightL1.Name = "rightL1";
+            this.rightL1.Size = new System.Drawing.Size(216, 43);
+            this.rightL1.TabIndex = 0;
+            this.rightL1.Text = "당신의 골반각도는 00/00도 입니다";
+            // 
+            // rightU2
+            // 
+            this.rightU2.BackColor = System.Drawing.Color.Transparent;
+            this.rightU2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.rightU2.Location = new System.Drawing.Point(713, 1047);
+            this.rightU2.Name = "rightU2";
+            this.rightU2.Size = new System.Drawing.Size(216, 43);
+            this.rightU2.TabIndex = 0;
+            this.rightU2.Text = "당신의 팔꿈치각도는 00/00도 입니다";
+            // 
+            // rightU1
+            // 
+            this.rightU1.BackColor = System.Drawing.Color.Transparent;
+            this.rightU1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.rightU1.Location = new System.Drawing.Point(713, 972);
+            this.rightU1.Name = "rightU1";
+            this.rightU1.Size = new System.Drawing.Size(216, 43);
+            this.rightU1.TabIndex = 0;
+            this.rightU1.Text = "당신의 어깨각도는 00/00도 입니다";
+            // 
+            // leftL2
+            // 
+            this.leftL2.BackColor = System.Drawing.Color.Transparent;
+            this.leftL2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.leftL2.Location = new System.Drawing.Point(403, 1197);
+            this.leftL2.Name = "leftL2";
+            this.leftL2.Size = new System.Drawing.Size(216, 43);
+            this.leftL2.TabIndex = 0;
+            this.leftL2.Text = "당신의 무릎각도는 00/00도 입니다";
+            // 
+            // centerRL1
+            // 
+            this.centerRL1.BackColor = System.Drawing.Color.Transparent;
+            this.centerRL1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.centerRL1.Location = new System.Drawing.Point(713, 841);
+            this.centerRL1.Name = "centerRL1";
+            this.centerRL1.Size = new System.Drawing.Size(216, 43);
+            this.centerRL1.TabIndex = 0;
+            this.centerRL1.Text = "당신의 골반각도는 00/00도 입니다";
+            // 
+            // leftU2
+            // 
+            this.leftU2.BackColor = System.Drawing.Color.Transparent;
+            this.leftU2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.leftU2.Location = new System.Drawing.Point(403, 1047);
+            this.leftU2.Name = "leftU2";
+            this.leftU2.Size = new System.Drawing.Size(216, 43);
+            this.leftU2.TabIndex = 0;
+            this.leftU2.Text = "당신의 팔꿈치각도는 00/00도 입니다";
+            // 
+            // centerRU2
+            // 
+            this.centerRU2.BackColor = System.Drawing.Color.Transparent;
+            this.centerRU2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.centerRU2.Location = new System.Drawing.Point(713, 766);
+            this.centerRU2.Name = "centerRU2";
+            this.centerRU2.Size = new System.Drawing.Size(216, 43);
+            this.centerRU2.TabIndex = 0;
+            this.centerRU2.Text = "당신의 팔꿈치각도는 00/00도 입니다";
+            // 
+            // leftL1
+            // 
+            this.leftL1.BackColor = System.Drawing.Color.Transparent;
+            this.leftL1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.leftL1.Location = new System.Drawing.Point(403, 1122);
+            this.leftL1.Name = "leftL1";
+            this.leftL1.Size = new System.Drawing.Size(216, 43);
+            this.leftL1.TabIndex = 0;
+            this.leftL1.Text = "당신의 골반각도는 00/00도 입니다";
+            // 
+            // centerLL1
+            // 
+            this.centerLL1.BackColor = System.Drawing.Color.Transparent;
+            this.centerLL1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.centerLL1.Location = new System.Drawing.Point(403, 841);
+            this.centerLL1.Name = "centerLL1";
+            this.centerLL1.Size = new System.Drawing.Size(216, 43);
+            this.centerLL1.TabIndex = 0;
+            this.centerLL1.Text = "당신의 골반각도는 00/00도 입니다";
+            // 
+            // leftU1
+            // 
+            this.leftU1.BackColor = System.Drawing.Color.Transparent;
+            this.leftU1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.leftU1.Location = new System.Drawing.Point(403, 972);
+            this.leftU1.Name = "leftU1";
+            this.leftU1.Size = new System.Drawing.Size(216, 43);
+            this.leftU1.TabIndex = 0;
+            this.leftU1.Text = "당신의 어깨각도는 00/00도 입니다";
+            // 
+            // centerF2
+            // 
+            this.centerF2.BackColor = System.Drawing.Color.Transparent;
+            this.centerF2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.centerF2.Location = new System.Drawing.Point(713, 650);
+            this.centerF2.Name = "centerF2";
+            this.centerF2.Size = new System.Drawing.Size(216, 43);
+            this.centerF2.TabIndex = 0;
+            this.centerF2.Text = "당신의 골반 수평각도는 00/00도 입니다";
+            // 
+            // centerLU2
+            // 
+            this.centerLU2.BackColor = System.Drawing.Color.Transparent;
+            this.centerLU2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.centerLU2.Location = new System.Drawing.Point(403, 766);
+            this.centerLU2.Name = "centerLU2";
+            this.centerLU2.Size = new System.Drawing.Size(216, 43);
+            this.centerLU2.TabIndex = 0;
+            this.centerLU2.Text = "당신의 팔꿈치각도는 00/00도 입니다";
+            // 
+            // centerF1
+            // 
+            this.centerF1.BackColor = System.Drawing.Color.Transparent;
+            this.centerF1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.centerF1.Location = new System.Drawing.Point(403, 650);
+            this.centerF1.Name = "centerF1";
+            this.centerF1.Size = new System.Drawing.Size(216, 43);
+            this.centerF1.TabIndex = 0;
+            this.centerF1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
+            // 
+            // txt2RightTime
+            // 
+            this.txt2RightTime.AutoSize = true;
+            this.txt2RightTime.BackColor = System.Drawing.Color.Transparent;
+            this.txt2RightTime.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.txt2RightTime.Location = new System.Drawing.Point(547, 501);
+            this.txt2RightTime.Name = "txt2RightTime";
+            this.txt2RightTime.Size = new System.Drawing.Size(34, 16);
+            this.txt2RightTime.TabIndex = 0;
+            this.txt2RightTime.Text = "000";
+            // 
+            // txt2LeftTime
+            // 
+            this.txt2LeftTime.AutoSize = true;
+            this.txt2LeftTime.BackColor = System.Drawing.Color.Transparent;
+            this.txt2LeftTime.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.txt2LeftTime.Location = new System.Drawing.Point(420, 501);
+            this.txt2LeftTime.Name = "txt2LeftTime";
+            this.txt2LeftTime.Size = new System.Drawing.Size(34, 16);
+            this.txt2LeftTime.TabIndex = 0;
+            this.txt2LeftTime.Text = "000";
+            // 
+            // txt2RightLength
+            // 
+            this.txt2RightLength.AutoSize = true;
+            this.txt2RightLength.BackColor = System.Drawing.Color.Transparent;
+            this.txt2RightLength.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.txt2RightLength.Location = new System.Drawing.Point(547, 462);
+            this.txt2RightLength.Name = "txt2RightLength";
+            this.txt2RightLength.Size = new System.Drawing.Size(34, 16);
+            this.txt2RightLength.TabIndex = 0;
+            this.txt2RightLength.Text = "000";
+            // 
+            // txt2LeftLength
+            // 
+            this.txt2LeftLength.AutoSize = true;
+            this.txt2LeftLength.BackColor = System.Drawing.Color.Transparent;
+            this.txt2LeftLength.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.txt2LeftLength.Location = new System.Drawing.Point(420, 462);
+            this.txt2LeftLength.Name = "txt2LeftLength";
+            this.txt2LeftLength.Size = new System.Drawing.Size(34, 16);
+            this.txt2LeftLength.TabIndex = 0;
+            this.txt2LeftLength.Text = "000";
+            // 
+            // txt2RightStancePhase
+            // 
+            this.txt2RightStancePhase.BackColor = System.Drawing.Color.Transparent;
+            this.txt2RightStancePhase.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txt2RightStancePhase.Location = new System.Drawing.Point(789, 385);
+            this.txt2RightStancePhase.Name = "txt2RightStancePhase";
+            this.txt2RightStancePhase.Size = new System.Drawing.Size(38, 12);
+            this.txt2RightStancePhase.TabIndex = 0;
+            this.txt2RightStancePhase.Text = "00";
+            // 
+            // txt2RightSwingPhase
+            // 
+            this.txt2RightSwingPhase.BackColor = System.Drawing.Color.Transparent;
+            this.txt2RightSwingPhase.Location = new System.Drawing.Point(671, 384);
+            this.txt2RightSwingPhase.Name = "txt2RightSwingPhase";
+            this.txt2RightSwingPhase.Size = new System.Drawing.Size(38, 12);
+            this.txt2RightSwingPhase.TabIndex = 0;
+            this.txt2RightSwingPhase.Text = "00";
+            // 
+            // txt2LeftSwingPhase
+            // 
+            this.txt2LeftSwingPhase.BackColor = System.Drawing.Color.Transparent;
+            this.txt2LeftSwingPhase.Location = new System.Drawing.Point(469, 385);
+            this.txt2LeftSwingPhase.Name = "txt2LeftSwingPhase";
+            this.txt2LeftSwingPhase.Size = new System.Drawing.Size(38, 12);
+            this.txt2LeftSwingPhase.TabIndex = 0;
+            this.txt2LeftSwingPhase.Text = "00";
             // 
             // txt2LeftStancePhase
             // 
@@ -756,218 +968,6 @@
             this.txtMeasureDate.Size = new System.Drawing.Size(103, 13);
             this.txtMeasureDate.TabIndex = 0;
             this.txtMeasureDate.Text = "YYYY-MM-DD";
-            // 
-            // txt2LeftSwingPhase
-            // 
-            this.txt2LeftSwingPhase.BackColor = System.Drawing.Color.Transparent;
-            this.txt2LeftSwingPhase.Location = new System.Drawing.Point(469, 385);
-            this.txt2LeftSwingPhase.Name = "txt2LeftSwingPhase";
-            this.txt2LeftSwingPhase.Size = new System.Drawing.Size(38, 12);
-            this.txt2LeftSwingPhase.TabIndex = 0;
-            this.txt2LeftSwingPhase.Text = "00";
-            // 
-            // txt2RightSwingPhase
-            // 
-            this.txt2RightSwingPhase.BackColor = System.Drawing.Color.Transparent;
-            this.txt2RightSwingPhase.Location = new System.Drawing.Point(671, 384);
-            this.txt2RightSwingPhase.Name = "txt2RightSwingPhase";
-            this.txt2RightSwingPhase.Size = new System.Drawing.Size(38, 12);
-            this.txt2RightSwingPhase.TabIndex = 0;
-            this.txt2RightSwingPhase.Text = "00";
-            // 
-            // txt2LeftLength
-            // 
-            this.txt2LeftLength.AutoSize = true;
-            this.txt2LeftLength.BackColor = System.Drawing.Color.Transparent;
-            this.txt2LeftLength.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.txt2LeftLength.Location = new System.Drawing.Point(420, 462);
-            this.txt2LeftLength.Name = "txt2LeftLength";
-            this.txt2LeftLength.Size = new System.Drawing.Size(34, 16);
-            this.txt2LeftLength.TabIndex = 0;
-            this.txt2LeftLength.Text = "000";
-            // 
-            // txt2RightLength
-            // 
-            this.txt2RightLength.AutoSize = true;
-            this.txt2RightLength.BackColor = System.Drawing.Color.Transparent;
-            this.txt2RightLength.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.txt2RightLength.Location = new System.Drawing.Point(547, 462);
-            this.txt2RightLength.Name = "txt2RightLength";
-            this.txt2RightLength.Size = new System.Drawing.Size(34, 16);
-            this.txt2RightLength.TabIndex = 0;
-            this.txt2RightLength.Text = "000";
-            // 
-            // txt2LeftTime
-            // 
-            this.txt2LeftTime.AutoSize = true;
-            this.txt2LeftTime.BackColor = System.Drawing.Color.Transparent;
-            this.txt2LeftTime.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.txt2LeftTime.Location = new System.Drawing.Point(420, 501);
-            this.txt2LeftTime.Name = "txt2LeftTime";
-            this.txt2LeftTime.Size = new System.Drawing.Size(34, 16);
-            this.txt2LeftTime.TabIndex = 0;
-            this.txt2LeftTime.Text = "000";
-            // 
-            // txt2RightTime
-            // 
-            this.txt2RightTime.AutoSize = true;
-            this.txt2RightTime.BackColor = System.Drawing.Color.Transparent;
-            this.txt2RightTime.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.txt2RightTime.Location = new System.Drawing.Point(547, 501);
-            this.txt2RightTime.Name = "txt2RightTime";
-            this.txt2RightTime.Size = new System.Drawing.Size(34, 16);
-            this.txt2RightTime.TabIndex = 0;
-            this.txt2RightTime.Text = "000";
-            // 
-            // centerF1
-            // 
-            this.centerF1.BackColor = System.Drawing.Color.Transparent;
-            this.centerF1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.centerF1.Location = new System.Drawing.Point(403, 650);
-            this.centerF1.Name = "centerF1";
-            this.centerF1.Size = new System.Drawing.Size(216, 43);
-            this.centerF1.TabIndex = 0;
-            this.centerF1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // centerF2
-            // 
-            this.centerF2.BackColor = System.Drawing.Color.Transparent;
-            this.centerF2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.centerF2.Location = new System.Drawing.Point(713, 650);
-            this.centerF2.Name = "centerF2";
-            this.centerF2.Size = new System.Drawing.Size(216, 43);
-            this.centerF2.TabIndex = 0;
-            this.centerF2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // centerLU2
-            // 
-            this.centerLU2.BackColor = System.Drawing.Color.Transparent;
-            this.centerLU2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.centerLU2.Location = new System.Drawing.Point(403, 766);
-            this.centerLU2.Name = "centerLU2";
-            this.centerLU2.Size = new System.Drawing.Size(216, 43);
-            this.centerLU2.TabIndex = 0;
-            this.centerLU2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // centerRU2
-            // 
-            this.centerRU2.BackColor = System.Drawing.Color.Transparent;
-            this.centerRU2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.centerRU2.Location = new System.Drawing.Point(713, 766);
-            this.centerRU2.Name = "centerRU2";
-            this.centerRU2.Size = new System.Drawing.Size(216, 43);
-            this.centerRU2.TabIndex = 0;
-            this.centerRU2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // centerLL1
-            // 
-            this.centerLL1.BackColor = System.Drawing.Color.Transparent;
-            this.centerLL1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.centerLL1.Location = new System.Drawing.Point(403, 841);
-            this.centerLL1.Name = "centerLL1";
-            this.centerLL1.Size = new System.Drawing.Size(216, 43);
-            this.centerLL1.TabIndex = 0;
-            this.centerLL1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // centerRL1
-            // 
-            this.centerRL1.BackColor = System.Drawing.Color.Transparent;
-            this.centerRL1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.centerRL1.Location = new System.Drawing.Point(713, 841);
-            this.centerRL1.Name = "centerRL1";
-            this.centerRL1.Size = new System.Drawing.Size(216, 43);
-            this.centerRL1.TabIndex = 0;
-            this.centerRL1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // leftU1
-            // 
-            this.leftU1.BackColor = System.Drawing.Color.Transparent;
-            this.leftU1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.leftU1.Location = new System.Drawing.Point(403, 972);
-            this.leftU1.Name = "leftU1";
-            this.leftU1.Size = new System.Drawing.Size(216, 43);
-            this.leftU1.TabIndex = 0;
-            this.leftU1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // leftU2
-            // 
-            this.leftU2.BackColor = System.Drawing.Color.Transparent;
-            this.leftU2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.leftU2.Location = new System.Drawing.Point(403, 1047);
-            this.leftU2.Name = "leftU2";
-            this.leftU2.Size = new System.Drawing.Size(216, 43);
-            this.leftU2.TabIndex = 0;
-            this.leftU2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // rightU1
-            // 
-            this.rightU1.BackColor = System.Drawing.Color.Transparent;
-            this.rightU1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.rightU1.Location = new System.Drawing.Point(713, 972);
-            this.rightU1.Name = "rightU1";
-            this.rightU1.Size = new System.Drawing.Size(216, 43);
-            this.rightU1.TabIndex = 0;
-            this.rightU1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // rightU2
-            // 
-            this.rightU2.BackColor = System.Drawing.Color.Transparent;
-            this.rightU2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.rightU2.Location = new System.Drawing.Point(713, 1047);
-            this.rightU2.Name = "rightU2";
-            this.rightU2.Size = new System.Drawing.Size(216, 43);
-            this.rightU2.TabIndex = 0;
-            this.rightU2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // leftL1
-            // 
-            this.leftL1.BackColor = System.Drawing.Color.Transparent;
-            this.leftL1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.leftL1.Location = new System.Drawing.Point(403, 1122);
-            this.leftL1.Name = "leftL1";
-            this.leftL1.Size = new System.Drawing.Size(216, 43);
-            this.leftL1.TabIndex = 0;
-            this.leftL1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // leftL2
-            // 
-            this.leftL2.BackColor = System.Drawing.Color.Transparent;
-            this.leftL2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.leftL2.Location = new System.Drawing.Point(403, 1197);
-            this.leftL2.Name = "leftL2";
-            this.leftL2.Size = new System.Drawing.Size(216, 43);
-            this.leftL2.TabIndex = 0;
-            this.leftL2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // rightL1
-            // 
-            this.rightL1.BackColor = System.Drawing.Color.Transparent;
-            this.rightL1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.rightL1.Location = new System.Drawing.Point(713, 1122);
-            this.rightL1.Name = "rightL1";
-            this.rightL1.Size = new System.Drawing.Size(216, 43);
-            this.rightL1.TabIndex = 0;
-            this.rightL1.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // rightL2
-            // 
-            this.rightL2.BackColor = System.Drawing.Color.Transparent;
-            this.rightL2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.rightL2.Location = new System.Drawing.Point(713, 1197);
-            this.rightL2.Name = "rightL2";
-            this.rightL2.Size = new System.Drawing.Size(216, 43);
-            this.rightL2.TabIndex = 0;
-            this.rightL2.Text = "당신의 어깨 수평각도는 00/00도 입니다";
-            // 
-            // txt2RightStancePhase
-            // 
-            this.txt2RightStancePhase.BackColor = System.Drawing.Color.Transparent;
-            this.txt2RightStancePhase.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txt2RightStancePhase.Location = new System.Drawing.Point(789, 385);
-            this.txt2RightStancePhase.Name = "txt2RightStancePhase";
-            this.txt2RightStancePhase.Size = new System.Drawing.Size(38, 12);
-            this.txt2RightStancePhase.TabIndex = 0;
-            this.txt2RightStancePhase.Text = "00";
             // 
             // NewResultForm
             // 

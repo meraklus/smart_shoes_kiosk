@@ -650,8 +650,7 @@ namespace SmartShoes.Client.UI
 
                             JObject jObject = JObject.Parse(responseContent);
                             // 바로 필요한 값에 접근
-                            JObject result = (JObject)jObject["result"];
-                            JObject angleData = (JObject)result?["angle"];
+                            JObject angleData = (JObject)jObject?["angle"];
                             if (angleData != null)
                             {
                                 // 각도 정보 추출 및 표시
@@ -742,6 +741,9 @@ namespace SmartShoes.Client.UI
 
                                 Console.WriteLine($"카메라 데이터 API 응답: {responseContent}");
                                 return true;
+                            }else
+                            {
+                                return false;
                             }
                         }
                         else
@@ -954,17 +956,17 @@ namespace SmartShoes.Client.UI
         }
 
         private void picPrint_Click(object sender, EventArgs e)
-        {            
+        {
             // 프린트 작업 초기화
             printDocument = new System.Drawing.Printing.PrintDocument();
             printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(PrintPage);
-            
+
             // 인쇄 완료 이벤트 핸들러 추가
             printDocument.EndPrint += new System.Drawing.Printing.PrintEventHandler(PrintDocument_EndPrint);
-            
+
             // 인쇄 시작 페이지 설정
             currentPrintPage = 0;
-            
+
             try
             {
                 // 프린트 작업 시작
@@ -973,15 +975,16 @@ namespace SmartShoes.Client.UI
             catch (Exception ex)
             {
                 MessageBox.Show("인쇄 중 오류가 발생했습니다: " + ex.Message, "인쇄 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+
                 // 인쇄 오류 시 바로 로그인 페이지로 이동
                 this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
             }
-            
+            //this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
+
             // 여기서 로그인 폼으로 이동하면 인쇄가 완료되기 전에 이동하게 됨
             // 이동 코드는 PrintDocument_EndPrint 이벤트 핸들러로 옮김
         }
-        
+
         // 인쇄 완료 이벤트 핸들러
         private void PrintDocument_EndPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
