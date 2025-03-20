@@ -323,7 +323,16 @@ namespace SmartShoes.Client.UI
                         measureResult.matScoreStrideTime = jObject["scoreStridetime"]?.ToString() ?? "0";
                         measureResult.matScoreAngle = jObject["scoreAngle"]?.ToString() ?? "0";
                         measureResult.matScoreForce = jObject["scoreForce"]?.ToString() ?? "0";
-                        measureResult.matScoreBaseOfGait = jObject["scoreBaseofgait"]?.ToString("F2") ?? "0";
+                        // 소수점 2자리까지 표시하도록 수정
+                        var baseOfGaitValue = jObject["scoreBaseofgait"];
+                        if (baseOfGaitValue != null && double.TryParse(baseOfGaitValue.ToString(), out double value))
+                        {
+                            measureResult.matScoreBaseOfGait = value.ToString("F2");
+                        }
+                        else
+                        {
+                            measureResult.matScoreBaseOfGait = "0.00";
+                        }
                         measureResult.matTotalScore = jObject["scoreGrede"]?.ToString() ?? "0";
                         measureResult.matComment = jObject["comment"]?.ToString() ?? "";
 
