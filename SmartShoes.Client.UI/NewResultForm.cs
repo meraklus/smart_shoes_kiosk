@@ -37,7 +37,7 @@ namespace SmartShoes.Client.UI
         public NewResultForm()
         {
             InitializeComponent();
-            
+
             // 초기에는 panel2와 print 버튼을 숨깁니다.
             this.panel2.Visible = false;
             this.picPrint.Visible = false;
@@ -47,11 +47,11 @@ namespace SmartShoes.Client.UI
         {
             // 로딩 화면 표시
             ShowLoadingScreen();
-            
+
             // 비동기로 데이터 수집 및 분석 요청
             ProcessAllData();
         }
-        
+
         /// <summary>
         /// 로딩 화면을 표시합니다.
         /// </summary>
@@ -62,7 +62,7 @@ namespace SmartShoes.Client.UI
             loadingPopup.Show();
             Application.DoEvents(); // UI 업데이트를 위해 필요
         }
-        
+
         /// <summary>
         /// 로딩 화면을 닫습니다.
         /// </summary>
@@ -75,7 +75,7 @@ namespace SmartShoes.Client.UI
                 loadingPopup = null;
             }
         }
-        
+
         /// <summary>
         /// 모든 데이터 처리를 시작합니다.
         /// </summary>
@@ -85,7 +85,7 @@ namespace SmartShoes.Client.UI
             {
                 // 리포트 ID 생성
                 reportSid = await CreateReportAsync();
-                
+
                 this.txtFootSize.Text = UserInfo.Instance.FootSize.ToString();
                 this.txtHeight.Text = UserInfo.Instance.Height.ToString();
                 this.txtSex.Text = UserInfo.Instance.Sex.ToString();
@@ -98,13 +98,13 @@ namespace SmartShoes.Client.UI
                     var matTask = ProcessMatDataAsync();
                     var shoesTask = ProcessShoesDataAsync();
                     var cameraTask = ProcessCameraDataAsync();
-                    
+
                     // 모든 작업이 완료될 때까지 대기
                     await Task.WhenAll(matTask, shoesTask, cameraTask);
-                    
+
                     // 모든 데이터 처리가 완료되면 로딩 화면 닫기
                     HideLoadingScreen();
-                    
+
                     // 결과 데이터 화면에 표시
                     DisplayResults();
                 }
@@ -121,7 +121,7 @@ namespace SmartShoes.Client.UI
                 Console.WriteLine($"데이터 처리 오류: {ex}");
             }
         }
-        
+
         /// <summary>
         /// 리포트 ID를 생성합니다.
         /// </summary>
@@ -130,32 +130,32 @@ namespace SmartShoes.Client.UI
             try
             {
                 ApiCallHelper apiCallHelper = new ApiCallHelper();
-                
+
                 // POST 요청 URL
                 string postUrl = prefixUrl + "report";
-                
+
                 // POST 요청 데이터 (JSON 형식)
                 var postData = new
                 {
                     userSid = UserInfo.Instance.UserId
                 };
-                
+
                 // POST 요청
                 string postResponse = await apiCallHelper.PostAsync(postUrl, postData);
-                
+
                 // JSON 응답 파싱
                 JObject json = JObject.Parse(postResponse);
-                
+
                 // 리포트 ID 추출
                 foreach (var pair in json)
                 {
                     string key = pair.Key;
                     string value = pair.Value.ToString();
-                    
+
                     Console.WriteLine($"Key: {key}, Value: {value}");
                     return Convert.ToInt64(value);
                 }
-                
+
                 return 0;
             }
             catch (Exception ex)
@@ -164,7 +164,7 @@ namespace SmartShoes.Client.UI
                 return 0;
             }
         }
-        
+
         /// <summary>
         /// Mat 데이터를 처리합니다.
         /// </summary>
@@ -174,15 +174,15 @@ namespace SmartShoes.Client.UI
             {
                 // Mat 데이터 수집
                 MatData matData = MatDataManager.Instance.GetMatData();
-                
+
                 if (matData != null)
                 {
                     // MeasurementData 객체 생성
                     measurementData = CreateMeasurementData(matData);
-                    
+
                     // API 요청 및 결과 수신
                     await CallApiResultMatt(matData);
-                    
+
                     isMatDataProcessed = true;
                     Console.WriteLine("Mat 데이터 처리 완료");
                 }
@@ -197,7 +197,7 @@ namespace SmartShoes.Client.UI
                 //throw;
             }
         }
-        
+
         /// <summary>
         /// Mat 데이터로부터 MeasurementData 객체를 생성합니다.
         /// </summary>
@@ -281,7 +281,7 @@ namespace SmartShoes.Client.UI
                 copLength4 = matData.CopLength4
             };
         }
-        
+
         /// <summary>
         /// Mat 데이터 분석을 위한 API 호출
         /// </summary>
@@ -291,22 +291,22 @@ namespace SmartShoes.Client.UI
             {
                 // 새로운 API 엔드포인트 URL
                 string getUrl = prefixUrl + "report/mat-result";
-                
+
                 // API 호출 헬퍼 생성
                 ApiCallHelper apiCallHelper = new ApiCallHelper();
-                
+
                 // 요청 데이터 구조 변경 (data 객체로 감싸기)
                 var requestData = measurementData;
-                
+
                 // POST 요청 보내기
                 string getResponse = await apiCallHelper.PostAsync(getUrl, requestData);
                 Console.WriteLine("Mat API 응답: " + getResponse);
-                
+
                 if (!string.IsNullOrEmpty(getResponse))
                 {
                     // 응답 파싱
                     JObject jObject = JObject.Parse(getResponse);
-                    
+
                     // 새로운 API 응답 형식에 맞게 파싱
                     if (jObject != null)
                     {
@@ -323,10 +323,56 @@ namespace SmartShoes.Client.UI
                         measureResult.matScoreAngle = jObject["scoreAngle"]?.ToString() ?? "0";
                         measureResult.matScoreForce = jObject["scoreForce"]?.ToString() ?? "0";
                         measureResult.matScoreBaseOfGait = jObject["scoreBaseofgait"]?.ToString() ?? "0";
-                        measureResult.matTotalScore = jObject["scoreGrede"]?.ToString("F0") ?? "0";
+                        measureResult.matTotalScore = jObject["scoreGrede"]?.ToString() ?? "0";
                         measureResult.matComment = jObject["comment"]?.ToString() ?? "";
 
-                        this.txtLeftStancePhase.Text = matData.StancePhase1.ToString("F0"); // 왼발 입각 
+                        // 등급에 따라 pictureBoxGrade 이미지 설정
+                        if (float.TryParse(measureResult.matTotalScore, out float gradeValue))
+                        {
+                            int grade = 1;
+                            if (gradeValue < 2.0f) grade = 1;
+                            else if (gradeValue < 3.0f) grade = 2;
+                            else if (gradeValue < 4.0f) grade = 3;
+                            else if (gradeValue < 5.0f) grade = 4;
+                            else grade = 5;
+
+                            // 등급에 맞는 이미지 설정
+                            switch (grade)
+                            {
+                                case 1:
+                                    this.pictureBoxGrade.Image = global::SmartShoes.Client.UI.Properties.Resources.grade1;
+                                    this.labelGrade.Text = "1등급";
+                                    this.labelGradeTitle.Text = "[바른 보행]";
+                                    this.labelGradeTxt.Text = "일반적인 보행 상태이며, 일상적인 활동에 어려움이 없습니다.";
+                                    break;
+                                case 2:
+                                    this.pictureBoxGrade.Image = global::SmartShoes.Client.UI.Properties.Resources.grade2;
+                                    this.labelGrade.Text = "2등급";
+                                    this.labelGradeTitle.Text = "[경미한 불안정 보행]";
+                                    this.labelGradeTxt.Text = "일반적인 보행 상태이며, 일상적인 활동에 어려움이 없습니다.";
+                                    break;
+                                case 3:
+                                    this.pictureBoxGrade.Image = global::SmartShoes.Client.UI.Properties.Resources.grade3;
+                                    this.labelGrade.Text = "3등급";
+                                    this.labelGradeTitle.Text = "[불안정 보행]";
+                                    this.labelGradeTxt.Text = "보행 중 균형 유지가 필요할 수 있으며, 일정한 환경에서 변화가 나타날 수 있습니다.";
+                                    break;
+                                case 4:
+                                    this.pictureBoxGrade.Image = global::SmartShoes.Client.UI.Properties.Resources.grade4;
+                                    this.labelGrade.Text = "4등급";
+                                    this.labelGradeTitle.Text = "[균형 저하 보행]";
+                                    this.labelGradeTxt.Text = "보행 시 균형 유지가 어려운 경우가 있으며, 보행 보조기구 사용이 고려될 수 있습니다.";
+                                    break;
+                                case 5:
+                                    this.pictureBoxGrade.Image = global::SmartShoes.Client.UI.Properties.Resources.grade5;
+                                    this.labelGrade.Text = "5등급";
+                                    this.labelGradeTitle.Text = "[심각한 불균형 보행]";
+                                    this.labelGradeTxt.Text = "보행 중 균형 유지가 어려울 가능성이 있으며, 보조기구 사용이 필요할 수 있습니다.";
+                                    break;
+                            }
+                        }
+
+                        this.txtLeftStancePhase.Text = matData.StancePhase1.ToString("F0"); // 왼발 입각
                         this.txtLeftSwingPhase.Text = matData.SwingPhase1.ToString("F0"); //  왼발 유각
                         this.txtRightStancePhase.Text = matData.SwingPhase2.ToString("F0"); // 오른발 유각
                         this.txtRightSwingPhase.Text = matData.StancePhase2.ToString("F0"); // 오른발 입각
@@ -337,14 +383,14 @@ namespace SmartShoes.Client.UI
                         this.txtLeftAngle.Text = matData.StepAngle1.ToString("F2");
                         this.txtLeftForce.Text = matData.StepForce1.ToString("F2");
                         this.txtLeftGap.Text = matData.BaseOfGait1.ToString("F2");
-                        
+
                         this.txtRightLength.Text = matData.StepLength2.ToString("F1");
                         this.txtRightTime.Text = matData.SingleStepTime2.ToString("F2");
-                        this.txtRightSpeed.Text = matData.StrideTime2.ToString("F2"); 
+                        this.txtRightSpeed.Text = matData.StrideTime2.ToString("F2");
                         this.txtRightAngle.Text = matData.StepAngle2.ToString("F2");
                         this.txtRightForce.Text = matData.StepForce2.ToString("F2");
                         this.txtRightGap.Text = matData.BaseOfGait2.ToString("F2");
-                        
+
                         // 점수 항목 설정 (기존 측정값 대신 점수 값으로 변경)
                         this.txtStandardLength.Text = measureResult.matScoreLength;
                         this.txtStandardTime.Text = measureResult.matScoreSingleTime;
@@ -358,6 +404,11 @@ namespace SmartShoes.Client.UI
                         this.picRightAngle.Text = matData.StepAngle2.ToString("F2") + "˚";
                         this.picRightLength.Text = matData.StepLength2.ToString("F1") + "cm";
                         this.picStandardLength.Text = matData.StrideLength4.ToString("F0") + "cm";
+
+                        this.picLeftForce.Text = matData.StepForce1.ToString("F2") + "N";
+                        this.picRightForce.Text = matData.StepForce2.ToString("F2") + "N";
+
+                        this.textBoxReport.Text = measureResult.matComment;
                     }
                     else
                     {
@@ -375,7 +426,7 @@ namespace SmartShoes.Client.UI
                 throw;
             }
         }
-        
+
         /// <summary>
         /// Shoes 데이터를 처리합니다.
         /// </summary>
@@ -401,7 +452,7 @@ namespace SmartShoes.Client.UI
             }
 
         }
-        
+
         private ShoesData CreateShoesData(string leftData, string rightData)
         {
             int userid = UserInfo.Instance.UserId == null ? 0 : Convert.ToInt32(UserInfo.Instance.UserId);
@@ -412,9 +463,9 @@ namespace SmartShoes.Client.UI
                 reportSid = reportSid,
                 containerSid = containerSid,
                 LData = leftData,
-                RData = rightData   
+                RData = rightData
             };
-        } 
+        }
 
         private async Task CallApiResultShoes()
         {
@@ -422,16 +473,16 @@ namespace SmartShoes.Client.UI
             {
                 // 새로운 API 엔드포인트 URL
                 string getUrl = prefixUrl + "report/shoes-result";
-                
+
                 // API 호출 헬퍼 생성
-                ApiCallHelper apiCallHelper = new ApiCallHelper();  
+                ApiCallHelper apiCallHelper = new ApiCallHelper();
 
                 // 요청 데이터 구조 변경 (data 객체로 감싸기)
                 var requestData = shoesData;
 
                 // POST 요청 보내기
-                string getResponse = await apiCallHelper.PostAsync(getUrl, requestData);    
-                Console.WriteLine("Shoes API 응답: " + getResponse);    
+                string getResponse = await apiCallHelper.PostAsync(getUrl, requestData);
+                Console.WriteLine("Shoes API 응답: " + getResponse);
 
                 if (!string.IsNullOrEmpty(getResponse))
                 {
@@ -467,8 +518,8 @@ namespace SmartShoes.Client.UI
                 //throw;
             }
         }
-        
-        
+
+
         /// <summary>
         /// Camera 데이터를 처리합니다.
         /// </summary>
@@ -478,23 +529,23 @@ namespace SmartShoes.Client.UI
             {
                 // 카메라 데이터 파일 찾기
                 string cameraDataFilePath = FindCameraDataFile();
-                
+
                 if (!string.IsNullOrEmpty(cameraDataFilePath))
                 {
                     // 파일에서 카메라 데이터 불러오기
                     string jsonData = File.ReadAllText(cameraDataFilePath);
-                    
+
                     // JSON 데이터 파싱
                     var cameraData = JsonConvert.DeserializeObject<List<object>>(jsonData);
-                    
+
                     if (cameraData != null && cameraData.Count > 0)
                     {
                         Console.WriteLine($"카메라 데이터 불러오기 성공: {cameraData.Count}개 데이터");
-                        
+
                         // 여기에 카메라 데이터 처리 로직 추가
                         // 예: API 호출, 데이터 분석 등
                         bool apiSuccess = await SendCameraDataToApi(cameraData);
-                        
+
                         if (apiSuccess)
                         {
                             // API 전송 성공 시 파일 삭제
@@ -518,7 +569,7 @@ namespace SmartShoes.Client.UI
                 {
                     Console.WriteLine("카메라 데이터 파일을 찾을 수 없습니다.");
                 }
-                
+
                 isCameraDataProcessed = true;
                 Console.WriteLine("Camera 데이터 처리 완료");
             }
@@ -528,7 +579,7 @@ namespace SmartShoes.Client.UI
                 isCameraDataProcessed = true; // 오류 발생 시 처리 완료로 간주
             }
         }
-        
+
         /// <summary>
         /// 카메라 데이터를 API로 전송합니다.
         /// </summary>
@@ -548,11 +599,11 @@ namespace SmartShoes.Client.UI
                     {
                         // 카메라 데이터를 JSON 문자열로 변환
                         string jsonData = JsonConvert.SerializeObject(cameraData);
-                        
+
                         // JSON 데이터를 바이트 배열로 변환
                         var fileBytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
                         var fileContent = new ByteArrayContent(fileBytes);
-                        
+
                         // 파일 이름 설정
                         string fileName = "camera_data.json";
                         multipartContent.Add(fileContent, "cameraFile", fileName);
@@ -594,7 +645,7 @@ namespace SmartShoes.Client.UI
                 return false;
             }
         }
-        
+
         /// <summary>
         /// 카메라 데이터 파일을 찾습니다.
         /// </summary>
@@ -609,7 +660,7 @@ namespace SmartShoes.Client.UI
                     Console.WriteLine("카메라 데이터 파일 찾음 (앱 경로): " + appDataPath);
                     return appDataPath;
                 }
-                
+
                 // 문서 폴더에서도 확인
                 string documentsPath = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
@@ -617,13 +668,13 @@ namespace SmartShoes.Client.UI
                     "CameraData",
                     "merged_data.json"
                 );
-                
+
                 if (File.Exists(documentsPath))
                 {
                     Console.WriteLine("카메라 데이터 파일 찾음 (문서 경로): " + documentsPath);
                     return documentsPath;
                 }
-                
+
                 Console.WriteLine("카메라 데이터 파일을 찾을 수 없습니다.");
                 return string.Empty;
             }
@@ -633,7 +684,7 @@ namespace SmartShoes.Client.UI
                 return string.Empty;
             }
         }
-        
+
         /// <summary>
         /// 결과 데이터를 화면에 표시합니다.
         /// </summary>
@@ -643,7 +694,7 @@ namespace SmartShoes.Client.UI
             // 예: 라벨에 텍스트 설정, 차트 업데이트 등
             Console.WriteLine("결과 데이터 화면에 표시 완료");
         }
-        
+
         /// <summary>
         /// 페이지 이동을 요청합니다.
         /// </summary>
@@ -652,7 +703,7 @@ namespace SmartShoes.Client.UI
         {
             PageChangeRequested?.Invoke(this, new PageChangeEventArgs(pageType));
         }
-        
+
         #region :: 측정데이터 클래스 ::
         private class MeasurementData
         {
@@ -778,7 +829,7 @@ namespace SmartShoes.Client.UI
             // panel2와 print 버튼을 보이게 합니다.
             this.panel2.Visible = true;
             this.picPrint.Visible = true;
-            
+
             // Next 버튼은 숨깁니다.
             this.btnNext.Visible = false;
         }
@@ -788,10 +839,10 @@ namespace SmartShoes.Client.UI
             // 프린트 작업 초기화
             //printDocument = new System.Drawing.Printing.PrintDocument();
             //printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(PrintPage);
-            
+
             //// 인쇄 시작 페이지 설정
             //currentPrintPage = 0;
-            
+
             //try
             //{
             //    // 프린트 작업 시작
@@ -801,35 +852,35 @@ namespace SmartShoes.Client.UI
             //{
             //    MessageBox.Show("인쇄 중 오류가 발생했습니다: " + ex.Message, "인쇄 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //}
-            
+
             // 로그인 페이지로 이동
-             this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
+            this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
         }
-        
+
         private void PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
-            
+
             // 인쇄할 패널 결정
             Panel panelToPrint = (currentPrintPage == 0) ? panel1 : panel2;
-            
+
             // 패널의 비트맵 생성
             Bitmap bmp = new Bitmap(panelToPrint.Width, panelToPrint.Height);
             panelToPrint.DrawToBitmap(bmp, new Rectangle(0, 0, panelToPrint.Width, panelToPrint.Height));
-            
+
             // 프린트 페이지 크기
             var pageWidth = e.PageBounds.Width;
             var pageHeight = e.PageBounds.Height;
-            
+
             // 페이지에 가득 차도록 그리기
             g.DrawImage(bmp, 0, 0, pageWidth, pageHeight);
-            
+
             // 다음 페이지 설정
             currentPrintPage++;
-            
+
             // 아직 인쇄할 페이지가 남아있는지 확인
             e.HasMorePages = (currentPrintPage < 2);
-            
+
             // 비트맵 자원 해제
             bmp.Dispose();
         }
