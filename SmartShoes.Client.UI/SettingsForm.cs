@@ -30,6 +30,10 @@ namespace SmartShoes.Client.UI
             // 블루투스 연결 상태 변경 이벤트 구독
             BLEManager.Instance.ConnectionStatusChanged += OnBluetoothConnectionChanged;
 
+            // 블루투스 연결 상태 초기화
+            UpdateBluetoothStatus(true, BLEManager.Instance.IsLeftDeviceConnected);
+            UpdateBluetoothStatus(false, BLEManager.Instance.IsRightDeviceConnected);
+
             // 카메라 상태 초기화
             InitializeCameraStatus();
 
@@ -44,7 +48,12 @@ namespace SmartShoes.Client.UI
         {
             // 폼 로드 시 연결된 클라이언트 상태 업데이트
             UpdateConnectedClientsStatus();
+            
         }
+        //private void UpdateConnectedClientsStatus()
+        //{
+
+        //}
 
         private void UpdateConnectedClientsStatus()
         {
