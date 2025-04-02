@@ -263,10 +263,10 @@ namespace SmartShoes.Client.UI
                 totalDoubleSupport2 = matData.TotalDoubleSupport2,
                 totalDoubleSupport3 = matData.TotalDoubleSupport3,
                 totalDoubleSupport4 = matData.TotalDoubleSupport4,
-                loadResponse1 = matData.LoadResponce1,
-                loadResponse2 = matData.LoadResponce2,
-                loadResponse3 = matData.LoadResponce3,
-                loadResponse4 = matData.LoadResponce4,
+                loadResponce1 = matData.LoadResponce1,
+                loadResponce2 = matData.LoadResponce2,
+                loadResponce3 = matData.LoadResponce3,
+                loadResponce4 = matData.LoadResponce4,
                 preSwing1 = matData.PreSwing1,
                 preSwing2 = matData.PreSwing2,
                 preSwing3 = matData.PreSwing3,
@@ -870,10 +870,10 @@ namespace SmartShoes.Client.UI
             public double totalDoubleSupport2 { get; set; }
             public double totalDoubleSupport3 { get; set; }
             public double totalDoubleSupport4 { get; set; }
-            public double loadResponse1 { get; set; }
-            public double loadResponse2 { get; set; }
-            public double loadResponse3 { get; set; }
-            public double loadResponse4 { get; set; }
+            public double loadResponce1 { get; set; }
+            public double loadResponce2 { get; set; }
+            public double loadResponce3 { get; set; }
+            public double loadResponce4 { get; set; }
             public double preSwing1 { get; set; }
             public double preSwing2 { get; set; }
             public double preSwing3 { get; set; }
