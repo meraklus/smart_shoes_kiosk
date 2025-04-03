@@ -325,13 +325,13 @@ namespace SmartShoes.Client.UI
                         }
 
                         // API 응답에서 점수 값 추출
-                        measureResult.matScoreLength = jObject["scoreLenght"]?.ToString() ?? "0";
-                        measureResult.matScoreSingleTime = jObject["scoreSingletime"]?.ToString() ?? "0";
-                        measureResult.matScoreStrideTime = jObject["scoreStridetime"]?.ToString() ?? "0";
-                        measureResult.matScoreAngle = jObject["scoreAngle"]?.ToString() ?? "0";
-                        measureResult.matScoreForce = jObject["scoreForce"]?.ToString() ?? "0";
+                        measureResult.matScoreLength = jObject["score_lenght"]?.ToString() ?? "0";
+                        measureResult.matScoreSingleTime = jObject["score_singletime"]?.ToString() ?? "0";
+                        measureResult.matScoreStrideTime = jObject["score_stridetime"]?.ToString() ?? "0";
+                        measureResult.matScoreAngle = jObject["score_angle"]?.ToString() ?? "0";
+                        measureResult.matScoreForce = jObject["score_force"]?.ToString() ?? "0";
                         // 소수점 2자리까지 표시하도록 수정
-                        var baseOfGaitValue = jObject["scoreBaseofgait"];
+                        var baseOfGaitValue = jObject["score_baseofgait"];
                         if (baseOfGaitValue != null && double.TryParse(baseOfGaitValue.ToString(), out double value))
                         {
                             measureResult.matScoreBaseOfGait = value.ToString("F2");
@@ -340,7 +340,7 @@ namespace SmartShoes.Client.UI
                         {
                             measureResult.matScoreBaseOfGait = "0.00";
                         }
-                        measureResult.matTotalScore = jObject["scoreGrede"]?.ToString() ?? "0";
+                        measureResult.matTotalScore = jObject["score_grede"]?.ToString() ?? "0";
                         measureResult.matComment = jObject["comment"]?.ToString() ?? "";
 
                         // 등급에 따라 pictureBoxGrade 이미지 설정
