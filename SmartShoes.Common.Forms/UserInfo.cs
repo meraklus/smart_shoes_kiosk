@@ -59,6 +59,9 @@ namespace SmartShoes.Common.Forms
 			this.UserName = null;
 			this.UserId = null;
 			this.Height = 0;
+			this.FootSize = 0;
+			this.Sex = 0;
+			this.Age = 0;
 		}
 	}
 
