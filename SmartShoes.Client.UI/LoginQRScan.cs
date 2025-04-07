@@ -264,7 +264,7 @@ namespace SmartShoes.Client.UI
 						{
 							Console.WriteLine($"QR 응답 파싱 오류: {ex.Message}");
 							// 파싱 실패 시 기본값으로 설정
-							UserInfo.Instance.SetUserInfo(key, value, 0);
+							//UserInfo.Instance.SetUserInfo(key, value, 0);
 						}
 					}
 					else
