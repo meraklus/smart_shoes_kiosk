@@ -325,13 +325,13 @@ namespace SmartShoes.Client.UI
                         }
 
                         // API 응답에서 점수 값 추출
-                        measureResult.matScoreLength = jObject["scoreLenght"]?.ToString() ?? "0";
-                        measureResult.matScoreSingleTime = jObject["scoreSingletime"]?.ToString() ?? "0";
-                        measureResult.matScoreStrideTime = jObject["scoreStridetime"]?.ToString() ?? "0";
-                        measureResult.matScoreAngle = jObject["scoreAngle"]?.ToString() ?? "0";
-                        measureResult.matScoreForce = jObject["scoreForce"]?.ToString() ?? "0";
+                        measureResult.matScoreLength = jObject["score_lenght"]?.ToString() ?? "0";
+                        measureResult.matScoreSingleTime = jObject["score_singletime"]?.ToString() ?? "0";
+                        measureResult.matScoreStrideTime = jObject["score_stridetime"]?.ToString() ?? "0";
+                        measureResult.matScoreAngle = jObject["score_angle"]?.ToString() ?? "0";
+                        measureResult.matScoreForce = jObject["score_force"]?.ToString() ?? "0";
                         // 소수점 2자리까지 표시하도록 수정
-                        var baseOfGaitValue = jObject["scoreBaseofgait"];
+                        var baseOfGaitValue = jObject["score_baseofgait"];
                         if (baseOfGaitValue != null && double.TryParse(baseOfGaitValue.ToString(), out double value))
                         {
                             measureResult.matScoreBaseOfGait = value.ToString("F2");
@@ -340,7 +340,7 @@ namespace SmartShoes.Client.UI
                         {
                             measureResult.matScoreBaseOfGait = "0.00";
                         }
-                        measureResult.matTotalScore = jObject["scoreGrede"]?.ToString() ?? "0";
+                        measureResult.matTotalScore = jObject["score_grede"]?.ToString() ?? "0";
                         measureResult.matComment = jObject["comment"]?.ToString() ?? "";
 
                         // 등급에 따라 pictureBoxGrade 이미지 설정
@@ -957,33 +957,42 @@ namespace SmartShoes.Client.UI
 
         private void picPrint_Click(object sender, EventArgs e)
         {
-            // 프린트 작업 초기화
-            printDocument = new System.Drawing.Printing.PrintDocument();
-            printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(PrintPage);
+            // 프린트 확인 메시지 박스 표시
+            DialogResult result = MessageBox.Show("프린트하시겠습니까?", "프린트 확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            // 인쇄 완료 이벤트 핸들러 추가
-            printDocument.EndPrint += new System.Drawing.Printing.PrintEventHandler(PrintDocument_EndPrint);
-
-            // 인쇄 시작 페이지 설정
-            currentPrintPage = 0;
-
-            try
+            // 사용자가 '예'를 선택한 경우에만 프린트 작업을 시작
+            if (result == DialogResult.Yes)
             {
-                // 프린트 작업 시작
-                printDocument.Print();
+                // 프린트 작업 초기화
+                printDocument = new System.Drawing.Printing.PrintDocument();
+                printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(PrintPage);
+
+                // 인쇄 완료 이벤트 핸들러 추가
+                printDocument.EndPrint += new System.Drawing.Printing.PrintEventHandler(PrintDocument_EndPrint);
+
+                // 인쇄 시작 페이지 설정
+                currentPrintPage = 0;
+
+                try
+                {
+                    // 프린트 작업 시작
+                    printDocument.Print();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("인쇄 중 오류가 발생했습니다: " + ex.Message, "인쇄 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // 인쇄 오류 시 바로 로그인 페이지로 이동
+                    this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("인쇄 중 오류가 발생했습니다: " + ex.Message, "인쇄 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // 인쇄 오류 시 바로 로그인 페이지로 이동
                 this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
-            }
-            //this.Invoke(new Action(() => MovePage(typeof(LoginForm))));
 
-            // 여기서 로그인 폼으로 이동하면 인쇄가 완료되기 전에 이동하게 됨
-            // 이동 코드는 PrintDocument_EndPrint 이벤트 핸들러로 옮김
+            }
         }
+
 
         // 인쇄 완료 이벤트 핸들러
         private void PrintDocument_EndPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
