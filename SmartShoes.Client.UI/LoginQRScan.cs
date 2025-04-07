@@ -200,7 +200,7 @@ namespace SmartShoes.Client.UI
 					Console.WriteLine($"Key: {key}, Value: {value}");
 					
 					// QrCk 키인 경우에만 apistr에 값을 할당
-					if (key == "QrCk")
+					if (key == "qrCk")
 					{
 						apistr = value;
 					}
@@ -245,20 +245,20 @@ namespace SmartShoes.Client.UI
 							double height = qrResponse["height"]?.Value<double>() ?? 0;
 							
 							// 성별 변환 (문자열 -> 숫자)
-							int sex = 0; // 기본값
-							if (gender.ToLower() == "male" || gender.ToLower() == "남성" || gender.ToLower() == "m")
-								sex = 1;
-							else if (gender.ToLower() == "female" || gender.ToLower() == "여성" || gender.ToLower() == "f")
-								sex = 2;
+							string sexText = "남성"; // 기본값
+							if (gender.ToLower() == "male" || gender.ToLower() == "남성" || gender.ToLower() == "M")
+								sexText = "남성";
+							else if (gender.ToLower() == "female" || gender.ToLower() == "여성" || gender.ToLower() == "F")
+								sexText = "여성";
 							
 							// 나이 계산 (현재 연도 - 출생 연도)
 							int currentYear = DateTime.Now.Year;
 							int age = birthYear > 0 ? currentYear - birthYear : 0;
 							
-							Console.WriteLine($"파싱된 사용자 정보: 이름={name}, 성별={gender}({sex}), 출생년도={birthYear}, 신발사이즈={shoeSize}, 키={height}, 나이={age}");
+							Console.WriteLine($"파싱된 사용자 정보: 이름={name}, 성별={sexText}, 출생년도={birthYear}, 신발사이즈={shoeSize}, 키={height}, 나이={age}");
 							
 							// UserInfo에 데이터 저장
-							UserInfo.Instance.SetUserInfo(name, key, (int)height, (int)shoeSize, sex, birthYear);
+							UserInfo.Instance.SetUserInfo(name, key, (int)height, (int)shoeSize, sexText, birthYear);
 						}
 						catch (Exception ex)
 						{
