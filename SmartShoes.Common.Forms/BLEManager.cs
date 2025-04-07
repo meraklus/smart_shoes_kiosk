@@ -121,7 +121,7 @@ namespace SmartShoes.Common.Forms
 
                 byte[] data = Encoding.UTF8.GetBytes(message);
                 if (_leftDevice != null) await SendToDevice(_leftDevice, data);
-                if (_rightData != null) await SendToDevice(_rightDevice, data);
+                if (_rightDevice != null) await SendToDevice(_rightDevice, data);
                 Console.WriteLine($"데이터 전송: {message}");
             }
             catch (Exception ex)
