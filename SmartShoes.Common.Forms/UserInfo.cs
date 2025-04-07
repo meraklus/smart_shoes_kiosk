@@ -42,11 +42,14 @@ namespace SmartShoes.Common.Forms
 		}
 
 		// 로그인 시 사용자 정보를 설정하는 메서드
-		public void SetUserInfo(string userName, string userId, int height)
+		public void SetUserInfo(string userName, string userId, int height, int footSize = 0, int sex = 0, int age = 0)
 		{
 			this.UserName = userName;
 			this.UserId = userId;
 			this.Height = height;
+			this.FootSize = footSize;
+			this.Sex = sex;
+			this.Age = age;
 		}
 
 
