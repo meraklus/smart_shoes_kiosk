@@ -224,8 +224,8 @@ namespace SmartShoes.Client.UI
 
 						Console.WriteLine("Key: " + key);
 						Console.WriteLine("Value: " + value);
-
-						UserInfo.Instance.SetUserInfo(key, value, 0);
+						
+						UserInfo.Instance.SetUserInfo(key, value, 0, footSize, sex, age);
 					}
 					else
 					{
