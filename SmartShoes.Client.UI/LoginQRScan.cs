@@ -198,7 +198,12 @@ namespace SmartShoes.Client.UI
 					string value = pair.Value.ToString();
 
 					Console.WriteLine($"Key: {key}, Value: {value}");
-					apistr = value;
+					
+					// QrCk 키인 경우에만 apistr에 값을 할당
+					if (key == "QrCk")
+					{
+						apistr = value;
+					}
 				}
 
 
@@ -225,7 +230,42 @@ namespace SmartShoes.Client.UI
 						Console.WriteLine("Key: " + key);
 						Console.WriteLine("Value: " + value);
 						
-						UserInfo.Instance.SetUserInfo(key, value, 0, footSize, sex, age);
+						// QR 코드 응답 데이터 파싱
+						// QrResponseDto 형식: { QrCk: boolean, name: string, gender: string, birthYear: number, shoeSize: number, height: number }
+						try
+						{
+							// JSON 응답 파싱
+							JObject qrResponse = JObject.Parse(value);
+							
+							// 사용자 정보 추출
+							string name = qrResponse["name"]?.ToString() ?? "";
+							string gender = qrResponse["gender"]?.ToString() ?? "";
+							int birthYear = qrResponse["birthYear"]?.Value<int>() ?? 0;
+							double shoeSize = qrResponse["shoeSize"]?.Value<double>() ?? 0;
+							double height = qrResponse["height"]?.Value<double>() ?? 0;
+							
+							// 성별 변환 (문자열 -> 숫자)
+							int sex = 0; // 기본값
+							if (gender.ToLower() == "male" || gender.ToLower() == "남성" || gender.ToLower() == "m")
+								sex = 1;
+							else if (gender.ToLower() == "female" || gender.ToLower() == "여성" || gender.ToLower() == "f")
+								sex = 2;
+							
+							// 나이 계산 (현재 연도 - 출생 연도)
+							int currentYear = DateTime.Now.Year;
+							int age = birthYear > 0 ? currentYear - birthYear : 0;
+							
+							Console.WriteLine($"파싱된 사용자 정보: 이름={name}, 성별={gender}({sex}), 출생년도={birthYear}, 신발사이즈={shoeSize}, 키={height}, 나이={age}");
+							
+							// UserInfo에 데이터 저장
+							UserInfo.Instance.SetUserInfo(name, key, (int)height, (int)shoeSize, sex, birthYear);
+						}
+						catch (Exception ex)
+						{
+							Console.WriteLine($"QR 응답 파싱 오류: {ex.Message}");
+							// 파싱 실패 시 기본값으로 설정
+							UserInfo.Instance.SetUserInfo(key, value, 0);
+						}
 					}
 					else
 					{

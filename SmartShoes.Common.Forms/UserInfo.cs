@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 this.txtFootSize.Text = UserInfo.Instance.FootSize.ToString();
 this.txtHeight.Text = UserInfo.Instance.Height.ToString();
 this.txtSex.Text = UserInfo.Instance.Sex.ToString();
-this.txtAge.Text = UserInfo.Instance.Age.ToString();
-this.txtName.Text = UserInfo.Instance.Name.ToString();
+this.txtAge.Text = UserInfo.Instance.BirthYear.ToString();
+this.txtName.Text = UserInfo.Instance.UserName.ToString();
 */
 namespace SmartShoes.Common.Forms
 {
@@ -23,7 +23,7 @@ namespace SmartShoes.Common.Forms
 		public int Height { get; private set; }
 		public int FootSize { get; private set; }
 		public int Sex { get; private set; }
-		public int Age { get; private set; }
+		public int BirthYear { get; private set; }
 
 		// 생성자를 private으로 하여 외부에서 인스턴스를 생성하지 못하게 함
 		private UserInfo() { }
@@ -42,14 +42,14 @@ namespace SmartShoes.Common.Forms
 		}
 
 		// 로그인 시 사용자 정보를 설정하는 메서드
-		public void SetUserInfo(string userName, string userId, int height, int footSize = 0, int sex = 0, int age = 0)
+		public void SetUserInfo(string userName, string userId, int height, int footSize = 0, int sex = 0, int birthYear = 0)
 		{
 			this.UserName = userName;
 			this.UserId = userId;
 			this.Height = height;
 			this.FootSize = footSize;
 			this.Sex = sex;
-			this.Age = age;
+			this.BirthYear = birthYear;
 		}
 
 
@@ -61,7 +61,7 @@ namespace SmartShoes.Common.Forms
 			this.Height = 0;
 			this.FootSize = 0;
 			this.Sex = 0;
-			this.Age = 0;
+			this.BirthYear = 0;
 		}
 	}
 

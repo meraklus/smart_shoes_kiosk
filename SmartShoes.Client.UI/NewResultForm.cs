@@ -89,14 +89,14 @@ namespace SmartShoes.Client.UI
                 this.txtFootSize.Text = UserInfo.Instance.FootSize.ToString();
                 this.txtHeight.Text = UserInfo.Instance.Height.ToString();
                 this.txtSex.Text = UserInfo.Instance.Sex.ToString();
-                this.txtAge.Text = UserInfo.Instance.Age.ToString();
+                this.txtAge.Text = UserInfo.Instance.BirthYear.ToString();
                 this.txtName.Text = UserInfo.Instance.UserName.ToString();
                 this.txtMeasureDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
                 this.txtFootSize2.Text = UserInfo.Instance.FootSize.ToString();
                 this.txtHeight2.Text = UserInfo.Instance.Height.ToString();
                 this.txtSex2.Text = UserInfo.Instance.Sex.ToString();
-                this.txtAge2.Text = UserInfo.Instance.Age.ToString();
+                this.txtAge2.Text = UserInfo.Instance.BirthYear.ToString();
                 this.txtName2.Text = UserInfo.Instance.UserName.ToString();
                 this.txtMeasureDate2.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
@@ -1027,6 +1027,11 @@ namespace SmartShoes.Client.UI
 
             // 비트맵 자원 해제
             bmp.Dispose();
+        }
+
+        private void txtSex2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
