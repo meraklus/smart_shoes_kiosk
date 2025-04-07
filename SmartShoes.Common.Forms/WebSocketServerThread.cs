@@ -220,15 +220,8 @@ public class WebSocketServerThread
 				// 데이터 수집 상태 업데이트
 				UpdateDataCollectionStatus(cameraId);
 				
-				// 일정 간격으로 파일 저장
-				if ((DateTime.Now - lastSaveTime).TotalMilliseconds >= SaveIntervalMs)
-				{
-					SaveCameraDataToFile();
-					lastSaveTime = DateTime.Now;
-					
-					// 데이터 수집 완료 여부 확인
-					CheckDataCollectionCompleted();
-				}
+				// 데이터 수집 완료 여부 확인 - 매 데이터 수신마다 확인
+				CheckDataCollectionCompleted();
 				
 				LogMessage($"카메라 {cameraId}로부터 데이터 수신");
 			}
@@ -395,25 +388,53 @@ public class WebSocketServerThread
 	{
 		if (!isCollectingData) return;
 
+		// 연결된 모든 클라이언트 ID 목록
+		List<string> allClientIds;
+		lock (_lock)
+		{
+			allClientIds = connectedClients.Keys.ToList();
+		}
+
+		// 모든 카메라(9대)에서 데이터를 수신했는지 확인
+		bool allCamerasProvided = false;
+		int expectedCameraCount = 9; // 예상되는 카메라 수 (9대)
+		
+		lock (_lock)
+		{
+			// 실제 연결된 카메라가 9대 미만일 경우, 연결된 모든 카메라에서 데이터를 받았는지 확인
+			if (allClientIds.Count <= expectedCameraCount)
+			{
+				allCamerasProvided = camerasWithData.Count >= allClientIds.Count;
+			}
+			else
+			{
+				// 9대 이상 연결된 경우, 적어도 9대에서 데이터를 받았는지 확인
+				allCamerasProvided = camerasWithData.Count >= expectedCameraCount;
+			}
+		}
+
 		// 마지막 데이터 수신 후 일정 시간이 지났는지 확인
 		TimeSpan elapsed = DateTime.Now - lastDataCollectionTime;
-		if (elapsed.TotalMilliseconds >= DataCollectionTimeoutMs)
+		bool timeoutElapsed = elapsed.TotalMilliseconds >= DataCollectionTimeoutMs;
+
+		// 모든 카메라에서 데이터를 수신했거나, 타임아웃이 발생한 경우
+		if (allCamerasProvided || timeoutElapsed)
 		{
-			// 연결된 모든 클라이언트 ID 목록
-			List<string> allClientIds = connectedClients.Keys.ToList();
-			
 			// 데이터를 제공하지 않은 카메라 목록
 			List<string> missingCameras = allClientIds
 				.Where(id => !camerasWithData.Contains(id))
 				.ToList();
 
-			LogMessage($"데이터 수집 완료: 마지막 데이터 수신 후 {elapsed.TotalSeconds:F1}초 경과");
+			LogMessage($"데이터 수집 완료: {(allCamerasProvided ? "모든 카메라에서 데이터 수신" : $"타임아웃 발생 ({elapsed.TotalSeconds:F1}초 경과)")}");
 			LogMessage($"연결된 카메라: {allClientIds.Count}대, 데이터 제공 카메라: {camerasWithData.Count}대, 데이터 미제공 카메라: {missingCameras.Count}대");
 			
 			if (missingCameras.Count > 0)
 			{
 				LogMessage($"데이터를 제공하지 않은 카메라: {string.Join(", ", missingCameras)}");
 			}
+			
+			// 데이터 수집 완료 후 파일 저장
+			SaveAllCameraDataToSingleFile();
 			
 			// 데이터 수집 완료 콜백 호출
 			OnDataCollectionCompleted?.Invoke(cameraDataList, missingCameras);
@@ -590,7 +611,7 @@ public class WebSocketServerThread
 			isCollectingData = true;
 			
 			// 로그 출력
-			LogMessage("카메라 데이터 수집을 시작합니다. 모든 카메라로부터 데이터를 기다립니다.");
+			LogMessage("카메라 데이터 수집을 시작합니다. 모든 카메라로부터 데이터를 기다리거나 3초 타임아웃을 기다립니다.");
 		}
 	}
 
