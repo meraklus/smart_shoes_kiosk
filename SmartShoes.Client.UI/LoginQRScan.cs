@@ -234,15 +234,13 @@ namespace SmartShoes.Client.UI
 						// QrResponseDto 형식: { QrCk: boolean, name: string, gender: string, birthYear: number, shoeSize: number, height: number }
 						try
 						{
-							// JSON 응답 파싱
-							JObject qrResponse = JObject.Parse(value);
 							
 							// 사용자 정보 추출
-							string name = qrResponse["name"]?.ToString() ?? "";
-							string gender = qrResponse["gender"]?.ToString() ?? "";
-							int birthYear = qrResponse["birthYear"]?.Value<int>() ?? 0;
-							double shoeSize = qrResponse["shoeSize"]?.Value<double>() ?? 0;
-							double height = qrResponse["height"]?.Value<double>() ?? 0;
+							string name = json["name"]?.ToString() ?? "";
+							string gender = json["gender"]?.ToString() ?? "";
+							int birthYear = json["birthYear"]?.Value<int>() ?? 0;
+							int shoeSize = json["shoeSize"]?.Value<int>() ?? 0;
+                            int height = json["height"]?.Value<int>() ?? 0;
 							
 							// 성별 변환 (문자열 -> 숫자)
 							string sexText = "남성"; // 기본값
