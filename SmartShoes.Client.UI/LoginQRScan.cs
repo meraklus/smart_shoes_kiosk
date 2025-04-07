@@ -256,7 +256,7 @@ namespace SmartShoes.Client.UI
 							Console.WriteLine($"파싱된 사용자 정보: 이름={name}, 성별={sexText}, 출생년도={birthYear}, 신발사이즈={shoeSize}, 키={height}, 나이={age}");
 							
 							// UserInfo에 데이터 저장
-							UserInfo.Instance.SetUserInfo(name, key, (int)height, (int)shoeSize, sexText, birthYear);
+							UserInfo.Instance.SetUserInfo(name, value, (int)height, (int)shoeSize, sexText, birthYear);
 						}
 						catch (Exception ex)
 						{
