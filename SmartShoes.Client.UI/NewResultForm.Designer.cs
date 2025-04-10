@@ -35,6 +35,7 @@
             this.txtTotalStride = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.picPrint = new System.Windows.Forms.PictureBox();
+            this.picPrevious = new System.Windows.Forms.PictureBox();
             this.btnNext = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.rightL2 = new System.Windows.Forms.Label();
@@ -108,6 +109,7 @@
             this.txtName = new System.Windows.Forms.Label();
             this.txtMeasureDate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picPrint)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPrevious)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -170,13 +172,26 @@
             // picPrint
             // 
             this.picPrint.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.printer;
-            this.picPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picPrint.Location = new System.Drawing.Point(0, 1288);
+            this.picPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picPrint.Location = new System.Drawing.Point(435, 1288);
             this.picPrint.Name = "picPrint";
-            this.picPrint.Size = new System.Drawing.Size(1080, 132);
+            this.picPrint.Size = new System.Drawing.Size(516, 132);
             this.picPrint.TabIndex = 11;
             this.picPrint.TabStop = false;
             this.picPrint.Click += new System.EventHandler(this.picPrint_Click);
+            // 
+            // picPrevious
+            // 
+            this.picPrevious.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.previous;
+            this.picPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picPrevious.Location = new System.Drawing.Point(145, 1288);
+            this.picPrevious.Name = "picPrevious";
+            this.picPrevious.Size = new System.Drawing.Size(265, 132);
+            this.picPrevious.TabIndex = 12;
+            this.picPrevious.TabStop = false;
+            this.picPrevious.Click += new System.EventHandler(this.picPrevious_Click);
             // 
             // btnNext
             // 
@@ -973,6 +988,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.picPrevious);
             this.Controls.Add(this.picPrint);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.panel2);
@@ -982,6 +998,7 @@
             this.Size = new System.Drawing.Size(1080, 1420);
             this.Load += new System.EventHandler(this.NewResultForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picPrint)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPrevious)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -1073,5 +1090,6 @@
         private System.Windows.Forms.Label txt2RightStancePhase;
         private System.Windows.Forms.Label txt2RightSwingPhase;
         private System.Windows.Forms.Label txt2LeftSwingPhase;
+        private System.Windows.Forms.PictureBox picPrevious;
     }
 }

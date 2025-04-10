@@ -41,6 +41,7 @@ namespace SmartShoes.Client.UI
             // 초기에는 panel2와 print 버튼을 숨깁니다.
             this.panel2.Visible = false;
             this.picPrint.Visible = false;
+            this.picPrevious.Visible = false;
         }
 
         private void NewResultForm_Load(object sender, EventArgs e)
@@ -947,12 +948,20 @@ namespace SmartShoes.Client.UI
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            // panel2와 print 버튼을 보이게 합니다.
+            this.panel1.Visible = false;
             this.panel2.Visible = true;
-            this.picPrint.Visible = true;
-
-            // Next 버튼은 숨깁니다.
             this.btnNext.Visible = false;
+            this.picPrint.Visible = true;
+            this.picPrevious.Visible = true;
+        }
+
+        private void picPrevious_Click(object sender, EventArgs e)
+        {
+            this.panel2.Visible = false;
+            this.panel1.Visible = true;
+            this.picPrint.Visible = false;
+            this.picPrevious.Visible = false;
+            this.btnNext.Visible = true;
         }
 
         private void picPrint_Click(object sender, EventArgs e)
