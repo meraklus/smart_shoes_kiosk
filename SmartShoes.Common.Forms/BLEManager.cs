@@ -138,8 +138,8 @@ namespace SmartShoes.Common.Forms
         public async Task Start()
         {
             byte[] data = Encoding.UTF8.GetBytes($"@START#{_time}#");
-            await SendToDevice(_leftDevice, data);
-            await SendToDevice(_rightDevice, data);
+            if (_leftDevice != null) await SendToDevice(_leftDevice, data);
+            if (_rightDevice != null) await SendToDevice(_rightDevice, data);
         }
 
         public async Task DisconnectDevicesAsync()
