@@ -238,7 +238,7 @@ namespace SmartShoes.Client.UI
 							// 사용자 정보 추출
 							string name = json["name"]?.ToString() ?? "";
 							string gender = json["gender"]?.ToString() ?? "";
-							int birthYear = json["birthYear"]?.Value<int>() ?? 0;
+							string birthday = json["birthday"]?.ToString();
 							int shoeSize = json["shoeSize"]?.Value<int>() ?? 0;
                             int height = json["height"]?.Value<int>() ?? 0;
 							
@@ -249,14 +249,10 @@ namespace SmartShoes.Client.UI
 							else if (gender.ToLower() == "female" || gender.ToLower() == "여성" || gender.ToLower() == "F")
 								sexText = "여성";
 							
-							// 나이 계산 (현재 연도 - 출생 연도)
-							int currentYear = DateTime.Now.Year;
-							int age = birthYear > 0 ? currentYear - birthYear : 0;
-							
-							Console.WriteLine($"파싱된 사용자 정보: 이름={name}, 성별={sexText}, 출생년도={birthYear}, 신발사이즈={shoeSize}, 키={height}, 나이={age}");
+							Console.WriteLine($"파싱된 사용자 정보: 이름={name}, 성별={sexText}, 생년월일={birthday}, 신발사이즈={shoeSize}, 키={height}");
 							
 							// UserInfo에 데이터 저장
-							UserInfo.Instance.SetUserInfo(name, value, (int)height, (int)shoeSize, sexText, birthYear);
+							UserInfo.Instance.SetUserInfo(name, value, (int)height, (int)shoeSize, sexText, birthday);
 						}
 						catch (Exception ex)
 						{

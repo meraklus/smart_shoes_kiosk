@@ -90,14 +90,14 @@ namespace SmartShoes.Client.UI
                 this.txtFootSize.Text = UserInfo.Instance.FootSize.ToString();
                 this.txtHeight.Text = UserInfo.Instance.Height.ToString();
                 this.txtSex.Text = UserInfo.Instance.Sex.ToString();
-                this.txtAge.Text = UserInfo.Instance.BirthYear.ToString();
+                this.txtAge.Text = UserInfo.Instance.Birthday.ToString();
                 this.txtName.Text = UserInfo.Instance.UserName.ToString();
                 this.txtMeasureDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
                 this.txtFootSize2.Text = UserInfo.Instance.FootSize.ToString();
                 this.txtHeight2.Text = UserInfo.Instance.Height.ToString();
                 this.txtSex2.Text = UserInfo.Instance.Sex.ToString();
-                this.txtAge2.Text = UserInfo.Instance.BirthYear.ToString();
+                this.txtAge2.Text = UserInfo.Instance.Birthday.ToString();
                 this.txtName2.Text = UserInfo.Instance.UserName.ToString();
                 this.txtMeasureDate2.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
@@ -550,7 +550,7 @@ namespace SmartShoes.Client.UI
             {
                 // 카메라 데이터 파일 찾기
                 string cameraDataFilePath = FindCameraDataFile();
-
+                bool apiSuccess = false;
                 if (!string.IsNullOrEmpty(cameraDataFilePath))
                 {
                     // 파일에서 카메라 데이터 불러오기
@@ -565,21 +565,8 @@ namespace SmartShoes.Client.UI
 
                         // 여기에 카메라 데이터 처리 로직 추가
                         // 예: API 호출, 데이터 분석 등
-                        bool apiSuccess = await SendCameraDataToApi(cameraData);
+                        apiSuccess = await SendCameraDataToApi(cameraData);
 
-                        if (apiSuccess)
-                        {
-                            // API 전송 성공 시 파일 삭제
-                            try
-                            {
-                                File.Delete(cameraDataFilePath);
-                                Console.WriteLine($"카메라 데이터 파일 삭제 성공: {cameraDataFilePath}");
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine($"카메라 데이터 파일 삭제 중 오류 발생: {ex.Message}");
-                            }
-                        }
                     }
                     else
                     {
@@ -588,7 +575,22 @@ namespace SmartShoes.Client.UI
                 }
                 else
                 {
-                    Console.WriteLine("카메라 데이터 파일을 찾을 수 없습니다.");
+                    //Console.WriteLine("카메라 데이터 파일을 찾을 수 없습니다.");
+                    List<object> cameraData = new List<object>();
+                    apiSuccess = await SendCameraDataToApi(cameraData);
+                }
+
+                if (apiSuccess){
+                    // API 전송 성공 시 파일 삭제
+                    try
+                    {
+                        File.Delete(cameraDataFilePath);
+                        Console.WriteLine($"카메라 데이터 파일 삭제 성공: {cameraDataFilePath}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"카메라 데이터 파일 삭제 중 오류 발생: {ex.Message}");
+                    }
                 }
 
                 isCameraDataProcessed = true;
@@ -1039,6 +1041,11 @@ namespace SmartShoes.Client.UI
         }
 
         private void txtSex2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAge2_Click(object sender, EventArgs e)
         {
 
         }

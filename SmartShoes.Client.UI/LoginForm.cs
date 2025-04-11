@@ -96,7 +96,7 @@ namespace SmartShoes.Client.UI
                     if (int.TryParse(keyInputForm.InputKey, out int inputKey))
                     {
                         // 입력된 키 값을 SetUserInfo에 전달
-                        UserInfo.Instance.SetUserInfo("테스터", "68", inputKey ,240, "여성", 1950 );
+                        UserInfo.Instance.SetUserInfo("테스터", "68", inputKey ,240, "여성", "1991-11-11" );
 
                         // MeasureForm으로 이동
                         MovePage(typeof(MeasureForm));

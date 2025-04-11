@@ -174,7 +174,7 @@
             this.picPrint.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.printer;
             this.picPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.picPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picPrint.Location = new System.Drawing.Point(435, 1288);
+            this.picPrint.Location = new System.Drawing.Point(430, 1288);
             this.picPrint.Name = "picPrint";
             this.picPrint.Size = new System.Drawing.Size(516, 132);
             this.picPrint.TabIndex = 11;
@@ -186,7 +186,7 @@
             this.picPrevious.BackgroundImage = global::SmartShoes.Client.UI.Properties.Resources.previous;
             this.picPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.picPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picPrevious.Location = new System.Drawing.Point(145, 1288);
+            this.picPrevious.Location = new System.Drawing.Point(140, 1288);
             this.picPrevious.Name = "picPrevious";
             this.picPrevious.Size = new System.Drawing.Size(265, 132);
             this.picPrevious.TabIndex = 12;
@@ -503,11 +503,12 @@
             this.txtAge2.AutoSize = true;
             this.txtAge2.BackColor = System.Drawing.Color.Transparent;
             this.txtAge2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtAge2.Location = new System.Drawing.Point(484, 144);
+            this.txtAge2.Location = new System.Drawing.Point(453, 144);
             this.txtAge2.Name = "txtAge2";
-            this.txtAge2.Size = new System.Drawing.Size(23, 13);
+            this.txtAge2.Size = new System.Drawing.Size(87, 13);
             this.txtAge2.TabIndex = 2;
-            this.txtAge2.Text = "30";
+            this.txtAge2.Text = "1991-11-11";
+            this.txtAge2.Click += new System.EventHandler(this.txtAge2_Click);
             // 
             // txtName2
             // 
@@ -956,7 +957,7 @@
             this.txtAge.AutoSize = true;
             this.txtAge.BackColor = System.Drawing.Color.Transparent;
             this.txtAge.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtAge.Location = new System.Drawing.Point(484, 144);
+            this.txtAge.Location = new System.Drawing.Point(453, 144);
             this.txtAge.Name = "txtAge";
             this.txtAge.Size = new System.Drawing.Size(23, 13);
             this.txtAge.TabIndex = 2;
