@@ -14,6 +14,12 @@ namespace SmartShoes.Client.UI
 		public LoginForm()
 		{
 			InitializeComponent();
+
+			// 테스터 버튼 비활성화
+			pictureBox3.Enabled = false;			
+			// 테스터 버튼 숨기기
+			pictureBox3.Visible = false;
+
 			UserInfo.Instance.ClearUserInfo();
 			MatDataManager.Instance.ResetMatData();
 
