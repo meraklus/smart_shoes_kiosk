@@ -9,7 +9,7 @@ using SmartShoes.Common.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Renci.SshNet.Messages;
-
+using System.Text;
 
 namespace SmartShoes.Client.UI
 {
@@ -188,6 +188,11 @@ namespace SmartShoes.Client.UI
 #endif
 			try
 			{
+				// URL 디코딩을 통해 한글 처리 (Uri.UnescapeDataString 사용)
+				string decodedQrCode = Uri.UnescapeDataString(qrcode);
+				Console.WriteLine($"디코딩된 QR 코드: {decodedQrCode}");
+				
+				// 디코딩된 QR 코드로 API 호출
 				string getResponse = await apiCallHelper.GetAsync(getUrl);
 				JObject json = JObject.Parse(getResponse);
 
@@ -209,13 +214,12 @@ namespace SmartShoes.Client.UI
 
 				if (apistr.Equals("True"))
 				{
-
-					int separatorIndex = qrcode.IndexOf("2c8");
+					int separatorIndex = decodedQrCode.IndexOf("2c8");
 
 					if (separatorIndex != -1)
 					{
-						string key = qrcode.Substring(0, separatorIndex);
-						string value = qrcode.Substring(separatorIndex + "2c8".Length);
+						string key = decodedQrCode.Substring(0, separatorIndex);
+						string value = decodedQrCode.Substring(separatorIndex + "2c8".Length);
 
 						// key에서 앞의 14자리를 제거
 						if (key.Length >= 14)
@@ -227,7 +231,7 @@ namespace SmartShoes.Client.UI
 							key = ""; // 만약 key가 14자리보다 짧다면 빈 문자열로 처리
 						}
 
-						Console.WriteLine("Key: " + key);
+						Console.WriteLine("Key (디코딩됨): " + key);
 						Console.WriteLine("Value: " + value);
 						
 						// QR 코드 응답 데이터 파싱
