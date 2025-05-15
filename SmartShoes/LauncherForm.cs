@@ -68,7 +68,7 @@ namespace SmartShoes
 
                 this.Location = secondaryScreen.Bounds.Location;
                 this.WindowState = FormWindowState.Normal;
-                this.FormBorderStyle = FormBorderStyle.None;
+                //this.FormBorderStyle = FormBorderStyle.None;
                 this.Bounds = secondaryScreen.Bounds;
             } // 전체화면 설정
             this.WindowState = FormWindowState.Maximized;
