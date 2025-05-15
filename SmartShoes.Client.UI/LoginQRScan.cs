@@ -9,7 +9,7 @@ using SmartShoes.Common.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Renci.SshNet.Messages;
-
+using System.Text;
 
 namespace SmartShoes.Client.UI
 {
@@ -188,6 +188,11 @@ namespace SmartShoes.Client.UI
 #endif
 			try
 			{
+				// URL 디코딩을 통해 한글 처리 (Uri.UnescapeDataString 사용)
+				string decodedQrCode = Uri.UnescapeDataString(qrcode);
+				Console.WriteLine($"디코딩된 QR 코드: {decodedQrCode}");
+				
+				// 디코딩된 QR 코드로 API 호출
 				string getResponse = await apiCallHelper.GetAsync(getUrl);
 				JObject json = JObject.Parse(getResponse);
 
@@ -209,13 +214,12 @@ namespace SmartShoes.Client.UI
 
 				if (apistr.Equals("True"))
 				{
-
-					int separatorIndex = qrcode.IndexOf("2c8");
+					int separatorIndex = decodedQrCode.IndexOf("2c8");
 
 					if (separatorIndex != -1)
 					{
-						string key = qrcode.Substring(0, separatorIndex);
-						string value = qrcode.Substring(separatorIndex + "2c8".Length);
+						string key = decodedQrCode.Substring(0, separatorIndex);
+						string value = decodedQrCode.Substring(separatorIndex + "2c8".Length);
 
 						// key에서 앞의 14자리를 제거
 						if (key.Length >= 14)
@@ -227,7 +231,7 @@ namespace SmartShoes.Client.UI
 							key = ""; // 만약 key가 14자리보다 짧다면 빈 문자열로 처리
 						}
 
-						Console.WriteLine("Key: " + key);
+						Console.WriteLine("Key (디코딩됨): " + key);
 						Console.WriteLine("Value: " + value);
 						
 						// QR 코드 응답 데이터 파싱
@@ -238,7 +242,7 @@ namespace SmartShoes.Client.UI
 							// 사용자 정보 추출
 							string name = json["name"]?.ToString() ?? "";
 							string gender = json["gender"]?.ToString() ?? "";
-							int birthYear = json["birthYear"]?.Value<int>() ?? 0;
+							string birthday = json["birthday"]?.ToString();
 							int shoeSize = json["shoeSize"]?.Value<int>() ?? 0;
                             int height = json["height"]?.Value<int>() ?? 0;
 							
@@ -249,14 +253,10 @@ namespace SmartShoes.Client.UI
 							else if (gender.ToLower() == "female" || gender.ToLower() == "여성" || gender.ToLower() == "F")
 								sexText = "여성";
 							
-							// 나이 계산 (현재 연도 - 출생 연도)
-							int currentYear = DateTime.Now.Year;
-							int age = birthYear > 0 ? currentYear - birthYear : 0;
-							
-							Console.WriteLine($"파싱된 사용자 정보: 이름={name}, 성별={sexText}, 출생년도={birthYear}, 신발사이즈={shoeSize}, 키={height}, 나이={age}");
+							Console.WriteLine($"파싱된 사용자 정보: 이름={name}, 성별={sexText}, 생년월일={birthday}, 신발사이즈={shoeSize}, 키={height}");
 							
 							// UserInfo에 데이터 저장
-							UserInfo.Instance.SetUserInfo(name, value, (int)height, (int)shoeSize, sexText, birthYear);
+							UserInfo.Instance.SetUserInfo(name, value, (int)height, (int)shoeSize, sexText, birthday);
 						}
 						catch (Exception ex)
 						{
