@@ -640,7 +640,7 @@
             this.textBoxReport.ReadOnly = true;
             this.textBoxReport.Size = new System.Drawing.Size(817, 133);
             this.textBoxReport.TabIndex = 16;
-            this.textBoxReport.Text = "1. asdasd\r\n2. dsaf ds\r\n3. sdf sf\r\n4. t3w dfhf\r\n5. asf sd";
+            this.textBoxReport.Text = "보행길이는 표준임. 표준 보행속도임. 이상적이나 왼쪽 발이 안쪽를 향하고 있음. 보행균형이 균형임 보행 시 발 사이 거리벌어지는 양상임";
             // 
             // picRightForce
             // 
