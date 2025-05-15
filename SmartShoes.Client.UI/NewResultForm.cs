@@ -404,14 +404,14 @@ namespace SmartShoes.Client.UI
                         this.txtLeftSpeed.Text = matData.StrideTime1.ToString("F2");
                         this.txtLeftAngle.Text = matData.StepAngle1.ToString("F2");
                         this.txtLeftForce.Text = matData.StepForce1.ToString("F2");
-                        this.txtLeftGap.Text = matData.BaseOfGait1.ToString("F2");
+                        this.txtLeftGap.Text = matData.BaseOfGait4.ToString("F2");
 
                         this.txtRightLength.Text = matData.StepLength2.ToString("F1");
                         this.txtRightTime.Text = matData.SingleStepTime2.ToString("F2");
                         this.txtRightSpeed.Text = matData.StrideTime2.ToString("F2");
                         this.txtRightAngle.Text = matData.StepAngle2.ToString("F2");
                         this.txtRightForce.Text = matData.StepForce2.ToString("F2");
-                        this.txtRightGap.Text = matData.BaseOfGait2.ToString("F2");
+                        this.txtRightGap.Text = matData.BaseOfGait4.ToString("F2");
 
                         // 점수 항목 설정 (기존 측정값 대신 점수 값으로 변경)
                         this.txtStandardLength.Text = measureResult.matScoreLength;
