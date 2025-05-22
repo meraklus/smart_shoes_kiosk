@@ -383,7 +383,7 @@ namespace SmartShoes.Client.UI
                         }
                         
                         // API 응답에서 값 추출
-                        // measureResult.matScoreLength = jObject["score_lenght"]?.ToString() ?? "0";
+                        // measureResult.matScoreLength = jObject["score_length"]?.ToString() ?? "0";
                         // measureResult.matScoreSingleTime = jObject["score_singletime"]?.ToString() ?? "0";
                         // measureResult.matScoreStrideTime = jObject["score_stridetime"]?.ToString() ?? "0";
                         // measureResult.matScoreAngle = jObject["score_angle"]?.ToString() ?? "0";

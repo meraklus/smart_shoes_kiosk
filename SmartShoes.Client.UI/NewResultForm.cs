@@ -197,7 +197,9 @@ namespace SmartShoes.Client.UI
                 }
                 else
                 {
-                    Console.WriteLine("Mat 데이터가 없습니다.");
+                    // Console.WriteLine("Mat 데이터가 없습니다.");
+                    List<object> matData = new List<object>();
+                    await CallApiResultMatt(matData);
                 }
             }
             catch (Exception ex)
@@ -326,7 +328,7 @@ namespace SmartShoes.Client.UI
                         }
 
                         // API 응답에서 점수 값 추출
-                        measureResult.matScoreLength = jObject["score_lenght"]?.ToString() ?? "0";
+                        measureResult.matScoreLength = jObject["score_length"]?.ToString() ?? "0";
                         measureResult.matScoreSingleTime = jObject["score_singletime"]?.ToString() ?? "0";
                         measureResult.matScoreStrideTime = jObject["score_stridetime"]?.ToString() ?? "0";
                         measureResult.matScoreAngle = jObject["score_angle"]?.ToString() ?? "0";
@@ -341,7 +343,7 @@ namespace SmartShoes.Client.UI
                         {
                             measureResult.matScoreBaseOfGait = "0.00";
                         }
-                        measureResult.matTotalScore = jObject["score_grede"]?.ToString() ?? "0";
+                        measureResult.matTotalScore = jObject["score_grade"]?.ToString() ?? "0";
                         measureResult.matComment = jObject["comment"]?.ToString() ?? "";
 
                         // 등급에 따라 pictureBoxGrade 이미지 설정
@@ -472,6 +474,9 @@ namespace SmartShoes.Client.UI
             {
                 shoesData = CreateShoesData(lDataStr, rDataStr);
                 await CallApiResultShoes();
+            }else{
+                shoesData = CreateShoesData("", ""); // 빈 문자열로 데이터 생성
+                await CallApiResultShoes();
             }
 
         }
@@ -517,8 +522,8 @@ namespace SmartShoes.Client.UI
                     this.txt2RightSwingPhase.Text = jObject["r_swing_time_avg"]?.ToString() ?? "0"; // 오른발 유각
                     this.txt2RightStancePhase.Text = jObject["r_standing_time_avg"]?.ToString() ?? "0"; // 오른발 입각
 
-                    this.txt2LeftLength.Text = jObject["l_step_lenght"]?.ToString() ?? "0";
-                    this.txt2RightLength.Text = jObject["r_step_lenght"]?.ToString() ?? "0";
+                    this.txt2LeftLength.Text = jObject["l_step_length"]?.ToString() ?? "0";
+                    this.txt2RightLength.Text = jObject["r_step_length"]?.ToString() ?? "0";
                     this.txt2LeftTime.Text = jObject["l_stance_time"]?.ToString() ?? "0";
                     this.txt2RightTime.Text = jObject["r_stance_time"]?.ToString() ?? "0";
 
@@ -566,7 +571,6 @@ namespace SmartShoes.Client.UI
                         // 여기에 카메라 데이터 처리 로직 추가
                         // 예: API 호출, 데이터 분석 등
                         apiSuccess = await SendCameraDataToApi(cameraData);
-
                     }
                     else
                     {
