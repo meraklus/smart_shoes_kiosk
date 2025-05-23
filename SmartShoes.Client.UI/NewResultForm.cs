@@ -198,8 +198,8 @@ namespace SmartShoes.Client.UI
                 else
                 {
                     // Console.WriteLine("Mat 데이터가 없습니다.");
-                    List<object> matData = new List<object>();
-                    await CallApiResultMatt(matData);
+                    measurementData = CreateBasicMeasurementData();
+                    await CallApiResultMatt(null);
                 }
             }
             catch (Exception ex)
@@ -207,6 +207,22 @@ namespace SmartShoes.Client.UI
                 Console.WriteLine($"Mat 데이터 처리 오류: {ex.Message}");
                 //throw;
             }
+        }
+
+        /// <summary>
+        /// 기본 MeasurementData 객체를 생성합니다. (matData가 없을 경우)
+        /// </summary>
+        private MeasurementData CreateBasicMeasurementData()
+        {
+            int userid = UserInfo.Instance.UserId == null ? 0 : Convert.ToInt32(UserInfo.Instance.UserId);
+            int containerSid = Convert.ToInt32(Properties.Settings.Default.CONTAINER_ID);
+
+            return new MeasurementData
+            {
+                userSid = userid,
+                reportSid = reportSid,
+                containerSid = containerSid
+            };
         }
 
         /// <summary>
