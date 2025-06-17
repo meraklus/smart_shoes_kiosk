@@ -81,6 +81,20 @@ namespace SmartShoes.Common.Forms
         // 디바이스 연결 상태를 리턴하는 프로퍼티 추가
         public bool IsLeftDeviceConnected => _isLeftDeviceConnected;
         public bool IsRightDeviceConnected => _isRightDeviceConnected;
+        
+        // 전역적으로 블루투스 연결 상태를 확인하는 정적 메서드
+        public static bool IsBluetoothFullyConnected()
+        {
+            if (_instance == null) return false;
+            return _instance.IsLeftDeviceConnected && _instance.IsRightDeviceConnected;
+        }
+        
+        // 블루투스가 부분적으로라도 연결되어 있는지 확인하는 정적 메서드
+        public static bool IsBluetoothPartiallyConnected()
+        {
+            if (_instance == null) return false;
+            return _instance.IsLeftDeviceConnected || _instance.IsRightDeviceConnected;
+        }
         #endregion
 
         #region Public Methods

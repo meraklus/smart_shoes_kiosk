@@ -89,13 +89,30 @@ namespace SmartShoes.Client.UI
         {
             try
             {
-                // 웹소켓 서버 초기화 (아직 초기화되지 않은 경우)
-                //웹소켓을 통해 카메라 측정 시작 신호 전송
-                //현재 시간을 폴더명으로 사용(TotalProcessForm.cs 참고)
-                string folderName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + UserInfo.Instance.UserName;
-                WebSocketServerThread.Instance.BroadcastMessage("start", "");
+                // 연결된 기기 상태 확인
+                bool isBluetoothConnected = BLEManager.IsBluetoothPartiallyConnected();
+                bool isCameraConnected = WebSocketServerThread.IsCameraConnected();
+                
+                Console.WriteLine($"측정 시작 - 연결된 기기:");
+                Console.WriteLine($"- 매트: 연결됨 (기본)");
+                Console.WriteLine($"- 블루투스: {(isBluetoothConnected ? "연결됨" : "연결 안됨")} (왼쪽: {BLEManager.Instance.IsLeftDeviceConnected}, 오른쪽: {BLEManager.Instance.IsRightDeviceConnected})");
+                Console.WriteLine($"- 카메라: {(isCameraConnected ? "연결됨" : "연결 안됨")} ({WebSocketServerThread.GetConnectedCameraCount()}대 연결)");
 
-                // 델파이 폼 표시
+                // 카메라가 연결되어 있는 경우에만 카메라 측정 시작 신호 전송
+                if (isCameraConnected)
+                {
+                    //웹소켓을 통해 카메라 측정 시작 신호 전송
+                    //현재 시간을 폴더명으로 사용(TotalProcessForm.cs 참고)
+                    string folderName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + UserInfo.Instance.UserName;
+                    WebSocketServerThread.Instance.BroadcastMessage("start", "");
+                    Console.WriteLine("카메라 측정 시작 신호 전송");
+                }
+                else
+                {
+                    Console.WriteLine("카메라가 연결되지 않아 카메라 측정 시작 신호 전송 건너뜀");
+                }
+
+                // 매트는 항상 측정 (델파이 폼 표시)
                 if (dph != null)
                 {
                     var showForm = dph.GetFunction<DelphiHelper.TShowForm>("ShowForm");
@@ -104,11 +121,22 @@ namespace SmartShoes.Client.UI
                     // 측정 시작
                     var measurestart = dph.GetFunction<DelphiHelper.TMeasurestart>("Measurestart");
                     measurestart(20);
-                    
-                    //Console.WriteLine("카메라 측정 시작 신호 전송: " + folderName);
-                    
-                    // BLE 데이터 수집 시작
+                    Console.WriteLine("매트 측정 시작");
+                }
+                
+                // 블루투스가 연결되어 있는 경우에만 BLE 데이터 수집 시작
+                if (isBluetoothConnected)
+                {
                     BLEManager.Instance.Start();
+                    Console.WriteLine("BLE 데이터 수집 시작");
+                    // BLE가 연결되어 있으면 데이터 수집 완료를 기다려야 함
+                    _isDataCollectionComplete = false;
+                }
+                else
+                {
+                    Console.WriteLine("블루투스가 연결되지 않아 BLE 데이터 수집 건너뜀");
+                    // BLE가 연결되지 않았으면 데이터 수집 완료로 간주
+                    _isDataCollectionComplete = true;
                 }
             }
             catch (Exception ex)
@@ -189,16 +217,29 @@ namespace SmartShoes.Client.UI
             
             Application.DoEvents();
 
-            // 데이터 수집이 완료되지 않았다면 비동기적으로 기다림
-            if (!_isDataCollectionComplete)
+            // 블루투스가 연결되어 있고 데이터 수집이 완료되지 않았다면 기다림
+            bool shouldWaitForBLE = BLEManager.IsBluetoothPartiallyConnected() && !_isDataCollectionComplete;
+            
+            if (shouldWaitForBLE)
             {
                 // 비동기적으로 데이터 수집 완료를 기다림
                 Task.Run(async () => 
                 {
-                    // 데이터 수집이 완료될 때까지 대기
-                    while (!_isDataCollectionComplete && !endMeasureBool)
+                    // 데이터 수집이 완료될 때까지 대기 (최대 5초)
+                    int timeoutMs = 5000;
+                    int elapsedMs = 0;
+                    int checkIntervalMs = 500;
+                    
+                    while (!_isDataCollectionComplete && !endMeasureBool && elapsedMs < timeoutMs)
                     {
-                        await Task.Delay(500); // 0.5초마다 확인
+                        await Task.Delay(checkIntervalMs);
+                        elapsedMs += checkIntervalMs;
+                    }
+                    
+                    if (!_isDataCollectionComplete)
+                    {
+                        Console.WriteLine("BLE 데이터 수집 시간 초과, 측정 완료 처리 진행");
+                        _isDataCollectionComplete = true;
                     }
                     
                     // UI 스레드에서 완료 처리 실행
@@ -214,7 +255,8 @@ namespace SmartShoes.Client.UI
                 return;
             }
             
-            // 이미 데이터 수집이 완료된 경우 바로 완료 처리
+            // BLE가 연결되지 않았거나 이미 데이터 수집이 완료된 경우 바로 완료 처리
+            Console.WriteLine("BLE가 연결되지 않았거나 데이터 수집이 완료되어 바로 측정 완료 처리");
             CompleteAndMoveToResult();
         }
 
@@ -229,9 +271,20 @@ namespace SmartShoes.Client.UI
                 // 클라이언트가 stop 메시지를 처리할 시간을 주기 위해 잠시 대기
                 await Task.Delay(500);
                 
-                // 카메라 데이터 수집 시작 (results 메시지 전송)
-                _isCameraDataCollectionComplete = false;
-                WebSocketServerThread.Instance.BroadcastMessage("results", "");
+                // 카메라가 연결되어 있는 경우에만 카메라 데이터 수집 시작
+                if (WebSocketServerThread.IsCameraConnected())
+                {
+                    // 카메라 데이터 수집 시작 (results 메시지 전송)
+                    _isCameraDataCollectionComplete = false;
+                    WebSocketServerThread.Instance.BroadcastMessage("results", "");
+                    Console.WriteLine($"카메라 {WebSocketServerThread.GetConnectedCameraCount()}대 연결됨, 데이터 수집 시작");
+                }
+                else
+                {
+                    // 카메라가 연결되지 않은 경우 바로 완료 처리
+                    _isCameraDataCollectionComplete = true;
+                    Console.WriteLine("카메라가 연결되지 않아 카메라 데이터 수집 건너뜀");
+                }
                 
                 // 측정 중지
                 var measurestop = dph.GetFunction<DelphiHelper.TMeasurestop>("Measurestop");
@@ -262,26 +315,34 @@ namespace SmartShoes.Client.UI
         {
             try
             {
-                // 비동기적으로 카메라 데이터 수집 완료를 기다림
-                await Task.Run(async () => 
+                // 카메라가 연결되어 있는 경우에만 대기
+                if (WebSocketServerThread.IsCameraConnected() && !_isCameraDataCollectionComplete)
                 {
-                    // 카메라 데이터 수집이 완료될 때까지 대기 (최대 10초)
-                    int timeoutMs = 10000; // WebSocketServerThread의 DataCollectionTimeoutMs보다 충분히 길게 설정
-                    int elapsedMs = 0;
-                    int checkIntervalMs = 100;
-                    
-                    while (!_isCameraDataCollectionComplete && elapsedMs < timeoutMs)
+                    // 비동기적으로 카메라 데이터 수집 완료를 기다림
+                    await Task.Run(async () => 
                     {
-                        await Task.Delay(checkIntervalMs);
-                        elapsedMs += checkIntervalMs;
-                    }
-                    
-                    if (!_isCameraDataCollectionComplete)
-                    {
-                        Console.WriteLine("카메라 데이터 수집 시간 초과");
-                        _isCameraDataCollectionComplete = true; // 타임아웃 시 처리 완료로 간주
-                    }
-                });
+                        // 카메라 데이터 수집이 완료될 때까지 대기 (최대 10초)
+                        int timeoutMs = 10000; // WebSocketServerThread의 DataCollectionTimeoutMs보다 충분히 길게 설정
+                        int elapsedMs = 0;
+                        int checkIntervalMs = 100;
+                        
+                        while (!_isCameraDataCollectionComplete && elapsedMs < timeoutMs)
+                        {
+                            await Task.Delay(checkIntervalMs);
+                            elapsedMs += checkIntervalMs;
+                        }
+                        
+                        if (!_isCameraDataCollectionComplete)
+                        {
+                            Console.WriteLine("카메라 데이터 수집 시간 초과");
+                            _isCameraDataCollectionComplete = true; // 타임아웃 시 처리 완료로 간주
+                        }
+                    });
+                }
+                else
+                {
+                    Console.WriteLine("카메라가 연결되지 않아 카메라 데이터 수집 대기 건너뜀");
+                }
                 
                 // 데이터 수집 완료 후 결과 화면으로 이동
                 this.Invoke(new Action(() => MovePage(typeof(NewResultForm))));

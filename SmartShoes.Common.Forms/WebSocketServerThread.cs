@@ -383,6 +383,20 @@ public class WebSocketServerThread
 		get { return _isRunning; }
 	}
 
+	// 전역적으로 카메라 연결 상태를 확인하는 정적 메서드
+	public static bool IsCameraConnected()
+	{
+		if (_instance == null) return false;
+		return _instance.GetConnectedClients().Count > 0;
+	}
+	
+	// 연결된 카메라 수를 반환하는 정적 메서드
+	public static int GetConnectedCameraCount()
+	{
+		if (_instance == null) return 0;
+		return _instance.GetConnectedClients().Count;
+	}
+
 	// 데이터 수집 완료 여부 확인
 	private void CheckDataCollectionCompleted()
 	{

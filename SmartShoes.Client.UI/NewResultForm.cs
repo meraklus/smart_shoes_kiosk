@@ -33,15 +33,57 @@ namespace SmartShoes.Client.UI
         private long reportSid = 0;
         private System.Drawing.Printing.PrintDocument printDocument;
         private int currentPrintPage = 0;
+        private bool hasSecondPage = false; // 2페이지 표시 여부를 저장하는 변수
 
         public NewResultForm()
         {
             InitializeComponent();
 
-            // 초기에는 panel2와 print 버튼을 숨깁니다.
+            // 연결된 기기 상태에 따라 페이지 구성 결정
+            DeterminePageConfiguration();
+        }
+
+        /// <summary>
+        /// 연결된 기기 상태에 따라 페이지 구성을 결정합니다.
+        /// </summary>
+        private void DeterminePageConfiguration()
+        {
+            // 블루투스와 카메라 연결 상태 확인
+            bool isBluetoothConnected = BLEManager.IsBluetoothFullyConnected();
+            bool isCameraConnected = WebSocketServerThread.IsCameraConnected();
+            
+            // 블루투스 또는 카메라 중 하나라도 연결되어 있으면 2페이지 표시
+            hasSecondPage = isBluetoothConnected || isCameraConnected;
+            
+            Console.WriteLine($"페이지 구성 결정:");
+            Console.WriteLine($"- 블루투스 연결: {isBluetoothConnected}");
+            Console.WriteLine($"- 카메라 연결: {isCameraConnected}");
+            Console.WriteLine($"- 2페이지 표시: {hasSecondPage}");
+            
+            // 초기 페이지 설정
+            this.panel1.Visible = true;
             this.panel2.Visible = false;
-            this.picPrint.Visible = false;
-            this.picPrevious.Visible = false;
+            
+            if (hasSecondPage)
+            {
+                // 2페이지가 있는 경우: 1페이지에서는 다음 버튼만 표시
+                this.btnNext.Visible = true;
+                this.picPrint.Visible = false;
+                this.picPrevious.Visible = false;
+                // 프린트 버튼 크기와 위치: 이전 버튼과 함께 사용할 크기 (516, 430)
+                this.picPrint.Width = 516;
+                this.picPrint.Location = new Point(430, this.picPrint.Location.Y);
+            }
+            else
+            {
+                // 1페이지만 있는 경우: 프린트 버튼만 표시
+                this.btnNext.Visible = false;
+                this.picPrint.Visible = true;
+                this.picPrevious.Visible = false;
+                // 프린트 버튼 크기와 위치: 혼자 사용할 크기 (810, 140)
+                this.picPrint.Width = 810;
+                this.picPrint.Location = new Point(140, this.picPrint.Location.Y);
+            }
         }
 
         private void NewResultForm_Load(object sender, EventArgs e)
@@ -970,11 +1012,18 @@ namespace SmartShoes.Client.UI
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            this.panel1.Visible = false;
-            this.panel2.Visible = true;
-            this.btnNext.Visible = false;
-            this.picPrint.Visible = true;
-            this.picPrevious.Visible = true;
+            // 2페이지가 있는 경우에만 다음 페이지로 이동
+            if (hasSecondPage)
+            {
+                this.panel1.Visible = false;
+                this.panel2.Visible = true;
+                this.btnNext.Visible = false;
+                this.picPrint.Visible = true;
+                this.picPrevious.Visible = true;
+                // 프린트 버튼 크기와 위치: 이전 버튼과 함께 사용할 크기 (516, 430)
+                this.picPrint.Width = 516;
+                this.picPrint.Location = new Point(430, this.picPrint.Location.Y);
+            }
         }
 
         private void picPrevious_Click(object sender, EventArgs e)
@@ -983,7 +1032,19 @@ namespace SmartShoes.Client.UI
             this.panel1.Visible = true;
             this.picPrint.Visible = false;
             this.picPrevious.Visible = false;
-            this.btnNext.Visible = true;
+            
+            // 2페이지가 있는 경우에만 다음 버튼 표시
+            if (hasSecondPage)
+            {
+                this.btnNext.Visible = true;
+            }
+            else
+            {
+                // 1페이지만 있는 경우 프린트 버튼 표시 및 크기/위치 조절
+                this.picPrint.Visible = true;
+                this.picPrint.Width = 810; // 혼자 사용할 크기
+                this.picPrint.Location = new Point(140, this.picPrint.Location.Y); // 가운데 위치
+            }
         }
 
         private void picPrint_Click(object sender, EventArgs e)
@@ -1054,7 +1115,9 @@ namespace SmartShoes.Client.UI
             currentPrintPage++;
 
             // 아직 인쇄할 페이지가 남아있는지 확인
-            e.HasMorePages = (currentPrintPage < 2);
+            // hasSecondPage가 false이면 1페이지만, true이면 2페이지 모두 인쇄
+            int totalPages = hasSecondPage ? 2 : 1;
+            e.HasMorePages = (currentPrintPage < totalPages);
 
             // 비트맵 자원 해제
             bmp.Dispose();
